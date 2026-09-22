@@ -37,7 +37,7 @@ export async function generateMetadata(
 
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
-    <div className="border-t border-line py-8 first:border-t-0 first:pt-0">
+    <div data-reveal className="border-t border-line py-8 first:border-t-0 first:pt-0">
       <h2 className="font-display text-xl font-bold text-ink">{label}</h2>
       <div className="mt-4 max-w-2xl text-ink-soft">{children}</div>
     </div>
@@ -116,7 +116,7 @@ export default async function ProjectPage(
         </ul>
       </Field>
 
-      <div className="border-t border-line py-8">
+      <div data-reveal className="border-t border-line py-8">
         <h2 className="font-display text-xl font-bold text-ink">
           How it&apos;s built
         </h2>
@@ -155,7 +155,7 @@ export default async function ProjectPage(
         <p>{project.outcome}</p>
       </Field>
 
-      <div className="border-t border-line py-8">
+      <div data-reveal className="border-t border-line py-8">
         <h2 className="font-display text-xl font-bold text-ink">Screenshots</h2>
         <p className="mt-2 text-sm text-ink-soft">
           Tap a screenshot to open it. Swipe to see the next one, and pinch or double-tap to zoom.

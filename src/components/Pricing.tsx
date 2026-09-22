@@ -5,7 +5,7 @@ export function Pricing() {
   return (
     <section id="pricing" className="border-b border-line">
       <div className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
-        <div className="grid gap-8 lg:grid-cols-[200px_1fr] lg:gap-16">
+        <div data-reveal className="grid gap-8 lg:grid-cols-[200px_1fr] lg:gap-16">
           <div>
             <h2 className="font-display text-2xl font-bold text-ink">Pricing</h2>
             <p className="mt-3 max-w-xs text-sm text-ink-soft">

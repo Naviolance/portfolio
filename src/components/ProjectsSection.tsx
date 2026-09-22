@@ -13,6 +13,7 @@ export function ProjectsSection() {
           {projects.map((project) => (
             <article
               key={project.slug}
+              data-reveal
               className="grid gap-6 border border-line md:grid-cols-[1.1fr_1.4fr]"
             >
               <div className="flex items-center border-b border-line md:border-b-0 md:border-r">

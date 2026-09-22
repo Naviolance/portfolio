@@ -5,6 +5,7 @@ import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { SiteAnalytics } from "@/components/SiteAnalytics";
 import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { projects } from "@/data/projects";
 import "./globals.css";
 
@@ -68,6 +69,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <WhatsAppButton
           projectTitles={Object.fromEntries(projects.map((p) => [p.slug, p.title]))}
         />
+        <RevealOnScroll />
         <SiteAnalytics />
       </body>
     </html>
