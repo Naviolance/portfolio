@@ -51,6 +51,11 @@ export const metadata: Metadata = {
     title,
     description: site.description,
   },
+  // Google Search Console ownership check (URL-prefix property, HTML tag
+  // method). Public by design; it only proves the site is ours.
+  verification: {
+    google: "IY2sevyae-juuPN113pCwIWRUFw_1PGNo7ZOR37B3PU",
+  },
   // Favicon and apple-touch-icon come from app/icon.png and app/apple-icon.png;
   // the share image from app/opengraph-image.tsx (Next file conventions).
 };
