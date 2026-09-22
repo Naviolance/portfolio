@@ -94,6 +94,19 @@ export default async function ProjectPage(
             GitHub repository
           </a>
         </div>
+        {project.demoNote && (
+          <p className="mt-5 max-w-2xl border-l-2 border-accent pl-4 text-sm text-ink-soft">
+            {project.demoNote.text}{" "}
+            <a
+              href={project.demoNote.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
+            >
+              {project.demoNote.linkLabel}
+            </a>
+          </p>
+        )}
       </header>
 
       <Field label="Overview">

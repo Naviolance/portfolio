@@ -45,6 +45,9 @@ export type Project = {
   outcome: string;
   liveUrl: string;
   githubUrl: string;
+  // Optional pointer to a way into the live demo's admin side (shown under
+  // the Live demo button on the project page).
+  demoNote?: { text: string; href: string; linkLabel: string };
   screenshots: ScreenshotSlot[];
 };
 
@@ -70,6 +73,7 @@ export const projects: Project[] = [
       "English and French with next-intl. The language is saved in a cookie, not in the URL",
       "Prices in XAF, a currency with no decimals. Every amount is a whole number, so there are no rounding errors",
       "Product images are converted to WebP and resized on upload, then served through the backend so the storage is never exposed",
+      "A read-only demo admin, so anyone can explore the admin panel. It's enforced in the backend: the account's token carries a demo flag, and one global NestJS interceptor rejects every change it tries to make",
     ],
     techStack: [
       { layer: "Frontend", choice: "Next.js + TypeScript + Tailwind", why: "One codebase for the store and the admin panel. Server components where they help, and no separate app to host." },
@@ -89,6 +93,11 @@ export const projects: Project[] = [
       "It's live as a demo on Vercel. With the test accounts you can go through the whole flow: browse, check a part fits, add to cart, pay online or at pickup, confirm the payment, track the order, and handle it from the admin side. Payments run on Notch Pay's sandbox, so no real money is charged.",
     liveUrl: "https://truck-spare-part-store-frontend.vercel.app",
     githubUrl: "https://github.com/Naviolance/Truck-spare-part-store",
+    demoNote: {
+      text: "Want to see the admin panel? The login page has a read-only demo account you can use. Look around freely, nothing you do will change the store.",
+      href: "https://truck-spare-part-store-frontend.vercel.app/login",
+      linkLabel: "Go to the login page",
+    },
     screenshots: [
       { key: "home", label: "Homepage", src: truckpartsHome },
       { key: "listing", label: "Product listing", src: truckpartsListing },
