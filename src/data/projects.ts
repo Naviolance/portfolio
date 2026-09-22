@@ -1,3 +1,22 @@
+import type { StaticImageData } from "next/image";
+import truckpartsHome from "@/assets/screenshots/truckparts/home.png";
+import truckpartsListing from "@/assets/screenshots/truckparts/listing.png";
+import truckpartsDetail from "@/assets/screenshots/truckparts/detail.png";
+import truckpartsFindMyPart from "@/assets/screenshots/truckparts/find-my-part.png";
+import truckpartsCart from "@/assets/screenshots/truckparts/cart.png";
+import truckpartsCheckout from "@/assets/screenshots/truckparts/checkout.png";
+import truckpartsOrderTracking from "@/assets/screenshots/truckparts/order-tracking.png";
+import truckpartsAdminProducts from "@/assets/screenshots/truckparts/admin-products.png";
+import truckpartsAdminOrders from "@/assets/screenshots/truckparts/admin-orders.png";
+import carRentalHome from "@/assets/screenshots/car-rental/home.png";
+import carRentalFindMyCar from "@/assets/screenshots/car-rental/find-my-car.png";
+import carRentalListing from "@/assets/screenshots/car-rental/listing.png";
+import carRentalDetail from "@/assets/screenshots/car-rental/detail.png";
+import carRentalBooking from "@/assets/screenshots/car-rental/booking.png";
+import carRentalConfirmation from "@/assets/screenshots/car-rental/confirmation.png";
+import carRentalAdminCars from "@/assets/screenshots/car-rental/admin-cars.png";
+import carRentalAdminBookings from "@/assets/screenshots/car-rental/admin-bookings.png";
+
 export type TechStackEntry = {
   layer: string;
   choice: string;
@@ -7,7 +26,9 @@ export type TechStackEntry = {
 export type ScreenshotSlot = {
   key: string;
   label: string;
-  src: string;
+  // Static imports: Next hashes the file name (so it can be cached forever),
+  // reads the real width/height, and generates a blur placeholder.
+  src: StaticImageData;
 };
 
 export type Project = {
@@ -29,8 +50,8 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "truckspart",
-    title: "TruckSpart",
+    slug: "truckparts",
+    title: "TruckParts",
     category: "Automotive / E-commerce",
     status: "live-demo",
     summary:
@@ -69,15 +90,15 @@ export const projects: Project[] = [
     liveUrl: "https://truck-spare-part-store-frontend.vercel.app",
     githubUrl: "https://github.com/Naviolance/Truck-spare-part-store",
     screenshots: [
-      { key: "home", label: "Homepage", src: "/images/truckspart/home.png" },
-      { key: "listing", label: "Product listing", src: "/images/truckspart/listing.png" },
-      { key: "detail", label: "Product page", src: "/images/truckspart/detail.png" },
-      { key: "find-my-part", label: "Find My Part search", src: "/images/truckspart/find-my-part.png" },
-      { key: "cart", label: "Cart", src: "/images/truckspart/cart.png" },
-      { key: "checkout", label: "Checkout", src: "/images/truckspart/checkout.png" },
-      { key: "order-tracking", label: "Order tracking", src: "/images/truckspart/order-tracking.png" },
-      { key: "admin-products", label: "Admin: products", src: "/images/truckspart/admin-products.png" },
-      { key: "admin-orders", label: "Admin: orders", src: "/images/truckspart/admin-orders.png" },
+      { key: "home", label: "Homepage", src: truckpartsHome },
+      { key: "listing", label: "Product listing", src: truckpartsListing },
+      { key: "detail", label: "Product page", src: truckpartsDetail },
+      { key: "find-my-part", label: "Find My Part search", src: truckpartsFindMyPart },
+      { key: "cart", label: "Cart", src: truckpartsCart },
+      { key: "checkout", label: "Checkout", src: truckpartsCheckout },
+      { key: "order-tracking", label: "Order tracking", src: truckpartsOrderTracking },
+      { key: "admin-products", label: "Admin: products", src: truckpartsAdminProducts },
+      { key: "admin-orders", label: "Admin: orders", src: truckpartsAdminOrders },
     ],
   },
   {
@@ -121,14 +142,14 @@ export const projects: Project[] = [
     liveUrl: "https://car-rental-xi-lemon.vercel.app",
     githubUrl: "https://github.com/Naviolance/car-rental",
     screenshots: [
-      { key: "home", label: "Homepage", src: "/images/car-rental/home.png" },
-      { key: "find-my-car", label: "Find my car wizard", src: "/images/car-rental/find-my-car.png" },
-      { key: "listing", label: "Car list with filters", src: "/images/car-rental/listing.png" },
-      { key: "detail", label: "Car page", src: "/images/car-rental/detail.png" },
-      { key: "booking", label: "Booking form", src: "/images/car-rental/booking.png" },
-      { key: "confirmation", label: "Booking confirmed", src: "/images/car-rental/confirmation.png" },
-      { key: "admin-cars", label: "Admin: cars", src: "/images/car-rental/admin-cars.png" },
-      { key: "admin-bookings", label: "Admin: bookings", src: "/images/car-rental/admin-bookings.png" },
+      { key: "home", label: "Homepage", src: carRentalHome },
+      { key: "find-my-car", label: "Find my car wizard", src: carRentalFindMyCar },
+      { key: "listing", label: "Car list with filters", src: carRentalListing },
+      { key: "detail", label: "Car page", src: carRentalDetail },
+      { key: "booking", label: "Booking form", src: carRentalBooking },
+      { key: "confirmation", label: "Booking confirmed", src: carRentalConfirmation },
+      { key: "admin-cars", label: "Admin: cars", src: carRentalAdminCars },
+      { key: "admin-bookings", label: "Admin: bookings", src: carRentalAdminBookings },
     ],
   },
 ];

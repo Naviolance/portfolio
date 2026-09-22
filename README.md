@@ -5,7 +5,8 @@ My personal portfolio site. It shows the projects I've built, what I can do for 
 ## Stack
 
 - **Next.js 16** (App Router) + **TypeScript**
-- **Tailwind CSS v4**
+- **Tailwind CSS v4**, brand colors from the JPFW Web Services logo
+- **Sora** (headings) + **DM Sans** (body), self-hosted with `next/font`
 - **yet-another-react-lightbox** for the screenshot viewer (swipe, pinch and double-tap zoom)
 - **Vercel Web Analytics** for visit counts (no cookies, no consent banner)
 - Hosted on **Vercel**
@@ -26,9 +27,10 @@ Then open http://localhost:3000.
 | `src/data/` | All the content: projects, services, contact details |
 | `src/components/` | The page sections (Hero, Work, About, Services, Contact) |
 | `src/app/projects/[slug]/` | One page per project |
-| `public/images/` | Project screenshots |
+| `src/assets/screenshots/` | Project screenshots (imported, so they get hashed file names and blur placeholders) |
+| `public/brand/` | Logo files |
 
-To add a project, add an entry to `src/data/projects.ts` and put its screenshots in `public/images/<slug>/`.
+To add a project, add an entry to `src/data/projects.ts` and put its screenshots in `src/assets/screenshots/<slug>/` and import them there.
 
 ## Tracked links
 

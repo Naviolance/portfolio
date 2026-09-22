@@ -15,7 +15,7 @@ export const services: Service[] = [
     title: "E-commerce",
     description:
       "Online stores with a product catalog, cart, checkout and real payments. Plus the admin tools you need to run the store every day.",
-    evidence: "TruckSpart: truck parts store with Notch Pay checkout and a full admin panel",
+    evidence: "TruckParts: truck parts store with Notch Pay checkout and a full admin panel",
   },
   {
     title: "Web applications",

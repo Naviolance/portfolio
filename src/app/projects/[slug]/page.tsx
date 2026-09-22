@@ -3,6 +3,8 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/data/projects";
 import { ScreenshotGallery } from "@/components/ScreenshotGallery";
+import { JsonLd } from "@/components/JsonLd";
+import { site } from "@/data/site";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -14,10 +16,22 @@ export async function generateMetadata(
   const { slug } = await props.params;
   const project = getProject(slug);
   if (!project) return {};
+  const path = `/projects/${project.slug}`;
   return {
     title: project.title,
     description: project.summary,
-    openGraph: { title: project.title, description: project.summary },
+    alternates: { canonical: path },
+    openGraph: {
+      title: project.title,
+      description: project.summary,
+      type: "article",
+      url: path,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: project.title,
+      description: project.summary,
+    },
   };
 }
 
@@ -37,14 +51,27 @@ export default async function ProjectPage(
   const project = getProject(slug);
   if (!project) notFound();
 
+  const projectSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    name: project.title,
+    description: project.summary,
+    url: project.liveUrl,
+    applicationCategory: "BusinessApplication",
+    operatingSystem: "Web",
+    sameAs: project.githubUrl,
+    author: { "@type": "Person", name: site.fullName, url: site.url },
+  };
+
   return (
     <div className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
-      <Link href="/#work" className="text-sm text-ink-soft hover:text-rust-ink">
+      <JsonLd data={projectSchema} />
+      <Link href="/#work" className="text-sm text-ink-soft hover:text-accent-ink">
         ← Back to work
       </Link>
 
       <header className="mt-6 border-b border-line pb-10">
-        <p className="font-mono text-xs text-steel">{project.category}</p>
+        <p className="font-mono text-xs text-label">{project.category}</p>
         <h1 className="mt-2 font-display text-3xl font-bold text-ink sm:text-4xl">
           {project.title}
         </h1>
@@ -54,7 +81,7 @@ export default async function ProjectPage(
             href={project.liveUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="border border-ink px-4 py-2 font-medium text-ink transition-colors hover:border-rust hover:bg-rust hover:text-paper"
+            className="border border-ink px-4 py-2 font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-paper"
           >
             Live demo
           </a>
@@ -107,7 +134,7 @@ export default async function ProjectPage(
                 key={entry.layer}
                 className="grid gap-1 border-b border-line py-3 sm:grid-cols-[130px_170px_1fr] sm:gap-4"
               >
-                <dt className="font-mono text-xs text-steel sm:pt-0.5">{entry.layer}</dt>
+                <dt className="font-mono text-xs text-label sm:pt-0.5">{entry.layer}</dt>
                 <dd className="font-medium text-ink">{entry.choice}</dd>
                 <dd className="text-ink-soft">{entry.why}</dd>
               </div>

@@ -24,13 +24,13 @@ export function ProjectsSection() {
                 />
               </div>
               <div className="flex flex-col justify-center p-6">
-                <p className="font-mono text-xs text-steel">
+                <p className="font-mono text-xs text-label">
                   {project.category}
                 </p>
                 <h3 className="mt-2 font-display text-xl font-bold text-ink">
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="hover:text-rust-ink"
+                    className="hover:text-accent-ink"
                   >
                     {project.title}
                   </Link>
@@ -49,7 +49,7 @@ export function ProjectsSection() {
                 <div className="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm">
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="font-medium text-ink underline decoration-line underline-offset-4 hover:decoration-rust hover:text-rust-ink"
+                    className="font-medium text-ink underline decoration-line underline-offset-4 hover:decoration-accent hover:text-accent-ink"
                   >
                     How I built it
                   </Link>
@@ -57,7 +57,7 @@ export function ProjectsSection() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-ink-soft underline decoration-line underline-offset-4 hover:decoration-rust hover:text-rust-ink"
+                    className="text-ink-soft underline decoration-line underline-offset-4 hover:decoration-accent hover:text-accent-ink"
                   >
                     Live demo
                   </a>
@@ -65,7 +65,7 @@ export function ProjectsSection() {
                     href={project.githubUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="text-ink-soft underline decoration-line underline-offset-4 hover:decoration-rust hover:text-rust-ink"
+                    className="text-ink-soft underline decoration-line underline-offset-4 hover:decoration-accent hover:text-accent-ink"
                   >
                     GitHub
                   </a>

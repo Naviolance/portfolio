@@ -13,7 +13,7 @@ export function Services() {
                   <h3 className="text-lg font-semibold text-ink">
                     {service.title}
                   </h3>
-                  <span className="font-mono text-[11px] text-steel">
+                  <span className="font-mono text-[11px] text-label">
                     {service.evidence}
                   </span>
                 </div>

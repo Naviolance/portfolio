@@ -31,10 +31,10 @@ export function Contact() {
                   }
                   className="group flex flex-col gap-1 py-4 first:pt-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
                 >
-                  <span className="font-mono text-xs text-steel">
+                  <span className="font-mono text-xs text-label">
                     {channel.label}
                   </span>
-                  <span className="min-w-0 text-ink group-hover:text-rust-ink [overflow-wrap:anywhere]">
+                  <span className="min-w-0 text-ink group-hover:text-accent-ink [overflow-wrap:anywhere]">
                     {channel.value}
                   </span>
                 </a>

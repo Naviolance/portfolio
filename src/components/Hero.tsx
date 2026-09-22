@@ -16,13 +16,13 @@ export function Hero() {
           <div className="mt-9 flex flex-wrap gap-4">
             <Link
               href="/#work"
-              className="border border-ink bg-ink px-5 py-3 text-sm font-medium text-paper transition-colors hover:bg-rust hover:border-rust"
+              className="border border-ink bg-ink px-5 py-3 text-sm font-medium text-paper transition-colors hover:bg-accent hover:border-accent"
             >
               View my work
             </Link>
             <Link
               href="/#contact"
-              className="border border-ink px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-rust hover:text-rust-ink"
+              className="border border-ink px-5 py-3 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent-ink"
             >
               Let&apos;s work together
             </Link>
@@ -38,7 +38,7 @@ export function Hero() {
                   <p className="text-sm font-medium text-ink">{project.title}</p>
                   <p className="text-xs text-ink-soft">{project.category}</p>
                 </div>
-                <span className="whitespace-nowrap border border-steel px-2 py-1 font-mono text-[10px] text-steel">
+                <span className="whitespace-nowrap border border-label px-2 py-1 font-mono text-[10px] text-label">
                   live demo
                 </span>
               </li>

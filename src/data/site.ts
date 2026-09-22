@@ -2,8 +2,13 @@ export const site = {
   name: "Priestly",
   fullName: "Forsangam Weyegho Junior Priestly",
   role: "Full-Stack Web Developer",
+  brand: "JPFW Web Services",
   tagline:
     "I build websites and web apps that help businesses sell, manage their work and grow online.",
+  // Meta description: what Google shows under the title (~155 chars max).
+  description:
+    "Priestly (JPFW Web Services) is a full-stack web developer in Cameroon. I build business websites, online stores and web apps with Next.js, NestJS and PostgreSQL.",
+  country: "Cameroon",
   email: "forsangamjunior@gmail.com",
   whatsapp: {
     display: "+237 678 369 216",

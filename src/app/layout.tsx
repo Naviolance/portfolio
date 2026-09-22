@@ -1,20 +1,22 @@
 import type { Metadata } from "next";
-import { Archivo, Inter, IBM_Plex_Mono } from "next/font/google";
+import { Sora, DM_Sans, IBM_Plex_Mono } from "next/font/google";
 import { site } from "@/data/site";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { SiteAnalytics } from "@/components/SiteAnalytics";
 import "./globals.css";
 
-const archivo = Archivo({
+// Sora (headings) echoes the wide geometric lettering in the JPFW logo;
+// DM Sans keeps body text plain and readable. Both are variable fonts and
+// self-hosted by next/font, so visitors never hit Google's servers.
+const sora = Sora({
   subsets: ["latin"],
-  weight: ["600", "700", "800"],
-  variable: "--font-archivo",
+  variable: "--font-sora",
 });
 
-const inter = Inter({
+const dmSans = DM_Sans({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-dm-sans",
 });
 
 const plexMono = IBM_Plex_Mono({
@@ -23,28 +25,31 @@ const plexMono = IBM_Plex_Mono({
   variable: "--font-plex-mono",
 });
 
-const title = `${site.name} — ${site.role}`;
-const description = site.tagline;
+const title = `${site.name}: ${site.role} | ${site.brand}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
-  title: { default: title, template: `%s — ${site.name}` },
-  description,
+  title: { default: title, template: `%s | ${site.name}, ${site.role}` },
+  description: site.description,
+  applicationName: site.brand,
+  authors: [{ name: site.fullName, url: site.url }],
+  creator: site.fullName,
+  alternates: { canonical: "/" },
   openGraph: {
     title,
-    description,
-    siteName: site.name,
+    description: site.description,
+    siteName: site.brand,
     type: "website",
-    url: site.url,
+    locale: "en",
+    url: "/",
   },
   twitter: {
     card: "summary_large_image",
     title,
-    description,
+    description: site.description,
   },
-  icons: {
-    icon: "/favicon.ico",
-  },
+  // Favicon and apple-touch-icon come from app/icon.png and app/apple-icon.png;
+  // the share image from app/opengraph-image.tsx (Next file conventions).
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
@@ -52,7 +57,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
     <html
       lang="en"
       data-scroll-behavior="smooth"
-      className={`${archivo.variable} ${inter.variable} ${plexMono.variable} h-full antialiased`}
+      className={`${sora.variable} ${dmSans.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
         <Nav />
