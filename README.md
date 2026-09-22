@@ -45,3 +45,9 @@ The visit shows up in Vercel Analytics under **Pages** as `/ref/acme-corp`. Only
 ## Environment variables
 
 None are needed on Vercel. The site URL comes from Vercel's `VERCEL_PROJECT_PRODUCTION_URL`. Set `SITE_URL` only when a custom domain is added.
+
+## License
+
+© 2026 Forsangam Weyegho Junior Priestly (JPFW Web Services). All rights reserved.
+
+This code is public so clients and employers can review my work. It is **not open source**: you may not copy, deploy, modify or sell it without my written permission. See [LICENSE](LICENSE).
