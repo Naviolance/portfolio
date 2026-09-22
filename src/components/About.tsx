@@ -6,25 +6,24 @@ export function About() {
           <h2 className="font-display text-2xl font-bold text-ink">About</h2>
           <div className="max-w-2xl space-y-5 text-ink-soft">
             <p>
-              I&apos;m a full-stack developer who builds the kind of software a
-              real business runs on: storefronts that take real payments,
-              booking systems that can&apos;t double-sell the same day, and
-              admin panels the people running the business actually use.
+              I&apos;m a full-stack developer. I build software that businesses
+              use every day: online stores that take real payments, booking
+              systems that don&apos;t double-book, and admin panels that are
+              easy for the owner to use.
             </p>
             <p>
-              My stack is Next.js and TypeScript on the frontend, Node
-              (NestJS) on the backend, and PostgreSQL for anything that has to
-              stay correct under concurrency — orders, stock, bookings. I also
-              build and maintain WordPress sites where that&apos;s the right
-              tool for the job, rather than reaching for a custom build every
-              time.
+              I work with Next.js and TypeScript on the frontend, Node.js
+              (NestJS) on the backend, and PostgreSQL when the data has to stay
+              correct, like orders, stock and bookings. I also build and
+              maintain WordPress sites when that&apos;s the better choice. Not
+              every project needs custom code.
             </p>
             <p>
-              I care less about a project looking finished and more about it
-              being right: payments that verify themselves instead of
-              trusting a webhook blindly, checkout that can&apos;t oversell
-              stock, and admin tools that are actually usable from a phone —
-              because in practice, they often are.
+              For me, a project isn&apos;t done just because it looks
+              finished. It has to work properly. Payments get checked, not
+              just trusted. Checkout can&apos;t sell stock that isn&apos;t
+              there. And the admin tools work on a phone, because that&apos;s
+              where a lot of business owners use them.
             </p>
           </div>
         </div>

@@ -3,6 +3,7 @@ import { Archivo, Inter, IBM_Plex_Mono } from "next/font/google";
 import { site } from "@/data/site";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
+import { SiteAnalytics } from "@/components/SiteAnalytics";
 import "./globals.css";
 
 const archivo = Archivo({
@@ -57,6 +58,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <SiteAnalytics />
       </body>
     </html>
   );

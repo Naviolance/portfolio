@@ -15,8 +15,8 @@ export function Contact() {
           <h2 className="font-display text-2xl font-bold text-ink">Contact</h2>
           <div className="max-w-2xl">
             <p className="text-ink-soft">
-              Tell me what you&apos;re building and what it needs to do.
-              I&apos;ll reply directly — no forms, no gatekeeping.
+              Tell me what you want to build and what it needs to do.
+              I&apos;ll get back to you myself.
             </p>
             <div className="mt-8 divide-y divide-line border-t border-line">
               {channels.map((channel) => (
@@ -29,12 +29,12 @@ export function Contact() {
                       ? undefined
                       : "noopener noreferrer"
                   }
-                  className="group flex items-center justify-between gap-4 py-4 first:pt-0"
+                  className="group flex flex-col gap-1 py-4 first:pt-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
                 >
                   <span className="font-mono text-xs text-steel">
                     {channel.label}
                   </span>
-                  <span className="text-ink group-hover:text-rust-ink">
+                  <span className="min-w-0 text-ink group-hover:text-rust-ink [overflow-wrap:anywhere]">
                     {channel.value}
                   </span>
                 </a>

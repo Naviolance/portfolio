@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { MobileMenu } from "./MobileMenu";
 
 const links = [
   { href: "/#work", label: "Work" },
@@ -9,7 +10,7 @@ const links = [
 export function Nav() {
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-5">
+      <div className="relative mx-auto flex h-16 max-w-5xl items-center justify-between gap-3 px-5">
         <Link
           href="/"
           className="font-display text-lg font-bold tracking-tight text-ink"
@@ -27,12 +28,15 @@ export function Nav() {
             </Link>
           ))}
         </nav>
-        <Link
-          href="/#contact"
-          className="border border-ink px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-rust hover:bg-rust hover:text-paper"
-        >
-          Let&apos;s talk
-        </Link>
+        <div className="flex items-center gap-2">
+          <Link
+            href="/#contact"
+            className="border border-ink px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-rust hover:bg-rust hover:text-paper"
+          >
+            Let&apos;s talk
+          </Link>
+          <MobileMenu links={links} />
+        </div>
       </div>
     </header>
   );

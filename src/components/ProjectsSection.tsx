@@ -1,6 +1,6 @@
-import Image from "next/image";
 import Link from "next/link";
 import { projects } from "@/data/projects";
+import { ScreenshotGallery } from "./ScreenshotGallery";
 
 export function ProjectsSection() {
   return (
@@ -15,13 +15,12 @@ export function ProjectsSection() {
               key={project.slug}
               className="grid gap-6 border border-line md:grid-cols-[1.1fr_1.4fr]"
             >
-              <div className="relative aspect-video w-full overflow-hidden border-b border-line md:border-b-0 md:border-r">
-                <Image
-                  src={project.screenshots[0].src}
-                  alt={`${project.title} homepage`}
-                  fill
+              <div className="flex items-center border-b border-line md:border-b-0 md:border-r">
+                <ScreenshotGallery
+                  projectTitle={project.title}
+                  screenshots={project.screenshots}
+                  variant="cover"
                   sizes="(min-width: 768px) 45vw, 100vw"
-                  className="object-cover object-top"
                 />
               </div>
               <div className="flex flex-col justify-center p-6">
@@ -52,7 +51,7 @@ export function ProjectsSection() {
                     href={`/projects/${project.slug}`}
                     className="font-medium text-ink underline decoration-line underline-offset-4 hover:decoration-rust hover:text-rust-ink"
                   >
-                    Read the case study
+                    How I built it
                   </Link>
                   <a
                     href={project.liveUrl}

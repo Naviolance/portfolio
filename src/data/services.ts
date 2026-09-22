@@ -8,25 +8,25 @@ export const services: Service[] = [
   {
     title: "Business websites",
     description:
-      "Modern, responsive websites for businesses and organizations — built for speed, clarity and search visibility, not just visual polish.",
-    evidence: "WordPress build: theastuteink.com",
+      "Websites for businesses and organizations. They load fast, work well on phones and are easy to find on Google.",
+    evidence: "WordPress site: theastuteink.com",
   },
   {
     title: "E-commerce",
     description:
-      "Product catalogs, cart and checkout, real payment integration, and the admin tooling a business actually needs to run the store day to day.",
-    evidence: "TruckSpart — single-vendor store with Notch Pay checkout and a full admin panel",
+      "Online stores with a product catalog, cart, checkout and real payments. Plus the admin tools you need to run the store every day.",
+    evidence: "TruckSpart: truck parts store with Notch Pay checkout and a full admin panel",
   },
   {
     title: "Web applications",
     description:
-      "Custom systems, dashboards, booking flows and management portals — the kind of software a specific business process needs, not a generic template.",
-    evidence: "Car Rental — booking engine, driver-age policy enforcement, fleet admin panel",
+      "Custom tools built around how your business works: dashboards, booking systems and management portals.",
+    evidence: "Car Rental: booking system, driver age rules and an admin panel for the cars",
   },
   {
     title: "WordPress",
     description:
-      "Business websites, theme customization, and ongoing maintenance on WordPress where that's the right tool for the job.",
+      "Business websites, theme changes and ongoing maintenance, when WordPress is the better choice for the project.",
     evidence: "theastuteink.com",
   },
 ];

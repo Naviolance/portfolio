@@ -11,7 +11,7 @@ export function Hero() {
             {site.tagline}
           </h1>
           <p className="mt-5 text-base text-ink-soft">
-            — {site.name}, {site.role}
+            I&apos;m {site.name}, a full-stack web developer.
           </p>
           <div className="mt-9 flex flex-wrap gap-4">
             <Link
@@ -30,7 +30,7 @@ export function Hero() {
         </div>
 
         <div className="border border-line bg-panel p-5">
-          <p className="font-mono text-xs text-ink-soft">Currently shipping</p>
+          <p className="font-mono text-xs text-ink-soft">Recent projects</p>
           <ul className="mt-4 flex flex-col divide-y divide-line">
             {projects.map((project) => (
               <li key={project.slug} className="flex items-center justify-between gap-3 py-3 first:pt-0 last:pb-0">

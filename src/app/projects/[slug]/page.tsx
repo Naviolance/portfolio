@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
-import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/data/projects";
+import { ScreenshotGallery } from "@/components/ScreenshotGallery";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -91,31 +91,28 @@ export default async function ProjectPage(
 
       <div className="border-t border-line py-8">
         <h2 className="font-display text-xl font-bold text-ink">
-          Technical implementation
+          How it&apos;s built
         </h2>
-        <div className="mt-4 max-w-2xl overflow-x-auto">
-          <table className="w-full border-collapse text-sm">
-            <thead>
-              <tr className="border-b border-line text-left text-ink-soft">
-                <th className="py-2 pr-4 font-medium">Layer</th>
-                <th className="py-2 pr-4 font-medium">Choice</th>
-                <th className="py-2 font-medium">Why</th>
-              </tr>
-            </thead>
-            <tbody>
-              {project.techStack.map((entry) => (
-                <tr key={entry.layer} className="border-b border-line align-top">
-                  <td className="py-3 pr-4 font-mono text-xs text-steel">
-                    {entry.layer}
-                  </td>
-                  <td className="py-3 pr-4 font-medium text-ink">
-                    {entry.choice}
-                  </td>
-                  <td className="py-3 text-ink-soft">{entry.why}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
+        {/* Stacked on phones (a 3-column table is unreadable at 360px);
+            a label / choice / why grid from sm up. */}
+        <div className="mt-4 max-w-3xl border-t border-line text-sm">
+          <div className="hidden grid-cols-[130px_170px_1fr] gap-4 border-b border-line py-2 text-left font-medium text-ink-soft sm:grid">
+            <span>Layer</span>
+            <span>Choice</span>
+            <span>Why</span>
+          </div>
+          <dl>
+            {project.techStack.map((entry) => (
+              <div
+                key={entry.layer}
+                className="grid gap-1 border-b border-line py-3 sm:grid-cols-[130px_170px_1fr] sm:gap-4"
+              >
+                <dt className="font-mono text-xs text-steel sm:pt-0.5">{entry.layer}</dt>
+                <dd className="font-medium text-ink">{entry.choice}</dd>
+                <dd className="text-ink-soft">{entry.why}</dd>
+              </div>
+            ))}
+          </dl>
         </div>
       </div>
 
@@ -127,29 +124,22 @@ export default async function ProjectPage(
         </ul>
       </Field>
 
-      <Field label="Outcome">
+      <Field label="Result">
         <p>{project.outcome}</p>
       </Field>
 
       <div className="border-t border-line py-8">
         <h2 className="font-display text-xl font-bold text-ink">Screenshots</h2>
-        <div className="mt-4 grid gap-4 sm:grid-cols-2">
-          {project.screenshots.map((shot) => (
-            <figure key={shot.key} className="border border-line">
-              <div className="relative aspect-video w-full">
-                <Image
-                  src={shot.src}
-                  alt={`${project.title} — ${shot.label}`}
-                  fill
-                  sizes="(min-width: 640px) 45vw, 100vw"
-                  className="object-cover object-top"
-                />
-              </div>
-              <figcaption className="border-t border-line px-3 py-2 font-mono text-xs text-ink-soft">
-                {shot.label}
-              </figcaption>
-            </figure>
-          ))}
+        <p className="mt-2 text-sm text-ink-soft">
+          Tap a screenshot to open it. Swipe to see the next one, and pinch or double-tap to zoom.
+        </p>
+        <div className="mt-4">
+          <ScreenshotGallery
+            projectTitle={project.title}
+            screenshots={project.screenshots}
+            variant="grid"
+            sizes="(min-width: 1024px) 480px, (min-width: 640px) 45vw, 100vw"
+          />
         </div>
       </div>
     </div>

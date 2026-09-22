@@ -3,7 +3,7 @@ export const site = {
   fullName: "Forsangam Weyegho Junior Priestly",
   role: "Full-Stack Web Developer",
   tagline:
-    "I build modern websites and web applications that help businesses sell, operate and grow online.",
+    "I build websites and web apps that help businesses sell, manage their work and grow online.",
   email: "forsangamjunior@gmail.com",
   whatsapp: {
     display: "+237 678 369 216",
@@ -11,7 +11,17 @@ export const site = {
   },
   linkedin: "https://www.linkedin.com/in/forsangam-weyegho-junior-priestly-965897236",
   github: "https://github.com/Naviolance",
-  // NEEDS CONFIRMATION: no custom domain configured yet. Deployed on the
-  // Vercel-assigned domain until a real one is attached.
-  url: "https://priestly-portfolio.vercel.app",
+  url: siteUrl(),
 } as const;
+
+// Used for canonical/Open Graph URLs, the sitemap and robots.txt.
+// SITE_URL wins once a custom domain is attached; otherwise Vercel's own
+// production domain (a system env var set on every Vercel build); localhost
+// for local dev.
+function siteUrl() {
+  if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/$/, "");
+  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
+    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
+  }
+  return "http://localhost:3000";
+}

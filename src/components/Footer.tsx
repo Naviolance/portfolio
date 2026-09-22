@@ -5,7 +5,7 @@ export function Footer() {
     <footer className="border-t border-line">
       <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 py-10 text-sm text-ink-soft sm:flex-row sm:items-center sm:justify-between">
         <p>
-          {site.fullName} — {site.role}
+          {site.fullName} · {site.role}
         </p>
         <div className="flex flex-wrap gap-x-6 gap-y-2">
           <a href={`mailto:${site.email}`} className="hover:text-ink">
