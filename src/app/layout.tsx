@@ -4,6 +4,8 @@ import { site } from "@/data/site";
 import { Nav } from "@/components/Nav";
 import { Footer } from "@/components/Footer";
 import { SiteAnalytics } from "@/components/SiteAnalytics";
+import { WhatsAppButton } from "@/components/WhatsAppButton";
+import { projects } from "@/data/projects";
 import "./globals.css";
 
 // Sora (headings) echoes the wide geometric lettering in the JPFW logo;
@@ -63,6 +65,9 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
         <Nav />
         <main className="flex-1">{children}</main>
         <Footer />
+        <WhatsAppButton
+          projectTitles={Object.fromEntries(projects.map((p) => [p.slug, p.title]))}
+        />
         <SiteAnalytics />
       </body>
     </html>

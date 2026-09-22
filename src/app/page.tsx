@@ -2,6 +2,7 @@ import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
 import { Services } from "@/components/Services";
 import { ProjectsSection } from "@/components/ProjectsSection";
+import { Pricing } from "@/components/Pricing";
 import { Contact } from "@/components/Contact";
 import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/data/site";
@@ -48,6 +49,7 @@ export default function Home() {
       <ProjectsSection />
       <About />
       <Services />
+      <Pricing />
       <Contact />
     </>
   );

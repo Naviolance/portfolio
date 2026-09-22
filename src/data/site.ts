@@ -1,3 +1,5 @@
+import { WHATSAPP_DISPLAY, whatsappLink } from "@/lib/whatsapp";
+
 export const site = {
   name: "Priestly",
   fullName: "Forsangam Weyegho Junior Priestly",
@@ -11,8 +13,8 @@ export const site = {
   country: "Cameroon",
   email: "forsangamjunior@gmail.com",
   whatsapp: {
-    display: "+237 678 369 216",
-    href: "https://wa.me/237678369216",
+    display: WHATSAPP_DISPLAY,
+    href: whatsappLink(),
   },
   linkedin: "https://www.linkedin.com/in/forsangam-weyegho-junior-priestly-965897236",
   github: "https://github.com/Naviolance",

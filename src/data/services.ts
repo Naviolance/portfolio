@@ -29,4 +29,10 @@ export const services: Service[] = [
       "Business websites, theme changes and ongoing maintenance, when WordPress is the better choice for the project.",
     evidence: "theastuteink.com",
   },
+  {
+    title: "SEO",
+    description:
+      "Audits and fixes so your site shows up on Google: speed, page structure, structured data and the technical details search engines check.",
+    evidence: "This site: structured data, share images, fast static pages",
+  },
 ];

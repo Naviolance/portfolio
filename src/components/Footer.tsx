@@ -3,7 +3,7 @@ import { site } from "@/data/site";
 export function Footer() {
   return (
     <footer className="border-t border-line">
-      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 py-10 text-sm text-ink-soft sm:flex-row sm:items-center sm:justify-between">
+      <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 pt-10 pb-24 text-sm text-ink-soft sm:flex-row sm:pb-10 sm:items-center sm:justify-between">
         <p>
           {site.fullName} · {site.role}
         </p>
