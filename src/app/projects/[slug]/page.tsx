@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getProject, projects } from "@/data/projects";
-import { ScreenshotPlaceholder } from "@/components/ScreenshotPlaceholder";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -135,7 +135,20 @@ export default async function ProjectPage(
         <h2 className="font-display text-xl font-bold text-ink">Screenshots</h2>
         <div className="mt-4 grid gap-4 sm:grid-cols-2">
           {project.screenshots.map((shot) => (
-            <ScreenshotPlaceholder key={shot.key} label={shot.label} />
+            <figure key={shot.key} className="border border-line">
+              <div className="relative aspect-video w-full">
+                <Image
+                  src={shot.src}
+                  alt={`${project.title} — ${shot.label}`}
+                  fill
+                  sizes="(min-width: 640px) 45vw, 100vw"
+                  className="object-cover object-top"
+                />
+              </div>
+              <figcaption className="border-t border-line px-3 py-2 font-mono text-xs text-ink-soft">
+                {shot.label}
+              </figcaption>
+            </figure>
           ))}
         </div>
       </div>

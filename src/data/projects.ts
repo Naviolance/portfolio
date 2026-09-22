@@ -7,6 +7,7 @@ export type TechStackEntry = {
 export type ScreenshotSlot = {
   key: string;
   label: string;
+  src: string;
 };
 
 export type Project = {
@@ -68,15 +69,15 @@ export const projects: Project[] = [
     liveUrl: "https://truck-spare-part-store-frontend.vercel.app",
     githubUrl: "https://github.com/Naviolance/Truck-spare-part-store",
     screenshots: [
-      { key: "home", label: "Homepage" },
-      { key: "listing", label: "Product listing" },
-      { key: "detail", label: "Product detail page" },
-      { key: "find-my-part", label: "Find My Part (vehicle compatibility search)" },
-      { key: "cart", label: "Cart" },
-      { key: "checkout", label: "Checkout (Notch Pay hosted page)" },
-      { key: "order-tracking", label: "Order tracking page" },
-      { key: "admin-products", label: "Admin — product list (mobile card view)" },
-      { key: "admin-orders", label: "Admin — order management" },
+      { key: "home", label: "Homepage", src: "/images/truckspart/home.png" },
+      { key: "listing", label: "Product listing", src: "/images/truckspart/listing.png" },
+      { key: "detail", label: "Product detail page", src: "/images/truckspart/detail.png" },
+      { key: "find-my-part", label: "Find My Part (vehicle compatibility search)", src: "/images/truckspart/find-my-part.png" },
+      { key: "cart", label: "Cart", src: "/images/truckspart/cart.png" },
+      { key: "checkout", label: "Checkout", src: "/images/truckspart/checkout.png" },
+      { key: "order-tracking", label: "Order tracking page", src: "/images/truckspart/order-tracking.png" },
+      { key: "admin-products", label: "Admin — product list", src: "/images/truckspart/admin-products.png" },
+      { key: "admin-orders", label: "Admin — order management", src: "/images/truckspart/admin-orders.png" },
     ],
   },
   {
@@ -120,14 +121,14 @@ export const projects: Project[] = [
     liveUrl: "https://car-rental-xi-lemon.vercel.app",
     githubUrl: "https://github.com/Naviolance/car-rental",
     screenshots: [
-      { key: "home", label: "Homepage" },
-      { key: "find-my-car", label: "Find-my-car search wizard" },
-      { key: "listing", label: "Fleet listing with filters" },
-      { key: "detail", label: "Car detail page with reviews" },
-      { key: "booking", label: "Booking form (dates, driver age)" },
-      { key: "confirmation", label: "Booking confirmation (\"Done\") screen" },
-      { key: "admin-cars", label: "Admin — car management" },
-      { key: "admin-bookings", label: "Admin — booking management" },
+      { key: "home", label: "Homepage", src: "/images/car-rental/home.png" },
+      { key: "find-my-car", label: "Find-my-car search wizard", src: "/images/car-rental/find-my-car.png" },
+      { key: "listing", label: "Fleet listing with filters", src: "/images/car-rental/listing.png" },
+      { key: "detail", label: "Car detail page", src: "/images/car-rental/detail.png" },
+      { key: "booking", label: "Booking form (dates, driver age)", src: "/images/car-rental/booking.png" },
+      { key: "confirmation", label: "Booking confirmation screen", src: "/images/car-rental/confirmation.png" },
+      { key: "admin-cars", label: "Admin — car management", src: "/images/car-rental/admin-cars.png" },
+      { key: "admin-bookings", label: "Admin — booking management", src: "/images/car-rental/admin-bookings.png" },
     ],
   },
 ];
