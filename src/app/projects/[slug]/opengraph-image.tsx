@@ -1,18 +1,31 @@
 import { ImageResponse } from "next/og";
 import { join } from "node:path";
 import sharp from "sharp";
-import { getProject, projects } from "@/data/projects";
+import { getProject } from "@/data/projects";
 import { site } from "@/data/site";
 import { ogColors, ogFonts, ogMark } from "@/lib/og";
 
 // Per-project share card: title + the project's homepage screenshot, so a
 // shared case-study link previews the actual project.
-export const alt = "Project preview";
-export const size = { width: 1200, height: 630 };
-export const contentType = "image/png";
+const size = { width: 1200, height: 630 };
 
-export function generateStaticParams() {
-  return projects.map((project) => ({ slug: project.slug }));
+// Per-project alt text ("TruckParts, Automotive / E-commerce"). A plain
+// `export const alt` would be the same string for every project.
+// Note: Next 16 fails the build if this file also exports
+// generateStaticParams, so these images render on first request (~0.3s)
+// and are cached after that.
+export function generateImageMetadata({ params }: { params: { slug: string } }) {
+  const project = getProject(params.slug);
+  return [
+    {
+      id: "card",
+      size,
+      contentType: "image/png",
+      alt: project
+        ? `${project.title}, ${project.category}: a project by ${site.name}`
+        : `A project by ${site.name}`,
+    },
+  ];
 }
 
 export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
