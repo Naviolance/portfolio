@@ -139,10 +139,10 @@ export const projects: Project[] = [
       },
       {
         layer: { en: "Object storage", fr: "Stockage des fichiers" },
-        choice: "MinIO (S3-compatible)",
+        choice: "MinIO locally, Backblaze B2 in production",
         why: {
-          en: "Works like Amazon S3 but runs locally, so no cloud account is needed during development.",
-          fr: "Fonctionne comme Amazon S3 mais tourne en local, donc pas besoin de compte cloud pendant le développement.",
+          en: "Both speak the Amazon S3 protocol, so the same code works on my machine (no cloud account needed) and in production. Switching is only settings.",
+          fr: "Les deux utilisent le protocole Amazon S3, donc le même code marche en local (sans compte cloud) et en production. Changer ne demande que des réglages.",
         },
       },
       {
