@@ -1,16 +1,27 @@
 import { WHATSAPP_DISPLAY, whatsappLink } from "@/lib/whatsapp";
+import type { Localized } from "@/lib/localized";
 
 export const site = {
   name: "Priestly",
   fullName: "Forsangam Weyegho Junior Priestly",
-  role: "Full-Stack Web Developer",
+  role: {
+    en: "Full-Stack Web Developer",
+    fr: "Développeur Web Full-Stack",
+  } satisfies Localized,
   brand: "JPFW Web Services",
-  tagline:
-    "I build websites and web apps that help businesses sell, manage their work and grow online.",
+  tagline: {
+    en: "I build websites and web apps that help businesses sell, manage their work and grow online.",
+    fr: "Je crée des sites et des applications web qui aident les entreprises à vendre, à mieux s'organiser et à grandir en ligne.",
+  } satisfies Localized,
   // Meta description: what Google shows under the title (~155 chars max).
-  description:
-    "Priestly (JPFW Web Services) is a full-stack web developer in Cameroon. I build business websites, online stores and web apps with Next.js, NestJS and PostgreSQL.",
-  country: "Cameroon",
+  description: {
+    en: "Priestly (JPFW Web Services) is a full-stack web developer in Douala, Cameroon, working with clients worldwide. Websites, online stores and web apps.",
+    fr: "Priestly (JPFW Web Services), développeur web à Douala, Cameroun, pour des clients partout dans le monde. Sites vitrines, boutiques en ligne et applications web.",
+  } satisfies Localized,
+  location: {
+    en: "Douala, Cameroon",
+    fr: "Douala, Cameroun",
+  } satisfies Localized,
   email: "forsangamjunior@gmail.com",
   whatsapp: {
     display: WHATSAPP_DISPLAY,

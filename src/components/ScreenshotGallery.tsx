@@ -3,6 +3,8 @@
 import { useState } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/routing";
 import type { ScreenshotSlot } from "@/data/projects";
 
 // The lightbox library only matters once someone clicks a screenshot, so it's
@@ -20,6 +22,8 @@ type Props = {
 };
 
 export function ScreenshotGallery({ projectTitle, screenshots, variant, sizes }: Props) {
+  const t = useTranslations("gallery");
+  const locale = useLocale() as Locale;
   const [index, setIndex] = useState(-1);
   // Stays true after the first open so the chunk isn't unmounted/refetched.
   const [loaded, setLoaded] = useState(false);
@@ -41,8 +45,8 @@ export function ScreenshotGallery({ projectTitle, screenshots, variant, sizes }:
             <button
               type="button"
               onClick={() => open(i)}
-              aria-label={`View ${shot.label} full size${
-                variant === "cover" ? ` (${screenshots.length} screenshots)` : ""
+              aria-label={`${t("viewFullSize", { label: shot.label[locale] })}${
+                variant === "cover" ? ` (${t("count", { count: screenshots.length })})` : ""
               }`}
               // Box takes the screenshot's own shape, so nothing gets cropped.
               style={{ aspectRatio: `${shot.src.width} / ${shot.src.height}` }}
@@ -50,19 +54,19 @@ export function ScreenshotGallery({ projectTitle, screenshots, variant, sizes }:
             >
               <Image
                 src={shot.src}
-                alt={`${projectTitle}: ${shot.label}`}
+                alt={`${projectTitle}: ${shot.label[locale]}`}
                 placeholder="blur"
                 fill
                 sizes={sizes}
                 className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
               />
               <span className="absolute bottom-2 right-2 bg-brand-navy/85 px-2 py-1 font-mono text-[11px] text-white opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100">
-                {variant === "cover" ? `See all ${screenshots.length} screenshots` : "View"}
+                {variant === "cover" ? t("seeAll", { count: screenshots.length }) : t("view")}
               </span>
             </button>
             {variant === "grid" && (
               <figcaption className="border-t border-line px-3 py-2 font-mono text-xs text-ink-soft">
-                {shot.label}
+                {shot.label[locale]}
               </figcaption>
             )}
           </figure>

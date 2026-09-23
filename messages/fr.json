@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "work": "Projets",
+    "about": "À propos",
+    "services": "Services",
+    "pricing": "Tarifs",
+    "faq": "FAQ",
+    "cta": "Discutons",
+    "openMenu": "Ouvrir le menu",
+    "closeMenu": "Fermer le menu",
+    "language": "Langue",
+    "switchTo": "English",
+    "switchToShort": "EN"
+  },
+  "hero": {
+    "intro": "Je suis {name}, développeur web full-stack.",
+    "viewWork": "Voir mes projets",
+    "workTogether": "Travaillons ensemble",
+    "recent": "Projets récents",
+    "liveDemo": "démo en ligne"
+  },
+  "work": {
+    "heading": "Projets",
+    "howBuilt": "Comment je l'ai construit",
+    "liveDemo": "Démo en ligne",
+    "github": "GitHub"
+  },
+  "about": {
+    "heading": "À propos",
+    "p1": "Je suis développeur full-stack, basé à Douala au Cameroun, et je travaille avec des clients partout. Je crée des logiciels que les entreprises utilisent tous les jours : des boutiques en ligne avec de vrais paiements, des systèmes de réservation qui ne réservent pas deux fois le même créneau, et des espaces d'administration faciles à utiliser pour le propriétaire.",
+    "p2": "Je travaille avec Next.js et TypeScript pour le frontend, Node.js (NestJS) pour le backend, et PostgreSQL quand les données doivent rester justes, comme les commandes, le stock et les réservations. Je crée et maintiens aussi des sites WordPress quand c'est le meilleur choix. Tous les projets n'ont pas besoin de code sur mesure.",
+    "p3": "Pour moi, un projet n'est pas terminé juste parce qu'il a l'air fini. Il doit bien marcher. Les paiements sont vérifiés, pas juste acceptés. Le panier ne peut pas vendre un stock qui n'existe pas. Et l'administration marche sur téléphone, parce que c'est là que beaucoup de propriétaires l'utilisent."
+  },
+  "services": {
+    "heading": "Services"
+  },
+  "pricing": {
+    "heading": "Tarifs",
+    "note": "Prix en FCFA. Les montants en dollars sont approximatifs.",
+    "period": {
+      "one-time": "paiement unique",
+      "per-month": "par mois"
+    },
+    "outro": "Chaque projet est différent, donc ce sont des fourchettes. Besoin d'une application web ou d'autre chose ? Dites-moi ce qu'elle doit faire et je vous donne un devis précis.",
+    "quote": "Demander un devis sur WhatsApp",
+    "quoteMessage": "Bonjour Priestly, j'ai vu vos tarifs et j'aimerais un devis pour mon projet."
+  },
+  "contact": {
+    "heading": "Contact",
+    "intro": "Dites-moi ce que vous voulez créer et ce que ça doit faire. Je vous réponds moi-même."
+  },
+  "project": {
+    "back": "Retour aux projets",
+    "liveDemo": "Démo en ligne",
+    "repo": "Dépôt GitHub",
+    "overview": "Aperçu",
+    "problem": "Le problème",
+    "solution": "La solution",
+    "features": "Fonctionnalités clés",
+    "howBuilt": "Comment c'est construit",
+    "layer": "Couche",
+    "choice": "Choix",
+    "why": "Pourquoi",
+    "challenges": "Défis",
+    "result": "Résultat",
+    "screenshots": "Captures d'écran",
+    "screenshotsHint": "Touchez une capture pour l'ouvrir. Glissez pour voir la suivante, pincez ou touchez deux fois pour zoomer."
+  },
+  "gallery": {
+    "seeAll": "Voir les {count} captures",
+    "view": "Voir",
+    "viewFullSize": "Voir {label} en grand",
+    "count": "{count} captures"
+  },
+  "whatsapp": {
+    "default": "Bonjour Priestly, j'ai vu votre portfolio et j'aimerais parler d'un projet.",
+    "project": "Bonjour Priestly, j'ai vu votre projet {project} et j'aimerais quelque chose de similaire pour mon entreprise.",
+    "label": "Discuter avec Priestly sur WhatsApp",
+    "button": "Discuter sur WhatsApp"
+  }
+}

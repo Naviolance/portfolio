@@ -1,15 +1,16 @@
 import Image from "next/image";
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { MobileMenu } from "./MobileMenu";
+import { LanguageSwitcher } from "./LanguageSwitcher";
 
-const links = [
-  { href: "/#work", label: "Work" },
-  { href: "/#about", label: "About" },
-  { href: "/#services", label: "Services" },
-  { href: "/#pricing", label: "Pricing" },
-];
+// Section anchors on the homepage (id → nav label key).
+const SECTIONS = ["work", "about", "services", "pricing"] as const;
 
 export function Nav() {
+  const t = useTranslations("nav");
+  const links = SECTIONS.map((id) => ({ id, label: t(id) }));
+
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
       <div className="relative mx-auto flex h-16 max-w-5xl items-center justify-between gap-3 px-5">
@@ -31,11 +32,11 @@ export function Nav() {
             </span>
           </span>
         </Link>
-        <nav className="hidden items-center gap-7 text-sm text-ink-soft sm:flex">
+        <nav className="hidden items-center gap-7 text-sm text-ink-soft md:flex">
           {links.map((link) => (
             <Link
-              key={link.href}
-              href={link.href}
+              key={link.id}
+              href={{ pathname: "/", hash: link.id }}
               className="transition-colors hover:text-ink"
             >
               {link.label}
@@ -44,12 +45,13 @@ export function Nav() {
         </nav>
         <div className="flex items-center gap-2">
           <Link
-            href="/#contact"
-            className="border border-ink px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-paper"
+            href={{ pathname: "/", hash: "contact" }}
+            className="hidden border border-ink px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-paper sm:inline-block"
           >
-            Let&apos;s talk
+            {t("cta")}
           </Link>
-          <MobileMenu links={links} />
+          <LanguageSwitcher />
+          <MobileMenu links={links} ctaLabel={t("cta")} />
         </div>
       </div>
     </header>

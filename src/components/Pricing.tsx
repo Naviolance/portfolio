@@ -1,35 +1,35 @@
+import { useLocale, useTranslations } from "next-intl";
+import type { Locale } from "@/i18n/routing";
 import { pricing, priceLabel } from "@/data/pricing";
 import { whatsappLink } from "@/lib/whatsapp";
 
 export function Pricing() {
+  const t = useTranslations("pricing");
+  const locale = useLocale() as Locale;
+
   return (
     <section id="pricing" className="border-b border-line">
       <div className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
         <div data-reveal className="grid gap-8 lg:grid-cols-[200px_1fr] lg:gap-16">
           <div>
-            <h2 className="font-display text-2xl font-bold text-ink">Pricing</h2>
-            <p className="mt-3 max-w-xs text-sm text-ink-soft">
-              Prices in FCFA. Dollar amounts are approximate.
-            </p>
+            <h2 className="font-display text-2xl font-bold text-ink">{t("heading")}</h2>
+            <p className="mt-3 max-w-xs text-sm text-ink-soft">{t("note")}</p>
           </div>
 
           <div className="max-w-2xl space-y-12">
             {pricing.map((group) => (
-              <div key={group.title}>
+              <div key={group.id}>
                 <h3 className="font-mono text-xs uppercase tracking-widest text-label">
-                  {group.title}
+                  {group.title[locale]}
                 </h3>
                 <ul className="mt-4 divide-y divide-line border-y border-line">
                   {group.tiers.map((tier) => {
-                    const price = priceLabel(tier.fcfa);
+                    const price = priceLabel(tier.fcfa, locale);
                     return (
-                      <li
-                        key={tier.name}
-                        className="grid gap-3 py-5 sm:grid-cols-[1fr_auto] sm:gap-8"
-                      >
+                      <li key={tier.id} className="grid gap-3 py-5 sm:grid-cols-[1fr_auto] sm:gap-8">
                         <div>
-                          <p className="text-lg font-semibold text-ink">{tier.name}</p>
-                          <p className="mt-1 text-ink-soft">{tier.description}</p>
+                          <p className="text-lg font-semibold text-ink">{tier.name[locale]}</p>
+                          <p className="mt-1 text-ink-soft">{tier.description[locale]}</p>
                         </div>
                         <div className="sm:text-right">
                           <p className="whitespace-nowrap font-display text-lg font-bold text-ink">
@@ -38,7 +38,7 @@ export function Pricing() {
                           <p className="whitespace-nowrap text-sm text-ink-soft">
                             {price.usd}
                             <span className="ml-2 font-mono text-[11px] uppercase text-label">
-                              {tier.period}
+                              {t(`period.${tier.period}`)}
                             </span>
                           </p>
                         </div>
@@ -50,18 +50,14 @@ export function Pricing() {
             ))}
 
             <p className="text-ink-soft">
-              Every project is different, so these are ranges. Need a business
-              website or a web app instead? Tell me what it needs to do and
-              I&apos;ll give you an exact quote.{" "}
+              {t("outro")}{" "}
               <a
-                href={whatsappLink(
-                  "Hi Priestly, I saw your prices and I'd like a quote for my project."
-                )}
+                href={whatsappLink(t("quoteMessage"))}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
               >
-                Get a quote on WhatsApp
+                {t("quote")}
               </a>
             </p>
           </div>

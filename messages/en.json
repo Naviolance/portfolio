@@ -1,0 +1,81 @@
+{
+  "nav": {
+    "work": "Work",
+    "about": "About",
+    "services": "Services",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "cta": "Let's talk",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "language": "Language",
+    "switchTo": "Français",
+    "switchToShort": "FR"
+  },
+  "hero": {
+    "intro": "I'm {name}, a full-stack web developer.",
+    "viewWork": "View my work",
+    "workTogether": "Let's work together",
+    "recent": "Recent projects",
+    "liveDemo": "live demo"
+  },
+  "work": {
+    "heading": "Featured work",
+    "howBuilt": "How I built it",
+    "liveDemo": "Live demo",
+    "github": "GitHub"
+  },
+  "about": {
+    "heading": "About",
+    "p1": "I'm a full-stack developer based in Douala, Cameroon, working with clients anywhere. I build software that businesses use every day: online stores that take real payments, booking systems that don't double-book, and admin panels that are easy for the owner to use.",
+    "p2": "I work with Next.js and TypeScript on the frontend, Node.js (NestJS) on the backend, and PostgreSQL when the data has to stay correct, like orders, stock and bookings. I also build and maintain WordPress sites when that's the better choice. Not every project needs custom code.",
+    "p3": "For me, a project isn't done just because it looks finished. It has to work properly. Payments get checked, not just trusted. Checkout can't sell stock that isn't there. And the admin tools work on a phone, because that's where a lot of business owners use them."
+  },
+  "services": {
+    "heading": "Services"
+  },
+  "pricing": {
+    "heading": "Pricing",
+    "note": "Prices in FCFA. Dollar amounts are approximate.",
+    "period": {
+      "one-time": "one-time",
+      "per-month": "per month"
+    },
+    "outro": "Every project is different, so these are ranges. Need a web app or something else? Tell me what it needs to do and I'll give you an exact quote.",
+    "quote": "Get a quote on WhatsApp",
+    "quoteMessage": "Hi Priestly, I saw your prices and I'd like a quote for my project."
+  },
+  "contact": {
+    "heading": "Contact",
+    "intro": "Tell me what you want to build and what it needs to do. I'll get back to you myself."
+  },
+  "project": {
+    "back": "Back to work",
+    "liveDemo": "Live demo",
+    "repo": "GitHub repository",
+    "overview": "Overview",
+    "problem": "Problem",
+    "solution": "Solution",
+    "features": "Key features",
+    "howBuilt": "How it's built",
+    "layer": "Layer",
+    "choice": "Choice",
+    "why": "Why",
+    "challenges": "Challenges",
+    "result": "Result",
+    "screenshots": "Screenshots",
+    "screenshotsHint": "Tap a screenshot to open it. Swipe to see the next one, and pinch or double-tap to zoom."
+  },
+  "gallery": {
+    "seeAll": "See all {count} screenshots",
+    "view": "View",
+    "viewFullSize": "View {label} full size",
+    "count": "{count} screenshots"
+  },
+  "whatsapp": {
+    "default": "Hi Priestly, I saw your portfolio and I'd like to talk about a project.",
+    "project": "Hi Priestly, I saw your {project} project and I'd like something similar for my business.",
+    "label": "Chat with Priestly on WhatsApp",
+    "button": "Chat on WhatsApp"
+  }
+}

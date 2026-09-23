@@ -1,14 +1,17 @@
-import Link from "next/link";
+import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
+import type { Locale } from "@/i18n/routing";
 import { projects } from "@/data/projects";
 import { ScreenshotGallery } from "./ScreenshotGallery";
 
 export function ProjectsSection() {
+  const t = useTranslations("work");
+  const locale = useLocale() as Locale;
+
   return (
     <section id="work" className="border-b border-line">
       <div className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
-        <h2 className="font-display text-2xl font-bold text-ink">
-          Featured work
-        </h2>
+        <h2 className="font-display text-2xl font-bold text-ink">{t("heading")}</h2>
         <div className="mt-10 flex flex-col gap-14">
           {projects.map((project) => (
             <article
@@ -25,22 +28,17 @@ export function ProjectsSection() {
                 />
               </div>
               <div className="flex flex-col justify-center p-6">
-                <p className="font-mono text-xs text-label">
-                  {project.category}
-                </p>
+                <p className="font-mono text-xs text-label">{project.category[locale]}</p>
                 <h3 className="mt-2 font-display text-xl font-bold text-ink">
-                  <Link
-                    href={`/projects/${project.slug}`}
-                    className="hover:text-accent-ink"
-                  >
+                  <Link href={`/projects/${project.slug}`} className="hover:text-accent-ink">
                     {project.title}
                   </Link>
                 </h3>
-                <p className="mt-3 text-ink-soft">{project.summary}</p>
+                <p className="mt-3 text-ink-soft">{project.summary[locale]}</p>
                 <div className="mt-4 flex flex-wrap gap-2">
                   {project.techStack.slice(0, 4).map((tech) => (
                     <span
-                      key={tech.layer}
+                      key={tech.choice}
                       className="border border-line px-2 py-1 font-mono text-[11px] text-ink-soft"
                     >
                       {tech.choice}
@@ -52,7 +50,7 @@ export function ProjectsSection() {
                     href={`/projects/${project.slug}`}
                     className="font-medium text-ink underline decoration-line underline-offset-4 hover:decoration-accent hover:text-accent-ink"
                   >
-                    How I built it
+                    {t("howBuilt")}
                   </Link>
                   <a
                     href={project.liveUrl}
@@ -60,7 +58,7 @@ export function ProjectsSection() {
                     rel="noopener noreferrer"
                     className="text-ink-soft underline decoration-line underline-offset-4 hover:decoration-accent hover:text-accent-ink"
                   >
-                    Live demo
+                    {t("liveDemo")}
                   </a>
                   <a
                     href={project.githubUrl}
@@ -68,7 +66,7 @@ export function ProjectsSection() {
                     rel="noopener noreferrer"
                     className="text-ink-soft underline decoration-line underline-offset-4 hover:decoration-accent hover:text-accent-ink"
                   >
-                    GitHub
+                    {t("github")}
                   </a>
                 </div>
               </div>

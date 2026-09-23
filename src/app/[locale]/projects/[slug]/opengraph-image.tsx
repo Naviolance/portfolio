@@ -4,6 +4,8 @@ import sharp from "sharp";
 import { getProject } from "@/data/projects";
 import { site } from "@/data/site";
 import { ogColors, ogFonts, ogMark } from "@/lib/og";
+import type { Locale } from "@/i18n/routing";
+import type { Localized } from "@/lib/localized";
 
 // Per-project share card: title + the project's homepage screenshot, so a
 // shared case-study link previews the actual project.
@@ -14,7 +16,10 @@ const size = { width: 1200, height: 630 };
 // Note: Next 16 fails the build if this file also exports
 // generateStaticParams, so these images render on first request (~0.3s)
 // and are cached after that.
-export function generateImageMetadata({ params }: { params: { slug: string } }) {
+const BY: Localized = { en: "a project by", fr: "un projet de" };
+
+export function generateImageMetadata({ params }: { params: { slug: string; locale: Locale } }) {
+  const { locale } = params;
   const project = getProject(params.slug);
   return [
     {
@@ -22,14 +27,14 @@ export function generateImageMetadata({ params }: { params: { slug: string } }) 
       size,
       contentType: "image/png",
       alt: project
-        ? `${project.title}, ${project.category}: a project by ${site.name}`
-        : `A project by ${site.name}`,
+        ? `${project.title}, ${project.category[locale]}: ${BY[locale]} ${site.name}`
+        : `${BY[locale]} ${site.name}`,
     },
   ];
 }
 
-export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
+export default async function Image({ params }: { params: Promise<{ slug: string; locale: Locale }> }) {
+  const { slug, locale } = await params;
   const project = getProject(slug);
   if (!project) return new Response("Not found", { status: 404 });
 
@@ -68,7 +73,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           </div>
           <div style={{ display: "flex", flexDirection: "column", gap: 16 }}>
             <div style={{ fontSize: 22, letterSpacing: 3, color: ogColors.cyan }}>
-              {project.category.toUpperCase()}
+              {project.category[locale].toUpperCase()}
             </div>
             <div style={{ fontSize: 64, fontWeight: 700, lineHeight: 1.05 }}>{project.title}</div>
             <div style={{ width: 56, height: 4, background: ogColors.gradient }} />
