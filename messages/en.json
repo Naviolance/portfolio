@@ -37,7 +37,7 @@
   "pricing": {
     "heading": "Pricing",
     "note": "Prices in FCFA. Dollar amounts are approximate.",
-    "disclaimer": "These are JPFW Web Services' own price ranges. They're not an official rate or a legal standard, and other developers may charge differently.",
+    "disclaimer": "These are JPFW Web Services' own price ranges. They're not an international standard or a price set by law, and other developers may charge differently.",
     "period": {
       "one-time": "one-time",
       "per-month": "per month"

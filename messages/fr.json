@@ -37,7 +37,7 @@
   "pricing": {
     "heading": "Tarifs",
     "note": "Prix en FCFA. Les montants en dollars sont approximatifs.",
-    "disclaimer": "Ce sont les fourchettes de prix de JPFW Web Services. Ce ne sont pas des tarifs officiels ni des prix fixés par la loi, et d'autres prestataires peuvent pratiquer d'autres prix.",
+    "disclaimer": "Ce sont les fourchettes de prix de JPFW Web Services. Ce n'est ni une norme internationale ni un prix fixé par la loi, et d'autres prestataires peuvent pratiquer d'autres prix.",
     "period": {
       "one-time": "paiement unique",
       "per-month": "par mois"

@@ -45,8 +45,8 @@ export const faq: FaqEntry[] = [
       fr: "Combien coûte un site internet ?",
     },
     answer: {
-      en: "It depends on what the site needs to do. My price ranges:\n\n• Showcase website: 150K–350K FCFA\n• Starter online store: 150K–500K FCFA\n• Business e-commerce site: 800K–3M FCFA\n• Custom platform: from 5M FCFA\n\nThese are ranges. Tell me what you need and I'll give you an exact quote.",
-      fr: "Ça dépend de ce que le site doit faire. Mes fourchettes de prix :\n\n• Site vitrine : 150K–350K FCFA\n• Boutique en ligne simple : 150K–500K FCFA\n• Site e-commerce professionnel : 800K–3M FCFA\n• Plateforme sur mesure : à partir de 5M FCFA\n\nCe sont des fourchettes. Dites-moi ce dont vous avez besoin et je vous donne un devis précis.",
+      en: "It depends on what the site needs to do. My price ranges:\n\n• Showcase website: 150K–350K FCFA\n• Starter online store: 150K–500K FCFA\n• Business e-commerce site: 800K–3M FCFA\n• Custom platform: from 5M FCFA\n\nThese are JPFW Web Services' own ranges, not an international standard or a price set by law. Tell me what you need and I'll give you an exact quote.",
+      fr: "Ça dépend de ce que le site doit faire. Mes fourchettes de prix :\n\n• Site vitrine : 150K–350K FCFA\n• Boutique en ligne simple : 150K–500K FCFA\n• Site e-commerce professionnel : 800K–3M FCFA\n• Plateforme sur mesure : à partir de 5M FCFA\n\nCe sont les fourchettes de JPFW Web Services, pas une norme internationale ni un prix fixé par la loi. Dites-moi ce dont vous avez besoin et je vous donne un devis précis.",
     },
     link: { href: "/#pricing", label: { en: "See all prices", fr: "Voir tous les tarifs" } },
   },
