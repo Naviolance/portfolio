@@ -1,9 +1,6 @@
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/routing";
-import type { Localized } from "@/lib/localized";
 import { CV_PDF, education, experience, skills, spokenLanguages } from "@/data/cv";
-
-const COUNTRY: Localized = { en: "Cameroon", fr: "Cameroun" };
 
 // The CV, as a homepage section: work experience, education, skills, and
 // the PDF for recruiters who want the one-page version.
@@ -46,7 +43,8 @@ export function Experience() {
                       <p className="font-mono text-xs text-ink-soft">{job.period[locale]}</p>
                     </div>
                     <p className="text-sm text-ink-soft">
-                      {job.place}, {COUNTRY[locale]}
+                      {job.place[locale]}
+                      {job.note && <span className="text-label"> · {job.note[locale]}</span>}
                     </p>
                     <ul className="mt-3 list-disc space-y-1 pl-5 text-ink-soft">
                       {job.points.map((point) => (
@@ -68,7 +66,7 @@ export function Experience() {
                   >
                     <p className="font-medium text-ink">
                       {item.title[locale]}
-                      <span className="font-normal text-ink-soft">, {item.place}</span>
+                      <span className="font-normal text-ink-soft">, {item.place[locale]}</span>
                     </p>
                     <p className="font-mono text-xs text-ink-soft">{item.period}</p>
                   </li>
