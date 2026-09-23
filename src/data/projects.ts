@@ -233,6 +233,10 @@ export const projects: Project[] = [
         fr: "Réservation à la journée avec un calendrier. Le prix total est enregistré au moment de réserver, donc si le tarif change plus tard, votre réservation ne bouge pas",
       },
       {
+        en: "No double bookings: before a booking is saved, it's checked against the car's existing bookings for those dates, and the search hides cars that are already taken",
+        fr: "Pas de double réservation : avant d'enregistrer une réservation, elle est vérifiée contre les réservations existantes de la voiture à ces dates, et la recherche cache les voitures déjà prises",
+      },
+      {
         en: "Drivers must be 18 or older. This is checked in the search, the booking form and the admin view",
         fr: "Les conducteurs doivent avoir 18 ans ou plus. C'est vérifié dans la recherche, le formulaire de réservation et l'administration",
       },

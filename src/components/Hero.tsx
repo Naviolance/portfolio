@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
+import { CV_PDF } from "@/data/cv";
 
 export function Hero() {
   const t = useTranslations("hero");
@@ -30,6 +31,14 @@ export function Hero() {
               {t("workTogether")}
             </Link>
           </div>
+          {/* For recruiters: the one-page CV, one click from the top. */}
+          <a
+            href={CV_PDF}
+            download
+            className="mt-5 inline-block text-sm text-ink-soft underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
+          >
+            {t("cv")}
+          </a>
         </div>
 
         <div className="border border-line bg-panel p-5">

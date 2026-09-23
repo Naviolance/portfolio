@@ -7,7 +7,7 @@ import { LanguageSwitcher } from "./LanguageSwitcher";
 export type NavLink = { id: string; label: string; href: { pathname: "/" | "/faq"; hash?: string } };
 
 // Homepage section anchors, then the FAQ page.
-const SECTIONS = ["work", "about", "services", "pricing"] as const;
+const SECTIONS = ["work", "about", "experience", "services", "pricing"] as const;
 
 export function Nav() {
   const t = useTranslations("nav");

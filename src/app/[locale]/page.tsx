@@ -2,6 +2,7 @@ import { setRequestLocale } from "next-intl/server";
 import type { Locale } from "@/i18n/routing";
 import { Hero } from "@/components/Hero";
 import { About } from "@/components/About";
+import { Experience } from "@/components/Experience";
 import { Services } from "@/components/Services";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { Pricing } from "@/components/Pricing";
@@ -57,6 +58,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       <Hero />
       <ProjectsSection />
       <About />
+      <Experience />
       <Services />
       <Pricing />
       <FaqTeaser />

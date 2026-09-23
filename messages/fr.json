@@ -2,6 +2,7 @@
   "nav": {
     "work": "Projets",
     "about": "À propos",
+    "experience": "Parcours",
     "services": "Services",
     "pricing": "Tarifs",
     "faq": "FAQ",
@@ -17,6 +18,7 @@
     "viewWork": "Voir mes projets",
     "workTogether": "Travaillons ensemble",
     "recent": "Projets récents",
+    "cv": "Télécharger mon CV (PDF, en anglais)",
     "liveDemo": "démo en ligne"
   },
   "work": {
@@ -33,6 +35,16 @@
   },
   "services": {
     "heading": "Services"
+  },
+  "experience": {
+    "heading": "Parcours",
+    "intro": "Où j'ai appris le métier, et avec quoi je travaille.",
+    "work": "Expérience professionnelle",
+    "education": "Formation",
+    "skills": "Compétences",
+    "spoken": "Langues",
+    "download": "Télécharger mon CV (PDF)",
+    "downloadHint": "Une page, en anglais"
   },
   "pricing": {
     "heading": "Tarifs",
