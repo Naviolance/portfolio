@@ -8,7 +8,7 @@ export function Footer() {
   const tw = useTranslations("whatsapp");
 
   return (
-    <footer className="border-t border-line">
+    <footer className="border-t border-line print:hidden">
       <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 pt-10 pb-24 text-sm text-ink-soft sm:flex-row sm:items-center sm:justify-between">
         <p>
           {site.fullName} · {site.role[locale]} · {site.location[locale]}

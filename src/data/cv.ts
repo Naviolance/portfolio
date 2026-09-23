@@ -5,6 +5,88 @@ import type { Localized } from "@/lib/localized";
 
 export const CV_PDF = "/cv/Forsangam-Junior-Priestly-CV-2026.pdf";
 
+// Used by the /cv page (the web version of the PDF).
+export const profile: Localized = {
+  en: "Full-stack software engineer who builds complete web applications with TypeScript, Next.js, NestJS and PostgreSQL. Recently built a truck spare parts e-commerce platform with vehicle-compatibility search, secure authentication, oversell-safe checkout and payment gateway integration. Two internships in WordPress and front-end development. Fluent in English and French. Available for full-time roles and for freelance projects through JPFW Web Services.",
+  fr: "Ingénieur logiciel full-stack qui construit des applications web complètes avec TypeScript, Next.js, NestJS et PostgreSQL. J'ai récemment construit une plateforme e-commerce de pièces de camion avec recherche de compatibilité par véhicule, authentification sécurisée, paiement sans survente et intégration d'une passerelle de paiement. Deux stages en WordPress et en développement front-end. Bilingue anglais et français. Disponible pour un poste à temps plein et pour des projets freelance via JPFW Web Services.",
+};
+
+export type CvProject = {
+  title: Localized;
+  year: string;
+  stack?: string;
+  // Project slug on this site, for the case-study link.
+  slug?: string;
+  liveUrl?: string;
+  codeUrl?: string;
+  points: Localized[];
+};
+
+export const cvProjects: CvProject[] = [
+  {
+    title: { en: "TruckParts: Truck Spare Parts E-commerce Platform", fr: "TruckParts : plateforme e-commerce de pièces de camion" },
+    year: "2026",
+    stack: "Next.js, NestJS, TypeScript, PostgreSQL, Prisma, Docker, MinIO",
+    slug: "truckparts",
+    liveUrl: "https://truck-spare-part-store-frontend.vercel.app",
+    codeUrl: "https://github.com/Naviolance/Truck-spare-part-store",
+    points: [
+      {
+        en: "Built a full-stack online store with a product catalogue, a \"Find My Part\" vehicle-compatibility lookup, and search filters with shareable URLs.",
+        fr: "Construction d'une boutique en ligne full-stack avec catalogue produits, recherche de compatibilité « Find My Part » par véhicule, et filtres de recherche avec des URL partageables.",
+      },
+      {
+        en: "Implemented JWT authentication with refresh-token rotation and token-reuse detection, bcrypt password hashing, rate limiting and security headers.",
+        fr: "Authentification JWT avec rotation du jeton de rafraîchissement et détection de réutilisation, hachage des mots de passe avec bcrypt, limitation de débit et en-têtes de sécurité.",
+      },
+      {
+        en: "Designed an atomic checkout with database transactions and stock guards that prevent overselling when many customers buy at once.",
+        fr: "Conception d'un paiement atomique avec transactions et contrôles de stock qui empêchent la survente quand plusieurs clients achètent en même temps.",
+      },
+      {
+        en: "Built an admin dashboard to manage products, categories, brands, vehicles and orders, with image uploads to MinIO object storage.",
+        fr: "Tableau de bord d'administration pour gérer produits, catégories, marques, véhicules et commandes, avec envoi d'images vers le stockage objet MinIO.",
+      },
+      {
+        en: "Integrated the Notch Pay payment gateway (sandbox) and delivered a bilingual English/French interface.",
+        fr: "Intégration de la passerelle de paiement Notch Pay (mode test) et interface bilingue anglais/français.",
+      },
+    ],
+  },
+  {
+    title: { en: "Car Rental Booking Platform", fr: "Plateforme de réservation de location de voitures" },
+    year: "2026",
+    stack: "Next.js, TypeScript, Prisma, PostgreSQL, Auth.js",
+    slug: "car-rental",
+    liveUrl: "https://car-rental-xi-lemon.vercel.app",
+    codeUrl: "https://github.com/Naviolance/car-rental",
+    points: [
+      {
+        en: "Built a rental website where customers filter cars by category, transmission, fuel type and price, then book by the day.",
+        fr: "Construction d'un site de location où les clients filtrent les voitures par catégorie, boîte de vitesses, carburant et prix, puis réservent à la journée.",
+      },
+      {
+        en: "Added real-time availability checks that block double bookings, and show the full price before the customer submits.",
+        fr: "Vérification de disponibilité en temps réel qui bloque les doubles réservations, et affichage du prix total avant la validation.",
+      },
+      {
+        en: "Added user accounts with Google sign-in or email and password, using Auth.js.",
+        fr: "Comptes utilisateurs avec connexion Google ou email et mot de passe, avec Auth.js.",
+      },
+    ],
+  },
+  {
+    title: { en: "Earlier Projects", fr: "Projets précédents" },
+    year: "2021 – 2023",
+    points: [
+      {
+        en: "E-commerce websites (React, WordPress, Bubble, JavaScript); C projects from the Qwasar program: a custom printf, a Mastermind game, and standard library re-implementations.",
+        fr: "Sites e-commerce (React, WordPress, Bubble, JavaScript) ; projets en C du programme Qwasar : un printf maison, un jeu Mastermind et des réimplémentations de la bibliothèque standard.",
+      },
+    ],
+  },
+];
+
 export type Experience = {
   role: Localized;
   company: string;

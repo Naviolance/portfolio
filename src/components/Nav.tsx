@@ -17,7 +17,7 @@ export function Nav() {
   ];
 
   return (
-    <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
+    <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur print:hidden">
       <div className="relative mx-auto flex h-16 max-w-5xl items-center justify-between gap-3 px-5">
         <Link href="/" className="flex items-center gap-2.5">
           <Image

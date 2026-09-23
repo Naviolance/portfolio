@@ -1,4 +1,5 @@
 import { useLocale, useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { CV_PDF, education, experience, skills, spokenLanguages } from "@/data/cv";
 
@@ -28,6 +29,12 @@ export function Experience() {
               {t("download")}
             </a>
             <p className="mt-2 font-mono text-[11px] text-ink-soft">{t("downloadHint")}</p>
+            <Link
+              href="/cv"
+              className="mt-3 inline-block text-sm text-ink underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
+            >
+              {t("view")} →
+            </Link>
           </div>
 
           <div className="max-w-2xl space-y-12">

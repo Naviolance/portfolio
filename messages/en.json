@@ -18,7 +18,7 @@
     "viewWork": "View my work",
     "workTogether": "Let's work together",
     "recent": "Recent projects",
-    "cv": "Download my CV (PDF)",
+    "cv": "View my CV",
     "liveDemo": "live demo"
   },
   "work": {
@@ -44,7 +44,8 @@
     "skills": "Skills",
     "spoken": "Languages",
     "download": "Download my CV (PDF)",
-    "downloadHint": "One page, English"
+    "downloadHint": "One page, English",
+    "view": "Or view it online"
   },
   "pricing": {
     "heading": "Pricing",
@@ -84,6 +85,23 @@
     "view": "View",
     "viewFullSize": "View {label} full size",
     "count": "{count} screenshots"
+  },
+  "cv": {
+    "title": "CV",
+    "metaDescription": "CV of Forsangam Weyegho Junior Priestly, full-stack software engineer in Douala, Cameroon: experience, projects, education and skills.",
+    "download": "Download PDF",
+    "downloadHint": "One page, English",
+    "back": "Back to the site",
+    "profile": "Profile",
+    "experience": "Work experience",
+    "projects": "Projects",
+    "education": "Education",
+    "skills": "Skills",
+    "languages": "Languages",
+    "liveDemo": "Live demo",
+    "code": "Code",
+    "caseStudy": "Case study",
+    "openToRemote": "Open to remote work"
   },
   "faq": {
     "title": "Frequently asked questions",
