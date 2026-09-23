@@ -5,8 +5,8 @@ export const site = {
   name: "Priestly",
   fullName: "Forsangam Weyegho Junior Priestly",
   role: {
-    en: "Full-Stack Web Developer",
-    fr: "Développeur Web Full-Stack",
+    en: "Full-Stack Software Engineer",
+    fr: "Ingénieur Logiciel Full-Stack",
   } satisfies Localized,
   brand: "JPFW Web Services",
   tagline: {
@@ -14,9 +14,11 @@ export const site = {
     fr: "Je crée des sites et des applications web qui aident les entreprises à vendre, à mieux s'organiser et à grandir en ligne.",
   } satisfies Localized,
   // Meta description: what Google shows under the title (~155 chars max).
+  // The title is "Software Engineer", but clients search for "web developer" /
+  // "développeur web", so the description keeps both on purpose.
   description: {
-    en: "Priestly (JPFW Web Services) is a full-stack web developer in Douala, Cameroon, working with clients worldwide. Websites, online stores and web apps.",
-    fr: "Priestly (JPFW Web Services), développeur web à Douala, Cameroun, pour des clients partout dans le monde. Sites vitrines, boutiques en ligne et applications web.",
+    en: "Priestly (JPFW Web Services), software engineer and web developer in Douala, Cameroon, for clients worldwide. Websites, online stores and web apps.",
+    fr: "Priestly (JPFW Web Services), ingénieur logiciel et développeur web à Douala, Cameroun. Sites vitrines, boutiques en ligne et applications web.",
   } satisfies Localized,
   location: {
     en: "Douala, Cameroon",

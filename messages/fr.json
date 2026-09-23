@@ -14,7 +14,7 @@
     "switchToShort": "EN"
   },
   "hero": {
-    "intro": "Je suis {name}, développeur web full-stack.",
+    "intro": "Je suis {name}, ingénieur logiciel full-stack.",
     "viewWork": "Voir mes projets",
     "workTogether": "Travaillons ensemble",
     "recent": "Projets récents",
@@ -29,7 +29,7 @@
   },
   "about": {
     "heading": "À propos",
-    "p1": "Je suis développeur full-stack, basé à Douala au Cameroun, et je travaille avec des clients partout. Je crée des logiciels que les entreprises utilisent tous les jours : des boutiques en ligne avec de vrais paiements, des systèmes de réservation qui ne réservent pas deux fois le même créneau, et des espaces d'administration faciles à utiliser pour le propriétaire.",
+    "p1": "Je suis ingénieur logiciel full-stack, basé à Douala au Cameroun, et je travaille avec des clients partout. Je crée des logiciels que les entreprises utilisent tous les jours : des boutiques en ligne avec de vrais paiements, des systèmes de réservation qui ne réservent pas deux fois le même créneau, et des espaces d'administration faciles à utiliser pour le propriétaire.",
     "p2": "Je travaille avec Next.js et TypeScript pour le frontend, Node.js (NestJS) pour le backend, et PostgreSQL quand les données doivent rester justes, comme les commandes, le stock et les réservations. Je crée et maintiens aussi des sites WordPress quand c'est le meilleur choix. Tous les projets n'ont pas besoin de code sur mesure.",
     "p3": "Pour moi, un projet n'est pas terminé juste parce qu'il a l'air fini. Il doit bien marcher. Les paiements sont vérifiés, pas juste acceptés. Le panier ne peut pas vendre un stock qui n'existe pas. Et l'administration marche sur téléphone, parce que c'est là que beaucoup de propriétaires l'utilisent."
   },
@@ -87,7 +87,7 @@
   },
   "faq": {
     "title": "Questions fréquentes",
-    "metaDescription": "Prix d'un site internet, délais, paiement par Mobile Money, ce qu'il faut fournir : les réponses de JPFW Web Services, développeur web à Douala, Cameroun.",
+    "metaDescription": "Prix d'un site internet, délais, paiement par Mobile Money, ce qu'il faut fournir : les réponses de JPFW Web Services, ingénieur logiciel et développeur web à Douala.",
     "intro": "Prix, délais, paiements et comment on travaille ensemble. Vous ne trouvez pas votre question ? Posez-la-moi directement sur WhatsApp.",
     "searchLabel": "Rechercher dans les questions",
     "searchPlaceholder": "Rechercher, ex. prix, Mobile Money, WordPress",

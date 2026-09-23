@@ -1,0 +1,137 @@
+<!doctype html>
+<!--
+  Source of public/cv/Forsangam-Junior-Priestly-CV-2026.pdf.
+  To regenerate after editing (PowerShell, from the portfolio folder):
+
+    & "C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe" --headless=new --disable-gpu `
+      --no-pdf-header-footer --print-to-pdf="public\cv\Forsangam-Junior-Priestly-CV-2026.pdf" `
+      "file:///$((Resolve-Path cv\cv-2026.html).Path -replace '\\','/')"
+
+  Keep src/data/cv.ts in step with this file: recruiters compare the CV
+  with the website.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Forsangam Weyegho Junior Priestly - CV</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,400;0,700;1,400&display=block" rel="stylesheet">
+<style>
+  @page { size: A4; margin: 11mm 14mm 10mm; }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: "Lato", "Calibri", "Segoe UI", sans-serif;
+    font-size: 9.2pt;
+    line-height: 1.3;
+    color: #1f2328;
+  }
+  a { color: #2952d9; text-decoration: none; }
+  header { text-align: center; }
+  h1 { margin: 0; font-size: 17pt; letter-spacing: 0.02em; color: #1f2937; }
+  .title { margin: 2pt 0 3pt; font-size: 11.5pt; font-weight: 700; color: #2952d9; }
+  .contact { color: #4b5563; font-size: 9.2pt; }
+  .contact span + span::before { content: "|"; margin: 0 6pt; color: #9ca3af; }
+  h2 {
+    margin: 7pt 0 3pt;
+    padding-bottom: 2pt;
+    font-size: 10pt;
+    font-weight: 700;
+    color: #2952d9;
+    text-transform: uppercase;
+    border-bottom: 1.2pt solid #2952d9;
+  }
+  p { margin: 0; }
+  .skills p { margin: 1pt 0; }
+  .item { margin-top: 4pt; }
+  .row { display: flex; justify-content: space-between; gap: 12pt; }
+  .row strong { font-size: 9.9pt; }
+  .meta { font-style: italic; color: #4b5563; }
+  .date { white-space: nowrap; color: #374151; }
+  ul { margin: 1.5pt 0 0; padding-left: 13pt; }
+  li { margin: 0.5pt 0; }
+  .edu .row { margin: 1.5pt 0; }
+</style>
+</head>
+<body>
+<header>
+  <h1>FORSANGAM WEYEGHO JUNIOR PRIESTLY</h1>
+  <p class="title">Full-Stack Software Engineer</p>
+  <p class="contact">
+    <span>Douala, Cameroon</span><span>+237 678 369 216</span><span><a href="mailto:forsangamjunior@gmail.com">forsangamjunior@gmail.com</a></span><span>Open to remote work</span>
+  </p>
+  <p class="contact">
+    <span>Portfolio: <a href="https://jpfw-webservices.vercel.app/en">jpfw-webservices.vercel.app</a></span><span><a href="https://www.linkedin.com/in/forsangam-weyegho-junior-priestly-965897236">linkedin.com/in/forsangam-weyegho-junior-priestly</a></span><span><a href="https://github.com/Naviolance">github.com/Naviolance</a></span>
+  </p>
+</header>
+
+<h2>Profile</h2>
+<p>Full-stack software engineer who builds complete web applications with TypeScript, Next.js, NestJS, and PostgreSQL. Recently built a truck spare parts e-commerce platform with vehicle-compatibility search, secure authentication, oversell-safe checkout, and payment gateway integration. Two internships in WordPress and front-end development. Fluent in English and French. Available for full-time roles and for freelance projects through JPFW Web Services.</p>
+
+<h2>Technical Skills</h2>
+<div class="skills">
+  <p><strong>Languages:</strong> TypeScript, JavaScript, PHP, Python, C, C++, C#, Ruby, SQL, HTML, CSS</p>
+  <p><strong>Frontend:</strong> React, Next.js, responsive design, WordPress</p>
+  <p><strong>Backend:</strong> Node.js, NestJS, REST APIs, JWT authentication</p>
+  <p><strong>Databases:</strong> PostgreSQL, MySQL, Prisma ORM</p>
+  <p><strong>Tools &amp; DevOps:</strong> Docker, Docker Compose, MinIO (S3-compatible storage), Vercel, WSL2, Bubble (no-code)</p>
+  <p><strong>Spoken languages:</strong> English (fluent), French (fluent)</p>
+</div>
+
+<h2>Projects</h2>
+<div class="item">
+  <div class="row"><strong>TruckParts: Truck Spare Parts E-commerce Platform</strong><span class="date">2026</span></div>
+  <p class="meta">Next.js, NestJS, TypeScript, PostgreSQL, Prisma, Docker, MinIO &nbsp;|&nbsp; <a href="https://truck-spare-part-store-frontend.vercel.app">Live demo</a> · <a href="https://github.com/Naviolance/Truck-spare-part-store">Code</a> · <a href="https://jpfw-webservices.vercel.app/en/projects/truckparts">Case study</a></p>
+  <ul>
+    <li>Built a full-stack online store with a product catalogue, a "Find My Part" vehicle-compatibility lookup, and search filters with shareable URLs.</li>
+    <li>Implemented JWT authentication with refresh-token rotation and token-reuse detection, bcrypt password hashing, rate limiting, and security headers.</li>
+    <li>Designed an atomic checkout with database transactions and stock guards that prevent overselling when many customers buy at once.</li>
+    <li>Built an admin dashboard to manage products, categories, brands, vehicles, and orders, with image uploads to MinIO object storage.</li>
+    <li>Integrated the Notch Pay payment gateway (sandbox) and delivered a bilingual English/French interface.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><strong>Car Rental Booking Platform</strong><span class="date">2026</span></div>
+  <p class="meta">Next.js, TypeScript, Prisma, PostgreSQL, Auth.js &nbsp;|&nbsp; <a href="https://car-rental-xi-lemon.vercel.app">Live demo</a> · <a href="https://github.com/Naviolance/car-rental">Code</a> · <a href="https://jpfw-webservices.vercel.app/en/projects/car-rental">Case study</a></p>
+  <ul>
+    <li>Built a rental website where customers filter cars by category, transmission, fuel type, and price, then book by the day.</li>
+    <li>Added real-time availability checks that block double bookings, and show the full price before the customer submits.</li>
+    <li>Added user accounts with Google sign-in or email and password, using Auth.js.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><strong>Earlier Projects</strong><span class="date">2021 – 2023</span></div>
+  <ul>
+    <li>E-commerce websites (React, WordPress, Bubble, JavaScript); C projects: a custom printf, a Mastermind game, and standard library re-implementations.</li>
+  </ul>
+</div>
+
+<h2>Work Experience</h2>
+<div class="item">
+  <div class="row"><strong>Full-Stack Developer Intern, Eagle Consulting Group</strong><span class="date">2022 – 2023</span></div>
+  <p class="meta">Douala, Cameroon</p>
+  <ul>
+    <li>Modernized, designed, and debugged WordPress websites with the team, including building custom plugins.</li>
+    <li>Built dynamic websites for JFN Center and a teacher evaluation form with Microsoft Forms.</li>
+    <li>Implemented designs with senior developers using HTML, CSS, JavaScript, and MySQL.</li>
+  </ul>
+</div>
+<div class="item">
+  <div class="row"><strong>Full-Stack Developer Intern, Bonthe Media</strong><span class="date">Jun 2022 – Sep 2023</span></div>
+  <p class="meta">Buea, Cameroon</p>
+  <ul>
+    <li>Developed responsive, user-friendly features with HTML, CSS, and JavaScript.</li>
+    <li>Updated page layouts to meet usability and performance requirements.</li>
+    <li>Worked with client services, sales, and design teams on deadline-driven projects.</li>
+  </ul>
+</div>
+
+<h2>Education</h2>
+<div class="edu">
+  <div class="row"><strong>BSc in Software Engineering, Douala</strong><span class="date">2023 – 2024</span></div>
+  <div class="row"><strong>HND in Software Engineering, Douala</strong><span class="date">2022 – 2023</span></div>
+  <div class="row"><strong>Full-Stack Development Program, Douala</strong><span class="date">2022 – 2023</span></div>
+  <div class="row"><strong>Baccalauréat TI (Computer Science), Douala</strong><span class="date">2020 – 2021</span></div>
+</div>
+</body>
+</html>
