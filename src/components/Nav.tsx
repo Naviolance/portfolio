@@ -4,12 +4,17 @@ import { Link } from "@/i18n/navigation";
 import { MobileMenu } from "./MobileMenu";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 
-// Section anchors on the homepage (id → nav label key).
+export type NavLink = { id: string; label: string; href: { pathname: "/" | "/faq"; hash?: string } };
+
+// Homepage section anchors, then the FAQ page.
 const SECTIONS = ["work", "about", "services", "pricing"] as const;
 
 export function Nav() {
   const t = useTranslations("nav");
-  const links = SECTIONS.map((id) => ({ id, label: t(id) }));
+  const links: NavLink[] = [
+    ...SECTIONS.map((id) => ({ id, label: t(id), href: { pathname: "/" as const, hash: id } })),
+    { id: "faq", label: t("faq"), href: { pathname: "/faq" } },
+  ];
 
   return (
     <header className="sticky top-0 z-40 border-b border-line bg-paper/90 backdrop-blur">
@@ -32,13 +37,10 @@ export function Nav() {
             </span>
           </span>
         </Link>
-        <nav className="hidden items-center gap-7 text-sm text-ink-soft md:flex">
+        {/* lg, not md: 5 links + CTA + language switch don't fit at tablet width. */}
+        <nav className="hidden items-center gap-7 text-sm text-ink-soft lg:flex">
           {links.map((link) => (
-            <Link
-              key={link.id}
-              href={{ pathname: "/", hash: link.id }}
-              className="transition-colors hover:text-ink"
-            >
+            <Link key={link.id} href={link.href} className="transition-colors hover:text-ink">
               {link.label}
             </Link>
           ))}

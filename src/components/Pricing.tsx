@@ -14,6 +14,9 @@ export function Pricing() {
           <div>
             <h2 className="font-display text-2xl font-bold text-ink">{t("heading")}</h2>
             <p className="mt-3 max-w-xs text-sm text-ink-soft">{t("note")}</p>
+            <p className="mt-3 max-w-xs border-l-2 border-line pl-3 text-xs leading-relaxed text-ink-soft">
+              {t("disclaimer")}
+            </p>
           </div>
 
           <div className="max-w-2xl space-y-12">

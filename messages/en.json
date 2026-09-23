@@ -37,6 +37,7 @@
   "pricing": {
     "heading": "Pricing",
     "note": "Prices in FCFA. Dollar amounts are approximate.",
+    "disclaimer": "These are JPFW Web Services' own price ranges. They're not an official rate or a legal standard, and other developers may charge differently.",
     "period": {
       "one-time": "one-time",
       "per-month": "per month"
@@ -71,6 +72,26 @@
     "view": "View",
     "viewFullSize": "View {label} full size",
     "count": "{count} screenshots"
+  },
+  "faq": {
+    "title": "Frequently asked questions",
+    "metaDescription": "Website prices, timelines, payment by Mobile Money, what to provide and more: answers from JPFW Web Services, web developer in Douala, Cameroon.",
+    "intro": "Prices, timelines, payments and how we work together. Can't find your question? Ask me directly on WhatsApp.",
+    "searchLabel": "Search the questions",
+    "searchPlaceholder": "Search, e.g. price, Mobile Money, WordPress",
+    "filterLabel": "Filter by topic",
+    "all": "All",
+    "resultCount": "{count, plural, =0 {No questions} one {# question} other {# questions}}",
+    "noResults": "No question matches that yet.",
+    "noResultsHint": "Try another word, or ask me directly. I'll answer you myself.",
+    "askWhatsapp": "Ask me on WhatsApp",
+    "askMessage": "Hi Priestly, I have a question your FAQ didn't answer: {question}",
+    "askGeneralMessage": "Hi Priestly, I read your FAQ and I have a question.",
+    "stillQuestion": "Still have a question?",
+    "stillQuestionHint": "Send it on WhatsApp. I read every message myself.",
+    "teaserHeading": "Questions",
+    "teaserIntro": "What clients usually ask before we start.",
+    "seeAll": "See all {count} questions"
   },
   "whatsapp": {
     "default": "Hi Priestly, I saw your portfolio and I'd like to talk about a project.",

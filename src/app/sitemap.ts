@@ -9,6 +9,7 @@ import { projects } from "@/data/projects";
 export default function sitemap(): MetadataRoute.Sitemap {
   const pages = [
     { path: "", priority: 1 },
+    { path: "/faq", priority: 0.7 },
     ...projects.map((project) => ({ path: `/projects/${project.slug}`, priority: 0.8 })),
   ];
 

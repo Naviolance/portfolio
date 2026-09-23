@@ -6,6 +6,7 @@ import { Services } from "@/components/Services";
 import { ProjectsSection } from "@/components/ProjectsSection";
 import { Pricing } from "@/components/Pricing";
 import { Contact } from "@/components/Contact";
+import { FaqTeaser } from "@/components/faq/FaqTeaser";
 import { JsonLd } from "@/components/JsonLd";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
@@ -58,6 +59,7 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
       <About />
       <Services />
       <Pricing />
+      <FaqTeaser />
       <Contact />
     </>
   );

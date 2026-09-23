@@ -1,6 +1,10 @@
 import type { Locale } from "@/i18n/routing";
 import type { Localized } from "@/lib/localized";
 
+// ⚠ These prices are also written out in the FAQ answers (data/faq.ts:
+// website-cost, showcase-website, cost-after-launch, show-up-on-google).
+// Change a price here → update it there too.
+//
 // Prices are stored in FCFA (XAF) only; the USD figure is derived.
 // FCFA is pegged to the euro but floats against the dollar, so the USD
 // amount is always shown as approximate. Update this one number when the

@@ -3,14 +3,15 @@
 import { useEffect, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import type { NavLink } from "./Nav";
 
 type Props = {
-  links: { id: string; label: string }[];
+  links: NavLink[];
   ctaLabel: string;
 };
 
-// Below `md` the inline nav links are hidden, so this is the only way to
-// reach the page sections on a phone or small tablet.
+// Below `lg` the inline nav links are hidden, so this is the only way to
+// reach the page sections on a phone or tablet.
 export function MobileMenu({ links, ctaLabel }: Props) {
   const t = useTranslations("nav");
   const [open, setOpen] = useState(false);
@@ -23,7 +24,7 @@ export function MobileMenu({ links, ctaLabel }: Props) {
   }, [open]);
 
   return (
-    <div className="md:hidden">
+    <div className="lg:hidden">
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
@@ -47,10 +48,10 @@ export function MobileMenu({ links, ctaLabel }: Props) {
         className="absolute inset-x-0 top-16 border-b border-line bg-paper"
       >
         <ul className="mx-auto flex max-w-5xl flex-col px-5 py-2">
-          {[...links, { id: "contact", label: ctaLabel }].map((link) => (
+          {[...links, { id: "contact", label: ctaLabel, href: { pathname: "/" as const, hash: "contact" } }].map((link) => (
             <li key={link.id}>
               <Link
-                href={{ pathname: "/", hash: link.id }}
+                href={link.href}
                 onClick={() => setOpen(false)}
                 className="block py-3 text-base text-ink"
               >
