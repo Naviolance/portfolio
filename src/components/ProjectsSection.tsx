@@ -60,14 +60,18 @@ export function ProjectsSection() {
                   >
                     {t("liveDemo")}
                   </a>
-                  <a
-                    href={project.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-ink-soft underline decoration-line underline-offset-4 hover:decoration-accent hover:text-accent-ink"
-                  >
-                    {t("github")}
-                  </a>
+                  {project.githubUrl ? (
+                    <a
+                      href={project.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="text-ink-soft underline decoration-line underline-offset-4 hover:decoration-accent hover:text-accent-ink"
+                    >
+                      {t("github")}
+                    </a>
+                  ) : (
+                    <span className="text-ink-soft">{t("privateCode")}</span>
+                  )}
                 </div>
               </div>
             </article>

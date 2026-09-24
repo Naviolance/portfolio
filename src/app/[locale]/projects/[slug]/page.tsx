@@ -65,7 +65,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
     url: project.liveUrl,
     applicationCategory: "BusinessApplication",
     operatingSystem: "Web",
-    sameAs: project.githubUrl,
+    ...(project.githubUrl && { sameAs: project.githubUrl }),
     author: { "@type": "Person", name: site.fullName, url: `${site.url}/${locale}` },
   };
 
@@ -89,14 +89,24 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
           >
             {t("liveDemo")}
           </a>
-          <a
-            href={project.githubUrl}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="border border-line px-4 py-2 font-medium text-ink-soft transition-colors hover:border-ink hover:text-ink"
-          >
-            {t("repo")}
-          </a>
+          {project.githubUrl ? (
+            <a
+              href={project.githubUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="border border-line px-4 py-2 font-medium text-ink-soft transition-colors hover:border-ink hover:text-ink"
+            >
+              {t("repo")}
+            </a>
+          ) : (
+            <span className="inline-flex items-center gap-2 border border-dashed border-line px-4 py-2 text-ink-soft">
+              <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true">
+                <rect x="2.5" y="6" width="9" height="6.5" rx="1.2" fill="none" stroke="currentColor" strokeWidth="1.4" />
+                <path d="M4.5 6V4.2a2.5 2.5 0 0 1 5 0V6" fill="none" stroke="currentColor" strokeWidth="1.4" />
+              </svg>
+              {t("privateRepo")}
+            </span>
+          )}
         </div>
         {project.demoNote && (
           <p className="mt-5 max-w-2xl border-l-2 border-accent pl-4 text-sm text-ink-soft">

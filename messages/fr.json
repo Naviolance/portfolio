@@ -25,7 +25,8 @@
     "heading": "Projets",
     "howBuilt": "Comment je l'ai construit",
     "liveDemo": "Démo en ligne",
-    "github": "GitHub"
+    "github": "GitHub",
+    "privateCode": "Code : privé"
   },
   "about": {
     "heading": "À propos",
@@ -67,6 +68,7 @@
     "back": "Retour aux projets",
     "liveDemo": "Démo en ligne",
     "repo": "Dépôt GitHub",
+    "privateRepo": "Dépôt privé, code disponible sur demande",
     "overview": "Aperçu",
     "problem": "Le problème",
     "solution": "La solution",
