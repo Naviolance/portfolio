@@ -7,8 +7,8 @@ export const CV_PDF = "/cv/Forsangam-Junior-Priestly-CV-2026.pdf";
 
 // Used by the /cv page (the web version of the PDF).
 export const profile: Localized = {
-  en: "Full-stack software engineer who builds complete web applications with TypeScript, Next.js, NestJS and PostgreSQL. Recently built PharMap, a medicine and pharmacy finder for Cameroon, and a truck spare parts e-commerce platform with vehicle-compatibility search, secure authentication, oversell-safe checkout and payment gateway integration. Two internships in WordPress and front-end development. Fluent in English and French. Available for full-time roles and for freelance projects through JPFW Web Services.",
-  fr: "Ingénieur logiciel full-stack qui construit des applications web complètes avec TypeScript, Next.js, NestJS et PostgreSQL. J'ai récemment construit PharMap, un outil pour trouver un médicament et une pharmacie au Cameroun, et une plateforme e-commerce de pièces de camion avec recherche de compatibilité par véhicule, authentification sécurisée, paiement sans survente et intégration d'une passerelle de paiement. Deux stages en WordPress et en développement front-end. Bilingue anglais et français. Disponible pour un poste à temps plein et pour des projets freelance via JPFW Web Services.",
+  en: "Full-stack software engineer who builds complete web applications with TypeScript, Next.js, NestJS and PostgreSQL. Recently built PharMap, a medicine and pharmacy finder for Cameroon, and a truck spare parts e-commerce platform with secure authentication, oversell-safe checkout and payment gateway integration. Two internships in WordPress and front-end development. Fluent in English and French. Available for full-time roles and for freelance projects through JPFW Web Services.",
+  fr: "Ingénieur logiciel full-stack qui construit des applications web complètes avec TypeScript, Next.js, NestJS et PostgreSQL. J'ai récemment construit PharMap, un outil pour trouver un médicament et une pharmacie au Cameroun, et une plateforme e-commerce de pièces de camion avec authentification sécurisée, paiement sans survente et intégration d'une passerelle de paiement. Deux stages en WordPress et en développement front-end. Bilingue anglais et français. Disponible pour un poste à temps plein et pour des projets freelance via JPFW Web Services.",
 };
 
 export type CvProject = {
@@ -32,16 +32,16 @@ export const cvProjects: CvProject[] = [
     // No codeUrl: the repository is private.
     points: [
       {
-        en: "Built a bilingual (EN/FR) installable web app where patients see which nearby verified pharmacies stock a medicine, with price and data freshness. Pharmacies manage their own inventory.",
-        fr: "Construction d'une application web bilingue (EN/FR) installable où les patients voient quelles pharmacies vérifiées proches ont un médicament en stock, avec le prix et la fraîcheur des données. Les pharmacies gèrent leur propre stock.",
+        en: "Built a bilingual (EN/FR) PWA showing which nearby verified pharmacies stock a medicine, with price and freshness.",
+        fr: "Construction d'une PWA bilingue (EN/FR) qui montre quelles pharmacies vérifiées proches ont un médicament en stock, avec le prix et la fraîcheur des données.",
       },
       {
         en: "Implemented role-based access (patient, pharmacy, admin), an admin verification state machine with an audit trail, and restock notifications fulfilled in the same transaction as the stock update.",
         fr: "Accès par rôle (patient, pharmacie, admin), machine à états pour la vérification des pharmacies avec historique des décisions, et alertes de réapprovisionnement traitées dans la même transaction que la mise à jour du stock.",
       },
       {
-        en: "Integrated OpenStreetMap (Leaflet, Nominatim, Overpass) for locations. Deployed on Vercel, Render (Docker) and Neon, with unit and end-to-end tests in CI.",
-        fr: "Intégration d'OpenStreetMap (Leaflet, Nominatim, Overpass) pour les adresses. Déploiement sur Vercel, Render (Docker) et Neon, avec tests unitaires et de bout en bout en CI.",
+        en: "Integrated OpenStreetMap (Leaflet, Nominatim, Overpass) for locations; deployed on Vercel, Render (Docker) and Neon, with unit and end-to-end tests in CI.",
+        fr: "Intégration d'OpenStreetMap (Leaflet, Nominatim, Overpass) pour les adresses ; déploiement sur Vercel, Render (Docker) et Neon, avec tests unitaires et de bout en bout en CI.",
       },
     ],
   },
@@ -54,24 +54,20 @@ export const cvProjects: CvProject[] = [
     codeUrl: "https://github.com/Naviolance/Truck-spare-part-store",
     points: [
       {
-        en: "Built a full-stack online store with a product catalogue, a \"Find My Part\" vehicle-compatibility lookup, and search filters with shareable URLs.",
-        fr: "Construction d'une boutique en ligne full-stack avec catalogue produits, recherche de compatibilité « Find My Part » par véhicule, et filtres de recherche avec des URL partageables.",
+        en: "Built a full-stack store with a product catalogue, a \"Find My Part\" vehicle-compatibility lookup, and shareable search filters.",
+        fr: "Construction d'une boutique full-stack avec catalogue produits, recherche de compatibilité « Find My Part » par véhicule, et filtres de recherche partageables.",
       },
       {
-        en: "Implemented JWT authentication with refresh-token rotation and token-reuse detection, bcrypt password hashing, rate limiting and security headers.",
-        fr: "Authentification JWT avec rotation du jeton de rafraîchissement et détection de réutilisation, hachage des mots de passe avec bcrypt, limitation de débit et en-têtes de sécurité.",
+        en: "Implemented JWT auth with refresh-token rotation and reuse detection, bcrypt hashing, rate limiting, and security headers.",
+        fr: "Authentification JWT avec rotation du jeton de rafraîchissement et détection de réutilisation, hachage bcrypt, limitation de débit et en-têtes de sécurité.",
       },
       {
-        en: "Designed an atomic checkout with database transactions and stock guards that prevent overselling when many customers buy at once.",
-        fr: "Conception d'un paiement atomique avec transactions et contrôles de stock qui empêchent la survente quand plusieurs clients achètent en même temps.",
+        en: "Designed an atomic checkout (database transactions, stock guards) that prevents overselling under concurrent orders.",
+        fr: "Conception d'un paiement atomique (transactions, contrôles de stock) qui empêche la survente quand plusieurs commandes arrivent en même temps.",
       },
       {
-        en: "Built an admin dashboard to manage products, categories, brands, vehicles and orders, with image uploads to MinIO object storage.",
-        fr: "Tableau de bord d'administration pour gérer produits, catégories, marques, véhicules et commandes, avec envoi d'images vers le stockage objet MinIO.",
-      },
-      {
-        en: "Integrated the Notch Pay payment gateway (sandbox) and delivered a bilingual English/French interface.",
-        fr: "Intégration de la passerelle de paiement Notch Pay (mode test) et interface bilingue anglais/français.",
+        en: "Built an admin dashboard (products, categories, brands, vehicles, orders) with image uploads to S3-compatible storage; integrated the Notch Pay payment gateway (sandbox) and an English/French interface.",
+        fr: "Tableau de bord d'administration (produits, catégories, marques, véhicules, commandes) avec envoi d'images vers un stockage compatible S3 ; intégration de la passerelle de paiement Notch Pay (mode test) et interface anglais/français.",
       },
     ],
   },
@@ -84,16 +80,12 @@ export const cvProjects: CvProject[] = [
     codeUrl: "https://github.com/Naviolance/car-rental",
     points: [
       {
-        en: "Built a rental website where customers filter cars by category, transmission, fuel type and price, then book by the day.",
-        fr: "Construction d'un site de location où les clients filtrent les voitures par catégorie, boîte de vitesses, carburant et prix, puis réservent à la journée.",
+        en: "Built a rental website where customers filter cars by category, transmission, fuel type, and price, then book by the day, with Google or email/password sign-in (Auth.js).",
+        fr: "Construction d'un site de location où les clients filtrent les voitures par catégorie, boîte de vitesses, carburant et prix, puis réservent à la journée, avec connexion Google ou email/mot de passe (Auth.js).",
       },
       {
         en: "Added real-time availability checks that block double bookings, and show the full price before the customer submits.",
         fr: "Vérification de disponibilité en temps réel qui bloque les doubles réservations, et affichage du prix total avant la validation.",
-      },
-      {
-        en: "Added user accounts with Google sign-in or email and password, using Auth.js.",
-        fr: "Comptes utilisateurs avec connexion Google ou email et mot de passe, avec Auth.js.",
       },
     ],
   },
@@ -102,8 +94,8 @@ export const cvProjects: CvProject[] = [
     year: "2021 – 2023",
     points: [
       {
-        en: "E-commerce websites (React, WordPress, Bubble, JavaScript); C projects from the Qwasar program: a custom printf, a Mastermind game, and standard library re-implementations.",
-        fr: "Sites e-commerce (React, WordPress, Bubble, JavaScript) ; projets en C du programme Qwasar : un printf maison, un jeu Mastermind et des réimplémentations de la bibliothèque standard.",
+        en: "E-commerce websites (React, WordPress, Bubble); C projects from the Qwasar program: a custom printf, a Mastermind game, standard library re-implementations.",
+        fr: "Sites e-commerce (React, WordPress, Bubble) ; projets en C du programme Qwasar : un printf maison, un jeu Mastermind et des réimplémentations de la bibliothèque standard.",
       },
     ],
   },
@@ -168,12 +160,8 @@ export const experience: Experience[] = [
     period: { en: "Jun 2022 – Sep 2023", fr: "juin 2022 – sept. 2023" },
     points: [
       {
-        en: "Built responsive, easy-to-use features and updated page layouts for usability and performance (HTML, CSS, JavaScript).",
-        fr: "Développement de fonctionnalités adaptées au mobile et mise à jour de mises en page pour l'ergonomie et la performance (HTML, CSS, JavaScript).",
-      },
-      {
-        en: "Worked with client services, sales and design teams on projects with tight deadlines.",
-        fr: "Travail avec les équipes service client, ventes et design sur des projets aux délais serrés.",
+        en: "Built responsive features and page layouts (HTML, CSS, JavaScript) with client services, sales, and design teams, on deadlines.",
+        fr: "Développement de fonctionnalités et de mises en page adaptées au mobile (HTML, CSS, JavaScript) avec les équipes service client, ventes et design, dans des délais serrés.",
       },
     ],
   },
@@ -201,13 +189,21 @@ export const education: Education[] = [
 export type SkillGroup = { label: Localized; items: string[] };
 
 export const skills: SkillGroup[] = [
-  { label: { en: "Frontend", fr: "Frontend" }, items: ["Next.js", "React", "TypeScript", "Responsive design", "WordPress"] },
-  { label: { en: "Backend", fr: "Backend" }, items: ["Node.js", "NestJS", "REST APIs", "JWT authentication"] },
-  { label: { en: "Databases", fr: "Bases de données" }, items: ["PostgreSQL", "MySQL", "Prisma ORM"] },
-  { label: { en: "Tools", fr: "Outils" }, items: ["Docker", "Docker Compose", "MinIO (S3)", "Vercel", "WSL2", "Bubble"] },
   {
-    label: { en: "Other languages", fr: "Autres langages" },
-    items: ["JavaScript", "PHP", "Python", "C", "C++", "C#", "Ruby", "SQL", "HTML", "CSS"],
+    label: { en: "Languages", fr: "Langages" },
+    items: ["TypeScript", "JavaScript", "PHP", "Python", "C", "C++", "C#", "Ruby", "SQL", "HTML", "CSS"],
+  },
+  {
+    label: { en: "Frontend", fr: "Frontend" },
+    items: ["React", "Next.js", "Vite", "Leaflet (maps)", "PWA", "Responsive design", "WordPress"],
+  },
+  {
+    label: { en: "Backend & data", fr: "Backend et données" },
+    items: ["Node.js", "NestJS", "REST APIs", "JWT authentication", "PostgreSQL", "MySQL", "Prisma ORM"],
+  },
+  {
+    label: { en: "Tools & DevOps", fr: "Outils et DevOps" },
+    items: ["Docker", "GitHub Actions (CI)", "Vitest", "Vercel", "Render", "Neon", "MinIO (S3)", "WSL2", "Bubble"],
   },
 ];
 
