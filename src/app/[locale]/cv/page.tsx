@@ -142,13 +142,15 @@ export default async function CvPage(props: PageProps<"/[locale]/cv">) {
                         </a>
                       </>
                     )}
-                    {project.codeUrl && (
+                    {project.codeUrl ? (
                       <>
                         {" · "}
                         <a href={project.codeUrl} className={link}>
                           {t("code")}
                         </a>
                       </>
+                    ) : (
+                      project.liveUrl && ` · ${t("privateCode")}`
                     )}
                     {project.slug && (
                       <>
