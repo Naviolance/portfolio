@@ -7,8 +7,8 @@ export const CV_PDF = "/cv/Forsangam-Junior-Priestly-CV-2026.pdf";
 
 // Used by the /cv page (the web version of the PDF).
 export const profile: Localized = {
-  en: "Full-stack software engineer who builds complete web applications with TypeScript, Next.js, NestJS and PostgreSQL. Recently built PharMap, a medicine and pharmacy finder for Cameroon, and a truck spare parts e-commerce platform with secure authentication, oversell-safe checkout and payment gateway integration. Two internships in WordPress and front-end development. Fluent in English and French. Available for full-time roles and for freelance projects through JPFW Web Services.",
-  fr: "Ingénieur logiciel full-stack qui construit des applications web complètes avec TypeScript, Next.js, NestJS et PostgreSQL. J'ai récemment construit PharMap, un outil pour trouver un médicament et une pharmacie au Cameroun, et une plateforme e-commerce de pièces de camion avec authentification sécurisée, paiement sans survente et intégration d'une passerelle de paiement. Deux stages en WordPress et en développement front-end. Bilingue anglais et français. Disponible pour un poste à temps plein et pour des projets freelance via JPFW Web Services.",
+  en: "Full-stack software engineer who builds complete web applications with TypeScript, Next.js, NestJS and PostgreSQL. Recently built a truck spare parts e-commerce platform with secure authentication, oversell-safe checkout and payment gateway integration, and PharMap, a medicine and pharmacy finder for Cameroon. Two internships in WordPress and front-end development. Fluent in English and French. Available for full-time roles and for freelance projects through JPFW Web Services.",
+  fr: "Ingénieur logiciel full-stack qui construit des applications web complètes avec TypeScript, Next.js, NestJS et PostgreSQL. J'ai récemment construit une plateforme e-commerce de pièces de camion avec authentification sécurisée, paiement sans survente et intégration d'une passerelle de paiement, et PharMap, un outil pour trouver un médicament et une pharmacie au Cameroun. Deux stages en WordPress et en développement front-end. Bilingue anglais et français. Disponible pour un poste à temps plein et pour des projets freelance via JPFW Web Services.",
 };
 
 export type CvProject = {
@@ -23,28 +23,6 @@ export type CvProject = {
 };
 
 export const cvProjects: CvProject[] = [
-  {
-    title: { en: "PharMap: Medicine and Pharmacy Finder for Cameroon", fr: "PharMap : trouver un médicament et une pharmacie au Cameroun" },
-    year: "2026",
-    stack: "React, TypeScript, Vite, NestJS, PostgreSQL, Prisma, Leaflet",
-    slug: "pharmap",
-    liveUrl: "https://pharmap-web.vercel.app",
-    // No codeUrl: the repository is private.
-    points: [
-      {
-        en: "Built a bilingual (EN/FR) PWA showing which nearby verified pharmacies stock a medicine, with price and freshness.",
-        fr: "Construction d'une PWA bilingue (EN/FR) qui montre quelles pharmacies vérifiées proches ont un médicament en stock, avec le prix et la fraîcheur des données.",
-      },
-      {
-        en: "Implemented role-based access (patient, pharmacy, admin), an admin verification state machine with an audit trail, and restock notifications fulfilled in the same transaction as the stock update.",
-        fr: "Accès par rôle (patient, pharmacie, admin), machine à états pour la vérification des pharmacies avec historique des décisions, et alertes de réapprovisionnement traitées dans la même transaction que la mise à jour du stock.",
-      },
-      {
-        en: "Integrated OpenStreetMap (Leaflet, Nominatim, Overpass) to find pharmacies and place them on a map.",
-        fr: "Intégration d'OpenStreetMap (Leaflet, Nominatim, Overpass) pour trouver les pharmacies et les placer sur une carte.",
-      },
-    ],
-  },
   {
     title: { en: "TruckParts: Truck Spare Parts E-commerce Platform", fr: "TruckParts : plateforme e-commerce de pièces de camion" },
     year: "2026",
@@ -68,6 +46,28 @@ export const cvProjects: CvProject[] = [
       {
         en: "Built an admin dashboard (products, categories, brands, vehicles, orders) with image uploads to S3-compatible storage; integrated the Notch Pay payment gateway (sandbox) and an English/French interface.",
         fr: "Tableau de bord d'administration (produits, catégories, marques, véhicules, commandes) avec envoi d'images vers un stockage compatible S3 ; intégration de la passerelle de paiement Notch Pay (mode test) et interface anglais/français.",
+      },
+    ],
+  },
+  {
+    title: { en: "PharMap: Medicine and Pharmacy Finder for Cameroon", fr: "PharMap : trouver un médicament et une pharmacie au Cameroun" },
+    year: "2026",
+    stack: "React, TypeScript, Vite, NestJS, PostgreSQL, Prisma, Leaflet",
+    slug: "pharmap",
+    liveUrl: "https://pharmap-web.vercel.app",
+    // No codeUrl: the repository is private.
+    points: [
+      {
+        en: "Built a bilingual (EN/FR) PWA showing which nearby verified pharmacies stock a medicine, with price and freshness.",
+        fr: "Construction d'une PWA bilingue (EN/FR) qui montre quelles pharmacies vérifiées proches ont un médicament en stock, avec le prix et la fraîcheur des données.",
+      },
+      {
+        en: "Implemented role-based access (patient, pharmacy, admin), an admin verification state machine with an audit trail, and restock notifications fulfilled in the same transaction as the stock update.",
+        fr: "Accès par rôle (patient, pharmacie, admin), machine à états pour la vérification des pharmacies avec historique des décisions, et alertes de réapprovisionnement traitées dans la même transaction que la mise à jour du stock.",
+      },
+      {
+        en: "Integrated OpenStreetMap (Leaflet, Nominatim, Overpass) for locations; deployed on Vercel, Render (Docker) and Neon, with unit and end-to-end tests in CI.",
+        fr: "Intégration d'OpenStreetMap (Leaflet, Nominatim, Overpass) pour les adresses ; déploiement sur Vercel, Render (Docker) et Neon, avec tests unitaires et de bout en bout en CI.",
       },
     ],
   },
@@ -115,23 +115,6 @@ const CAMEROON = { en: "Cameroon", fr: "Cameroun" };
 const at = (city: string): Localized => ({ en: `${city}, ${CAMEROON.en}`, fr: `${city}, ${CAMEROON.fr}` });
 
 export const experience: Experience[] = [
-  {
-    role: { en: "Full-Stack Developer", fr: "Développeur full-stack" },
-    company: "PharMap",
-    place: at("Douala"),
-    note: { en: "Personal project, live in production", fr: "Projet personnel, en ligne" },
-    period: { en: "2026 – Present", fr: "2026 – aujourd'hui" },
-    points: [
-      {
-        en: "Built and run PharMap end to end: database design, API, web app, deployment, and maintenance after launch.",
-        fr: "Je construis et fais tourner PharMap de bout en bout : conception de la base de données, API, application web, déploiement et maintenance après la mise en ligne.",
-      },
-      {
-        en: "Deployed on Vercel, Render (Docker) and Neon, with CI running unit and end-to-end tests on every push.",
-        fr: "Déploiement sur Vercel, Render (Docker) et Neon, avec une CI qui lance les tests unitaires et de bout en bout à chaque push.",
-      },
-    ],
-  },
   {
     role: { en: "Freelance Full-Stack Software Engineer", fr: "Ingénieur logiciel full-stack freelance" },
     company: "JPFW Web Services",

@@ -64,141 +64,6 @@ export type Project = {
 
 export const projects: Project[] = [
   {
-    slug: "pharmap",
-    title: "PharMap",
-    category: { en: "Health / Location-based web app", fr: "Santé / Application web géolocalisée" },
-    status: "live-demo",
-    summary: {
-      en: "An app that helps people in Cameroon find a medicine: which nearby pharmacies have it in stock, at what price, and how fresh that information is. Pharmacies manage their own listings, and an admin verifies them.",
-      fr: "Une application qui aide les gens au Cameroun à trouver un médicament : quelles pharmacies proches l'ont en stock, à quel prix, et à quel point l'information est récente. Les pharmacies gèrent leurs propres fiches, et un administrateur les vérifie.",
-    },
-    problem: {
-      en: "When someone in Cameroon needs a medicine, they usually go from pharmacy to pharmacy or phone around. Stock information, where it exists at all, is often out of date, and there's no easy way to know which pharmacy to trust.",
-      fr: "Quand quelqu'un au Cameroun a besoin d'un médicament, il va souvent de pharmacie en pharmacie ou appelle partout. L'information sur les stocks, quand elle existe, est souvent dépassée, et il n'y a pas de moyen simple de savoir à quelle pharmacie se fier.",
-    },
-    solution: {
-      en: "I built PharMap as an installable web app (PWA) with a React frontend and a NestJS API. Patients search for a medicine and see which verified pharmacies have it, with the price and how recently the stock was updated. Pharmacies register themselves on a map and keep their inventory up to date. An admin verifies each pharmacy before it's shown as verified. It works in English and French.",
-      fr: "J'ai construit PharMap comme une application web installable (PWA), avec un frontend React et une API NestJS. Les patients cherchent un médicament et voient quelles pharmacies vérifiées l'ont, avec le prix et la date de mise à jour du stock. Les pharmacies s'inscrivent elles-mêmes sur une carte et tiennent leur stock à jour. Un administrateur vérifie chaque pharmacie avant qu'elle apparaisse comme vérifiée. Elle fonctionne en français et en anglais.",
-    },
-    keyFeatures: [
-      {
-        en: "Search medicines by name, generic name or local brand name (e.g. Doliprane or Panadol for paracetamol)",
-        fr: "Recherche de médicaments par nom, nom générique ou marque locale (par ex. Doliprane ou Panadol pour le paracétamol)",
-      },
-      {
-        en: "See which pharmacies have a medicine, with the price in FCFA, the stock status and how fresh the data is (\"Reported 2 hours ago\", flagged after 14 days)",
-        fr: "Voir quelles pharmacies ont un médicament, avec le prix en FCFA, l'état du stock et la fraîcheur de l'information (« Signalé il y a 2 heures », signalé après 14 jours)",
-      },
-      {
-        en: "Pharmacies near me on a map (Leaflet + OpenStreetMap), with opening hours and \"open now\" on each pharmacy",
-        fr: "Pharmacies proches sur une carte (Leaflet + OpenStreetMap), avec les horaires et « ouvert maintenant » pour chaque pharmacie",
-      },
-      {
-        en: "Pharmacy registration in 3 steps: find the pharmacy on OpenStreetMap or drop a pin, add the details, review. The browser's Back button works at every step",
-        fr: "Inscription d'une pharmacie en 3 étapes : la trouver sur OpenStreetMap ou placer un repère, ajouter les infos, vérifier. Le bouton Retour du navigateur marche à chaque étape",
-      },
-      {
-        en: "Pharmacies manage their own stock: status, quantity and price for each medicine",
-        fr: "Les pharmacies gèrent leur stock : état, quantité et prix pour chaque médicament",
-      },
-      {
-        en: "Admin verification with a real state machine (pending, under review, verified, rejected, suspended) and an audit trail of who decided what",
-        fr: "Vérification par un administrateur avec une vraie machine à états (en attente, en cours d'examen, vérifiée, refusée, suspendue) et un historique de qui a décidé quoi",
-      },
-      {
-        en: "Restock notifications: a patient can ask to be told when an out-of-stock medicine is back at a pharmacy",
-        fr: "Alertes de réapprovisionnement : un patient peut demander à être prévenu quand un médicament en rupture revient dans une pharmacie",
-      },
-      {
-        en: "Ratings and reviews, and a way to report a wrong listing",
-        fr: "Notes et avis, et un moyen de signaler une fiche erronée",
-      },
-      {
-        en: "English and French, installable on a phone like an app, with a mobile bottom navigation that adapts to the account type",
-        fr: "Français et anglais, installable sur un téléphone comme une application, avec une barre de navigation mobile qui s'adapte au type de compte",
-      },
-      {
-        en: "Automated tests (unit and end-to-end) run on every push in CI",
-        fr: "Tests automatisés (unitaires et de bout en bout) lancés à chaque push dans la CI",
-      },
-    ],
-    techStack: [
-      {
-        layer: { en: "Frontend", fr: "Frontend" },
-        choice: "React + TypeScript + Vite + Tailwind",
-        why: {
-          en: "A fast, installable PWA. It's an app people log into, so it doesn't need server rendering.",
-          fr: "Une PWA rapide et installable. C'est une application où l'on se connecte, donc pas besoin de rendu serveur.",
-        },
-      },
-      {
-        layer: { en: "Maps", fr: "Cartes" },
-        choice: "Leaflet + OpenStreetMap",
-        why: {
-          en: "Free, with no billing account or API key, and good place search for Cameroon.",
-          fr: "Gratuit, sans compte de facturation ni clé API, avec une bonne recherche de lieux au Cameroun.",
-        },
-      },
-      {
-        layer: { en: "Backend", fr: "Backend" },
-        choice: "NestJS + TypeScript",
-        why: {
-          en: "One module per area (auth, medicines, pharmacies, reviews, notifications), with role checks enforced on the server.",
-          fr: "Un module par domaine (auth, médicaments, pharmacies, avis, notifications), avec les contrôles de rôle faits côté serveur.",
-        },
-      },
-      {
-        layer: { en: "Database", fr: "Base de données" },
-        choice: "PostgreSQL (Neon) + Prisma",
-        why: {
-          en: "Pharmacies, stock, members and reviews are all linked, and stock updates need transactions.",
-          fr: "Pharmacies, stocks, membres et avis sont tous liés, et les mises à jour de stock ont besoin de transactions.",
-        },
-      },
-      {
-        layer: { en: "Hosting", fr: "Hébergement" },
-        choice: "Vercel + Render (Docker)",
-        why: {
-          en: "The web app on Vercel, the API on Render from its own Dockerfile. Free tiers that fit this app without losing features.",
-          fr: "L'application sur Vercel, l'API sur Render depuis son propre Dockerfile. Des offres gratuites qui conviennent sans perdre de fonctionnalités.",
-        },
-      },
-    ],
-    challenges: [
-      {
-        en: "Search had to change to go live. It started on Meilisearch, but free hosting wipes the disk on restart, which deletes its index. I moved search into Postgres, trading typo tolerance for something that runs on the database we already have.",
-        fr: "La recherche a dû changer pour la mise en ligne. Elle utilisait Meilisearch, mais l'hébergement gratuit efface le disque au redémarrage, ce qui supprime son index. J'ai déplacé la recherche dans Postgres, en échangeant la tolérance aux fautes contre une solution qui tourne sur la base qu'on a déjà.",
-      },
-      {
-        en: "Keeping notifications exact. When a pharmacy marks a medicine back in stock, waiting patients are notified in the same database transaction, so there's never a moment where stock says \"in stock\" and a subscriber was missed.",
-        fr: "Des notifications exactes. Quand une pharmacie remet un médicament en stock, les patients en attente sont prévenus dans la même transaction, donc il n'y a jamais un moment où le stock dit « en stock » et un abonné a été oublié.",
-      },
-      {
-        en: "Cold starts on free hosting. The database sleeps after 5 minutes and the API after 15, so deployments failed while the database woke up. A longer connection timeout fixed the deploys, and a scheduled ping keeps the API awake.",
-        fr: "Les démarrages à froid en hébergement gratuit. La base s'endort après 5 minutes et l'API après 15, donc les déploiements échouaient pendant le réveil de la base. Un délai de connexion plus long a réglé les déploiements, et un appel programmé garde l'API éveillée.",
-      },
-      {
-        en: "One account, several roles. A person can be a patient and a pharmacy owner at the same time, so roles are worked out from their data instead of being stored as a single value.",
-        fr: "Un compte, plusieurs rôles. Une personne peut être patient et propriétaire de pharmacie en même temps, donc les rôles sont déduits de ses données au lieu d'être une seule valeur enregistrée.",
-      },
-    ],
-    outcome: {
-      en: "It's live as an MVP: the web app on Vercel, the API on Render and the database on Neon, with unit and end-to-end tests running on every push. The code is in a private repository.",
-      fr: "Elle est en ligne comme MVP : l'application sur Vercel, l'API sur Render et la base sur Neon, avec des tests unitaires et de bout en bout lancés à chaque push. Le code est dans un dépôt privé.",
-    },
-    liveUrl: "https://pharmap-web.vercel.app",
-    screenshots: [
-      { key: "home", label: { en: "Homepage", fr: "Page d'accueil" }, src: pharmapHome },
-      { key: "search", label: { en: "Medicine search with local brand names", fr: "Recherche avec les marques locales" }, src: pharmapSearch },
-      { key: "availability", label: { en: "Pharmacies with a medicine: price, stock, freshness", fr: "Pharmacies avec un médicament : prix, stock, fraîcheur" }, src: pharmapAvailability },
-      { key: "pharmacy", label: { en: "Pharmacy page with opening hours", fr: "Page d'une pharmacie avec les horaires" }, src: pharmapPharmacy },
-      { key: "register-location", label: { en: "Registration: place the pharmacy on the map", fr: "Inscription : placer la pharmacie sur la carte" }, src: pharmapRegisterLocation },
-      { key: "register-info", label: { en: "Registration: pharmacy details", fr: "Inscription : informations de la pharmacie" }, src: pharmapRegisterInfo },
-      { key: "pharmacy-home", label: { en: "Pharmacy account home", fr: "Accueil du compte pharmacie" }, src: pharmapPharmacyHome },
-      { key: "admin-verification", label: { en: "Admin: pharmacy verification", fr: "Admin : vérification des pharmacies" }, src: pharmapAdminVerification },
-    ],
-  },
-  {
     slug: "truckparts",
     title: "TruckParts",
     category: { en: "Automotive / E-commerce", fr: "Automobile / E-commerce" },
@@ -349,6 +214,141 @@ export const projects: Project[] = [
       { key: "order-tracking", label: { en: "Order tracking", fr: "Suivi de commande" }, src: truckpartsOrderTracking },
       { key: "admin-products", label: { en: "Admin: products", fr: "Admin : produits" }, src: truckpartsAdminProducts },
       { key: "admin-orders", label: { en: "Admin: orders", fr: "Admin : commandes" }, src: truckpartsAdminOrders },
+    ],
+  },
+  {
+    slug: "pharmap",
+    title: "PharMap",
+    category: { en: "Health / Location-based web app", fr: "Santé / Application web géolocalisée" },
+    status: "live-demo",
+    summary: {
+      en: "An app that helps people in Cameroon find a medicine: which nearby pharmacies have it in stock, at what price, and how fresh that information is. Pharmacies manage their own listings, and an admin verifies them.",
+      fr: "Une application qui aide les gens au Cameroun à trouver un médicament : quelles pharmacies proches l'ont en stock, à quel prix, et à quel point l'information est récente. Les pharmacies gèrent leurs propres fiches, et un administrateur les vérifie.",
+    },
+    problem: {
+      en: "When someone in Cameroon needs a medicine, they usually go from pharmacy to pharmacy or phone around. Stock information, where it exists at all, is often out of date, and there's no easy way to know which pharmacy to trust.",
+      fr: "Quand quelqu'un au Cameroun a besoin d'un médicament, il va souvent de pharmacie en pharmacie ou appelle partout. L'information sur les stocks, quand elle existe, est souvent dépassée, et il n'y a pas de moyen simple de savoir à quelle pharmacie se fier.",
+    },
+    solution: {
+      en: "I built PharMap as an installable web app (PWA) with a React frontend and a NestJS API. Patients search for a medicine and see which verified pharmacies have it, with the price and how recently the stock was updated. Pharmacies register themselves on a map and keep their inventory up to date. An admin verifies each pharmacy before it's shown as verified. It works in English and French.",
+      fr: "J'ai construit PharMap comme une application web installable (PWA), avec un frontend React et une API NestJS. Les patients cherchent un médicament et voient quelles pharmacies vérifiées l'ont, avec le prix et la date de mise à jour du stock. Les pharmacies s'inscrivent elles-mêmes sur une carte et tiennent leur stock à jour. Un administrateur vérifie chaque pharmacie avant qu'elle apparaisse comme vérifiée. Elle fonctionne en français et en anglais.",
+    },
+    keyFeatures: [
+      {
+        en: "Search medicines by name, generic name or local brand name (e.g. Doliprane or Panadol for paracetamol)",
+        fr: "Recherche de médicaments par nom, nom générique ou marque locale (par ex. Doliprane ou Panadol pour le paracétamol)",
+      },
+      {
+        en: "See which pharmacies have a medicine, with the price in FCFA, the stock status and how fresh the data is (\"Reported 2 hours ago\", flagged after 14 days)",
+        fr: "Voir quelles pharmacies ont un médicament, avec le prix en FCFA, l'état du stock et la fraîcheur de l'information (« Signalé il y a 2 heures », signalé après 14 jours)",
+      },
+      {
+        en: "Pharmacies near me on a map (Leaflet + OpenStreetMap), with opening hours and \"open now\" on each pharmacy",
+        fr: "Pharmacies proches sur une carte (Leaflet + OpenStreetMap), avec les horaires et « ouvert maintenant » pour chaque pharmacie",
+      },
+      {
+        en: "Pharmacy registration in 3 steps: find the pharmacy on OpenStreetMap or drop a pin, add the details, review. The browser's Back button works at every step",
+        fr: "Inscription d'une pharmacie en 3 étapes : la trouver sur OpenStreetMap ou placer un repère, ajouter les infos, vérifier. Le bouton Retour du navigateur marche à chaque étape",
+      },
+      {
+        en: "Pharmacies manage their own stock: status, quantity and price for each medicine",
+        fr: "Les pharmacies gèrent leur stock : état, quantité et prix pour chaque médicament",
+      },
+      {
+        en: "Admin verification with a real state machine (pending, under review, verified, rejected, suspended) and an audit trail of who decided what",
+        fr: "Vérification par un administrateur avec une vraie machine à états (en attente, en cours d'examen, vérifiée, refusée, suspendue) et un historique de qui a décidé quoi",
+      },
+      {
+        en: "Restock notifications: a patient can ask to be told when an out-of-stock medicine is back at a pharmacy",
+        fr: "Alertes de réapprovisionnement : un patient peut demander à être prévenu quand un médicament en rupture revient dans une pharmacie",
+      },
+      {
+        en: "Ratings and reviews, and a way to report a wrong listing",
+        fr: "Notes et avis, et un moyen de signaler une fiche erronée",
+      },
+      {
+        en: "English and French, installable on a phone like an app, with a mobile bottom navigation that adapts to the account type",
+        fr: "Français et anglais, installable sur un téléphone comme une application, avec une barre de navigation mobile qui s'adapte au type de compte",
+      },
+      {
+        en: "Automated tests (unit and end-to-end) run on every push in CI",
+        fr: "Tests automatisés (unitaires et de bout en bout) lancés à chaque push dans la CI",
+      },
+    ],
+    techStack: [
+      {
+        layer: { en: "Frontend", fr: "Frontend" },
+        choice: "React + TypeScript + Vite + Tailwind",
+        why: {
+          en: "A fast, installable PWA. It's an app people log into, so it doesn't need server rendering.",
+          fr: "Une PWA rapide et installable. C'est une application où l'on se connecte, donc pas besoin de rendu serveur.",
+        },
+      },
+      {
+        layer: { en: "Maps", fr: "Cartes" },
+        choice: "Leaflet + OpenStreetMap",
+        why: {
+          en: "Free, with no billing account or API key, and good place search for Cameroon.",
+          fr: "Gratuit, sans compte de facturation ni clé API, avec une bonne recherche de lieux au Cameroun.",
+        },
+      },
+      {
+        layer: { en: "Backend", fr: "Backend" },
+        choice: "NestJS + TypeScript",
+        why: {
+          en: "One module per area (auth, medicines, pharmacies, reviews, notifications), with role checks enforced on the server.",
+          fr: "Un module par domaine (auth, médicaments, pharmacies, avis, notifications), avec les contrôles de rôle faits côté serveur.",
+        },
+      },
+      {
+        layer: { en: "Database", fr: "Base de données" },
+        choice: "PostgreSQL (Neon) + Prisma",
+        why: {
+          en: "Pharmacies, stock, members and reviews are all linked, and stock updates need transactions.",
+          fr: "Pharmacies, stocks, membres et avis sont tous liés, et les mises à jour de stock ont besoin de transactions.",
+        },
+      },
+      {
+        layer: { en: "Hosting", fr: "Hébergement" },
+        choice: "Vercel + Render (Docker)",
+        why: {
+          en: "The web app on Vercel, the API on Render from its own Dockerfile. Free tiers that fit this app without losing features.",
+          fr: "L'application sur Vercel, l'API sur Render depuis son propre Dockerfile. Des offres gratuites qui conviennent sans perdre de fonctionnalités.",
+        },
+      },
+    ],
+    challenges: [
+      {
+        en: "Search had to change to go live. It started on Meilisearch, but free hosting wipes the disk on restart, which deletes its index. I moved search into Postgres, trading typo tolerance for something that runs on the database we already have.",
+        fr: "La recherche a dû changer pour la mise en ligne. Elle utilisait Meilisearch, mais l'hébergement gratuit efface le disque au redémarrage, ce qui supprime son index. J'ai déplacé la recherche dans Postgres, en échangeant la tolérance aux fautes contre une solution qui tourne sur la base qu'on a déjà.",
+      },
+      {
+        en: "Keeping notifications exact. When a pharmacy marks a medicine back in stock, waiting patients are notified in the same database transaction, so there's never a moment where stock says \"in stock\" and a subscriber was missed.",
+        fr: "Des notifications exactes. Quand une pharmacie remet un médicament en stock, les patients en attente sont prévenus dans la même transaction, donc il n'y a jamais un moment où le stock dit « en stock » et un abonné a été oublié.",
+      },
+      {
+        en: "Cold starts on free hosting. The database sleeps after 5 minutes and the API after 15, so deployments failed while the database woke up. A longer connection timeout fixed the deploys, and a scheduled ping keeps the API awake.",
+        fr: "Les démarrages à froid en hébergement gratuit. La base s'endort après 5 minutes et l'API après 15, donc les déploiements échouaient pendant le réveil de la base. Un délai de connexion plus long a réglé les déploiements, et un appel programmé garde l'API éveillée.",
+      },
+      {
+        en: "One account, several roles. A person can be a patient and a pharmacy owner at the same time, so roles are worked out from their data instead of being stored as a single value.",
+        fr: "Un compte, plusieurs rôles. Une personne peut être patient et propriétaire de pharmacie en même temps, donc les rôles sont déduits de ses données au lieu d'être une seule valeur enregistrée.",
+      },
+    ],
+    outcome: {
+      en: "It's live as an MVP: the web app on Vercel, the API on Render and the database on Neon, with unit and end-to-end tests running on every push. The code is in a private repository.",
+      fr: "Elle est en ligne comme MVP : l'application sur Vercel, l'API sur Render et la base sur Neon, avec des tests unitaires et de bout en bout lancés à chaque push. Le code est dans un dépôt privé.",
+    },
+    liveUrl: "https://pharmap-web.vercel.app",
+    screenshots: [
+      { key: "home", label: { en: "Homepage", fr: "Page d'accueil" }, src: pharmapHome },
+      { key: "search", label: { en: "Medicine search with local brand names", fr: "Recherche avec les marques locales" }, src: pharmapSearch },
+      { key: "availability", label: { en: "Pharmacies with a medicine: price, stock, freshness", fr: "Pharmacies avec un médicament : prix, stock, fraîcheur" }, src: pharmapAvailability },
+      { key: "pharmacy", label: { en: "Pharmacy page with opening hours", fr: "Page d'une pharmacie avec les horaires" }, src: pharmapPharmacy },
+      { key: "register-location", label: { en: "Registration: place the pharmacy on the map", fr: "Inscription : placer la pharmacie sur la carte" }, src: pharmapRegisterLocation },
+      { key: "register-info", label: { en: "Registration: pharmacy details", fr: "Inscription : informations de la pharmacie" }, src: pharmapRegisterInfo },
+      { key: "pharmacy-home", label: { en: "Pharmacy account home", fr: "Accueil du compte pharmacie" }, src: pharmapPharmacyHome },
+      { key: "admin-verification", label: { en: "Admin: pharmacy verification", fr: "Admin : vérification des pharmacies" }, src: pharmapAdminVerification },
     ],
   },
   {
