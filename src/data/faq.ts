@@ -134,9 +134,22 @@ export const faq: FaqEntry[] = [
       fr: "WordPress ou un site sur mesure : lequel me faut-il ?",
     },
     answer: {
-      en: "WordPress is a good choice when you want to edit your content yourself and your needs are standard: a showcase site, a blog or a simple store.\n\nA custom site makes sense when your business has its own rules, like checking that a part fits a truck, stock that can't be oversold, or a booking system. Not every project needs custom code, and I'll tell you honestly which one fits.",
-      fr: "WordPress est un bon choix quand vous voulez modifier votre contenu vous-même et que vos besoins sont classiques : un site vitrine, un blog ou une boutique simple.\n\nUn site sur mesure a du sens quand votre activité a ses propres règles, comme vérifier qu'une pièce va sur un camion, un stock qui ne doit jamais être survendu, ou un système de réservation. Tous les projets n'ont pas besoin de code sur mesure, et je vous dis honnêtement lequel vous convient.",
+      en: "WordPress is a good choice when you want to edit your content yourself and your needs are standard: a showcase site, a blog or a simple store.\n\nA custom site makes sense when your business has its own rules, like checking that a part fits a truck, stock that can't be oversold, a booking system, or showing which nearby pharmacy has a medicine in stock. Not every project needs custom code, and I'll tell you honestly which one fits.",
+      fr: "WordPress est un bon choix quand vous voulez modifier votre contenu vous-même et que vos besoins sont classiques : un site vitrine, un blog ou une boutique simple.\n\nUn site sur mesure a du sens quand votre activité a ses propres règles, comme vérifier qu'une pièce va sur un camion, un stock qui ne doit jamais être survendu, un système de réservation, ou montrer quelle pharmacie proche a un médicament en stock. Tous les projets n'ont pas besoin de code sur mesure, et je vous dis honnêtement lequel vous convient.",
     },
+  },
+  {
+    id: "app-or-website",
+    category: "general",
+    question: {
+      en: "Do I need a mobile app, or is a website enough?",
+      fr: "Ai-je besoin d'une application mobile, ou un site suffit ?",
+    },
+    answer: {
+      en: "Often a web app is enough. PharMap, a medicine finder I built, opens in the browser and can be installed on the phone's home screen like an app, without the Play Store or the App Store. It's one version for Android, iPhone and computers, so it costs less to build and to keep up to date.\n\nTell me what your app needs to do and I'll tell you honestly if a web app fits.",
+      fr: "Souvent, une application web suffit. PharMap, un outil de recherche de médicaments que j'ai construit, s'ouvre dans le navigateur et peut s'installer sur l'écran d'accueil du téléphone comme une application, sans passer par le Play Store ni l'App Store. C'est une seule version pour Android, iPhone et ordinateur, donc moins chère à construire et à tenir à jour.\n\nDites-moi ce que votre application doit faire et je vous dis honnêtement si une application web convient.",
+    },
+    link: { href: "/projects/pharmap", label: { en: "See the PharMap project", fr: "Voir le projet PharMap" } },
   },
   {
     id: "where-do-you-work",
