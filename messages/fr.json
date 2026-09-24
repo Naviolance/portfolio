@@ -46,7 +46,8 @@
     "spoken": "Langues",
     "download": "Télécharger mon CV (PDF)",
     "downloadHint": "Une page, en anglais",
-    "view": "Ou le voir en ligne"
+    "open": "Ouvrir dans le navigateur",
+    "view": "Ou lire la version web"
   },
   "pricing": {
     "heading": "Tarifs",
@@ -92,6 +93,7 @@
     "title": "CV",
     "metaDescription": "CV de Forsangam Weyegho Junior Priestly, ingénieur logiciel full-stack à Douala, Cameroun : expérience, projets, formation et compétences.",
     "download": "Télécharger le PDF",
+    "open": "Ouvrir dans le navigateur",
     "downloadHint": "Une page, en anglais",
     "back": "Retour au site",
     "profile": "Profil",

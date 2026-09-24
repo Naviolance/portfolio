@@ -40,8 +40,8 @@ export const cvProjects: CvProject[] = [
         fr: "Accès par rôle (patient, pharmacie, admin), machine à états pour la vérification des pharmacies avec historique des décisions, et alertes de réapprovisionnement traitées dans la même transaction que la mise à jour du stock.",
       },
       {
-        en: "Integrated OpenStreetMap (Leaflet, Nominatim, Overpass) for locations; deployed on Vercel, Render (Docker) and Neon, with unit and end-to-end tests in CI.",
-        fr: "Intégration d'OpenStreetMap (Leaflet, Nominatim, Overpass) pour les adresses ; déploiement sur Vercel, Render (Docker) et Neon, avec tests unitaires et de bout en bout en CI.",
+        en: "Integrated OpenStreetMap (Leaflet, Nominatim, Overpass) to find pharmacies and place them on a map.",
+        fr: "Intégration d'OpenStreetMap (Leaflet, Nominatim, Overpass) pour trouver les pharmacies et les placer sur une carte.",
       },
     ],
   },
@@ -80,8 +80,8 @@ export const cvProjects: CvProject[] = [
     codeUrl: "https://github.com/Naviolance/car-rental",
     points: [
       {
-        en: "Built a rental website where customers filter cars by category, transmission, fuel type, and price, then book by the day, with Google or email/password sign-in (Auth.js).",
-        fr: "Construction d'un site de location où les clients filtrent les voitures par catégorie, boîte de vitesses, carburant et prix, puis réservent à la journée, avec connexion Google ou email/mot de passe (Auth.js).",
+        en: "Customers filter cars (category, transmission, fuel, price), sign in with Google or email, and book by the day.",
+        fr: "Les clients filtrent les voitures (catégorie, boîte de vitesses, carburant, prix), se connectent avec Google ou par email, et réservent à la journée.",
       },
       {
         en: "Added real-time availability checks that block double bookings, and show the full price before the customer submits.",
@@ -94,8 +94,8 @@ export const cvProjects: CvProject[] = [
     year: "2021 – 2023",
     points: [
       {
-        en: "E-commerce websites (React, WordPress, Bubble); C projects from the Qwasar program: a custom printf, a Mastermind game, standard library re-implementations.",
-        fr: "Sites e-commerce (React, WordPress, Bubble) ; projets en C du programme Qwasar : un printf maison, un jeu Mastermind et des réimplémentations de la bibliothèque standard.",
+        en: "E-commerce sites (React, WordPress, Bubble); Qwasar C projects: a custom printf, a Mastermind game, a standard library.",
+        fr: "Sites e-commerce (React, WordPress, Bubble) ; projets en C chez Qwasar : un printf maison, un jeu Mastermind, une bibliothèque standard.",
       },
     ],
   },
@@ -116,14 +116,32 @@ const at = (city: string): Localized => ({ en: `${city}, ${CAMEROON.en}`, fr: `$
 
 export const experience: Experience[] = [
   {
+    role: { en: "Full-Stack Developer", fr: "Développeur full-stack" },
+    company: "PharMap",
+    place: at("Douala"),
+    note: { en: "Personal project, live in production", fr: "Projet personnel, en ligne" },
+    period: { en: "2026 – Present", fr: "2026 – aujourd'hui" },
+    points: [
+      {
+        en: "Built and run PharMap end to end: database design, API, web app, deployment, and maintenance after launch.",
+        fr: "Je construis et fais tourner PharMap de bout en bout : conception de la base de données, API, application web, déploiement et maintenance après la mise en ligne.",
+      },
+      {
+        en: "Deployed on Vercel, Render (Docker) and Neon, with CI running unit and end-to-end tests on every push.",
+        fr: "Déploiement sur Vercel, Render (Docker) et Neon, avec une CI qui lance les tests unitaires et de bout en bout à chaque push.",
+      },
+    ],
+  },
+  {
     role: { en: "Freelance Full-Stack Software Engineer", fr: "Ingénieur logiciel full-stack freelance" },
     company: "JPFW Web Services",
     place: { en: "Douala, Cameroon & remote", fr: "Douala, Cameroun et à distance" },
+    note: { en: "Started in my final year of university", fr: "Commencé pendant ma dernière année d'université" },
     period: { en: "2024 – Present", fr: "2024 – aujourd'hui" },
     points: [
       {
-        en: "Build websites and web apps for small businesses, from the first call to launch, including a WordPress site for a paying client. Started in my final year of university.",
-        fr: "Je crée des sites et des applications web pour des petites entreprises, du premier appel à la mise en ligne, dont un site WordPress pour un client payant. J'ai commencé pendant ma dernière année d'université.",
+        en: "Build websites and web apps for small businesses, from the first call to launch, including a WordPress site for a paying client.",
+        fr: "Je crée des sites et des applications web pour des petites entreprises, du premier appel à la mise en ligne, dont un site WordPress pour un client payant.",
       },
       {
         en: "Find clients online and handle quotes, delivery and payment myself. Also offer SEO audits and website maintenance.",

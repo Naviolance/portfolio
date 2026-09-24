@@ -18,16 +18,30 @@ export function Experience() {
           <div>
             <h2 className="font-display text-2xl font-bold text-ink">{t("heading")}</h2>
             <p className="mt-3 max-w-xs text-sm text-ink-soft">{t("intro")}</p>
-            <a
-              href={CV_PDF}
-              download
-              className="mt-5 inline-flex items-center gap-2 border border-ink px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-paper"
-            >
-              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-                <path d="M7 1v8M3.5 5.5 7 9l3.5-3.5M2 12.5h10" stroke="currentColor" strokeWidth="1.6" fill="none" />
-              </svg>
-              {t("download")}
-            </a>
+            <div className="mt-5 flex flex-wrap gap-2">
+              <a
+                href={CV_PDF}
+                download
+                className="inline-flex items-center gap-2 border border-ink px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-paper"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                  <path d="M7 1v8M3.5 5.5 7 9l3.5-3.5M2 12.5h10" stroke="currentColor" strokeWidth="1.6" fill="none" />
+                </svg>
+                {t("download")}
+              </a>
+              {/* Same file without `download`: the browser's PDF viewer opens it in a new tab. */}
+              <a
+                href={CV_PDF}
+                target="_blank"
+                rel="noopener"
+                className="inline-flex items-center gap-2 border border-line px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent-ink"
+              >
+                <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                  <path d="M5.5 2H2v10h10V8.5M8 2h4v4M12 2 6.5 7.5" stroke="currentColor" strokeWidth="1.6" fill="none" />
+                </svg>
+                {t("open")}
+              </a>
+            </div>
             <p className="mt-2 font-mono text-[11px] text-ink-soft">{t("downloadHint")}</p>
             <Link
               href="/cv"

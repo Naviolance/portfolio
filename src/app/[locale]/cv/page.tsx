@@ -57,16 +57,29 @@ export default async function CvPage(props: PageProps<"/[locale]/cv">) {
           ← {t("back")}
         </Link>
         <div className="text-right">
-          <a
-            href={CV_PDF}
-            download
-            className="inline-flex items-center gap-2 border border-ink bg-ink px-4 py-2 text-sm font-medium text-paper transition-colors hover:border-accent hover:bg-accent"
-          >
-            <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-              <path d="M7 1v8M3.5 5.5 7 9l3.5-3.5M2 12.5h10" stroke="currentColor" strokeWidth="1.6" fill="none" />
-            </svg>
-            {t("download")}
-          </a>
+          <div className="flex flex-wrap justify-end gap-2">
+            <a
+              href={CV_PDF}
+              target="_blank"
+              rel="noopener"
+              className="inline-flex items-center gap-2 border border-line px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent-ink"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                <path d="M5.5 2H2v10h10V8.5M8 2h4v4M12 2 6.5 7.5" stroke="currentColor" strokeWidth="1.6" fill="none" />
+              </svg>
+              {t("open")}
+            </a>
+            <a
+              href={CV_PDF}
+              download
+              className="inline-flex items-center gap-2 border border-ink bg-ink px-4 py-2 text-sm font-medium text-paper transition-colors hover:border-accent hover:bg-accent"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                <path d="M7 1v8M3.5 5.5 7 9l3.5-3.5M2 12.5h10" stroke="currentColor" strokeWidth="1.6" fill="none" />
+              </svg>
+              {t("download")}
+            </a>
+          </div>
           <p className="mt-1 font-mono text-[11px] text-ink-soft">{t("downloadHint")}</p>
         </div>
       </div>

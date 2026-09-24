@@ -46,7 +46,8 @@
     "spoken": "Languages",
     "download": "Download my CV (PDF)",
     "downloadHint": "One page, English",
-    "view": "Or view it online"
+    "open": "Open in browser",
+    "view": "Or read the web version"
   },
   "pricing": {
     "heading": "Pricing",
@@ -92,6 +93,7 @@
     "title": "CV",
     "metaDescription": "CV of Forsangam Weyegho Junior Priestly, full-stack software engineer in Douala, Cameroon: experience, projects, education and skills.",
     "download": "Download PDF",
+    "open": "Open in browser",
     "downloadHint": "One page, English",
     "back": "Back to the site",
     "profile": "Profile",
