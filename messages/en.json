@@ -14,7 +14,7 @@
     "switchToShort": "FR"
   },
   "hero": {
-    "intro": "I'm {name}. Online stores that take real payments, booking systems that don't double-book, and admin panels owners can run from a phone.",
+    "intro": "I'm {name}. I've built stores that take real payments, a car rental system that stops double bookings, and a pharmacy finder people use from their phones.",
     "viewWork": "View my work",
     "workTogether": "Let's work together",
     "recent": "Recent projects",
@@ -24,7 +24,7 @@
     "done": {
       "payments": "Every payment confirmed with the provider",
       "stock": "Checkout can't sell the last unit twice",
-      "bookings": "Bookings don't double-book",
+      "bookings": "Bookings stay in sync",
       "phone": "Admin panels work on a phone",
       "a11y": "Accessibility audited to WCAG AA"
     }
