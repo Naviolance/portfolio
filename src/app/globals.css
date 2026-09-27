@@ -331,19 +331,6 @@ body {
   }
 }
 
-/* Services and pricing cards: an accent line draws across the top on
-   hover or keyboard focus. Scale only. */
-.card-line {
-  scale: 0 1;
-  transform-origin: left;
-  transition: scale 500ms var(--ease-out);
-}
-
-.group:hover > .card-line,
-.group:focus-within > .card-line {
-  scale: 1 1;
-}
-
 /* Featured work (ProjectScreens.tsx): picking a thumbnail crossfades the
    big screen. Opacity and scale only. */
 .screen-shot {

@@ -47,13 +47,7 @@
     "p3": "For me, a project isn't done just because it looks finished. It has to work properly. Payments get checked, not just trusted. Checkout can't sell stock that isn't there. And the admin tools work on a phone, because that's where a lot of business owners use them."
   },
   "services": {
-    "heading": "Services",
-    "eyebrow": "What I do",
-    "intro": "Websites, online stores and web apps, built to work properly and to be found on Google.",
-    "example": "Example:",
-    "ctaTitle": "Not sure what you need?",
-    "ctaText": "Tell me what the site or app should do, and I'll suggest the simplest way to build it.",
-    "cta": "Let's talk"
+    "heading": "Services"
   },
   "experience": {
     "heading": "Experience",
@@ -77,9 +71,7 @@
     },
     "outro": "Every project is different, so these are ranges. Need a web app or something else? Tell me what it needs to do and I'll give you an exact quote.",
     "quote": "Get a quote on WhatsApp",
-    "quoteMessage": "Hi Priestly, I saw your prices and I'd like a quote for my project.",
-    "eyebrow": "Price ranges",
-    "addOn": "Optional · monthly"
+    "quoteMessage": "Hi Priestly, I saw your prices and I'd like a quote for my project."
   },
   "contact": {
     "heading": "Contact",

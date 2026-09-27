@@ -4,9 +4,6 @@ export type Service = {
   title: Localized;
   description: Localized;
   evidence: Localized;
-  // Where the example can be seen: a case study ("/projects/...") or an
-  // external site. None for this site itself.
-  href?: string;
 };
 
 export const services: Service[] = [
@@ -17,7 +14,6 @@ export const services: Service[] = [
       fr: "Des sites pour les entreprises et les organisations. Ils chargent vite, marchent bien sur téléphone et se trouvent facilement sur Google.",
     },
     evidence: { en: "WordPress site: theastuteink.com", fr: "Site WordPress : theastuteink.com" },
-    href: "https://theastuteink.com",
   },
   {
     title: { en: "E-commerce", fr: "E-commerce" },
@@ -29,7 +25,6 @@ export const services: Service[] = [
       en: "TruckParts: truck parts store with Notch Pay checkout and a full admin panel",
       fr: "TruckParts : boutique de pièces de camion avec paiement Notch Pay et un espace d'administration complet",
     },
-    href: "/projects/truckparts",
   },
   {
     title: { en: "Web applications", fr: "Applications web" },
@@ -41,7 +36,6 @@ export const services: Service[] = [
       en: "Car Rental: booking system, driver age rules and an admin panel for the cars",
       fr: "Car Rental : système de réservation, règles d'âge du conducteur et espace d'administration des voitures",
     },
-    href: "/projects/car-rental",
   },
   {
     title: { en: "WordPress", fr: "WordPress" },
@@ -50,7 +44,6 @@ export const services: Service[] = [
       fr: "Sites d'entreprise, modifications de thème et maintenance, quand WordPress est le meilleur choix pour le projet.",
     },
     evidence: { en: "theastuteink.com", fr: "theastuteink.com" },
-    href: "https://theastuteink.com",
   },
   {
     title: { en: "SEO", fr: "Référencement (SEO)" },
