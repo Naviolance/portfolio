@@ -37,7 +37,7 @@ const text = {
     en: ["Websites", "Online stores", "Web apps", "SEO"],
     fr: ["Sites web", "Boutiques en ligne", "Applis web", "SEO"],
   },
-  stamp: { en: "HANDLE WITH CARE", fr: "MANIPULER AVEC SOIN" },
+  stamp: { en: "AUTHENTIC", fr: "AUTHENTIQUE" },
 } satisfies Record<string, Localized | Localized<string[]>>;
 
 export default async function Image({ params }: { params: Promise<{ locale: Locale }> }) {
