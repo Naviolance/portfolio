@@ -15,6 +15,19 @@
   --panel: #e9eff4;
   --brand-navy: #04162a;
   --brand-cyan: #01b6cb;
+  /* Hero deck: card shadow, and how far the cards behind the front one dim. */
+  --shade: rgba(4, 22, 42, 0.16);
+  --dim-1: 0.92;
+  --dim-2: 0.85;
+
+  /* Motion system. Every animation on the site picks from these, so the
+     whole page moves with one "voice".
+     ease-out:  fast start, soft landing (things arriving)
+     ease-draw: slow-fast-slow (lines being drawn) */
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+  --ease-draw: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-enter: 700ms;
+  --dur-draw: 1100ms;
 }
 
 @theme inline {
@@ -44,6 +57,9 @@
     --accent-ink: #5fd3e2;
     --label: #01b6cb;
     --panel: #0b2239;
+    --shade: rgba(0, 0, 0, 0.4);
+    --dim-1: 0.6;
+    --dim-2: 0.4;
   }
 }
 
@@ -128,11 +144,221 @@ body {
   }
 }
 
+/* ---------------------------------------------------------------------
+   Hero (Hero.tsx, ProjectShowcase.tsx)
+   Rules: only transform / scale / translate / opacity / filter / stroke /
+   colour animate, so nothing ever triggers layout (CLS stays 0), and the
+   <h1> is never animated, so it is painted on the first frame (LCP).
+   --------------------------------------------------------------------- */
+
+/* Text and buttons rising into place on load. Pure CSS: it runs without
+   JavaScript and ends visible, so crawlers always see the content. */
+.hero-rise {
+  opacity: 0;
+  translate: 0 14px;
+  animation: hero-rise var(--dur-enter) var(--ease-out) forwards;
+}
+
+@keyframes hero-rise {
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* Blueprint hairlines drawing across / down. */
+.draw-x {
+  scale: 0 1;
+  transform-origin: left;
+  animation: draw-x var(--dur-draw) var(--ease-draw) forwards;
+}
+
+.draw-y {
+  scale: 1 0;
+  transform-origin: top;
+  animation: draw-y var(--dur-draw) var(--ease-draw) 250ms forwards;
+}
+
+@keyframes draw-x {
+  to { scale: 1 1; }
+}
+
+@keyframes draw-y {
+  to { scale: 1 1; }
+}
+
+/* "Done means it works": each tick draws in, then its text inks from grey
+   to full colour. --d (set per item) staggers them. The list has
+   data-reveal, so on a phone the ticks wait until it scrolls into view. */
+.done-tick {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: done-tick 380ms var(--ease-draw) var(--d, 0ms) forwards;
+}
+
+.done-text {
+  color: var(--ink-soft);
+  animation: done-ink 300ms ease-out var(--d, 0ms) forwards;
+}
+
+@keyframes done-tick {
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes done-ink {
+  to { color: var(--ink); }
+}
+
+.reveal-ready [data-reveal]:not(.is-revealed) :is(.done-tick, .done-text) {
+  animation-play-state: paused;
+}
+
+/* Desktop project deck. Its column is narrow inside the 64rem page
+   container, so on wide screens the deck bleeds into the empty right
+   margin (keeping a 2rem gutter), capped at 36rem. At 1024px there is no
+   margin, so it simply fills its column. */
+.deck {
+  width: min(max(100%, calc(100% + (100vw - 64rem) / 2 - 2rem)), 36rem);
+}
+
+/* The component only swaps a card's slot class; CSS does all the moving. */
+.deck-card {
+  transform-origin: bottom left;
+  box-shadow: 0 26px 50px var(--shade);
+  transition:
+    transform 900ms var(--ease-out),
+    opacity 600ms ease-out,
+    filter 600ms ease-out;
+}
+
+/* On load the back cards fan out from behind the front one. A keyframe with
+   only a "from" animates to whatever the slot class says. Tied to the card,
+   not the slot, so it never replays as the deck rotates. */
+.deck-fan-in {
+  animation: deck-fan 900ms var(--ease-out) 300ms backwards;
+}
+
+@keyframes deck-fan {
+  from {
+    transform: none;
+    opacity: 0;
+  }
+}
+
+.deck-slot-0 {
+  z-index: 3;
+}
+
+.deck-slot-1 {
+  z-index: 2;
+  transform: translate(28px, -28px) rotate(2.5deg) scale(0.95);
+  opacity: 0.8;
+  filter: brightness(var(--dim-1));
+}
+
+.deck-slot-2 {
+  z-index: 1;
+  transform: translate(56px, -56px) rotate(5deg) scale(0.9);
+  opacity: 0.55;
+  filter: brightness(var(--dim-2));
+}
+
+/* The front card leaving: it drops away, then rejoins at the back. */
+.deck-slot-exit {
+  z-index: 4;
+  transform: translate(-50px, 100px) rotate(-7deg) scale(0.96);
+  opacity: 0;
+  transition:
+    transform 450ms cubic-bezier(0.55, 0, 1, 0.45),
+    opacity 450ms ease-in;
+}
+
+/* Progress bar on the active deck tab; restarts when the tab changes
+   because React mounts a fresh element. */
+.deck-progress {
+  scale: 0 1;
+  transform-origin: left;
+  animation: draw-x 4200ms linear forwards;
+}
+
+/* Phone project strip: native horizontal scrolling with snap points, one
+   card centred and its neighbours peeking in. */
+.strip {
+  --card-w: min(300px, 78vw);
+  scroll-snap-type: x mandatory;
+  padding-inline: calc(50% - var(--card-w) / 2);
+  overscroll-behavior-x: contain;
+  scrollbar-width: none;
+}
+
+.strip::-webkit-scrollbar {
+  display: none;
+}
+
+.strip-card {
+  flex: 0 0 var(--card-w);
+  scroll-snap-align: center;
+}
+
+/* One-time hint that it swipes, started by the component once the strip
+   is on screen. It moves the inner row, so it never fights the scroll. */
+.strip.is-live .strip-row {
+  animation: strip-nudge 1100ms var(--ease-out) 500ms both;
+}
+
+@keyframes strip-nudge {
+  45% { translate: -36px 0; }
+}
+
+/* Cards shrink and fade as they leave the centre. The animation's
+   progress is the card's scroll position (a scroll-driven animation), not
+   time. Browsers without support show every card at full size. */
+@supports (animation-timeline: view()) {
+  .strip-card {
+    animation: strip-focus linear both;
+    animation-timeline: view(inline);
+  }
+
+  @keyframes strip-focus {
+    0%, 100% {
+      scale: 0.88;
+      opacity: 0.45;
+    }
+    50% {
+      scale: 1;
+      opacity: 1;
+    }
+  }
+}
+
+/* Featured work (ProjectScreens.tsx): picking a thumbnail crossfades the
+   big screen. Opacity and scale only. */
+.screen-shot {
+  opacity: 0;
+  scale: 1.02;
+  transition:
+    opacity 500ms ease-out,
+    scale 900ms var(--ease-out);
+}
+
+.screen-shot.is-on {
+  opacity: 1;
+  scale: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .strip-card {
+    animation: none;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.01ms !important;
+    animation-delay: 0s !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
+    transition-delay: 0s !important;
     scroll-behavior: auto !important;
   }
 }

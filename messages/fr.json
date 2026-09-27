@@ -14,19 +14,31 @@
     "switchToShort": "EN"
   },
   "hero": {
-    "intro": "Je suis {name}, ingénieur logiciel full-stack.",
+    "intro": "Je suis {name}. Des boutiques en ligne qui encaissent de vrais paiements, des systèmes de réservation sans doubles réservations, et des espaces d'administration que le propriétaire gère depuis son téléphone.",
     "viewWork": "Voir mes projets",
     "workTogether": "Travaillons ensemble",
     "recent": "Projets récents",
     "cv": "Voir mon CV",
-    "liveDemo": "démo en ligne"
+    "showProject": "Afficher {title}",
+    "doneHeading": "Fini veut dire que ça marche",
+    "done": {
+      "payments": "Chaque paiement confirmé auprès du prestataire",
+      "stock": "La commande ne peut pas vendre deux fois la dernière pièce",
+      "bookings": "Aucune double réservation",
+      "phone": "L'administration marche sur téléphone",
+      "a11y": "Accessibilité auditée au niveau WCAG AA"
+    }
   },
   "work": {
     "heading": "Projets",
     "howBuilt": "Comment je l'ai construit",
     "liveDemo": "Démo en ligne",
     "github": "GitHub",
-    "privateCode": "Code : privé"
+    "privateCode": "Code : privé",
+    "eyebrow": "Projets choisis · {count} projets",
+    "intro": "Trois produits que j'ai construits de bout en bout. Chacun est en ligne, et chaque étude de cas montre comment il fonctionne.",
+    "showScreen": "Afficher : {label}",
+    "stack": "Stack technique"
   },
   "about": {
     "heading": "À propos",
@@ -35,7 +47,13 @@
     "p3": "Pour moi, un projet n'est pas terminé juste parce qu'il a l'air fini. Il doit bien marcher. Les paiements sont vérifiés, pas juste acceptés. Le panier ne peut pas vendre un stock qui n'existe pas. Et l'administration marche sur téléphone, parce que c'est là que beaucoup de propriétaires l'utilisent."
   },
   "services": {
-    "heading": "Services"
+    "heading": "Services",
+    "eyebrow": "Ce que je fais",
+    "intro": "Des sites, des boutiques en ligne et des applications web, conçus pour bien fonctionner et être trouvés sur Google.",
+    "example": "Exemple :",
+    "ctaTitle": "Vous ne savez pas ce qu'il vous faut ?",
+    "ctaText": "Dites-moi ce que le site ou l'application doit faire, et je vous propose la façon la plus simple de le construire.",
+    "cta": "Parlons-en"
   },
   "experience": {
     "heading": "Parcours",
@@ -59,7 +77,11 @@
     },
     "outro": "Chaque projet est différent, donc ce sont des fourchettes. Besoin d'une application web ou d'autre chose ? Dites-moi ce qu'elle doit faire et je vous donne un devis précis.",
     "quote": "Demander un devis sur WhatsApp",
-    "quoteMessage": "Bonjour Priestly, j'ai vu vos tarifs et j'aimerais un devis pour mon projet."
+    "quoteMessage": "Bonjour Priestly, j'ai vu vos tarifs et j'aimerais un devis pour mon projet.",
+    "eyebrow": "Fourchettes de prix",
+    "alsoAvailable": "Également disponible",
+    "ask": "En savoir plus",
+    "askMessage": "Bonjour Priestly, l'offre « {name} » m'intéresse."
   },
   "contact": {
     "heading": "Contact",
@@ -86,8 +108,7 @@
   "gallery": {
     "seeAll": "Voir les {count} captures",
     "view": "Voir",
-    "viewFullSize": "Voir {label} en grand",
-    "count": "{count} captures"
+    "viewFullSize": "Voir {label} en grand"
   },
   "cv": {
     "title": "CV",

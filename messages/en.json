@@ -14,19 +14,31 @@
     "switchToShort": "FR"
   },
   "hero": {
-    "intro": "I'm {name}, a full-stack software engineer.",
+    "intro": "I'm {name}. Online stores that take real payments, booking systems that don't double-book, and admin panels owners can run from a phone.",
     "viewWork": "View my work",
     "workTogether": "Let's work together",
     "recent": "Recent projects",
     "cv": "View my CV",
-    "liveDemo": "live demo"
+    "showProject": "Show {title}",
+    "doneHeading": "Done means it works",
+    "done": {
+      "payments": "Every payment confirmed with the provider",
+      "stock": "Checkout can't sell the last unit twice",
+      "bookings": "Bookings don't double-book",
+      "phone": "Admin panels work on a phone",
+      "a11y": "Accessibility audited to WCAG AA"
+    }
   },
   "work": {
     "heading": "Featured work",
     "howBuilt": "How I built it",
     "liveDemo": "Live demo",
     "github": "GitHub",
-    "privateCode": "Code: private"
+    "privateCode": "Code: private",
+    "eyebrow": "Selected work · {count} projects",
+    "intro": "Three products I built end to end. Each one is live, and each case study shows how it works.",
+    "showScreen": "Show {label}",
+    "stack": "Tech stack"
   },
   "about": {
     "heading": "About",
@@ -35,7 +47,13 @@
     "p3": "For me, a project isn't done just because it looks finished. It has to work properly. Payments get checked, not just trusted. Checkout can't sell stock that isn't there. And the admin tools work on a phone, because that's where a lot of business owners use them."
   },
   "services": {
-    "heading": "Services"
+    "heading": "Services",
+    "eyebrow": "What I do",
+    "intro": "Websites, online stores and web apps, built to work properly and to be found on Google.",
+    "example": "Example:",
+    "ctaTitle": "Not sure what you need?",
+    "ctaText": "Tell me what the site or app should do, and I'll suggest the simplest way to build it.",
+    "cta": "Let's talk"
   },
   "experience": {
     "heading": "Experience",
@@ -59,7 +77,11 @@
     },
     "outro": "Every project is different, so these are ranges. Need a web app or something else? Tell me what it needs to do and I'll give you an exact quote.",
     "quote": "Get a quote on WhatsApp",
-    "quoteMessage": "Hi Priestly, I saw your prices and I'd like a quote for my project."
+    "quoteMessage": "Hi Priestly, I saw your prices and I'd like a quote for my project.",
+    "eyebrow": "Price ranges",
+    "alsoAvailable": "Also available",
+    "ask": "Ask about this",
+    "askMessage": "Hi Priestly, I'm interested in the {name} package."
   },
   "contact": {
     "heading": "Contact",
@@ -86,8 +108,7 @@
   "gallery": {
     "seeAll": "See all {count} screenshots",
     "view": "View",
-    "viewFullSize": "View {label} full size",
-    "count": "{count} screenshots"
+    "viewFullSize": "View {label} full size"
   },
   "cv": {
     "title": "CV",

@@ -18,11 +18,16 @@ export type PriceTier = {
   // max: null means "from <min>" (no upper bound quoted).
   fcfa: { min: number; max: number | null };
   period: "one-time" | "per-month";
+  // Shown as one of the big cards at the top of the pricing section;
+  // everything else goes in the compact "Also available" list.
+  featured?: boolean;
 };
 
 export type PriceGroup = {
   id: string;
   title: Localized;
+  // Short label shown next to tiers in the "Also available" list.
+  tag: Localized;
   tiers: PriceTier[];
 };
 
@@ -30,6 +35,7 @@ export const pricing: PriceGroup[] = [
   {
     id: "websites",
     title: { en: "Websites & online stores", fr: "Sites web et boutiques en ligne" },
+    tag: { en: "Website", fr: "Site web" },
     tiers: [
       {
         id: "showcase",
@@ -40,6 +46,7 @@ export const pricing: PriceGroup[] = [
         },
         fcfa: { min: 150_000, max: 350_000 },
         period: "one-time",
+        featured: true,
       },
       {
         id: "starter-store",
@@ -60,6 +67,7 @@ export const pricing: PriceGroup[] = [
         },
         fcfa: { min: 800_000, max: 3_000_000 },
         period: "one-time",
+        featured: true,
       },
       {
         id: "custom",
@@ -70,6 +78,7 @@ export const pricing: PriceGroup[] = [
         },
         fcfa: { min: 5_000_000, max: null },
         period: "one-time",
+        featured: true,
       },
       {
         id: "care",
@@ -86,6 +95,7 @@ export const pricing: PriceGroup[] = [
   {
     id: "seo",
     title: { en: "SEO", fr: "Référencement (SEO)" },
+    tag: { en: "SEO", fr: "SEO" },
     tiers: [
       {
         id: "seo-audit",
@@ -149,8 +159,12 @@ const FROM: Localized = { en: "from", fr: "à partir de" };
 export function priceLabel({ min, max }: PriceTier["fcfa"], locale: Locale) {
   const f = (n: number) => formatFcfa(n, locale);
   const u = (n: number) => formatUsd(toUsd(n), locale);
+  // amount: the figure without its currency, for layouts that set "FCFA"
+  // smaller beside it.
+  const amount = max === null ? `${FROM[locale]} ${f(min)}` : `${f(min)}–${f(max)}`;
   return {
-    fcfa: max === null ? `${FROM[locale]} ${f(min)} FCFA` : `${f(min)}–${f(max)} FCFA`,
+    amount,
+    fcfa: `${amount} FCFA`,
     usd: max === null ? `≈ ${FROM[locale]} ${u(min)}` : `≈ ${u(min)}–${u(max)}`,
   };
 }
