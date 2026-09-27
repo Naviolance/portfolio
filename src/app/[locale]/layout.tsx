@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Sora, DM_Sans, IBM_Plex_Mono } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
@@ -32,6 +32,12 @@ const plexMono = IBM_Plex_Mono({
   weight: ["400", "500"],
   variable: "--font-plex-mono",
 });
+
+// Message namespaces read by client components ("use client" files calling
+// useTranslations). Only these are serialized into each page's payload; all
+// other text is rendered on the server. Add a namespace here when a client
+// component starts using it, or it will show missing-translation errors.
+const clientNamespaces = ["nav", "whatsapp", "gallery", "faq"] as const;
 
 // Pre-render every page in both languages at build time.
 export function generateStaticParams() {
@@ -83,6 +89,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   if (!hasLocale(routing.locales, locale)) notFound();
   // Lets every server component below render statically for this language.
   setRequestLocale(locale);
+  const messages = await getMessages();
+  const clientMessages = Object.fromEntries(
+    clientNamespaces.map((ns) => [ns, messages[ns]])
+  );
 
   return (
     <html
@@ -91,8 +101,8 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
       className={`${sora.variable} ${dmSans.variable} ${plexMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
-        {/* Hands this language's interface text to the client components. */}
-        <NextIntlClientProvider>
+        {/* Hands the client components only the text they use, in this language. */}
+        <NextIntlClientProvider messages={clientMessages}>
           <Nav />
           <main className="flex-1">{children}</main>
           <Footer />
