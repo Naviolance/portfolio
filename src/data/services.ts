@@ -1,9 +1,19 @@
+import type { StaticImageData } from "next/image";
 import type { Localized } from "@/lib/localized";
+import truckpartsHome from "@/assets/screenshots/truckparts/home.png";
+import carRentalHome from "@/assets/screenshots/car-rental/home.png";
+import siteHome from "@/assets/screenshots/site/home.webp";
 
 export type Service = {
   title: Localized;
   description: Localized;
   evidence: Localized;
+  // Where the example can be seen: a case study ("/projects/...") or an
+  // external site. None for this site itself.
+  href?: string;
+  // Screenshot of the example, shown beside the service. Services without
+  // one show text only.
+  image?: { src: StaticImageData; label: Localized };
 };
 
 export const services: Service[] = [
@@ -14,6 +24,7 @@ export const services: Service[] = [
       fr: "Des sites pour les entreprises et les organisations. Ils chargent vite, marchent bien sur téléphone et se trouvent facilement sur Google.",
     },
     evidence: { en: "WordPress site: theastuteink.com", fr: "Site WordPress : theastuteink.com" },
+    href: "https://theastuteink.com",
   },
   {
     title: { en: "E-commerce", fr: "E-commerce" },
@@ -24,6 +35,11 @@ export const services: Service[] = [
     evidence: {
       en: "TruckParts: truck parts store with Notch Pay checkout and a full admin panel",
       fr: "TruckParts : boutique de pièces de camion avec paiement Notch Pay et un espace d'administration complet",
+    },
+    href: "/projects/truckparts",
+    image: {
+      src: truckpartsHome,
+      label: { en: "truck-spare-part-store-frontend.vercel.app", fr: "truck-spare-part-store-frontend.vercel.app" },
     },
   },
   {
@@ -36,6 +52,11 @@ export const services: Service[] = [
       en: "Car Rental: booking system, driver age rules and an admin panel for the cars",
       fr: "Car Rental : système de réservation, règles d'âge du conducteur et espace d'administration des voitures",
     },
+    href: "/projects/car-rental",
+    image: {
+      src: carRentalHome,
+      label: { en: "car-rental-xi-lemon.vercel.app", fr: "car-rental-xi-lemon.vercel.app" },
+    },
   },
   {
     title: { en: "WordPress", fr: "WordPress" },
@@ -44,6 +65,7 @@ export const services: Service[] = [
       fr: "Sites d'entreprise, modifications de thème et maintenance, quand WordPress est le meilleur choix pour le projet.",
     },
     evidence: { en: "theastuteink.com", fr: "theastuteink.com" },
+    href: "https://theastuteink.com",
   },
   {
     title: { en: "SEO", fr: "Référencement (SEO)" },
@@ -55,5 +77,6 @@ export const services: Service[] = [
       en: "This site: structured data, share images, fast static pages",
       fr: "Ce site : données structurées, images de partage, pages statiques rapides",
     },
+    image: { src: siteHome, label: { en: "this site", fr: "ce site" } },
   },
 ];
