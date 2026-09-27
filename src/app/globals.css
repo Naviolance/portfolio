@@ -229,8 +229,12 @@ body {
     transform 900ms var(--ease-out),
     opacity 600ms ease-out,
     filter 600ms ease-out;
-  /* On load the cards fan out from a single stack. A keyframe with only a
-     "from" animates to whatever the slot class says. */
+}
+
+/* On load the back cards fan out from behind the front one. A keyframe with
+   only a "from" animates to whatever the slot class says. Tied to the card,
+   not the slot, so it never replays as the deck rotates. */
+.deck-fan-in {
   animation: deck-fan 900ms var(--ease-out) 300ms backwards;
 }
 

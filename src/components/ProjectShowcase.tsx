@@ -158,7 +158,9 @@ function Deck({ items }: Props) {
               // the tabs below are how you get to the others.
               tabIndex={isFront ? undefined : -1}
               aria-hidden={isFront ? undefined : true}
-              className={`deck-card ${i === exiting ? "deck-slot-exit" : `deck-slot-${slot}`} absolute left-0 top-16 block w-[calc(100%-64px)] border border-line bg-panel`}
+              // Only the cards that start behind fan out on load. The front
+              // one is the desktop LCP element, so it must not fade in.
+              className={`deck-card ${i === 0 ? "" : "deck-fan-in"} ${i === exiting ? "deck-slot-exit" : `deck-slot-${slot}`} absolute left-0 top-16 block w-[calc(100%-64px)] border border-line bg-panel`}
             >
               <span className="flex h-7 items-center gap-1.5 border-b border-line px-3">
                 <span className="size-2 rounded-full bg-line" />
@@ -171,7 +173,11 @@ function Deck({ items }: Props) {
                   src={item.image}
                   alt={item.alt}
                   fill
-                  sizes="512px"
+                  // Phones never show the deck: "1px" makes them fetch the
+                  // tiniest variant for the one eagerly loaded image.
+                  sizes="(min-width: 1024px) 512px, 1px"
+                  loading={i === 0 ? "eager" : "lazy"}
+                  fetchPriority={i === 0 ? "high" : "auto"}
                   placeholder="blur"
                   className="object-cover object-top"
                 />
