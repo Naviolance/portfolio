@@ -34,7 +34,11 @@
     "howBuilt": "Comment je l'ai construit",
     "liveDemo": "Démo en ligne",
     "github": "GitHub",
-    "privateCode": "Code : privé"
+    "privateCode": "Code : privé",
+    "eyebrow": "Projets choisis · {count} projets",
+    "intro": "Trois produits que j'ai construits de bout en bout. Chacun est en ligne, et chaque étude de cas montre comment il fonctionne.",
+    "showScreen": "Afficher : {label}",
+    "stack": "Stack technique"
   },
   "about": {
     "heading": "À propos",
@@ -94,8 +98,7 @@
   "gallery": {
     "seeAll": "Voir les {count} captures",
     "view": "Voir",
-    "viewFullSize": "Voir {label} en grand",
-    "count": "{count} captures"
+    "viewFullSize": "Voir {label} en grand"
   },
   "cv": {
     "title": "CV",

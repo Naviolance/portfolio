@@ -331,6 +331,21 @@ body {
   }
 }
 
+/* Featured work (ProjectScreens.tsx): picking a thumbnail crossfades the
+   big screen. Opacity and scale only. */
+.screen-shot {
+  opacity: 0;
+  scale: 1.02;
+  transition:
+    opacity 500ms ease-out,
+    scale 900ms var(--ease-out);
+}
+
+.screen-shot.is-on {
+  opacity: 1;
+  scale: 1;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .strip-card {
     animation: none;

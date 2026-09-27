@@ -34,7 +34,11 @@
     "howBuilt": "How I built it",
     "liveDemo": "Live demo",
     "github": "GitHub",
-    "privateCode": "Code: private"
+    "privateCode": "Code: private",
+    "eyebrow": "Selected work · {count} projects",
+    "intro": "Three products I built end to end. Each one is live, and each case study shows how it works.",
+    "showScreen": "Show {label}",
+    "stack": "Tech stack"
   },
   "about": {
     "heading": "About",
@@ -94,8 +98,7 @@
   "gallery": {
     "seeAll": "See all {count} screenshots",
     "view": "View",
-    "viewFullSize": "View {label} full size",
-    "count": "{count} screenshots"
+    "viewFullSize": "View {label} full size"
   },
   "cv": {
     "title": "CV",

@@ -60,6 +60,11 @@ export type Project = {
   // the Live demo button on the project page).
   demoNote?: { text: Localized; href: string; linkLabel: Localized };
   screenshots: ScreenshotSlot[];
+  // Homepage "Featured work" card: three short proofs of the engineering,
+  // short tech tags, and the screenshot keys shown there (first = cover).
+  highlights: Localized[];
+  tags: string[];
+  showcase: string[];
 };
 
 export const projects: Project[] = [
@@ -204,6 +209,22 @@ export const projects: Project[] = [
       href: "https://truck-spare-part-store-frontend.vercel.app/login",
       linkLabel: { en: "Go to the login page", fr: "Aller à la page de connexion" },
     },
+    highlights: [
+      {
+        en: "Find My Part: customers filter parts by the truck they own",
+        fr: "Find My Part : les clients filtrent les pièces selon leur camion",
+      },
+      {
+        en: "Payments verified with signed webhooks (HMAC-SHA256)",
+        fr: "Paiements vérifiés par webhooks signés (HMAC-SHA256)",
+      },
+      {
+        en: "Stock reserved in one transaction, so the last unit sells once",
+        fr: "Stock réservé en une transaction : la dernière pièce ne se vend qu'une fois",
+      },
+    ],
+    tags: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "Notch Pay"],
+    showcase: ["home", "find-my-part", "checkout", "admin-orders"],
     screenshots: [
       { key: "home", label: { en: "Homepage", fr: "Page d'accueil" }, src: truckpartsHome },
       { key: "listing", label: { en: "Product listing", fr: "Liste des produits" }, src: truckpartsListing },
@@ -340,6 +361,22 @@ export const projects: Project[] = [
       fr: "Elle est en ligne comme MVP : l'application sur Vercel, l'API sur Render et la base sur Neon, avec des tests unitaires et de bout en bout lancés à chaque push. Le code est dans un dépôt privé.",
     },
     liveUrl: "https://pharmap-web.vercel.app",
+    highlights: [
+      {
+        en: "Search by generic or local brand name (Doliprane, Panadol)",
+        fr: "Recherche par nom générique ou marque locale (Doliprane, Panadol)",
+      },
+      {
+        en: "Price, stock status and how fresh the data is, per pharmacy",
+        fr: "Prix, état du stock et fraîcheur des données, pour chaque pharmacie",
+      },
+      {
+        en: "Admin verification with a state machine and an audit trail",
+        fr: "Vérification admin avec une machine à états et un historique des décisions",
+      },
+    ],
+    tags: ["React", "Vite", "Leaflet", "NestJS", "PostgreSQL"],
+    showcase: ["home", "search", "availability", "admin-verification"],
     screenshots: [
       { key: "home", label: { en: "Homepage", fr: "Page d'accueil" }, src: pharmapHome },
       { key: "search", label: { en: "Medicine search with local brand names", fr: "Recherche avec les marques locales" }, src: pharmapSearch },
@@ -480,6 +517,22 @@ export const projects: Project[] = [
     },
     liveUrl: "https://car-rental-xi-lemon.vercel.app",
     githubUrl: "https://github.com/Naviolance/car-rental",
+    highlights: [
+      {
+        en: "No double bookings: dates are checked before a booking is saved",
+        fr: "Aucune double réservation : les dates sont vérifiées avant l'enregistrement",
+      },
+      {
+        en: "The price is locked in at booking, even if the daily rate changes",
+        fr: "Le prix est fixé à la réservation, même si le tarif journalier change",
+      },
+      {
+        en: "Minimum driver age checked in search, booking and admin",
+        fr: "Âge minimum du conducteur vérifié dans la recherche, la réservation et l'admin",
+      },
+    ],
+    tags: ["Next.js 16", "PostgreSQL", "Prisma", "Auth.js", "Motion"],
+    showcase: ["home", "find-my-car", "booking", "admin-bookings"],
     screenshots: [
       { key: "home", label: { en: "Homepage", fr: "Page d'accueil" }, src: carRentalHome },
       { key: "find-my-car", label: { en: "Find my car wizard", fr: "Assistant Find my car" }, src: carRentalFindMyCar },

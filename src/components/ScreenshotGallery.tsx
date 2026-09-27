@@ -16,18 +16,15 @@ const ScreenshotLightbox = dynamic(() => import("./ScreenshotLightbox"), {
 type Props = {
   projectTitle: string;
   screenshots: ScreenshotSlot[];
-  // "cover" shows only the first shot (project cards); "grid" shows them all.
-  variant: "cover" | "grid";
   sizes: string;
 };
 
-export function ScreenshotGallery({ projectTitle, screenshots, variant, sizes }: Props) {
+export function ScreenshotGallery({ projectTitle, screenshots, sizes }: Props) {
   const t = useTranslations("gallery");
   const locale = useLocale() as Locale;
   const [index, setIndex] = useState(-1);
   // Stays true after the first open so the chunk isn't unmounted/refetched.
   const [loaded, setLoaded] = useState(false);
-  const visible = variant === "cover" ? screenshots.slice(0, 1) : screenshots;
 
   const open = (i: number) => {
     setLoaded(true);
@@ -36,18 +33,13 @@ export function ScreenshotGallery({ projectTitle, screenshots, variant, sizes }:
 
   return (
     <>
-      <div className={variant === "grid" ? "grid gap-4 sm:grid-cols-2" : "w-full"}>
-        {visible.map((shot, i) => (
-          <figure
-            key={shot.key}
-            className={variant === "grid" ? "border border-line" : undefined}
-          >
+      <div className="grid gap-4 sm:grid-cols-2">
+        {screenshots.map((shot, i) => (
+          <figure key={shot.key} className="border border-line">
             <button
               type="button"
               onClick={() => open(i)}
-              aria-label={`${t("viewFullSize", { label: shot.label[locale] })}${
-                variant === "cover" ? ` (${t("count", { count: screenshots.length })})` : ""
-              }`}
+              aria-label={t("viewFullSize", { label: shot.label[locale] })}
               // Box takes the screenshot's own shape, so nothing gets cropped.
               style={{ aspectRatio: `${shot.src.width} / ${shot.src.height}` }}
               className="group relative block w-full cursor-zoom-in overflow-hidden bg-panel"
@@ -61,14 +53,12 @@ export function ScreenshotGallery({ projectTitle, screenshots, variant, sizes }:
                 className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
               />
               <span className="absolute bottom-2 right-2 bg-brand-navy/85 px-2 py-1 font-mono text-[11px] text-white opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100">
-                {variant === "cover" ? t("seeAll", { count: screenshots.length }) : t("view")}
+                {t("view")}
               </span>
             </button>
-            {variant === "grid" && (
-              <figcaption className="border-t border-line px-3 py-2 font-mono text-xs text-ink-soft">
-                {shot.label[locale]}
-              </figcaption>
-            )}
+            <figcaption className="border-t border-line px-3 py-2 font-mono text-xs text-ink-soft">
+              {shot.label[locale]}
+            </figcaption>
           </figure>
         ))}
       </div>

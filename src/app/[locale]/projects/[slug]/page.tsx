@@ -187,7 +187,6 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
           <ScreenshotGallery
             projectTitle={project.title}
             screenshots={project.screenshots}
-            variant="grid"
             sizes="(min-width: 1024px) 480px, (min-width: 640px) 45vw, 100vw"
           />
         </div>
