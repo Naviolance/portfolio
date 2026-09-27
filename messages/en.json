@@ -14,12 +14,20 @@
     "switchToShort": "FR"
   },
   "hero": {
-    "intro": "I'm {name}, a full-stack software engineer.",
+    "intro": "I'm {name}. Online stores that take real payments, booking systems that don't double-book, and admin panels owners can run from a phone.",
     "viewWork": "View my work",
     "workTogether": "Let's work together",
     "recent": "Recent projects",
     "cv": "View my CV",
-    "liveDemo": "live demo"
+    "showProject": "Show {title}",
+    "doneHeading": "Done means it works",
+    "done": {
+      "payments": "Every payment confirmed with the provider",
+      "stock": "Checkout can't sell the last unit twice",
+      "bookings": "Bookings don't double-book",
+      "phone": "Admin panels work on a phone",
+      "a11y": "Accessibility audited to WCAG AA"
+    }
   },
   "work": {
     "heading": "Featured work",

@@ -14,12 +14,20 @@
     "switchToShort": "EN"
   },
   "hero": {
-    "intro": "Je suis {name}, ingénieur logiciel full-stack.",
+    "intro": "Je suis {name}. Des boutiques en ligne qui encaissent de vrais paiements, des systèmes de réservation sans doubles réservations, et des espaces d'administration que le propriétaire gère depuis son téléphone.",
     "viewWork": "Voir mes projets",
     "workTogether": "Travaillons ensemble",
     "recent": "Projets récents",
     "cv": "Voir mon CV",
-    "liveDemo": "démo en ligne"
+    "showProject": "Afficher {title}",
+    "doneHeading": "Fini veut dire que ça marche",
+    "done": {
+      "payments": "Chaque paiement confirmé auprès du prestataire",
+      "stock": "La commande ne peut pas vendre deux fois la dernière pièce",
+      "bookings": "Aucune double réservation",
+      "phone": "L'administration marche sur téléphone",
+      "a11y": "Accessibilité auditée au niveau WCAG AA"
+    }
   },
   "work": {
     "heading": "Projets",
