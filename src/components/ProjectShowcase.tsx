@@ -102,7 +102,10 @@ function Deck({ items }: Props) {
   const [active, setActive] = useState(0);
   const [exiting, setExiting] = useState<number | null>(null);
   const [auto, setAuto] = useState(true); // false once someone picks a tab
-  const [paused, setPaused] = useState(false); // hover / keyboard focus
+  // Paused while keyboard focus is inside, so the card someone tabbed to
+  // doesn't rotate away under them. Hover deliberately doesn't pause: it
+  // made the motion stutter whenever the cursor crossed the deck.
+  const [paused, setPaused] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
   const exitTimer = useRef<ReturnType<typeof setTimeout>>(undefined);
 
@@ -130,13 +133,20 @@ function Deck({ items }: Props) {
       ref={ref}
       role="region"
       aria-label={t("recent")}
-      className="hidden lg:block"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      className="deck hidden lg:block"
       onFocus={() => setPaused(true)}
-      onBlur={() => setPaused(false)}
+      onBlur={(e) => {
+        // Focus moving between two things inside the deck isn't leaving it.
+        if (!e.currentTarget.contains(e.relatedTarget)) setPaused(false);
+      }}
     >
-      <div className="relative h-[330px]">
+      {/* The cards are absolutely positioned, so this invisible copy of one
+          card's shape gives the stack its height at any width. */}
+      <div className="relative pt-16">
+        <div aria-hidden className="invisible w-[calc(100%-64px)] border">
+          <div className="h-7" />
+          <div className="aspect-[2/1]" />
+        </div>
         {items.map((item, i) => {
           const slot = (i - active + items.length) % items.length;
           const isFront = slot === 0 && exiting === null;
@@ -148,7 +158,7 @@ function Deck({ items }: Props) {
               // the tabs below are how you get to the others.
               tabIndex={isFront ? undefined : -1}
               aria-hidden={isFront ? undefined : true}
-              className={`deck-card ${i === exiting ? "deck-slot-exit" : `deck-slot-${slot}`} absolute left-0 top-[64px] block w-[calc(100%-64px)] border border-line bg-panel`}
+              className={`deck-card ${i === exiting ? "deck-slot-exit" : `deck-slot-${slot}`} absolute left-0 top-16 block w-[calc(100%-64px)] border border-line bg-panel`}
             >
               <span className="flex h-7 items-center gap-1.5 border-b border-line px-3">
                 <span className="size-2 rounded-full bg-line" />
@@ -161,7 +171,7 @@ function Deck({ items }: Props) {
                   src={item.image}
                   alt={item.alt}
                   fill
-                  sizes="360px"
+                  sizes="512px"
                   placeholder="blur"
                   className="object-cover object-top"
                 />
