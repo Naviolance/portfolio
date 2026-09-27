@@ -14,7 +14,7 @@
     "switchToShort": "EN"
   },
   "hero": {
-    "intro": "Je suis {name}. Des boutiques en ligne qui encaissent de vrais paiements, des systèmes de réservation sans doubles réservations, et des espaces d'administration que le propriétaire gère depuis son téléphone.",
+    "intro": "Je suis {name}. J'ai créé des boutiques qui encaissent de vrais paiements, un système de location de voitures qui évite les doubles réservations et un outil de recherche de pharmacies que les gens utilisent depuis leur téléphone.",
     "viewWork": "Voir mes projets",
     "workTogether": "Travaillons ensemble",
     "recent": "Projets récents",
@@ -24,7 +24,7 @@
     "done": {
       "payments": "Chaque paiement confirmé auprès du prestataire",
       "stock": "La commande ne peut pas vendre deux fois la dernière pièce",
-      "bookings": "Aucune double réservation",
+      "bookings": "Les réservations restent synchronisées",
       "phone": "L'administration marche sur téléphone",
       "a11y": "Accessibilité auditée au niveau WCAG AA"
     }
