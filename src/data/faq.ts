@@ -171,13 +171,13 @@ export const faq: FaqEntry[] = [
     id: "show-up-on-google",
     category: "seo",
     question: {
-      en: "Can you help my business show up on Google?",
-      fr: "Pouvez-vous aider mon entreprise à apparaître sur Google ?",
+      en: "Can you help my business show up on Google and in AI answers like ChatGPT?",
+      fr: "Pouvez-vous aider mon entreprise à apparaître sur Google et dans les réponses des IA comme ChatGPT ?",
     },
     answer: {
-      en: "Yes. Every site I build is ready for Google from day one: fast pages, a clean structure and the technical details search engines check.\n\nFor an existing site, I can audit it and give you a written report (75K–150K FCFA), audit it and fix what I find (200K–450K FCFA), or follow it every month (100K–250K FCFA a month).",
-      fr: "Oui. Chaque site que je crée est prêt pour Google dès le premier jour : pages rapides, structure propre et les détails techniques que les moteurs de recherche vérifient.\n\nPour un site existant, je peux l'auditer et vous donner un rapport écrit (75K–150K FCFA), l'auditer et corriger ce que je trouve (200K–450K FCFA), ou le suivre chaque mois (100K–250K FCFA par mois).",
+      en: "Yes: every site I build is ready for Google and AI search tools from day one, with fast pages, a clean structure, structured data, and Google and Bing set up. Nobody can guarantee what an AI will cite, but these are the signals it relies on.\n\nFor an existing site, I can audit it and give you a written report (75K–150K FCFA), audit it and fix what I find (200K–450K FCFA), or follow it every month (100K–250K FCFA a month).",
+      fr: "Oui : chaque site que je crée est prêt pour Google et les outils de recherche IA dès le premier jour, avec des pages rapides, une structure propre, des données structurées, et Google et Bing configurés. Personne ne peut garantir ce qu'une IA va citer, mais ce sont les signaux sur lesquels elle s'appuie.\n\nPour un site existant, je peux l'auditer et vous donner un rapport écrit (75K–150K FCFA), l'auditer et corriger ce que je trouve (200K–450K FCFA), ou le suivre chaque mois (100K–250K FCFA par mois).",
     },
-    link: { href: "/#pricing", label: { en: "See SEO prices", fr: "Voir les tarifs SEO" } },
+    link: { href: "/#pricing", label: { en: "See SEO & AEO prices", fr: "Voir les tarifs SEO et AEO" } },
   },
 ];

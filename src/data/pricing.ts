@@ -94,15 +94,15 @@ export const pricing: PriceGroup[] = [
   },
   {
     id: "seo",
-    title: { en: "SEO", fr: "Référencement (SEO)" },
-    tag: { en: "SEO", fr: "SEO" },
+    title: { en: "SEO & AI search", fr: "Référencement Google et IA" },
+    tag: { en: "SEO & AEO", fr: "SEO et AEO" },
     tiers: [
       {
         id: "seo-audit",
         name: { en: "Audit only", fr: "Audit seul" },
         description: {
-          en: "A full technical and on-page audit of your site, delivered as a written report.",
-          fr: "Un audit complet de votre site, technique et contenu, livré sous forme de rapport écrit.",
+          en: "A full technical and content audit of your site for Google and AI search tools, delivered as a written report.",
+          fr: "Un audit complet de votre site, technique et contenu, pour Google et les outils de recherche IA, livré sous forme de rapport écrit.",
         },
         fcfa: { min: 75_000, max: 150_000 },
         period: "one-time",
@@ -111,8 +111,8 @@ export const pricing: PriceGroup[] = [
         id: "seo-fixes",
         name: { en: "Audit + fixes", fr: "Audit + corrections" },
         description: {
-          en: "The audit, plus I fix what it finds: speed, schema, meta tags and sitemap.",
-          fr: "L'audit, puis je corrige ce qu'il trouve : vitesse, schema, balises meta et sitemap.",
+          en: "The audit, plus I fix what it finds: speed, schema, meta tags, sitemap, Google and Bing setup, and answer-first content.",
+          fr: "L'audit, puis je corrige ce qu'il trouve : vitesse, schema, balises meta, sitemap, configuration Google et Bing, et contenus qui répondent d'abord.",
         },
         fcfa: { min: 200_000, max: 450_000 },
         period: "one-time",
@@ -121,8 +121,8 @@ export const pricing: PriceGroup[] = [
         id: "seo-care",
         name: { en: "Ongoing care", fr: "Suivi mensuel" },
         description: {
-          en: "Monthly monitoring, small fixes, and a report in plain language.",
-          fr: "Un suivi chaque mois, des petites corrections et un rapport en langage simple.",
+          en: "Monthly monitoring on Google and Bing, small fixes, and a report in plain language.",
+          fr: "Un suivi chaque mois sur Google et Bing, des petites corrections et un rapport en langage simple.",
         },
         fcfa: { min: 100_000, max: 250_000 },
         period: "per-month",

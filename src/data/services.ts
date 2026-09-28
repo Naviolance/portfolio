@@ -68,14 +68,14 @@ export const services: Service[] = [
     href: "https://theastuteink.com",
   },
   {
-    title: { en: "SEO", fr: "Référencement (SEO)" },
+    title: { en: "SEO & AI search (AEO)", fr: "Référencement Google et IA (SEO/AEO)" },
     description: {
-      en: "Audits and fixes so your site shows up on Google: speed, page structure, structured data and the technical details search engines check.",
-      fr: "Audits et corrections pour que votre site apparaisse sur Google : vitesse, structure des pages, données structurées et les détails techniques que Google vérifie.",
+      en: "Get found on Google and in AI answers like ChatGPT and Google's AI Overviews: speed, page structure, structured data, Google and Bing setup, and content written so it can be quoted.",
+      fr: "Soyez trouvé sur Google et dans les réponses des IA comme ChatGPT et les AI Overviews de Google : vitesse, structure des pages, données structurées, configuration Google et Bing, et des contenus rédigés pour être cités.",
     },
     evidence: {
-      en: "This site: structured data, share images, fast static pages",
-      fr: "Ce site : données structurées, images de partage, pages statiques rapides",
+      en: "This site: structured data, answer-first FAQ, verified on Google and Bing",
+      fr: "Ce site : données structurées, FAQ qui répond d'abord, vérifié sur Google et Bing",
     },
     image: { src: siteHome, label: { en: "this site", fr: "ce site" } },
   },
