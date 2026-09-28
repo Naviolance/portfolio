@@ -15,7 +15,7 @@
   },
   "hero": {
     "role": "Développeur web et ingénieur logiciel",
-    "intro": "Je suis {name}. J'ai créé des boutiques qui encaissent de vrais paiements, un système de location de voitures qui évite les doubles réservations et un outil de recherche de pharmacies que les gens utilisent depuis leur téléphone.",
+    "intro": "Je suis {name}. J'ai créé des boutiques qui acceptent Mobile Money et la carte bancaire, un système de location de voitures qui évite les doubles réservations et un outil de recherche de pharmacies qui marche sur n'importe quel téléphone.",
     "viewWork": "Voir mes projets",
     "workTogether": "Travaillons ensemble",
     "recent": "Projets récents",
@@ -43,7 +43,7 @@
   },
   "about": {
     "heading": "À propos",
-    "p1": "Je suis ingénieur logiciel full-stack, basé à Douala au Cameroun, et je travaille avec des clients partout. Je crée des logiciels que les entreprises utilisent tous les jours : des boutiques en ligne avec de vrais paiements, des systèmes de réservation qui ne réservent pas deux fois le même créneau, et des espaces d'administration faciles à utiliser pour le propriétaire.",
+    "p1": "Je suis ingénieur logiciel full-stack, basé à Douala au Cameroun, et je travaille avec des clients partout. Je crée des logiciels que les entreprises utilisent tous les jours : des boutiques en ligne qui acceptent Mobile Money et la carte bancaire, des systèmes de réservation qui ne réservent pas deux fois le même créneau, et des espaces d'administration faciles à utiliser pour le propriétaire.",
     "p2": "Je travaille avec Next.js et TypeScript pour le frontend, Node.js (NestJS) pour le backend, et PostgreSQL quand les données doivent rester justes, comme les commandes, le stock et les réservations. Je crée et maintiens aussi des sites WordPress quand c'est le meilleur choix. Tous les projets n'ont pas besoin de code sur mesure.",
     "p3": "Pour moi, un projet n'est pas terminé juste parce qu'il a l'air fini. Il doit bien marcher. Les paiements sont vérifiés, pas juste acceptés. Le panier ne peut pas vendre un stock qui n'existe pas. Et l'administration marche sur téléphone, parce que c'est là que beaucoup de propriétaires l'utilisent."
   },

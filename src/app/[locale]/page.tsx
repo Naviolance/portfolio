@@ -33,7 +33,7 @@ function personSchema(locale: Locale) {
       url: site.url,
       logo: `${site.url}/brand/jpfw-logo-512.png`,
     },
-    sameAs: [site.linkedin, site.github],
+    sameAs: [site.linkedin, site.github, site.upwork],
     knowsLanguage: ["en", "fr"],
     knowsAbout: [
       "Next.js",

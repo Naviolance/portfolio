@@ -68,10 +68,12 @@ export async function generateMetadata(
       title,
       description: site.description[locale],
     },
-    // Google Search Console ownership check (URL-prefix property, HTML tag
-    // method). Public by design; it only proves the site is ours.
+    // Search engine ownership checks (HTML tag method): Google Search Console
+    // and Bing Webmaster Tools. Public by design; they only prove the site is
+    // ours. Bing's index also feeds ChatGPT search and Copilot.
     verification: {
       google: "IY2sevyae-juuPN113pCwIWRUFw_1PGNo7ZOR37B3PU",
+      other: { "msvalidate.01": "992BD58D8CE1B25023A3E478DF040F6E" },
     },
     // Favicon and apple-touch-icon come from app/icon.png and
     // app/apple-icon.png; the share image from [locale]/opengraph-image.tsx.
