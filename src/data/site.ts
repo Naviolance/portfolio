@@ -33,6 +33,7 @@ export const site = {
   },
   linkedin: "https://www.linkedin.com/in/forsangam-weyegho-junior-priestly-965897236",
   github: "https://github.com/Naviolance",
+  upwork: "https://www.upwork.com/freelancers/~0160ee49eadc052094",
   url: siteUrl(),
 } as const;
 

@@ -15,7 +15,7 @@
   },
   "hero": {
     "role": "Web developer & software engineer",
-    "intro": "I'm {name}. I've built stores that take real payments, a car rental system that stops double bookings, and a pharmacy finder people use from their phones.",
+    "intro": "I'm {name}. I've built stores that take Mobile Money and card payments, a car rental system that stops double bookings, and a pharmacy finder that works on any phone.",
     "viewWork": "View my work",
     "workTogether": "Let's work together",
     "recent": "Recent projects",
@@ -43,7 +43,7 @@
   },
   "about": {
     "heading": "About",
-    "p1": "I'm a full-stack software engineer based in Douala, Cameroon, working with clients anywhere. I build software that businesses use every day: online stores that take real payments, booking systems that don't double-book, and admin panels that are easy for the owner to use.",
+    "p1": "I'm a full-stack software engineer based in Douala, Cameroon, working with clients anywhere. I build software that businesses use every day: online stores that take Mobile Money and card payments, booking systems that don't double-book, and admin panels that are easy for the owner to use.",
     "p2": "I work with Next.js and TypeScript on the frontend, Node.js (NestJS) on the backend, and PostgreSQL when the data has to stay correct, like orders, stock and bookings. I also build and maintain WordPress sites when that's the better choice. Not every project needs custom code.",
     "p3": "For me, a project isn't done just because it looks finished. It has to work properly. Payments get checked, not just trusted. Checkout can't sell stock that isn't there. And the admin tools work on a phone, because that's where a lot of business owners use them."
   },

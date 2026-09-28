@@ -11,6 +11,10 @@ import type { Localized } from "@/lib/localized";
 // Only write what's actually true of how JPFW Web Services works: every
 // answer below comes from the owner's own answers or from facts already on
 // the site.
+//
+// Open every answer with the answer itself, in one sentence ("Between 150K
+// and 5M FCFA...", not "It depends..."). Google snippets and AI answer
+// tools (ChatGPT, Perplexity, AI Overviews) quote that first sentence.
 
 export const FAQ_CATEGORIES = ["prices", "process", "payments", "seo", "general"] as const;
 export type FaqCategory = (typeof FAQ_CATEGORIES)[number];
@@ -45,8 +49,8 @@ export const faq: FaqEntry[] = [
       fr: "Combien coûte un site internet ?",
     },
     answer: {
-      en: "It depends on what the site needs to do. My price ranges:\n\n• Showcase website: 150K–350K FCFA\n• Starter online store: 150K–500K FCFA\n• Business e-commerce site: 800K–3M FCFA\n• Custom platform: from 5M FCFA\n\nThese are JPFW Web Services' own ranges, not an international standard or a price set by law. Tell me what you need and I'll give you an exact quote.",
-      fr: "Ça dépend de ce que le site doit faire. Mes fourchettes de prix :\n\n• Site vitrine : 150K–350K FCFA\n• Boutique en ligne simple : 150K–500K FCFA\n• Site e-commerce professionnel : 800K–3M FCFA\n• Plateforme sur mesure : à partir de 5M FCFA\n\nCe sont les fourchettes de JPFW Web Services, pas une norme internationale ni un prix fixé par la loi. Dites-moi ce dont vous avez besoin et je vous donne un devis précis.",
+      en: "Between 150K FCFA for a showcase website and 5M FCFA or more for a custom platform, depending on what the site needs to do:\n\n• Showcase website: 150K–350K FCFA\n• Starter online store: 150K–500K FCFA\n• Business e-commerce site: 800K–3M FCFA\n• Custom platform: from 5M FCFA\n\nThese are JPFW Web Services' own ranges, not an international standard or a price set by law. Tell me what you need and I'll give you an exact quote.",
+      fr: "Entre 150K FCFA pour un site vitrine et 5M FCFA ou plus pour une plateforme sur mesure, selon ce que le site doit faire :\n\n• Site vitrine : 150K–350K FCFA\n• Boutique en ligne simple : 150K–500K FCFA\n• Site e-commerce professionnel : 800K–3M FCFA\n• Plateforme sur mesure : à partir de 5M FCFA\n\nCe sont les fourchettes de JPFW Web Services, pas une norme internationale ni un prix fixé par la loi. Dites-moi ce dont vous avez besoin et je vous donne un devis précis.",
     },
     link: { href: "/#pricing", label: { en: "See all prices", fr: "Voir tous les tarifs" } },
   },
@@ -83,8 +87,8 @@ export const faq: FaqEntry[] = [
       fr: "Combien de temps pour créer un site ?",
     },
     answer: {
-      en: "Usually:\n\n• Showcase website: 1–2 weeks\n• Starter online store: 2–3 weeks\n• Business e-commerce site: 3–6 weeks\n• Custom platform: depends on the project\n\nThe clock starts once I have your content. You get the exact timeline with your quote.",
-      fr: "En général :\n\n• Site vitrine : 1 à 2 semaines\n• Boutique en ligne simple : 2 à 3 semaines\n• Site e-commerce professionnel : 3 à 6 semaines\n• Plateforme sur mesure : selon le projet\n\nLe délai commence quand j'ai votre contenu. Vous recevez le délai exact avec votre devis.",
+      en: "Most websites take 1 to 6 weeks, depending on the type:\n\n• Showcase website: 1–2 weeks\n• Starter online store: 2–3 weeks\n• Business e-commerce site: 3–6 weeks\n• Custom platform: depends on the project\n\nThe clock starts once I have your content. You get the exact timeline with your quote.",
+      fr: "La plupart des sites prennent 1 à 6 semaines, selon le type :\n\n• Site vitrine : 1 à 2 semaines\n• Boutique en ligne simple : 2 à 3 semaines\n• Site e-commerce professionnel : 3 à 6 semaines\n• Plateforme sur mesure : selon le projet\n\nLe délai commence quand j'ai votre contenu. Vous recevez le délai exact avec votre devis.",
     },
   },
   {
@@ -134,8 +138,8 @@ export const faq: FaqEntry[] = [
       fr: "WordPress ou un site sur mesure : lequel me faut-il ?",
     },
     answer: {
-      en: "WordPress is a good choice when you want to edit your content yourself and your needs are standard: a showcase site, a blog or a simple store.\n\nA custom site makes sense when your business has its own rules, like checking that a part fits a truck, stock that can't be oversold, a booking system, or showing which nearby pharmacy has a medicine in stock. Not every project needs custom code, and I'll tell you honestly which one fits.",
-      fr: "WordPress est un bon choix quand vous voulez modifier votre contenu vous-même et que vos besoins sont classiques : un site vitrine, un blog ou une boutique simple.\n\nUn site sur mesure a du sens quand votre activité a ses propres règles, comme vérifier qu'une pièce va sur un camion, un stock qui ne doit jamais être survendu, un système de réservation, ou montrer quelle pharmacie proche a un médicament en stock. Tous les projets n'ont pas besoin de code sur mesure, et je vous dis honnêtement lequel vous convient.",
+      en: "WordPress if you want to edit your content yourself and your needs are standard: a showcase site, a blog or a simple store. A custom site if your business has its own rules.\n\nThose rules are things like checking that a part fits a truck, stock that can't be oversold, a booking system, or showing which nearby pharmacy has a medicine in stock. Not every project needs custom code, and I'll tell you honestly which one fits.",
+      fr: "WordPress si vous voulez modifier votre contenu vous-même et que vos besoins sont classiques : un site vitrine, un blog ou une boutique simple. Un site sur mesure si votre activité a ses propres règles.\n\nCes règles, ce sont par exemple vérifier qu'une pièce va sur un camion, un stock qui ne doit jamais être survendu, un système de réservation, ou montrer quelle pharmacie proche a un médicament en stock. Tous les projets n'ont pas besoin de code sur mesure, et je vous dis honnêtement lequel vous convient.",
     },
   },
   {
