@@ -206,7 +206,7 @@ export default async function CvPage(props: PageProps<"/[locale]/cv">) {
           <dl className="space-y-1 text-sm">
             {skills.map((group) => (
               <div key={group.label.en} className="sm:flex sm:gap-2">
-                <dt className="font-semibold text-ink">
+                <dt className="font-semibold text-ink sm:shrink-0">
                   {group.label[locale]}
                   {colon}
                 </dt>
@@ -214,7 +214,7 @@ export default async function CvPage(props: PageProps<"/[locale]/cv">) {
               </div>
             ))}
             <div className="sm:flex sm:gap-2">
-              <dt className="font-semibold text-ink">
+              <dt className="font-semibold text-ink sm:shrink-0">
                 {t("languages")}
                 {colon}
               </dt>

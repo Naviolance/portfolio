@@ -127,8 +127,8 @@ export const experience: Experience[] = [
         fr: "Je crée des sites et des applications web pour des petites entreprises, du premier appel à la mise en ligne, dont un site WordPress pour un client payant.",
       },
       {
-        en: "Find clients online and handle quotes, delivery and payment myself. Also offer SEO audits and website maintenance.",
-        fr: "Je trouve mes clients en ligne et je gère moi-même les devis, la livraison et le paiement. Je propose aussi des audits SEO et la maintenance de sites.",
+        en: "Find clients online and handle quotes, delivery and payment myself. Also offer SEO and AI search (AEO) audits and website maintenance.",
+        fr: "Je trouve mes clients en ligne et je gère moi-même les devis, la livraison et le paiement. Je propose aussi des audits SEO et AEO (recherche IA) et la maintenance de sites.",
       },
     ],
   },
@@ -205,6 +205,18 @@ export const skills: SkillGroup[] = [
   {
     label: { en: "Tools & DevOps", fr: "Outils et DevOps" },
     items: ["Docker", "GitHub Actions (CI)", "Vitest", "Vercel", "Render", "Neon", "MinIO (S3)", "WSL2", "Bubble"],
+  },
+  {
+    label: { en: "SEO & AEO", fr: "SEO et AEO" },
+    items: [
+      "Technical SEO",
+      "AEO (AI search)",
+      "Structured data (schema.org)",
+      "Core Web Vitals",
+      "Google Search Console",
+      "Bing Webmaster Tools",
+      "Accessibility (WCAG)",
+    ],
   },
 ];
 
