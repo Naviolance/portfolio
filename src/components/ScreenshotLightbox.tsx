@@ -21,7 +21,7 @@ function toSlide(shot: ScreenshotSlot, projectTitle: string, locale: Locale): Sl
   const widths = LIGHTBOX_WIDTHS.filter((w) => w <= width);
   return {
     src: optimized(widths[widths.length - 1]),
-    alt: `${projectTitle}: ${shot.label[locale]}`,
+    alt: shot.alt[locale],
     width,
     height,
     srcSet: widths.map((w) => ({

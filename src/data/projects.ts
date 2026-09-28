@@ -34,7 +34,10 @@ export type TechStackEntry = {
 
 export type ScreenshotSlot = {
   key: string;
-  label: Localized;
+  label: Localized; // short caption: "Checkout"
+  // What the screen shows, for screen readers and Google Images. Describes
+  // the picture only; no tech stack or keywords.
+  alt: Localized;
   // Static imports: Next hashes the file name (so it can be cached forever),
   // reads the real width/height, and generates a blur placeholder.
   src: StaticImageData;
@@ -226,15 +229,87 @@ export const projects: Project[] = [
     tags: ["Next.js", "NestJS", "PostgreSQL", "Prisma", "Notch Pay"],
     showcase: ["home", "find-my-part", "checkout", "admin-orders"],
     screenshots: [
-      { key: "home", label: { en: "Homepage", fr: "Page d'accueil" }, src: truckpartsHome },
-      { key: "listing", label: { en: "Product listing", fr: "Liste des produits" }, src: truckpartsListing },
-      { key: "detail", label: { en: "Product page", fr: "Page produit" }, src: truckpartsDetail },
-      { key: "find-my-part", label: { en: "Find My Part search", fr: "Recherche Find My Part" }, src: truckpartsFindMyPart },
-      { key: "cart", label: { en: "Cart", fr: "Panier" }, src: truckpartsCart },
-      { key: "checkout", label: { en: "Checkout", fr: "Paiement" }, src: truckpartsCheckout },
-      { key: "order-tracking", label: { en: "Order tracking", fr: "Suivi de commande" }, src: truckpartsOrderTracking },
-      { key: "admin-products", label: { en: "Admin: products", fr: "Admin : produits" }, src: truckpartsAdminProducts },
-      { key: "admin-orders", label: { en: "Admin: orders", fr: "Admin : commandes" }, src: truckpartsAdminOrders },
+      {
+        key: "home",
+        label: { en: "Homepage", fr: "Page d'accueil" },
+        alt: {
+          en: "TruckParts homepage: “Truck parts that fit, without the guesswork”, with Find My Part and Browse all parts buttons",
+          fr: "Page d'accueil de TruckParts : « Truck parts that fit, without the guesswork », avec les boutons Find My Part et Browse all parts",
+        },
+        src: truckpartsHome,
+      },
+      {
+        key: "listing",
+        label: { en: "Product listing", fr: "Liste des produits" },
+        alt: {
+          en: "TruckParts catalogue of truck parts with search, category, brand, condition and price filters",
+          fr: "Catalogue de pièces de camion de TruckParts avec filtres de recherche, catégorie, marque, état et prix",
+        },
+        src: truckpartsListing,
+      },
+      {
+        key: "detail",
+        label: { en: "Product page", fr: "Page produit" },
+        alt: {
+          en: "TruckParts product page for an Eaton electrical part: photos, price in FCFA, stock, compatible trucks and Add to cart",
+          fr: "Page produit TruckParts d'une pièce électrique Eaton : photos, prix en FCFA, stock, camions compatibles et bouton Ajouter au panier",
+        },
+        src: truckpartsDetail,
+      },
+      {
+        key: "find-my-part",
+        label: { en: "Find My Part search", fr: "Recherche Find My Part" },
+        alt: {
+          en: "Find My Part: choose the truck's manufacturer, model and year to see only the parts that fit it",
+          fr: "Find My Part : choisir le constructeur, le modèle et l'année du camion pour ne voir que les pièces qui lui vont",
+        },
+        src: truckpartsFindMyPart,
+      },
+      {
+        key: "cart",
+        label: { en: "Cart", fr: "Panier" },
+        alt: {
+          en: "TruckParts cart with a Detroit Diesel transmission, quantity, subtotal in FCFA and Checkout button",
+          fr: "Panier TruckParts avec une transmission Detroit Diesel, la quantité, le sous-total en FCFA et le bouton de paiement",
+        },
+        src: truckpartsCart,
+      },
+      {
+        key: "checkout",
+        label: { en: "Checkout", fr: "Paiement" },
+        alt: {
+          en: "TruckParts checkout: coupon code, contact details, and a choice between paying online (mobile money or card) or cash at pickup",
+          fr: "Paiement TruckParts : code promo, coordonnées, et choix entre payer en ligne (mobile money ou carte) ou en espèces au retrait",
+        },
+        src: truckpartsCheckout,
+      },
+      {
+        key: "order-tracking",
+        label: { en: "Order tracking", fr: "Suivi de commande" },
+        alt: {
+          en: "Order page after payment: “Payment confirmed”, order number, items, total and Paid status",
+          fr: "Page de commande après paiement : « Paiement confirmé », numéro de commande, articles, total et statut payé",
+        },
+        src: truckpartsOrderTracking,
+      },
+      {
+        key: "admin-products",
+        label: { en: "Admin: products", fr: "Admin : produits" },
+        alt: {
+          en: "TruckParts admin product table with price, stock and published status, and a warning that an out-of-stock product is hidden from the store",
+          fr: "Tableau des produits de l'administration TruckParts : prix, stock, statut publié, et une alerte indiquant qu'un produit en rupture est masqué de la boutique",
+        },
+        src: truckpartsAdminProducts,
+      },
+      {
+        key: "admin-orders",
+        label: { en: "Admin: orders", fr: "Admin : commandes" },
+        alt: {
+          en: "TruckParts admin order list with customer, date, total, payment status and a cancel-and-refund action",
+          fr: "Liste des commandes de l'administration TruckParts : client, date, total, statut du paiement et action annuler et rembourser",
+        },
+        src: truckpartsAdminOrders,
+      },
     ],
   },
   {
@@ -378,14 +453,78 @@ export const projects: Project[] = [
     tags: ["React", "Vite", "Leaflet", "NestJS", "PostgreSQL"],
     showcase: ["home", "search", "availability", "admin-verification"],
     screenshots: [
-      { key: "home", label: { en: "Homepage", fr: "Page d'accueil" }, src: pharmapHome },
-      { key: "search", label: { en: "Medicine search with local brand names", fr: "Recherche avec les marques locales" }, src: pharmapSearch },
-      { key: "availability", label: { en: "Pharmacies with a medicine: price, stock, freshness", fr: "Pharmacies avec un médicament : prix, stock, fraîcheur" }, src: pharmapAvailability },
-      { key: "pharmacy", label: { en: "Pharmacy page with opening hours", fr: "Page d'une pharmacie avec les horaires" }, src: pharmapPharmacy },
-      { key: "register-location", label: { en: "Registration: place the pharmacy on the map", fr: "Inscription : placer la pharmacie sur la carte" }, src: pharmapRegisterLocation },
-      { key: "register-info", label: { en: "Registration: pharmacy details", fr: "Inscription : informations de la pharmacie" }, src: pharmapRegisterInfo },
-      { key: "pharmacy-home", label: { en: "Pharmacy account home", fr: "Accueil du compte pharmacie" }, src: pharmapPharmacyHome },
-      { key: "admin-verification", label: { en: "Admin: pharmacy verification", fr: "Admin : vérification des pharmacies" }, src: pharmapAdminVerification },
+      {
+        key: "home",
+        label: { en: "Homepage", fr: "Page d'accueil" },
+        alt: {
+          en: "PharMap homepage: “Find medicines and nearby pharmacies you can trust”, with Search medicines and Pharmacies near me buttons",
+          fr: "Page d'accueil de PharMap : trouver des médicaments et des pharmacies proches de confiance, avec les boutons de recherche de médicaments et de pharmacies à proximité",
+        },
+        src: pharmapHome,
+      },
+      {
+        key: "search",
+        label: { en: "Medicine search with local brand names", fr: "Recherche avec les marques locales" },
+        alt: {
+          en: "PharMap medicine search: typing “para” finds Paracetamol and its local brand names Doliprane, Panadol, Efferalgan and Dafalgan",
+          fr: "Recherche de médicaments PharMap : en tapant « para », on trouve le paracétamol et ses marques locales Doliprane, Panadol, Efferalgan et Dafalgan",
+        },
+        src: pharmapSearch,
+      },
+      {
+        key: "availability",
+        label: { en: "Pharmacies with a medicine: price, stock, freshness", fr: "Pharmacies avec un médicament : prix, stock, fraîcheur" },
+        alt: {
+          en: "Pharmacies that have the medicine: Pharmacie Kotto in Douala, in stock at 1,500 FCFA, reported 27 seconds ago",
+          fr: "Pharmacies qui ont le médicament : Pharmacie Kotto à Douala, en stock à 1 500 FCFA, signalé il y a 27 secondes",
+        },
+        src: pharmapAvailability,
+      },
+      {
+        key: "pharmacy",
+        label: { en: "Pharmacy page with opening hours", fr: "Page d'une pharmacie avec les horaires" },
+        alt: {
+          en: "Pharmacie Kotto's page: verified badge, open or closed now, Call and Get directions buttons, address and opening hours",
+          fr: "Page de la Pharmacie Kotto : badge vérifié, ouverte ou fermée en ce moment, boutons appeler et itinéraire, adresse et horaires",
+        },
+        src: pharmapPharmacy,
+      },
+      {
+        key: "register-location",
+        label: { en: "Registration: place the pharmacy on the map", fr: "Inscription : placer la pharmacie sur la carte" },
+        alt: {
+          en: "Pharmacy registration, step 1: find the pharmacy on a map of Cameroon or use the current location",
+          fr: "Inscription d'une pharmacie, étape 1 : trouver la pharmacie sur une carte du Cameroun ou utiliser la position actuelle",
+        },
+        src: pharmapRegisterLocation,
+      },
+      {
+        key: "register-info",
+        label: { en: "Registration: pharmacy details", fr: "Inscription : informations de la pharmacie" },
+        alt: {
+          en: "Pharmacy registration, step 2: pharmacy name, phone and description",
+          fr: "Inscription d'une pharmacie, étape 2 : nom, téléphone et description de la pharmacie",
+        },
+        src: pharmapRegisterInfo,
+      },
+      {
+        key: "pharmacy-home",
+        label: { en: "Pharmacy account home", fr: "Accueil du compte pharmacie" },
+        alt: {
+          en: "Pharmacy owner's account: a verified pharmacy with Manage inventory, View public page and Remove pharmacy actions",
+          fr: "Compte du propriétaire : une pharmacie vérifiée avec les actions gérer le stock, voir la page publique et supprimer la pharmacie",
+        },
+        src: pharmapPharmacyHome,
+      },
+      {
+        key: "admin-verification",
+        label: { en: "Admin: pharmacy verification", fr: "Admin : vérification des pharmacies" },
+        alt: {
+          en: "Admin pharmacy verification queue: a pending pharmacy with Start review and Reject buttons",
+          fr: "File de vérification des pharmacies (admin) : une pharmacie en attente avec les boutons commencer l'examen et refuser",
+        },
+        src: pharmapAdminVerification,
+      },
     ],
   },
   {
@@ -534,14 +673,78 @@ export const projects: Project[] = [
     tags: ["Next.js 16", "PostgreSQL", "Prisma", "Auth.js", "Motion"],
     showcase: ["home", "find-my-car", "booking", "admin-bookings"],
     screenshots: [
-      { key: "home", label: { en: "Homepage", fr: "Page d'accueil" }, src: carRentalHome },
-      { key: "find-my-car", label: { en: "Find my car wizard", fr: "Assistant Find my car" }, src: carRentalFindMyCar },
-      { key: "listing", label: { en: "Car list with filters", fr: "Liste des voitures avec filtres" }, src: carRentalListing },
-      { key: "detail", label: { en: "Car page", fr: "Page d'une voiture" }, src: carRentalDetail },
-      { key: "booking", label: { en: "Booking form", fr: "Formulaire de réservation" }, src: carRentalBooking },
-      { key: "confirmation", label: { en: "Booking confirmed", fr: "Réservation confirmée" }, src: carRentalConfirmation },
-      { key: "admin-cars", label: { en: "Admin: cars", fr: "Admin : voitures" }, src: carRentalAdminCars },
-      { key: "admin-bookings", label: { en: "Admin: bookings", fr: "Admin : réservations" }, src: carRentalAdminBookings },
+      {
+        key: "home",
+        label: { en: "Homepage", fr: "Page d'accueil" },
+        alt: {
+          en: "Car Rental homepage: “Rent the right car, right now”, with a search form for category, pick-up and return dates and driver's age",
+          fr: "Page d'accueil de Car Rental : « Rent the right car, right now », avec un formulaire de recherche par catégorie, dates de prise et de retour et âge du conducteur",
+        },
+        src: carRentalHome,
+      },
+      {
+        key: "find-my-car",
+        label: { en: "Find my car wizard", fr: "Assistant Find my car" },
+        alt: {
+          en: "Find my car wizard: picking a pick-up date on a calendar and the number of days",
+          fr: "Assistant Find my car : choix de la date de prise sur un calendrier et du nombre de jours",
+        },
+        src: carRentalFindMyCar,
+      },
+      {
+        key: "listing",
+        label: { en: "Car list with filters", fr: "Liste des voitures avec filtres" },
+        alt: {
+          en: "All cars page with filters for category, transmission, fuel, price and dates, and each car's price per day",
+          fr: "Page de toutes les voitures avec filtres (catégorie, boîte, carburant, prix, dates) et le prix par jour de chaque voiture",
+        },
+        src: carRentalListing,
+      },
+      {
+        key: "detail",
+        label: { en: "Car page", fr: "Page d'une voiture" },
+        alt: {
+          en: "Volkswagen Golf page: $42 per day, compact, manual, petrol, 5 seats, with a booking form",
+          fr: "Page de la Volkswagen Golf : 42 $ par jour, compacte, manuelle, essence, 5 places, avec un formulaire de réservation",
+        },
+        src: carRentalDetail,
+      },
+      {
+        key: "booking",
+        label: { en: "Booking form", fr: "Formulaire de réservation" },
+        alt: {
+          en: "Booking a Volkswagen Golf, step 2 of 4: choosing the dates",
+          fr: "Réservation d'une Volkswagen Golf, étape 2 sur 4 : le choix des dates",
+        },
+        src: carRentalBooking,
+      },
+      {
+        key: "confirmation",
+        label: { en: "Booking confirmed", fr: "Réservation confirmée" },
+        alt: {
+          en: "Booking sent: summary with the car, pick-up and return dates, duration, total price and pending status",
+          fr: "Réservation envoyée : récapitulatif avec la voiture, les dates de prise et de retour, la durée, le prix total et le statut en attente",
+        },
+        src: carRentalConfirmation,
+      },
+      {
+        key: "admin-cars",
+        label: { en: "Admin: cars", fr: "Admin : voitures" },
+        alt: {
+          en: "Car Rental admin fleet list: each car with its price per day, location, and Edit and Archive buttons",
+          fr: "Flotte dans l'administration Car Rental : chaque voiture avec son prix par jour, son lieu, et les boutons modifier et archiver",
+        },
+        src: carRentalAdminCars,
+      },
+      {
+        key: "admin-bookings",
+        label: { en: "Admin: bookings", fr: "Admin : réservations" },
+        alt: {
+          en: "Car Rental admin bookings: pending bookings with Confirm and Cancel buttons, and cancelled ones",
+          fr: "Réservations dans l'administration Car Rental : réservations en attente avec les boutons confirmer et annuler, et réservations annulées",
+        },
+        src: carRentalAdminBookings,
+      },
     ],
   },
 ];

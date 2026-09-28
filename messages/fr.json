@@ -14,6 +14,7 @@
     "switchToShort": "EN"
   },
   "hero": {
+    "role": "Développeur web et ingénieur logiciel",
     "intro": "Je suis {name}. J'ai créé des boutiques qui encaissent de vrais paiements, un système de location de voitures qui évite les doubles réservations et un outil de recherche de pharmacies que les gens utilisent depuis leur téléphone.",
     "viewWork": "Voir mes projets",
     "workTogether": "Travaillons ensemble",
