@@ -29,7 +29,7 @@ export function Hero() {
       category: project.category[locale],
       host: new URL(project.liveUrl).host,
       image: shot.src,
-      alt: `${project.title}: ${shot.label[locale]}`,
+      alt: shot.alt[locale],
     };
   });
 
@@ -40,7 +40,7 @@ export function Hero() {
       <div className="mx-auto grid max-w-5xl grid-cols-1 px-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
         <div className="py-12 sm:py-16 lg:py-20 lg:pr-12">
           <p className="hero-rise flex flex-col gap-1 font-mono text-xs uppercase tracking-wider text-label sm:flex-row sm:gap-5">
-            <span>{site.role[locale]}</span>
+            <span>{t("role")}</span>
             <span className="text-ink-soft">{site.location[locale]}</span>
           </p>
           {/* Never animated: it is the page's LCP element, so it must paint

@@ -69,7 +69,7 @@ export function ProjectScreens({ projectTitle, host, screenshots, showcase }: Pr
               <Image
                 key={shot.key}
                 src={shot.src}
-                alt={`${projectTitle}: ${label(shot)}`}
+                alt={shot.alt[locale]}
                 fill
                 sizes="(min-width: 1024px) 540px, 100vw"
                 placeholder="blur"

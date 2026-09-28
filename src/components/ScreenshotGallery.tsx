@@ -46,7 +46,7 @@ export function ScreenshotGallery({ projectTitle, screenshots, sizes }: Props) {
             >
               <Image
                 src={shot.src}
-                alt={`${projectTitle}: ${shot.label[locale]}`}
+                alt={shot.alt[locale]}
                 placeholder="blur"
                 fill
                 sizes={sizes}

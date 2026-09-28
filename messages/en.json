@@ -14,6 +14,7 @@
     "switchToShort": "FR"
   },
   "hero": {
+    "role": "Web developer & software engineer",
     "intro": "I'm {name}. I've built stores that take real payments, a car rental system that stops double bookings, and a pharmacy finder people use from their phones.",
     "viewWork": "View my work",
     "workTogether": "Let's work together",

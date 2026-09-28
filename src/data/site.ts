@@ -9,9 +9,11 @@ export const site = {
     fr: "Ingénieur Logiciel Full-Stack",
   } satisfies Localized,
   brand: "JPFW Web Services",
+  // The homepage H1. Says "web developer" because that is what clients type
+  // into Google (the title says "Software Engineer").
   tagline: {
-    en: "I build websites and web apps that help businesses sell, manage their work and grow online.",
-    fr: "Je crée des sites et des applications web qui aident les entreprises à vendre, à mieux s'organiser et à grandir en ligne.",
+    en: "I'm a web developer building websites and web apps that help businesses sell, manage their work and grow online.",
+    fr: "Je suis développeur web et je crée des sites et des applications web qui aident les entreprises à vendre, à mieux s'organiser et à grandir en ligne.",
   } satisfies Localized,
   // Meta description: what Google shows under the title (~155 chars max).
   // The title is "Software Engineer", but clients search for "web developer" /
