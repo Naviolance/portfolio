@@ -17,7 +17,7 @@ export function generateImageMetadata({ params }: { params: { locale: Locale } }
       id: "card",
       size: ogSize,
       contentType: "image/png",
-      alt: `${site.name}: ${site.role[locale]} | ${site.brand}`,
+      alt: `${site.name}: ${site.headline[locale]} | ${site.brand}`,
     },
   ];
 }
