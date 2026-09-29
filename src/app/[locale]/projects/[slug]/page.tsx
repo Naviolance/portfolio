@@ -6,6 +6,7 @@ import type { Locale } from "@/i18n/routing";
 import { getProject, projects } from "@/data/projects";
 import { ScreenshotGallery } from "@/components/ScreenshotGallery";
 import { JsonLd } from "@/components/JsonLd";
+import { updated } from "@/data/dates";
 import { site } from "@/data/site";
 import { languageAlternates } from "@/lib/seo";
 
@@ -67,6 +68,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
     operatingSystem: "Web",
     ...(project.githubUrl && { sameAs: project.githubUrl }),
     author: { "@type": "Person", name: site.fullName, url: `${site.url}/${locale}` },
+    ...(updated.projects[project.slug] && { dateModified: updated.projects[project.slug] }),
   };
 
   return (
