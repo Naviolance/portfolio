@@ -3,13 +3,14 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { MobileMenu } from "./MobileMenu";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { WhatsAppButton } from "./WhatsAppButton";
 
 export type NavLink = { id: string; label: string; href: { pathname: "/" | "/faq"; hash?: string } };
 
 // Homepage section anchors, then the FAQ page.
 const SECTIONS = ["work", "about", "experience", "services", "pricing"] as const;
 
-export function Nav() {
+export function Nav({ projectTitles }: { projectTitles: Record<string, string> }) {
   const t = useTranslations("nav");
   const links: NavLink[] = [
     ...SECTIONS.map((id) => ({ id, label: t(id), href: { pathname: "/" as const, hash: id } })),
@@ -46,12 +47,9 @@ export function Nav() {
           ))}
         </nav>
         <div className="flex items-center gap-2">
-          <Link
-            href={{ pathname: "/", hash: "contact" }}
-            className="hidden border border-ink px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-paper sm:inline-block"
-          >
-            {t("cta")}
-          </Link>
+          {/* Desktop: the direct action. Phones and tablets have the floating
+              button, and "Let's talk" in the menu. */}
+          <WhatsAppButton projectTitles={projectTitles} variant="nav" />
           <LanguageSwitcher />
           <MobileMenu links={links} ctaLabel={t("cta")} />
         </div>

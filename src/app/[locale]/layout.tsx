@@ -86,6 +86,9 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   // Lets every server component below render statically for this language.
   setRequestLocale(locale);
 
+  // slug → title, for the WhatsApp buttons' "I saw your <project>" message.
+  const projectTitles = Object.fromEntries(projects.map((p) => [p.slug, p.title]));
+
   return (
     <html
       lang={locale}
@@ -95,12 +98,10 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
       <body className="min-h-full flex flex-col bg-paper text-ink">
         {/* Hands this language's interface text to the client components. */}
         <NextIntlClientProvider>
-          <Nav />
+          <Nav projectTitles={projectTitles} />
           <main className="flex-1">{children}</main>
           <Footer />
-          <WhatsAppButton
-            projectTitles={Object.fromEntries(projects.map((p) => [p.slug, p.title]))}
-          />
+          <WhatsAppButton projectTitles={projectTitles} />
           <RevealOnScroll />
         </NextIntlClientProvider>
         <SiteAnalytics />

@@ -12,7 +12,7 @@ export type FaqItemData = {
 
 // Answers are plain text: paragraphs separated by a blank line, and a
 // paragraph whose lines all start with "• " becomes a bullet list.
-function FaqAnswer({ text }: { text: string }) {
+export function FaqAnswer({ text }: { text: string }) {
   return (
     <>
       {text.split("\n\n").map((block, i) => {

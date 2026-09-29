@@ -11,7 +11,8 @@
     "closeMenu": "Close menu",
     "language": "Language",
     "switchTo": "Français",
-    "switchToShort": "FR"
+    "switchToShort": "FR",
+    "whatsapp": "WhatsApp"
   },
   "hero": {
     "role": "Web developer & software engineer",
@@ -43,9 +44,27 @@
   },
   "about": {
     "heading": "About",
-    "p1": "I'm a full-stack software engineer based in Douala, Cameroon, working with clients anywhere. I build software that businesses use every day: online stores that take Mobile Money and card payments, booking systems that don't double-book, and admin panels that are easy for the owner to use.",
-    "p2": "I work with Next.js and TypeScript on the frontend, Node.js (NestJS) on the backend, and PostgreSQL when the data has to stay correct, like orders, stock and bookings. I also build and maintain WordPress sites when that's the better choice. Not every project needs custom code.",
-    "p3": "For me, a project isn't done just because it looks finished. It has to work properly. Payments get checked, not just trusted. Checkout can't sell stock that isn't there. And the admin tools work on a phone, because that's where a lot of business owners use them."
+    "statement": "A full-stack engineer in Douala who ships things that work.",
+    "intro": "I build online stores, booking systems and admin tools for businesses in Cameroon and abroad, in English or French, with Next.js, NestJS and PostgreSQL. WordPress when that's the better choice.",
+    "photoAlt": "Priestly (Forsangam Weyegho Junior Priestly), web developer in Douala, Cameroon",
+    "facts": {
+      "since": {
+        "value": "2022",
+        "label": "building for the web, since my first internship"
+      },
+      "cases": {
+        "value": "{count}",
+        "label": "full case studies, each with a live demo"
+      },
+      "langs": {
+        "value": "EN · FR",
+        "label": "work, documents and support in both"
+      },
+      "place": {
+        "value": "Douala",
+        "label": "meet in person, or work remotely from anywhere"
+      }
+    }
   },
   "services": {
     "heading": "Services",
@@ -58,15 +77,12 @@
   },
   "experience": {
     "heading": "Experience",
-    "intro": "Where I learned the job, and what I work with.",
-    "work": "Work experience",
+    "work": "Experience",
     "education": "Education",
-    "skills": "Skills",
-    "spoken": "Languages",
-    "download": "Download my CV (PDF)",
-    "downloadHint": "One page, English",
-    "open": "Open in browser",
-    "view": "Or read the web version"
+    "details": "Details",
+    "download": "CV (PDF)",
+    "view": "Web CV",
+    "allSkills": "All skills"
   },
   "pricing": {
     "heading": "Pricing",
@@ -85,8 +101,34 @@
     "askMessage": "Hi Priestly, I'm interested in the {name} package."
   },
   "contact": {
-    "heading": "Contact",
-    "intro": "Tell me what you want to build and what it needs to do. I'll get back to you myself."
+    "heading": "How do you want to start?",
+    "intro": "Every channel reaches me directly, in English or French. Based in Douala, working with clients anywhere.",
+    "hours": "Cameroon time (WAT, UTC+1). I reply shortly whenever I'm not in the middle of a job.",
+    "whatsapp": {
+      "kicker": "Fastest",
+      "title": "WhatsApp",
+      "text": "A quick question, a quote, or to talk through your idea.",
+      "action": "Open WhatsApp"
+    },
+    "email": {
+      "kicker": "Detailed brief",
+      "title": "Email",
+      "text": "Send documents, examples of sites you like, or a full description.",
+      "action": "Write an email"
+    },
+    "upwork": {
+      "kicker": "Abroad / via a platform",
+      "title": "Upwork",
+      "text": "Hire me with Upwork's contracts and payment protection.",
+      "action": "View my Upwork profile"
+    },
+    "profiles": {
+      "kicker": "Check my background",
+      "title": "LinkedIn · GitHub",
+      "text": "My experience, and the code behind my projects.",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
   },
   "project": {
     "back": "Back to work",
@@ -146,8 +188,6 @@
     "askGeneralMessage": "Hi Priestly, I read your FAQ and I have a question.",
     "stillQuestion": "Still have a question?",
     "stillQuestionHint": "Send it on WhatsApp. I read every message myself.",
-    "teaserHeading": "Questions",
-    "teaserIntro": "What clients usually ask before we start.",
     "seeAll": "See all {count} questions"
   },
   "whatsapp": {
@@ -155,5 +195,23 @@
     "project": "Hi Priestly, I saw your {project} project and I'd like something similar for my business.",
     "label": "Chat with Priestly on WhatsApp",
     "button": "Chat on WhatsApp"
+  },
+  "faqTeaser": {
+    "heading": "Questions clients ask first",
+    "intro": "Straight answers: prices, timelines, payment.",
+    "answer": "Answer",
+    "more": "Details",
+    "unsure": "Still unsure?",
+    "ask": "Ask on WhatsApp"
+  },
+  "footer": {
+    "work": "Work",
+    "services": "Services",
+    "more": "More",
+    "pricing": "Pricing",
+    "faq": "FAQ",
+    "cv": "CV",
+    "remote": "remote worldwide",
+    "updated": "Updated {date}"
   }
 }

@@ -2,42 +2,78 @@ import { useTranslations } from "next-intl";
 import { site } from "@/data/site";
 import { whatsappLink } from "@/lib/whatsapp";
 
+const cardLink =
+  "mt-4 inline-flex min-h-11 items-center text-[15px] text-accent-ink underline decoration-line underline-offset-4 hover:decoration-accent";
+
+// "Pick your channel": each way to reach me says what it's best for, so a
+// visitor picks the right one instead of guessing. Upwork is here for
+// clients abroad who want a platform's contract and payment protection.
 export function Contact() {
   const t = useTranslations("contact");
   const tw = useTranslations("whatsapp");
 
-  const channels = [
-    { label: "Email", value: site.email, href: `mailto:${site.email}` },
-    { label: "WhatsApp", value: site.whatsapp.display, href: whatsappLink(tw("default")) },
-    { label: "LinkedIn", value: "forsangam-weyegho-junior-priestly", href: site.linkedin },
-    { label: "GitHub", value: "Naviolance", href: site.github },
-  ];
+  const external = { target: "_blank", rel: "noopener noreferrer" } as const;
 
   return (
     <section id="contact">
-      <div className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
-        <div data-reveal className="grid gap-8 lg:grid-cols-[200px_1fr] lg:gap-16">
-          <h2 className="font-display text-2xl font-bold text-ink">{t("heading")}</h2>
-          <div className="max-w-2xl">
-            <p className="text-ink-soft">{t("intro")}</p>
-            <div className="mt-8 divide-y divide-line border-t border-line">
-              {channels.map((channel) => (
-                <a
-                  key={channel.label}
-                  href={channel.href}
-                  target={channel.label === "Email" ? undefined : "_blank"}
-                  rel={channel.label === "Email" ? undefined : "noopener noreferrer"}
-                  className="group flex flex-col gap-1 py-4 first:pt-0 sm:flex-row sm:items-center sm:justify-between sm:gap-4"
-                >
-                  <span className="font-mono text-xs text-label">{channel.label}</span>
-                  <span className="min-w-0 text-ink group-hover:text-accent-ink [overflow-wrap:anywhere]">
-                    {channel.value}
-                  </span>
-                </a>
-              ))}
-            </div>
-          </div>
+      <div className="mx-auto max-w-5xl px-5 py-16 sm:py-24">
+        <div data-reveal>
+          <p className="font-mono text-xs uppercase tracking-wider text-label">Contact</p>
+          <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-[2.75rem] sm:leading-[1.05]">
+            {t("heading")}
+          </h2>
+          <p className="mt-4 max-w-2xl text-[17px] text-ink-soft">{t("intro")}</p>
+          <p className="mt-2 font-mono text-xs text-ink-soft">{t("hours")}</p>
         </div>
+
+        <ul
+          data-reveal
+          className="mt-10 grid grid-cols-1 gap-px border border-line bg-line sm:grid-cols-2 lg:grid-cols-4"
+        >
+          <li className="flex flex-col bg-panel p-6 shadow-[inset_0_3px_0_var(--color-accent)]">
+            <p className="font-mono text-xs uppercase tracking-wider text-label">{t("whatsapp.kicker")}</p>
+            <h3 className="mt-2 font-display text-xl font-semibold text-ink">{t("whatsapp.title")}</h3>
+            <p className="mt-2 flex-1 text-[15px] text-ink-soft">{t("whatsapp.text")}</p>
+            <p className="mt-4 font-mono text-sm text-ink">{site.whatsapp.display}</p>
+            <a href={whatsappLink(tw("default"))} {...external} className={cardLink}>
+              {t("whatsapp.action")} ↗
+            </a>
+          </li>
+          <li className="flex flex-col bg-paper p-6">
+            <p className="font-mono text-xs uppercase tracking-wider text-label">{t("email.kicker")}</p>
+            <h3 className="mt-2 font-display text-xl font-semibold text-ink">{t("email.title")}</h3>
+            <p className="mt-2 flex-1 text-[15px] text-ink-soft">{t("email.text")}</p>
+            {/* <wbr>: if the address has to wrap, it breaks after the "@". */}
+            <p className="mt-4 font-mono text-[13px] text-ink">
+              {site.email.split("@")[0]}@<wbr />
+              {site.email.split("@")[1]}
+            </p>
+            <a href={`mailto:${site.email}`} className={cardLink}>
+              {t("email.action")} →
+            </a>
+          </li>
+          <li className="flex flex-col bg-paper p-6">
+            <p className="font-mono text-xs uppercase tracking-wider text-label">{t("upwork.kicker")}</p>
+            <h3 className="mt-2 font-display text-xl font-semibold text-ink">{t("upwork.title")}</h3>
+            <p className="mt-2 flex-1 text-[15px] text-ink-soft">{t("upwork.text")}</p>
+            <a href={site.upwork} {...external} className={cardLink}>
+              {t("upwork.action")} ↗
+            </a>
+          </li>
+          <li className="flex flex-col bg-paper p-6">
+            <p className="font-mono text-xs uppercase tracking-wider text-label">{t("profiles.kicker")}</p>
+            <h3 className="mt-2 font-display text-xl font-semibold text-ink">{t("profiles.title")}</h3>
+            <p className="mt-2 flex-1 text-[15px] text-ink-soft">{t("profiles.text")}</p>
+            <div className="mt-4 flex gap-5">
+              <a href={site.linkedin} {...external} className={cardLink.replace("mt-4 ", "")}>
+                {t("profiles.linkedin")} ↗
+              </a>
+              <a href={site.github} {...external} className={cardLink.replace("mt-4 ", "")}>
+                {t("profiles.github")} ↗
+              </a>
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
   );

@@ -21,9 +21,9 @@ export async function generateMetadata(props: PageProps<"/[locale]/cv">): Promis
   };
 }
 
-function Section({ title, children }: { title: string; children: React.ReactNode }) {
+function Section({ title, id, children }: { title: string; id?: string; children: React.ReactNode }) {
   return (
-    <section className="mt-8 break-inside-avoid-page">
+    <section id={id} className="mt-8 scroll-mt-20 break-inside-avoid-page">
       <h2 className="border-b-2 border-accent pb-1 font-display text-sm font-bold uppercase tracking-wider text-accent-ink">
         {title}
       </h2>
@@ -202,7 +202,7 @@ export default async function CvPage(props: PageProps<"/[locale]/cv">) {
           </div>
         </Section>
 
-        <Section title={t("skills")}>
+        <Section title={t("skills")} id="skills">
           <dl className="space-y-1 text-sm">
             {skills.map((group) => (
               <div key={group.label.en} className="sm:flex sm:gap-2">
