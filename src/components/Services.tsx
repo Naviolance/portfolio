@@ -33,7 +33,7 @@ export function Services() {
             <li
               key={service.title.en}
               data-reveal
-              className="grid gap-x-10 gap-y-5 border-t border-line py-8 sm:grid-cols-[60px_minmax(0,1fr)] lg:grid-cols-[60px_minmax(0,1fr)_300px] lg:items-center"
+              className="grid grid-cols-1 gap-x-10 gap-y-5 border-t border-line py-8 sm:grid-cols-[60px_minmax(0,1fr)] lg:grid-cols-[60px_minmax(0,1fr)_300px] lg:items-center"
             >
               <span className="font-mono text-xs text-label lg:self-start lg:pt-2">{pad(i + 1)}</span>
               <div>

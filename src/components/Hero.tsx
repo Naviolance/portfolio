@@ -87,7 +87,7 @@ export function Hero() {
 
       <div className="mx-auto max-w-5xl px-5 py-10">
         <h2 className="font-mono text-xs uppercase tracking-wider text-label">{t("doneHeading")}</h2>
-        <ul data-reveal className="mt-3 grid lg:mt-6 lg:grid-cols-5">
+        <ul data-reveal className="mt-3 grid grid-cols-1 lg:mt-6 lg:grid-cols-5">
           {DONE.map((item, i) => (
             <li
               key={item.key}

@@ -13,8 +13,10 @@ export default defineConfig({
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "list",
   use: {
     baseURL: `http://localhost:${PORT}`,
-    // A machine with its own Chromium (no `playwright install`) can point
-    // at it: PW_CHROMIUM_PATH=/path/to/chrome npm run test:e2e
+    // A machine with its own browser (no `playwright install`) can point at
+    // it: PW_CHROMIUM_PATH=/path/to/headless_shell npm run test:e2e. Use the
+    // headless shell, like CI: it renders slightly differently from full
+    // Chrome (a 2px overflow once showed up in one and not the other).
     launchOptions: process.env.PW_CHROMIUM_PATH ? { executablePath: process.env.PW_CHROMIUM_PATH } : {},
   },
   projects: [{ name: "chromium", use: { ...devices["Desktop Chrome"] } }],

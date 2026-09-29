@@ -159,7 +159,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
             {project.techStack.map((entry) => (
               <div
                 key={entry.choice}
-                className="grid gap-1 border-b border-line py-3 sm:grid-cols-[130px_170px_1fr] sm:gap-4"
+                className="grid grid-cols-1 gap-1 border-b border-line py-3 sm:grid-cols-[130px_170px_1fr] sm:gap-4"
               >
                 <dt className="font-mono text-xs text-label sm:pt-0.5">{entry.layer[locale]}</dt>
                 <dd className="font-medium text-ink">{entry.choice}</dd>

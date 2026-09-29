@@ -35,7 +35,7 @@ export function Pricing() {
             {featuredGroup.title[locale]}
           </h3>
         )}
-        <ul className="mt-4 grid gap-4 lg:grid-cols-3">
+        <ul className="mt-4 grid grid-cols-1 gap-4 lg:grid-cols-3">
           {featured.map((tier, i) => {
             const price = priceLabel(tier.fcfa, locale);
             // The middle card is set apart: lifted, with an accent border.
@@ -101,7 +101,7 @@ export function Pricing() {
 
         <div
           data-reveal
-          className="mt-12 grid gap-6 border border-line bg-panel p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-12"
+          className="mt-12 grid grid-cols-1 gap-6 border border-line bg-panel p-6 sm:p-8 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center lg:gap-12"
         >
           <p className="text-ink">{t("outro")}</p>
           <a
