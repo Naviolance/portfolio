@@ -42,11 +42,11 @@ export async function generateMetadata(
   props: LayoutProps<"/[locale]">
 ): Promise<Metadata> {
   const { locale } = (await props.params) as { locale: Locale };
-  const title = `${site.name}: ${site.role[locale]} | ${site.brand}`;
+  const title = `${site.name}: ${site.headline[locale]} | ${site.brand}`;
 
   return {
     metadataBase: new URL(site.url),
-    title: { default: title, template: `%s | ${site.name}, ${site.role[locale]}` },
+    title: { default: title, template: `%s | ${site.name}, ${site.headline[locale]}` },
     description: site.description[locale],
     applicationName: site.brand,
     authors: [{ name: site.fullName, url: site.url }],

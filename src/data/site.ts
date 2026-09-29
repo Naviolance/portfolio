@@ -4,9 +4,15 @@ import type { Localized } from "@/lib/localized";
 export const site = {
   name: "Priestly",
   fullName: "Forsangam Weyegho Junior Priestly",
+  // Job title: the CV header and the Person jobTitle (what recruiters search).
   role: {
     en: "Full-Stack Software Engineer",
     fr: "Ingénieur Logiciel Full-Stack",
+  } satisfies Localized,
+  // Page titles, share-card alt and footer: what clients type into Google.
+  headline: {
+    en: "Web Developer & Software Engineer",
+    fr: "Développeur Web et Ingénieur Logiciel",
   } satisfies Localized,
   brand: "JPFW Web Services",
   // The homepage H1. Says "web developer" because that is what clients type

@@ -6,18 +6,6 @@ import { useTranslations } from "next-intl";
 import { usePathname } from "@/i18n/navigation";
 import { whatsappLink } from "@/lib/whatsapp";
 
-// The ?ref= from a tracked link, read once from the URL the visitor landed
-// on. It lives in memory only (nothing stored in the browser), and survives
-// client-side navigation because this module isn't re-evaluated.
-const landingRef =
-  typeof window === "undefined"
-    ? null
-    : new URLSearchParams(window.location.search)
-        .get("ref")
-        ?.toLowerCase()
-        .replace(/[^a-z0-9-]/g, "")
-        .slice(0, 40) || null;
-
 type Props = {
   // slug → title, passed from the server so the full project data (copy,
   // image metadata) doesn't have to ship to the browser for this button.
@@ -36,14 +24,9 @@ export function WhatsAppButton({ projectTitles }: Props) {
 
   return (
     <a
-      // Server and client render the same href; the ref (if any) is added
-      // only at click time, so there's no hydration mismatch.
+      // The tracked-link ref, if any, is added at click time by
+      // <SiteAnalytics>, the same way as for every other WhatsApp link.
       href={whatsappLink(message)}
-      onClick={(e) => {
-        if (landingRef) {
-          e.currentTarget.href = whatsappLink(`${message} (ref: ${landingRef})`);
-        }
-      }}
       target="_blank"
       rel="noopener noreferrer"
       aria-label={t("label")}

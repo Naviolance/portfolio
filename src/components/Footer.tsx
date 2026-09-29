@@ -11,7 +11,7 @@ export function Footer() {
     <footer className="border-t border-line print:hidden">
       <div className="mx-auto flex max-w-5xl flex-col gap-4 px-5 pt-10 pb-24 text-sm text-ink-soft sm:flex-row sm:items-center sm:justify-between">
         <p>
-          {site.fullName} · {site.role[locale]} · {site.location[locale]}
+          {site.fullName} · {site.headline[locale]} · {site.location[locale]}
         </p>
         <div className="flex flex-wrap gap-x-6 gap-y-2">
           <a href={`mailto:${site.email}`} className="hover:text-ink">

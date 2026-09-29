@@ -33,7 +33,7 @@ export function ScreenshotGallery({ projectTitle, screenshots, sizes }: Props) {
 
   return (
     <>
-      <div className="grid gap-4 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
         {screenshots.map((shot, i) => (
           <figure key={shot.key} className="border border-line">
             <button

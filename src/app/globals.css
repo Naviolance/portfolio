@@ -362,3 +362,30 @@ body {
     scroll-behavior: auto !important;
   }
 }
+
+/* ---------------------------------------------------------------------
+   Language switch (lib/lang-switch.ts): the page reached through the EN/FR
+   switch doesn't replay the hero's entrance. The attribute stays for the
+   rest of that page's life, because removing it would restart the
+   animations (it swaps "animation: none" back to the keyframes).
+   --------------------------------------------------------------------- */
+html[data-lang-switch] .hero-rise {
+  animation: none;
+  opacity: 1;
+  translate: none;
+}
+
+html[data-lang-switch] :is(.draw-x, .draw-y) {
+  animation: none;
+  scale: 1 1;
+}
+
+html[data-lang-switch] .deck-fan-in {
+  animation: none;
+}
+
+/* Sections already on screen after the switch appear without the zoom-in;
+   removed two frames later so sections further down still reveal. */
+html.reveal-instant [data-reveal] {
+  transition: none !important;
+}

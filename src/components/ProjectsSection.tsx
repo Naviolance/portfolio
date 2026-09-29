@@ -31,7 +31,7 @@ export function ProjectsSection() {
             <article
               key={project.slug}
               data-reveal
-              className="grid gap-8 border-t border-line py-12 sm:py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-center lg:gap-16"
+              className="grid grid-cols-1 gap-8 border-t border-line py-12 sm:py-16 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)] lg:items-center lg:gap-16"
             >
               {/* Every other project puts its screenshots on the right. */}
               <div className={i % 2 === 1 ? "lg:order-2" : undefined}>
