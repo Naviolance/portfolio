@@ -1,121 +1,93 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { CV_PDF, education, experience, skills, spokenLanguages } from "@/data/cv";
+import { CV_PDF, education, experience } from "@/data/cv";
 
-// The CV, as a homepage section: work experience, education, skills, and
-// the PDF for recruiters who want the one-page version.
+const label = "font-mono text-xs uppercase tracking-wider text-label";
+
+// Compact rows under About: experience and education side by side. Each
+// job's details sit in a native <details> (in the HTML even while closed,
+// so search engines still read them). Skills live on the CV page.
 export function Experience() {
   const t = useTranslations("experience");
   const locale = useLocale() as Locale;
 
-  const subheading = "font-mono text-xs uppercase tracking-widest text-label";
-
   return (
-    <section id="experience" className="border-b border-line">
-      <div className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
-        <div data-reveal className="grid gap-8 lg:grid-cols-[200px_1fr] lg:gap-16">
-          <div>
-            <h2 className="font-display text-2xl font-bold text-ink">{t("heading")}</h2>
-            <p className="mt-3 max-w-xs text-sm text-ink-soft">{t("intro")}</p>
-            <div className="mt-5 flex flex-wrap gap-2">
-              <a
-                href={CV_PDF}
-                download
-                className="inline-flex items-center gap-2 border border-ink px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-paper"
-              >
-                <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-                  <path d="M7 1v8M3.5 5.5 7 9l3.5-3.5M2 12.5h10" stroke="currentColor" strokeWidth="1.6" fill="none" />
-                </svg>
-                {t("download")}
-              </a>
-              {/* Same file without `download`: the browser's PDF viewer opens it in a new tab. */}
-              <a
-                href={CV_PDF}
-                target="_blank"
-                rel="noopener"
-                className="inline-flex items-center gap-2 border border-line px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent-ink"
-              >
-                <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
-                  <path d="M5.5 2H2v10h10V8.5M8 2h4v4M12 2 6.5 7.5" stroke="currentColor" strokeWidth="1.6" fill="none" />
-                </svg>
-                {t("open")}
-              </a>
-            </div>
-            <p className="mt-2 font-mono text-[11px] text-ink-soft">{t("downloadHint")}</p>
-            <Link
-              href="/cv"
-              className="mt-3 inline-block text-sm text-ink underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
-            >
-              {t("view")} →
-            </Link>
-          </div>
-
-          <div className="max-w-2xl space-y-12">
-            <div>
-              <h3 className={subheading}>{t("work")}</h3>
-              <ol className="mt-4 border-t border-line">
-                {experience.map((job) => (
-                  <li key={job.company} className="border-b border-line py-5">
-                    <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
-                      <p className="text-lg font-semibold text-ink">
-                        {job.role[locale]} · {job.company}
-                      </p>
-                      <p className="font-mono text-xs text-ink-soft">{job.period[locale]}</p>
-                    </div>
-                    <p className="text-sm text-ink-soft">
+    <section id="experience" className="scroll-mt-16 border-b border-line">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-5 pt-4 pb-16 sm:pb-24 lg:grid-cols-2 lg:gap-14">
+        <div data-reveal>
+          <h2 className={label}>{t("work")}</h2>
+          <ol className="mt-3">
+            {experience.map((job) => (
+              <li key={job.company} className="border-t border-line">
+                <details className="group">
+                  <summary className="grid cursor-pointer list-none grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-1 py-4 [&::-webkit-details-marker]:hidden">
+                    <span className="font-semibold text-ink transition-colors group-hover:text-accent-ink">
+                      {job.role[locale]} · {job.company}
+                    </span>
+                    <span className="pt-1 text-right font-mono text-xs text-label">{job.period[locale]}</span>
+                    <span className="col-span-2 text-sm text-ink-soft">
                       {job.place[locale]}
-                      {job.note && <span className="text-label"> · {job.note[locale]}</span>}
-                    </p>
-                    <ul className="mt-3 list-disc space-y-1 pl-5 text-ink-soft">
+                      <span className="ml-2 whitespace-nowrap font-mono text-xs text-accent-ink">
+                        <span aria-hidden className="inline-block transition-transform group-open:rotate-45">
+                          +
+                        </span>{" "}
+                        {t("details")}
+                      </span>
+                    </span>
+                  </summary>
+                  <div className="pb-5 text-[15px] text-ink-soft">
+                    {job.note && <p className="text-sm text-label">{job.note[locale]}</p>}
+                    <ul className="mt-2 list-disc space-y-1 pl-5">
                       {job.points.map((point) => (
                         <li key={point.en}>{point[locale]}</li>
                       ))}
                     </ul>
-                  </li>
-                ))}
-              </ol>
-            </div>
-
-            <div>
-              <h3 className={subheading}>{t("education")}</h3>
-              <ul className="mt-4 border-t border-line">
-                {education.map((item) => (
-                  <li
-                    key={item.title.en}
-                    className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1 border-b border-line py-3"
-                  >
-                    <p className="font-medium text-ink">
-                      {item.title[locale]}
-                      <span className="font-normal text-ink-soft">, {item.place[locale]}</span>
-                    </p>
-                    <p className="font-mono text-xs text-ink-soft">{item.period}</p>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div>
-              <h3 className={subheading}>{t("skills")}</h3>
-              <dl className="mt-4 space-y-4">
-                {skills.map((group) => (
-                  <div key={group.label.en} className="grid gap-2 sm:grid-cols-[140px_1fr] sm:gap-4">
-                    <dt className="pt-1 text-sm font-medium text-ink">{group.label[locale]}</dt>
-                    <dd className="flex flex-wrap gap-2">
-                      {group.items.map((skill) => (
-                        <span key={skill} className="border border-line px-2 py-1 font-mono text-[11px] text-ink-soft">
-                          {skill}
-                        </span>
-                      ))}
-                    </dd>
                   </div>
-                ))}
-                <div className="grid gap-2 sm:grid-cols-[140px_1fr] sm:gap-4">
-                  <dt className="text-sm font-medium text-ink">{t("spoken")}</dt>
-                  <dd className="text-sm text-ink-soft">{spokenLanguages[locale]}</dd>
-                </div>
-              </dl>
-            </div>
+                </details>
+              </li>
+            ))}
+          </ol>
+        </div>
+
+        <div data-reveal>
+          <h2 className={label}>{t("education")}</h2>
+          <ul className="mt-3">
+            {education.map((item) => (
+              <li
+                key={item.title.en}
+                className="grid grid-cols-[minmax(0,1fr)_auto] gap-x-4 gap-y-1 border-t border-line py-4"
+              >
+                <span className="font-semibold text-ink">{item.title[locale]}</span>
+                <span className="pt-1 text-right font-mono text-xs text-label">{item.period}</span>
+                <span className="col-span-2 text-sm text-ink-soft">{item.place[locale]}</span>
+              </li>
+            ))}
+          </ul>
+
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            <a
+              href={CV_PDF}
+              download
+              className="inline-flex h-11 items-center gap-2 border border-line px-4 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent-ink"
+            >
+              <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
+                <path d="M7 1v8M3.5 5.5 7 9l3.5-3.5M2 12.5h10" stroke="currentColor" strokeWidth="1.6" fill="none" />
+              </svg>
+              {t("download")}
+            </a>
+            <Link
+              href="/cv"
+              className="inline-flex h-11 items-center border border-line px-4 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent-ink"
+            >
+              {t("view")}
+            </Link>
+            <Link
+              href={{ pathname: "/cv", hash: "skills" }}
+              className="inline-flex h-11 items-center text-sm text-ink-soft underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
+            >
+              {t("allSkills")} →
+            </Link>
           </div>
         </div>
       </div>

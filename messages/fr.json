@@ -11,7 +11,8 @@
     "closeMenu": "Fermer le menu",
     "language": "Langue",
     "switchTo": "English",
-    "switchToShort": "EN"
+    "switchToShort": "EN",
+    "whatsapp": "WhatsApp"
   },
   "hero": {
     "role": "Développeur web et ingénieur logiciel",
@@ -43,9 +44,27 @@
   },
   "about": {
     "heading": "À propos",
-    "p1": "Je suis ingénieur logiciel full-stack, basé à Douala au Cameroun, et je travaille avec des clients partout. Je crée des logiciels que les entreprises utilisent tous les jours : des boutiques en ligne qui acceptent Mobile Money et la carte bancaire, des systèmes de réservation qui ne réservent pas deux fois le même créneau, et des espaces d'administration faciles à utiliser pour le propriétaire.",
-    "p2": "Je travaille avec Next.js et TypeScript pour le frontend, Node.js (NestJS) pour le backend, et PostgreSQL quand les données doivent rester justes, comme les commandes, le stock et les réservations. Je crée et maintiens aussi des sites WordPress quand c'est le meilleur choix. Tous les projets n'ont pas besoin de code sur mesure.",
-    "p3": "Pour moi, un projet n'est pas terminé juste parce qu'il a l'air fini. Il doit bien marcher. Les paiements sont vérifiés, pas juste acceptés. Le panier ne peut pas vendre un stock qui n'existe pas. Et l'administration marche sur téléphone, parce que c'est là que beaucoup de propriétaires l'utilisent."
+    "statement": "Un ingénieur full-stack à Douala qui livre des projets qui marchent.",
+    "intro": "Je crée des boutiques en ligne, des systèmes de réservation et des outils d'administration pour des entreprises au Cameroun et à l'étranger, en anglais ou en français, avec Next.js, NestJS et PostgreSQL. WordPress quand c'est le meilleur choix.",
+    "photoAlt": "Priestly (Forsangam Weyegho Junior Priestly), développeur web à Douala, Cameroun",
+    "facts": {
+      "since": {
+        "value": "2022",
+        "label": "je crée pour le web depuis mon premier stage"
+      },
+      "cases": {
+        "value": "{count}",
+        "label": "études de cas complètes, chacune avec une démo en ligne"
+      },
+      "langs": {
+        "value": "FR · EN",
+        "label": "travail, documents et suivi dans les deux langues"
+      },
+      "place": {
+        "value": "Douala",
+        "label": "on se rencontre, ou on travaille à distance, où que vous soyez"
+      }
+    }
   },
   "services": {
     "heading": "Services",
@@ -58,15 +77,12 @@
   },
   "experience": {
     "heading": "Parcours",
-    "intro": "Où j'ai appris le métier, et avec quoi je travaille.",
-    "work": "Expérience professionnelle",
+    "work": "Expérience",
     "education": "Formation",
-    "skills": "Compétences",
-    "spoken": "Langues",
-    "download": "Télécharger mon CV (PDF)",
-    "downloadHint": "Une page, en anglais",
-    "open": "Ouvrir dans le navigateur",
-    "view": "Ou lire la version web"
+    "details": "Détails",
+    "download": "CV (PDF)",
+    "view": "CV en ligne",
+    "allSkills": "Toutes les compétences"
   },
   "pricing": {
     "heading": "Tarifs",
@@ -85,8 +101,34 @@
     "askMessage": "Bonjour Priestly, l'offre « {name} » m'intéresse."
   },
   "contact": {
-    "heading": "Contact",
-    "intro": "Dites-moi ce que vous voulez créer et ce que ça doit faire. Je vous réponds moi-même."
+    "heading": "Comment voulez-vous commencer ?",
+    "intro": "Chaque canal arrive directement chez moi, en français ou en anglais. Basé à Douala, je travaille avec des clients partout.",
+    "hours": "Heure du Cameroun (WAT, UTC+1). Je réponds rapidement dès que je ne suis pas en plein travail.",
+    "whatsapp": {
+      "kicker": "Le plus rapide",
+      "title": "WhatsApp",
+      "text": "Une question rapide, un devis, ou pour parler de votre idée.",
+      "action": "Ouvrir WhatsApp"
+    },
+    "email": {
+      "kicker": "Demande détaillée",
+      "title": "E-mail",
+      "text": "Envoyez des documents, des exemples de sites qui vous plaisent, ou une description complète.",
+      "action": "Écrire un e-mail"
+    },
+    "upwork": {
+      "kicker": "Depuis l'étranger / via une plateforme",
+      "title": "Upwork",
+      "text": "Engagez-moi avec les contrats et la protection de paiement d'Upwork.",
+      "action": "Voir mon profil Upwork"
+    },
+    "profiles": {
+      "kicker": "Voir mon parcours",
+      "title": "LinkedIn · GitHub",
+      "text": "Mon expérience, et le code derrière mes projets.",
+      "linkedin": "LinkedIn",
+      "github": "GitHub"
+    }
   },
   "project": {
     "back": "Retour aux projets",
@@ -146,8 +188,6 @@
     "askGeneralMessage": "Bonjour Priestly, j'ai lu votre FAQ et j'ai une question.",
     "stillQuestion": "Encore une question ?",
     "stillQuestionHint": "Envoyez-la sur WhatsApp. Je lis chaque message moi-même.",
-    "teaserHeading": "Questions",
-    "teaserIntro": "Ce que les clients demandent en général avant de commencer.",
     "seeAll": "Voir les {count} questions"
   },
   "whatsapp": {
@@ -155,5 +195,23 @@
     "project": "Bonjour Priestly, j'ai vu votre projet {project} et j'aimerais quelque chose de similaire pour mon entreprise.",
     "label": "Discuter avec Priestly sur WhatsApp",
     "button": "Discuter sur WhatsApp"
+  },
+  "faqTeaser": {
+    "heading": "Les questions qu'on me pose d'abord",
+    "intro": "Des réponses directes : prix, délais, paiement.",
+    "answer": "Réponse",
+    "more": "Détails",
+    "unsure": "Encore un doute ?",
+    "ask": "Demandez sur WhatsApp"
+  },
+  "footer": {
+    "work": "Projets",
+    "services": "Services",
+    "more": "Plus",
+    "pricing": "Tarifs",
+    "faq": "FAQ",
+    "cv": "CV",
+    "remote": "à distance partout",
+    "updated": "Mis à jour le {date}"
   }
 }
