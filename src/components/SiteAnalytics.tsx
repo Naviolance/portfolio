@@ -1,6 +1,9 @@
 "use client";
 
+import { useEffect } from "react";
 import { Analytics, type BeforeSendEvent } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+import { landingRef } from "@/lib/landing-ref";
 
 // Tracked links: share the site as https://<site>/?ref=acme and the landing
 // pageview is recorded as the page "/ref/acme". Query/UTM filtering is a paid
@@ -23,6 +26,40 @@ function tagRef(event: BeforeSendEvent): BeforeSendEvent {
   return { ...event, url: url.toString() };
 }
 
+// Adds "(ref: acme)" to the pre-typed message of ANY WhatsApp link the
+// visitor taps (hero, pricing, contact, footer, FAQ, floating button), so a
+// client who came from a tracked link says where from in their first message.
+// One listener instead of per-button code: server components stay server
+// components. Runs in the capture phase, before the browser follows the link.
+function useRefOnWhatsAppLinks() {
+  useEffect(() => {
+    if (!landingRef) return;
+    const tag = (event: MouseEvent) => {
+      const link = (event.target as Element | null)?.closest?.<HTMLAnchorElement>('a[href^="https://wa.me/"]');
+      if (!link) return;
+      const [base, query = ""] = link.href.split("?");
+      const text = new URLSearchParams(query).get("text") ?? "";
+      if (text.includes("(ref: ")) return;
+      // encodeURIComponent, not URLSearchParams: WhatsApp shows "+" literally.
+      link.href = `${base}?text=${encodeURIComponent(`${text} (ref: ${landingRef})`.trim())}`;
+    };
+    document.addEventListener("click", tag, true);
+    document.addEventListener("auxclick", tag, true);
+    return () => {
+      document.removeEventListener("click", tag, true);
+      document.removeEventListener("auxclick", tag, true);
+    };
+  }, []);
+}
+
 export function SiteAnalytics() {
-  return <Analytics beforeSend={tagRef} />;
+  useRefOnWhatsAppLinks();
+  return (
+    <>
+      <Analytics beforeSend={tagRef} />
+      {/* Real visitors' Core Web Vitals (LCP, INP, CLS) in the Vercel
+          dashboard: what Google measures for ranking, on real phones. */}
+      <SpeedInsights />
+    </>
+  );
 }
