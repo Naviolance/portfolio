@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect } from "react";
+import { useLayoutEffect } from "react";
 import { usePathname } from "next/navigation";
+import { restorePlace } from "@/lib/lang-switch";
 
 // Zoom-in reveal for anything marked `data-reveal`: it starts slightly
 // smaller and transparent, then eases to full size the first time it
@@ -12,7 +13,15 @@ import { usePathname } from "next/navigation";
 export function RevealOnScroll() {
   const pathname = usePathname();
 
-  useEffect(() => {
+  // Layout effect: runs before the browser paints, so a page reached through
+  // the language switch never shows a frame at the top or a hero animation.
+  useLayoutEffect(() => {
+    const root = document.documentElement;
+    // Arrived through the EN/FR switch: go back to the section the reader
+    // was on, and show what's on screen instantly instead of revealing it.
+    const switched = restorePlace();
+    if (switched) root.classList.add("reveal-instant");
+
     const items = Array.from(
       document.querySelectorAll<HTMLElement>("[data-reveal]:not(.is-revealed)")
     );
@@ -24,7 +33,12 @@ export function RevealOnScroll() {
         el.classList.add("is-revealed");
       }
     }
-    document.documentElement.classList.add("reveal-ready");
+    root.classList.add("reveal-ready");
+    // Two frames: the instantly-revealed items have painted in their final
+    // state, so turning transitions back on can't animate them.
+    if (switched) {
+      requestAnimationFrame(() => requestAnimationFrame(() => root.classList.remove("reveal-instant")));
+    }
 
     const observer = new IntersectionObserver(
       (entries) => {
