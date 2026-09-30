@@ -80,3 +80,18 @@ test("a shared FAQ link opens that answer", async ({ page }) => {
   await page.goto("/en/faq#timeline");
   await expect(page.locator("#timeline details")).toHaveAttribute("open", "");
 });
+
+// Each language offers its own PDF, and the CV page describes the same
+// Person as the homepage (ProfilePage structured data).
+test("CV page: PDF in the page's language, ProfilePage data", async ({ page }) => {
+  for (const [locale, pdf] of [
+    ["en", /CV-2026\.pdf$/],
+    ["fr", /CV-2026-FR\.pdf$/],
+  ] as const) {
+    await page.goto(`/${locale}/cv`);
+    await expect(page.locator("a[download]").first()).toHaveAttribute("href", pdf);
+    const data = JSON.parse((await page.locator('script[type="application/ld+json"]').first().textContent())!);
+    expect(data["@type"]).toBe("ProfilePage");
+    expect(data.mainEntity["@id"]).toMatch(/\/#person$/);
+  }
+});

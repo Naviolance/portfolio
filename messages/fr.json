@@ -64,7 +64,8 @@
         "value": "Douala",
         "label": "on se rencontre, ou on travaille à distance, où que vous soyez"
       }
-    }
+    },
+    "eyebrow": "Qui je suis"
   },
   "services": {
     "heading": "Services",
@@ -76,13 +77,14 @@
     "cta": "Parlons-en"
   },
   "experience": {
-    "heading": "Parcours",
-    "work": "Expérience",
+    "heading": "Expérience",
+    "work": "Postes",
     "education": "Formation",
     "details": "Détails",
     "download": "CV (PDF)",
     "view": "CV en ligne",
-    "allSkills": "Toutes les compétences"
+    "allSkills": "Toutes les compétences",
+    "eyebrow": "Parcours"
   },
   "pricing": {
     "heading": "Tarifs",
@@ -171,8 +173,7 @@
     "title": "CV",
     "metaDescription": "CV de Forsangam Weyegho Junior Priestly, ingénieur logiciel full-stack à Douala, Cameroun : expérience, projets, formation et compétences.",
     "download": "Télécharger le PDF",
-    "open": "Ouvrir dans le navigateur",
-    "downloadHint": "Une page, en anglais",
+    "downloadHint": "Une page, en français",
     "back": "Retour au site",
     "profile": "Profil",
     "experience": "Expérience professionnelle",
@@ -184,7 +185,32 @@
     "code": "Code",
     "privateCode": "Code : privé",
     "caseStudy": "Étude de cas",
-    "openToRemote": "Ouvert au travail à distance"
+    "openToRemote": "Ouvert au travail à distance",
+    "technicalSkills": "Compétences techniques",
+    "portfolio": "Portfolio",
+    "spokenLanguages": "Langues parlées",
+    "updated": "CV · mis à jour en {date}",
+    "availability": "Ouvert à un poste à temps plein et au freelance · à distance ou à Douala",
+    "email": "M'écrire",
+    "proofTitle": "Preuves · études de cas",
+    "facts": {
+      "stack": {
+        "label": "Stack",
+        "value": "TypeScript · Next.js · NestJS · PostgreSQL"
+      },
+      "experience": {
+        "label": "Expérience",
+        "value": "Freelance depuis 2024 + 2 stages"
+      },
+      "based": {
+        "label": "Basé à",
+        "value": "Douala, Cameroun (UTC+1)"
+      },
+      "languages": {
+        "label": "Langues",
+        "value": "Anglais et français, courants"
+      }
+    }
   },
   "faq": {
     "title": "Questions fréquentes",

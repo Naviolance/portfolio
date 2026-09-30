@@ -3,10 +3,11 @@ import { useTranslations } from "next-intl";
 import { projects } from "@/data/projects";
 import photo from "@/assets/photo/priestly.webp";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { SectionTitle } from "@/components/ui/SectionTitle";
 
 const FACTS = ["since", "cases", "langs", "place"] as const;
 
-// "Facts first": one sentence on who, a short paragraph, a photo, then four
+// "Facts first": a title like every section, one sentence on who, a short paragraph, a photo, then four
 // short facts. Short, true, specific statements are what visitors skim and
 // what AI answer tools quote. Every fact must stay true: "cases" counts the
 // projects in data/projects.ts.
@@ -21,11 +22,13 @@ export function About() {
           className="grid grid-cols-1 items-end gap-8 lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-14"
         >
           <div>
-            <Eyebrow>{t("heading")}</Eyebrow>
-            <h2 className="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink sm:text-[2.75rem] sm:leading-[1.08]">
+            <Eyebrow>{t("eyebrow")}</Eyebrow>
+            <SectionTitle className="mt-3">{t("heading")}</SectionTitle>
+            {/* The one-sentence "who": role and city up front. */}
+            <p className="mt-5 max-w-2xl font-display text-xl font-semibold leading-snug text-ink sm:text-2xl">
               {t("statement")}
-            </h2>
-            <p className="mt-5 max-w-2xl text-[17px] leading-relaxed text-ink-soft">{t("intro")}</p>
+            </p>
+            <p className="mt-4 max-w-2xl text-[17px] leading-relaxed text-ink-soft">{t("intro")}</p>
           </div>
           {/* First on phones, so the face comes before the text. */}
           <figure className="order-first w-40 border border-line bg-panel sm:w-48 lg:order-none lg:w-full">

@@ -64,7 +64,8 @@
         "value": "Douala",
         "label": "meet in person, or work remotely from anywhere"
       }
-    }
+    },
+    "eyebrow": "Who I am"
   },
   "services": {
     "heading": "Services",
@@ -77,12 +78,13 @@
   },
   "experience": {
     "heading": "Experience",
-    "work": "Experience",
+    "work": "Work",
     "education": "Education",
     "details": "Details",
     "download": "CV (PDF)",
     "view": "Web CV",
-    "allSkills": "All skills"
+    "allSkills": "All skills",
+    "eyebrow": "Background"
   },
   "pricing": {
     "heading": "Pricing",
@@ -171,7 +173,6 @@
     "title": "CV",
     "metaDescription": "CV of Forsangam Weyegho Junior Priestly, full-stack software engineer in Douala, Cameroon: experience, projects, education and skills.",
     "download": "Download PDF",
-    "open": "Open in browser",
     "downloadHint": "One page, English",
     "back": "Back to the site",
     "profile": "Profile",
@@ -184,7 +185,32 @@
     "code": "Code",
     "privateCode": "Code: private",
     "caseStudy": "Case study",
-    "openToRemote": "Open to remote work"
+    "openToRemote": "Open to remote work",
+    "technicalSkills": "Technical skills",
+    "portfolio": "Portfolio",
+    "spokenLanguages": "Spoken languages",
+    "updated": "CV · updated {date}",
+    "availability": "Open to full-time roles & freelance · remote or Douala",
+    "email": "Email me",
+    "proofTitle": "Proof · case studies",
+    "facts": {
+      "stack": {
+        "label": "Stack",
+        "value": "TypeScript · Next.js · NestJS · PostgreSQL"
+      },
+      "experience": {
+        "label": "Experience",
+        "value": "Freelance since 2024 + 2 internships"
+      },
+      "based": {
+        "label": "Based",
+        "value": "Douala, Cameroon (UTC+1)"
+      },
+      "languages": {
+        "label": "Languages",
+        "value": "English & French, fluent"
+      }
+    }
   },
   "faq": {
     "title": "Frequently asked questions",
