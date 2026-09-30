@@ -6,6 +6,11 @@ import { FaqBrowser } from "@/components/faq/FaqBrowser";
 import { JsonLd } from "@/components/JsonLd";
 import { languageAlternates } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
+import { updated } from "@/data/dates";
+import { formatDate } from "@/lib/format";
+import { localizeFaq } from "@/components/faq/FaqItem";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buttonClass } from "@/components/ui/button";
 
 export async function generateMetadata(props: PageProps<"/[locale]/faq">): Promise<Metadata> {
   const { locale } = (await props.params) as { locale: Locale };
@@ -24,13 +29,7 @@ export default async function FaqPage(props: PageProps<"/[locale]/faq">) {
   const t = await getTranslations("faq");
 
   // Only this language's text goes to the browser.
-  const items = faq.map((item) => ({
-    id: item.id,
-    category: item.category,
-    question: item.question[locale],
-    answer: item.answer[locale],
-    link: item.link && { href: item.link.href, label: item.link.label[locale] },
-  }));
+  const items = faq.map((entry) => localizeFaq(entry, locale));
   const categories = FAQ_CATEGORIES.filter((c) => faq.some((i) => i.category === c)).map((c) => ({
     id: c,
     label: faqCategoryLabels[c][locale],
@@ -43,6 +42,7 @@ export default async function FaqPage(props: PageProps<"/[locale]/faq">) {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     inLanguage: locale,
+    dateModified: updated.faq,
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,
@@ -51,27 +51,40 @@ export default async function FaqPage(props: PageProps<"/[locale]/faq">) {
   };
 
   return (
-    <div className="mx-auto max-w-3xl px-5 py-16 sm:py-20">
+    <div className="mx-auto max-w-5xl px-5 py-16 sm:py-20">
       <JsonLd data={faqSchema} />
-      <h1 className="font-display text-3xl font-bold text-ink sm:text-4xl">{t("title")}</h1>
-      <p className="mt-4 max-w-2xl text-ink-soft">{t("intro")}</p>
-
-      <div className="mt-10">
-        <FaqBrowser items={items} categories={categories} />
-      </div>
-
-      <div className="mt-14 border border-line bg-panel p-6">
-        <p className="font-display text-lg font-bold text-ink">{t("stillQuestion")}</p>
-        <p className="mt-1 text-ink-soft">{t("stillQuestionHint")}</p>
-        <a
-          href={whatsappLink(t("askGeneralMessage"))}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="mt-4 inline-block border border-ink bg-ink px-4 py-2 text-sm font-medium text-paper transition-colors hover:border-accent hover:bg-accent"
-        >
-          {t("askWhatsapp")}
-        </a>
-      </div>
+      <FaqBrowser
+        items={items}
+        categories={categories}
+        header={
+          <>
+            <Eyebrow>FAQ</Eyebrow>
+            <h1 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-[2.5rem] sm:leading-[1.08]">
+              {t("heading")}
+            </h1>
+            <p className="mt-4 text-ink-soft">{t("intro")}</p>
+          </>
+        }
+        ask={
+          <div className="mt-8 border border-line bg-panel p-5">
+            <p className="font-semibold text-ink">{t("stillQuestion")}</p>
+            <p className="mt-1 text-sm text-ink-soft">{t("stillQuestionHint")}</p>
+            <a
+              href={whatsappLink(t("askGeneralMessage"))}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonClass({ size: "sm", className: "mt-4" })}
+            >
+              {t("askWhatsapp")} ↗
+            </a>
+            {/* A visible date: readers and AI answer tools both favour
+                answers that say when they were last checked. */}
+            <p className="mt-4 font-mono text-xs text-label">
+              {t("updated", { date: formatDate(updated.faq, locale) })}
+            </p>
+          </div>
+        }
+      />
     </div>
   );
 }

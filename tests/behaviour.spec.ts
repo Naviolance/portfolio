@@ -43,3 +43,40 @@ test("language switch keeps your place", async ({ page }) => {
   );
   expect(running).toBe(0);
 });
+
+// The on-page index marks the section being read (CSS scroll-driven
+// animations; Chromium supports them). Exactly one link, the right one.
+test("index marks the section you're reading", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 900 });
+  for (const [url, links, target] of [
+    ["/en/projects/truckparts", 'nav[aria-label="On this page"] a', "hard"],
+    ["/en/faq", 'nav[aria-label="Topics"] a', "payments"],
+  ] as const) {
+    await page.goto(url);
+    await page.evaluate((id) => {
+      const top = document.getElementById(id)!.getBoundingClientRect().top + scrollY;
+      window.scrollTo({ top: top - innerHeight * 0.2, behavior: "instant" });
+    }, target);
+    await page.waitForTimeout(100);
+    const marked = await page.locator(links).evaluateAll((as) => {
+      const colors = as.map((a) => getComputedStyle(a).borderLeftColor);
+      return as.filter((_, i) => colors.filter((c) => c === colors[i]).length === 1).map((a) => a.getAttribute("href"));
+    });
+    expect(marked).toEqual([`#${target}`]);
+  }
+});
+
+test("FAQ search hides questions that don't match", async ({ page }) => {
+  await page.goto("/en/faq");
+  const questions = page.locator("main article");
+  const total = await questions.count();
+  await page.getByRole("searchbox").fill("mobile money");
+  await expect(questions).not.toHaveCount(total);
+  await expect(page.locator("#mobile-money-store")).toBeVisible();
+  await expect(page.locator("#timeline")).toHaveCount(0);
+});
+
+test("a shared FAQ link opens that answer", async ({ page }) => {
+  await page.goto("/en/faq#timeline");
+  await expect(page.locator("#timeline details")).toHaveAttribute("open", "");
+});

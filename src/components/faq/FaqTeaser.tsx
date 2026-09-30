@@ -3,23 +3,11 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { faq } from "@/data/faq";
 import { whatsappLink } from "@/lib/whatsapp";
-import { FaqAnswer } from "./FaqItem";
+import { FaqPreview, localizeFaq } from "./FaqItem";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buttonClass } from "@/components/ui/button";
 
-// Answers open with the answer itself (see data/faq.ts), so the first
-// paragraph can be shown on its own: "Between 150K FCFA ... :" becomes a
-// sentence, and the list and details after it go behind "Details".
-function splitAnswer(answer: string) {
-  const [first, ...rest] = answer.split("\n\n");
-  // French puts a space before the colon ("faire :"), so drop that too.
-  const lead = first.replace(/\s*:$/, ".");
-  return { lead, rest: rest.join("\n\n") };
-}
-
-// "Answer preview": the homepage's featured questions, each with its
-// one-sentence answer always visible (what visitors skim, and what search
-// and AI tools quote), and the rest one tap away.
+// The homepage's featured questions, as answer previews (see FaqPreview).
 export function FaqTeaser() {
   const t = useTranslations("faqTeaser");
   const tf = useTranslations("faq");
@@ -54,43 +42,16 @@ export function FaqTeaser() {
           </p>
         </div>
 
-        <ul data-reveal className="border-b border-line">
-          {featured.map((item) => {
-            const { lead, rest } = splitAnswer(item.answer[locale]);
-            return (
-              <li key={item.id} id={`home-${item.id}`} className="scroll-mt-24 border-t border-line py-5">
-                <h3 className="text-lg font-semibold text-ink">{item.question[locale]}</h3>
-                <p className="mt-1.5 text-ink">
-                  <span className="mr-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-label">
-                    {t("answer")}
-                  </span>
-                  {lead}
-                </p>
-                {(rest || item.link) && (
-                  <details className="group mt-2">
-                    <summary className="inline-flex min-h-8 cursor-pointer list-none items-center gap-1.5 text-sm text-ink-soft transition-colors hover:text-accent-ink [&::-webkit-details-marker]:hidden">
-                      <span aria-hidden className="font-mono text-accent-ink transition-transform group-open:rotate-45">
-                        +
-                      </span>
-                      {t("more")}
-                    </summary>
-                    <div className="mt-2 max-w-2xl space-y-3 text-[15px] text-ink-soft">
-                      {rest && <FaqAnswer text={rest} />}
-                      {item.link && (
-                        <Link
-                          href={item.link.href}
-                          className="inline-block font-medium text-ink link-underline"
-                        >
-                          {item.link.label[locale]}
-                        </Link>
-                      )}
-                    </div>
-                  </details>
-                )}
-              </li>
-            );
-          })}
-        </ul>
+        <div data-reveal className="border-b border-line">
+          {featured.map((entry) => (
+            <FaqPreview
+              key={entry.id}
+              item={localizeFaq(entry, locale)}
+              anchorId={`home-${entry.id}`}
+              labels={{ answer: t("answer"), details: t("more") }}
+            />
+          ))}
+        </div>
       </div>
     </section>
   );

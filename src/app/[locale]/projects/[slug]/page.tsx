@@ -12,6 +12,7 @@ import { site } from "@/data/site";
 import { languageAlternates } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
 import { formatDate, pad2 } from "@/lib/format";
+import { spyLink, spyScope, spyTarget } from "@/lib/scroll-spy";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { buttonClass } from "@/components/ui/button";
@@ -63,7 +64,7 @@ function Chapter({
   children: React.ReactNode;
 }) {
   return (
-    <section id={id} data-reveal className="scroll-mt-24 border-t border-line py-10 sm:py-12">
+    <section id={id} data-reveal style={spyTarget(id)} className="scroll-mt-24 border-t border-line py-10 sm:py-12">
       <p className="font-mono text-xs text-label">{pad2(n)}</p>
       <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink sm:text-[1.75rem]">{title}</h2>
       {children}
@@ -204,16 +205,24 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
         </BrowserFrame>
       </header>
 
-      <div className="mt-14 grid grid-cols-1 gap-10 sm:mt-20 lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12">
-        {/* Sticky index: plain links + position: sticky. No JavaScript, so it
-            works from the first paint, even on a slow connection. */}
+      <div
+        style={spyScope(CHAPTERS)}
+        className="mt-14 grid grid-cols-1 gap-10 sm:mt-20 lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12"
+      >
+        {/* Sticky index: plain links + position: sticky, and a "you are
+            here" marker from lib/scroll-spy. No JavaScript, so it works from
+            the first paint, even on a slow connection. */}
         <nav aria-label={t("onThisPage")} className="hidden lg:block">
           <div className="sticky top-24">
             <Eyebrow>{t("onThisPage")}</Eyebrow>
-            <ol className="mt-3 space-y-2 font-mono text-[13px]">
+            <ol className="mt-3 font-mono text-[13px]">
               {CHAPTERS.map((id, i) => (
                 <li key={id}>
-                  <a href={`#${id}`} className="text-ink-soft transition-colors hover:text-accent-ink">
+                  <a
+                    href={`#${id}`}
+                    style={spyLink(id)}
+                    className="spy-link block border-l-2 border-line py-1.5 pl-3 text-ink-soft transition-colors hover:text-accent-ink"
+                  >
                     <span className="text-label">{pad2(i + 1)}</span> {t(`toc.${id}`)}
                   </a>
                 </li>
