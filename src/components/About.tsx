@@ -2,6 +2,7 @@ import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { projects } from "@/data/projects";
 import photo from "@/assets/photo/priestly.webp";
+import { Eyebrow } from "@/components/ui/Eyebrow";
 
 const FACTS = ["since", "cases", "langs", "place"] as const;
 
@@ -20,7 +21,7 @@ export function About() {
           className="grid grid-cols-1 items-end gap-8 lg:grid-cols-[minmax(0,1fr)_240px] lg:gap-14"
         >
           <div>
-            <p className="font-mono text-xs uppercase tracking-wider text-label">{t("heading")}</p>
+            <Eyebrow>{t("heading")}</Eyebrow>
             <h2 className="mt-3 max-w-3xl font-display text-3xl font-bold tracking-tight text-ink sm:text-[2.75rem] sm:leading-[1.08]">
               {t("statement")}
             </h2>
@@ -40,7 +41,7 @@ export function About() {
 
         {/* gap-px over a line-coloured background draws the hairlines between
             cells, whatever the number of columns. */}
-        <ul data-reveal className="mt-10 grid grid-cols-2 gap-px border border-line bg-line lg:grid-cols-4">
+        <ul data-reveal className="mt-10 grid grid-cols-2 hairline-grid lg:grid-cols-4">
           {FACTS.map((fact) => (
             <li key={fact} className="bg-paper p-5 sm:p-6">
               <p className="font-display text-2xl font-bold tracking-tight text-ink sm:text-3xl">

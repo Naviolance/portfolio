@@ -6,8 +6,9 @@ import { projects } from "@/data/projects";
 import { services } from "@/data/services";
 import { updated } from "@/data/dates";
 import { whatsappLink } from "@/lib/whatsapp";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { formatDate } from "@/lib/format";
 
-const heading = "font-mono text-xs uppercase tracking-wider text-label";
 const link = "text-sm text-ink-soft transition-colors hover:text-ink";
 
 // A real footer: the business details written the same way on every page
@@ -19,11 +20,7 @@ export function Footer() {
   const t = useTranslations("footer");
   const tw = useTranslations("whatsapp");
 
-  const lastUpdate = new Intl.DateTimeFormat(locale === "fr" ? "fr-FR" : "en-GB", {
-    day: "numeric",
-    month: "short",
-    year: "numeric",
-  }).format(new Date(updated.home));
+  const lastUpdate = formatDate(updated.home, locale);
 
   return (
     <footer className="border-t border-line print:hidden">
@@ -51,7 +48,7 @@ export function Footer() {
           </address>
 
           <nav aria-label={t("work")}>
-            <p className={heading}>{t("work")}</p>
+            <Eyebrow>{t("work")}</Eyebrow>
             <ul className="mt-3 space-y-2">
               {projects.map((project) => (
                 <li key={project.slug}>
@@ -64,7 +61,7 @@ export function Footer() {
           </nav>
 
           <nav aria-label={t("services")}>
-            <p className={heading}>{t("services")}</p>
+            <Eyebrow>{t("services")}</Eyebrow>
             <ul className="mt-3 space-y-2">
               {services.map((service) => (
                 <li key={service.title.en}>
@@ -77,7 +74,7 @@ export function Footer() {
           </nav>
 
           <nav aria-label={t("more")}>
-            <p className={heading}>{t("more")}</p>
+            <Eyebrow>{t("more")}</Eyebrow>
             <ul className="mt-3 space-y-2">
               <li>
                 <Link href={{ pathname: "/", hash: "pricing" }} className={link}>

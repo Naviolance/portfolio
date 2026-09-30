@@ -59,14 +59,14 @@ export function FaqItem({ item, open }: { item: FaqItemData; open?: boolean }) {
               href={item.link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
+              className="inline-block font-medium text-ink link-underline"
             >
               {item.link.label}
             </a>
           ) : (
             <Link
               href={item.link.href}
-              className="inline-block font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
+              className="inline-block font-medium text-ink link-underline"
             >
               {item.link.label}
             </Link>

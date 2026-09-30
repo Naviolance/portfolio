@@ -4,6 +4,9 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { projects } from "@/data/projects";
 import { ProjectScreens } from "./ProjectScreens";
+import { SectionHeader } from "@/components/ui/SectionHeader";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buttonClass } from "@/components/ui/button";
 
 // "Case files": one row per project, screenshots and text alternating sides.
 // Server component; only <ProjectScreens> (thumbnails + lightbox) ships JS.
@@ -14,17 +17,7 @@ export function ProjectsSection() {
   return (
     <section id="work" className="border-b border-line">
       <div className="mx-auto max-w-5xl px-5 pb-8 pt-16 sm:pt-24">
-        <div className="flex flex-col gap-5 lg:flex-row lg:items-end lg:justify-between lg:gap-10">
-          <div>
-            <p className="font-mono text-xs uppercase tracking-wider text-label">
-              {t("eyebrow", { count: projects.length })}
-            </p>
-            <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-[2.75rem] sm:leading-[1.05]">
-              {t("heading")}
-            </h2>
-          </div>
-          <p className="max-w-sm text-ink-soft">{t("intro")}</p>
-        </div>
+        <SectionHeader eyebrow={<>{t("eyebrow", { count: projects.length })}</>} title={t("heading")} intro={t("intro")} />
 
         <div className="mt-10 sm:mt-14">
           {projects.map((project, i) => (
@@ -44,10 +37,10 @@ export function ProjectsSection() {
               </div>
 
               <div>
-                <p className="font-mono text-xs uppercase tracking-wider text-label">
+                <Eyebrow>
                   {String(i + 1).padStart(2, "0")} / {String(projects.length).padStart(2, "0")} ·{" "}
                   {project.category[locale]}
-                </p>
+                </Eyebrow>
                 <h3 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink">
                   <Link href={`/projects/${project.slug}`} className="hover:text-accent-ink">
                     {project.title}
@@ -88,7 +81,7 @@ export function ProjectsSection() {
                 <div className="mt-7 flex flex-wrap items-center gap-x-6 gap-y-3 text-sm">
                   <Link
                     href={`/projects/${project.slug}`}
-                    className="group inline-flex h-12 items-center gap-2.5 border border-accent bg-accent px-5 text-[15px] font-medium text-paper transition-colors hover:border-accent-ink hover:bg-accent-ink"
+                    className={buttonClass()}
                   >
                     {t("howBuilt")}
                     <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
@@ -99,7 +92,7 @@ export function ProjectsSection() {
                     href={project.liveUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center text-ink-soft underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
+                    className="inline-flex min-h-11 items-center text-ink-soft link-underline"
                   >
                     {t("liveDemo")} <span aria-hidden>&nbsp;↗</span>
                   </a>
@@ -108,7 +101,7 @@ export function ProjectsSection() {
                       href={project.githubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex min-h-11 items-center text-ink-soft underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
+                      className="inline-flex min-h-11 items-center text-ink-soft link-underline"
                     >
                       {t("github")}
                     </a>

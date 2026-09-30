@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useLocale, useTranslations } from "next-intl";
 import type { Locale } from "@/i18n/routing";
 import type { ScreenshotSlot } from "@/data/projects";
+import { BrowserFrame } from "@/components/ui/BrowserFrame";
 
 // Same lazy chunk as ScreenshotGallery: fetched on first open only.
 const ScreenshotLightbox = dynamic(() => import("./ScreenshotLightbox"), {
@@ -51,13 +52,7 @@ export function ProjectScreens({ projectTitle, host, screenshots, showcase }: Pr
 
   return (
     <div>
-      <div className="border border-line bg-panel shadow-[0_30px_60px_var(--shade)]">
-        <div className="flex h-7 items-center gap-1.5 border-b border-line px-3">
-          <span className="size-2 rounded-full bg-line" />
-          <span className="size-2 rounded-full bg-line" />
-          <span className="size-2 rounded-full bg-line" />
-          <span className="ml-2.5 truncate font-mono text-[11px] text-ink-soft">{host}</span>
-        </div>
+      <BrowserFrame host={host}>
         <button
           type="button"
           onClick={openLightbox}
@@ -81,7 +76,7 @@ export function ProjectScreens({ projectTitle, host, screenshots, showcase }: Pr
             {g("seeAll", { count: screenshots.length })}
           </span>
         </button>
-      </div>
+      </BrowserFrame>
 
       <div className="mt-3 grid grid-cols-4 gap-2.5">
         {shots.map((shot, k) => (

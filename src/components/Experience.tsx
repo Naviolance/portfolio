@@ -2,8 +2,8 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { CV_PDF, education, experience } from "@/data/cv";
-
-const label = "font-mono text-xs uppercase tracking-wider text-label";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buttonClass } from "@/components/ui/button";
 
 // Compact rows under About: experience and education side by side. Each
 // job's details sit in a native <details> (in the HTML even while closed,
@@ -16,7 +16,7 @@ export function Experience() {
     <section id="experience" className="scroll-mt-16 border-b border-line">
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-5 pt-4 pb-16 sm:pb-24 lg:grid-cols-2 lg:gap-14">
         <div data-reveal>
-          <h2 className={label}>{t("work")}</h2>
+          <Eyebrow as="h2">{t("work")}</Eyebrow>
           <ol className="mt-3">
             {experience.map((job) => (
               <li key={job.company} className="border-t border-line">
@@ -51,7 +51,7 @@ export function Experience() {
         </div>
 
         <div data-reveal>
-          <h2 className={label}>{t("education")}</h2>
+          <Eyebrow as="h2">{t("education")}</Eyebrow>
           <ul className="mt-3">
             {education.map((item) => (
               <li
@@ -69,7 +69,7 @@ export function Experience() {
             <a
               href={CV_PDF}
               download
-              className="inline-flex h-11 items-center gap-2 border border-line px-4 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent-ink"
+              className={buttonClass({ variant: "secondary", size: "sm" })}
             >
               <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">
                 <path d="M7 1v8M3.5 5.5 7 9l3.5-3.5M2 12.5h10" stroke="currentColor" strokeWidth="1.6" fill="none" />
@@ -78,13 +78,13 @@ export function Experience() {
             </a>
             <Link
               href="/cv"
-              className="inline-flex h-11 items-center border border-line px-4 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent-ink"
+              className={buttonClass({ variant: "secondary", size: "sm" })}
             >
               {t("view")}
             </Link>
             <Link
               href={{ pathname: "/cv", hash: "skills" }}
-              className="inline-flex h-11 items-center text-sm text-ink-soft underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
+              className="inline-flex h-11 items-center text-sm text-ink-soft link-underline"
             >
               {t("allSkills")} →
             </Link>

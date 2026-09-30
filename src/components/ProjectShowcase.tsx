@@ -4,6 +4,9 @@ import { useEffect, useRef, useState, type RefObject } from "react";
 import Image, { type StaticImageData } from "next/image";
 import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import { pad2 } from "@/lib/format";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { BrowserBar } from "@/components/ui/BrowserFrame";
 
 export type ShowcaseItem = {
   slug: string;
@@ -90,8 +93,6 @@ function useAutoAdvance(
   }, [ref, enabled, firstDelay, interval]);
 }
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
 // ---------------------------------------------------------------------------
 // Desktop: a stack of browser windows that reshuffles every few seconds.
 
@@ -162,12 +163,7 @@ function Deck({ items }: Props) {
               // one is the desktop LCP element, so it must not fade in.
               className={`deck-card ${i === 0 ? "" : "deck-fan-in"} ${i === exiting ? "deck-slot-exit" : `deck-slot-${slot}`} absolute left-0 top-16 block w-[calc(100%-64px)] border border-line bg-panel`}
             >
-              <span className="flex h-7 items-center gap-1.5 border-b border-line px-3">
-                <span className="size-2 rounded-full bg-line" />
-                <span className="size-2 rounded-full bg-line" />
-                <span className="size-2 rounded-full bg-line" />
-                <span className="ml-2.5 truncate font-mono text-[11px] text-ink-soft">{item.host}</span>
-              </span>
+              <BrowserBar host={item.host} />
               <span className="relative block aspect-[2/1]">
                 <Image
                   src={item.image}
@@ -203,7 +199,7 @@ function Deck({ items }: Props) {
               <span aria-hidden className="deck-progress absolute -top-px left-0 h-0.5 w-full bg-accent" />
             )}
             <span className="font-display text-[15px] font-semibold">{item.title}</span>
-            <span className="font-mono text-[11px] text-ink-soft">{pad(i + 1)}</span>
+            <span className="font-mono text-[11px] text-ink-soft">{pad2(i + 1)}</span>
           </button>
         ))}
       </div>
@@ -279,7 +275,7 @@ function Strip({ items }: Props) {
 
   return (
     <div className="lg:hidden">
-      <p className="font-mono text-xs uppercase tracking-wider text-label">{t("recent")}</p>
+      <Eyebrow>{t("recent")}</Eyebrow>
       <div
         ref={stripRef}
         onScroll={onScroll}
@@ -313,7 +309,7 @@ function Strip({ items }: Props) {
               </span>
               <span className="flex flex-col gap-1 px-4 pb-4 pt-3.5">
                 <span className="flex justify-between font-mono text-[11px] text-ink-soft">
-                  {pad(i + 1)}
+                  {pad2(i + 1)}
                   <span aria-hidden className="text-[15px] text-ink">↗</span>
                 </span>
                 <span className="font-display text-xl font-semibold text-ink">{item.title}</span>
@@ -325,7 +321,7 @@ function Strip({ items }: Props) {
       </div>
       <div className="mt-1 flex items-center justify-between">
         <span aria-hidden className="font-mono text-xs text-ink-soft">
-          {pad(active + 1)} / {pad(items.length)}
+          {pad2(active + 1)} / {pad2(items.length)}
         </span>
         <div className="flex">
           {items.map((item, i) => (
