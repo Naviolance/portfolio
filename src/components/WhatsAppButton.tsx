@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 // below works the same in both languages.
 import { usePathname } from "@/i18n/navigation";
 import { whatsappLink } from "@/lib/whatsapp";
+import { buttonClass } from "@/components/ui/button";
 
 type Props = {
   // slug → title, passed from the server so the full project data (copy,
@@ -33,7 +34,7 @@ export function WhatsAppButton({ projectTitles, variant = "floating" }: Props) {
         target="_blank"
         rel="noopener noreferrer"
         aria-label={t("label")}
-        className="hidden h-10 items-center gap-2 border border-accent bg-accent px-4 text-sm font-medium text-paper transition-colors hover:border-accent-ink hover:bg-accent-ink lg:inline-flex"
+        className={buttonClass({ size: "xs", display: "hidden lg:inline-flex" })}
       >
         WhatsApp <span aria-hidden>↗</span>
       </a>

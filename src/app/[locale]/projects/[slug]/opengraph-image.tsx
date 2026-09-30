@@ -7,6 +7,7 @@ import { ogColors, ogFonts, ogSize } from "@/lib/og";
 import { ShippingLabel } from "@/lib/og-label";
 import type { Locale } from "@/i18n/routing";
 import type { Localized } from "@/lib/localized";
+import { pad2 } from "@/lib/format";
 
 // Per-project share card: the same shipping label as the homepage card, with
 // the project as the parcel's contents and its homepage screenshot, so a
@@ -42,8 +43,6 @@ const text = {
   stamp: { en: "DELIVERED", fr: "LIVRÉ" },
 } satisfies Record<string, Localized>;
 
-const pad = (n: number) => String(n).padStart(2, "0");
-
 export default async function Image({ params }: { params: Promise<{ slug: string; locale: Locale }> }) {
   const { slug, locale } = await params;
   const project = getProject(slug);
@@ -66,7 +65,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
         fields={[
           { label: text.from[locale], value: `${site.name} · Douala, CM`, width: 372 },
           { label: text.type[locale], value: project.category[locale] },
-          { label: text.parcel[locale], value: `${pad(number)} / ${pad(projects.length)}`, width: 318 },
+          { label: text.parcel[locale], value: `${pad2(number)} / ${pad2(projects.length)}`, width: 318 },
         ]}
         contentsLabel={text.contents[locale]}
         items={project.tags.slice(0, 4)}
@@ -80,7 +79,7 @@ export default async function Image({ params }: { params: Promise<{ slug: string
           />
         }
         stamp={text.stamp[locale]}
-        code={`JPFW 2026 01${pad(number)}`}
+        code={`JPFW 2026 01${pad2(number)}`}
       >
         <div style={{ display: "flex", flexDirection: "column", gap: 14 }}>
           <div style={{ fontSize: 92, fontWeight: 700, lineHeight: 1.08, letterSpacing: -1.2 }}>{project.title}</div>

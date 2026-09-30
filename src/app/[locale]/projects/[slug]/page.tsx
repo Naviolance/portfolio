@@ -11,6 +11,10 @@ import { updated } from "@/data/dates";
 import { site } from "@/data/site";
 import { languageAlternates } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
+import { formatDate, pad2 } from "@/lib/format";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { BrowserFrame } from "@/components/ui/BrowserFrame";
+import { buttonClass } from "@/components/ui/button";
 
 // Combined with the layout's locales: every project in every language.
 export function generateStaticParams() {
@@ -43,27 +47,9 @@ export async function generateMetadata(
   };
 }
 
-const pad = (n: number) => String(n).padStart(2, "0");
-const label = "font-mono text-xs uppercase tracking-wider text-label";
-const button =
-  "inline-flex h-12 items-center gap-2 border px-5 text-[15px] font-medium transition-colors";
 
 // The chapters, in page order. Their ids are the index's link targets.
 const CHAPTERS = ["decisions", "built", "hard", "result", "screens"] as const;
-
-function BrowserFrame({ host, children }: { host?: string; children: React.ReactNode }) {
-  return (
-    <div className="border border-line bg-panel shadow-[0_30px_60px_var(--shade)]">
-      <div className="flex h-7 items-center gap-1.5 border-b border-line px-3">
-        <span className="size-2 rounded-full bg-line" />
-        <span className="size-2 rounded-full bg-line" />
-        <span className="size-2 rounded-full bg-line" />
-        {host && <span className="ml-2.5 truncate font-mono text-[11px] text-ink-soft">{host}</span>}
-      </div>
-      {children}
-    </div>
-  );
-}
 
 function Chapter({
   id,
@@ -78,7 +64,7 @@ function Chapter({
 }) {
   return (
     <section id={id} data-reveal className="scroll-mt-24 border-t border-line py-10 sm:py-12">
-      <p className="font-mono text-xs text-label">{pad(n)}</p>
+      <p className="font-mono text-xs text-label">{pad2(n)}</p>
       <h2 className="mt-1 font-display text-2xl font-bold tracking-tight text-ink sm:text-[1.75rem]">{title}</h2>
       {children}
     </section>
@@ -108,11 +94,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
   const shot = (key: string) => project.screenshots.find((s) => s.key === key);
   const cover = shot(project.showcase[0]) ?? project.screenshots[0];
   const lastUpdate = updated.projects[project.slug];
-  const lastUpdateLabel =
-    lastUpdate &&
-    new Intl.DateTimeFormat(locale === "fr" ? "fr-FR" : "en-GB", { month: "short", year: "numeric" }).format(
-      new Date(lastUpdate)
-    );
+  const lastUpdateLabel = lastUpdate && formatDate(lastUpdate, locale, "month");
 
   const projectSchema = {
     "@context": "https://schema.org",
@@ -137,15 +119,15 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
 
       <header className="mt-6 grid grid-cols-1 items-center gap-10 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12">
         <div>
-          <p className={label}>
-            {t("kicker", { n: pad(index + 1), total: pad(projects.length) })} · {project.category[locale]}
-          </p>
+          <Eyebrow>
+            {t("kicker", { n: pad2(index + 1), total: pad2(projects.length) })} · {project.category[locale]}
+          </Eyebrow>
           <h1 className="mt-3 font-display text-4xl font-bold tracking-tight text-ink sm:text-[3.25rem] sm:leading-[1.05]">
             {project.title}
           </h1>
           <p className="mt-4 text-[17px] leading-relaxed text-ink">{project.summary[locale]}</p>
 
-          <dl className="mt-6 grid grid-cols-2 gap-px border border-line bg-line text-sm">
+          <dl className="mt-6 grid grid-cols-2 hairline-grid text-sm">
             {[
               [t("facts.role"), project.role[locale]],
               [t("facts.status"), project.statusNote[locale]],
@@ -166,7 +148,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
               href={project.liveUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className={`${button} border-accent bg-accent text-paper hover:border-accent-ink hover:bg-accent-ink`}
+              className={buttonClass()}
             >
               {t("liveDemo")} <span aria-hidden>↗</span>
             </a>
@@ -175,7 +157,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
                 href={project.githubUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`${button} border-line text-ink hover:border-accent hover:text-accent-ink`}
+                className={buttonClass({ variant: "secondary" })}
               >
                 {t("repo")} <span aria-hidden>↗</span>
               </a>
@@ -196,7 +178,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
                 href={project.demoNote.href}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-ink underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
+                className="text-ink link-underline"
               >
                 {project.demoNote.linkLabel[locale]}
               </a>
@@ -227,12 +209,12 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
             works from the first paint, even on a slow connection. */}
         <nav aria-label={t("onThisPage")} className="hidden lg:block">
           <div className="sticky top-24">
-            <p className={label}>{t("onThisPage")}</p>
+            <Eyebrow>{t("onThisPage")}</Eyebrow>
             <ol className="mt-3 space-y-2 font-mono text-[13px]">
               {CHAPTERS.map((id, i) => (
                 <li key={id}>
                   <a href={`#${id}`} className="text-ink-soft transition-colors hover:text-accent-ink">
-                    <span className="text-label">{pad(i + 1)}</span> {t(`toc.${id}`)}
+                    <span className="text-label">{pad2(i + 1)}</span> {t(`toc.${id}`)}
                   </a>
                 </li>
               ))}
@@ -252,9 +234,9 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
                     className="grid grid-cols-1 items-center gap-6 sm:grid-cols-2 sm:gap-8"
                   >
                     <div className={i % 2 === 1 ? "sm:order-2" : undefined}>
-                      <p className={label}>
-                        {pad(i + 1)} · {decision.label[locale]}
-                      </p>
+                      <Eyebrow>
+                        {pad2(i + 1)} · {decision.label[locale]}
+                      </Eyebrow>
                       <p className="mt-2 text-[15px] text-ink-soft">
                         <span className="mr-2 font-mono text-[11px] font-semibold uppercase tracking-wider text-[#b4232c] dark:text-[#f5a3a3]">
                           {t("problemLabel")}
@@ -314,9 +296,9 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
                   key={entry.choice}
                   className="grid grid-cols-1 gap-1 border-t border-line py-3.5 sm:grid-cols-[140px_minmax(0,1fr)] sm:gap-4"
                 >
-                  <dt className="font-mono text-xs uppercase tracking-wider text-label sm:pt-1">
+                  <Eyebrow as="dt" className="sm:pt-1">
                     {entry.layer[locale]}
-                  </dt>
+                  </Eyebrow>
                   <dd>
                     <span className="font-medium text-ink">{entry.choice}</span>
                     <span className="mt-0.5 block text-sm text-ink-soft">{entry.why[locale]}</span>
@@ -366,7 +348,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
           href={whatsappLink(tw("project", { project: project.title }))}
           target="_blank"
           rel="noopener noreferrer"
-          className={`${button} justify-center border-accent bg-accent text-paper hover:border-accent-ink hover:bg-accent-ink`}
+          className={buttonClass()}
         >
           {t("ctaButton")} <span aria-hidden>↗</span>
         </a>
@@ -378,7 +360,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
         </Link>
         <Link href={`/projects/${next.slug}`} className="group text-right">
           <span className="block font-mono text-xs uppercase tracking-wider text-ink-soft">
-            {t("next", { n: pad(projects.indexOf(next) + 1), total: pad(projects.length) })}
+            {t("next", { n: pad2(projects.indexOf(next) + 1), total: pad2(projects.length) })}
           </span>
           <span className="mt-1 block font-display text-2xl font-bold text-ink group-hover:text-accent-ink">
             {next.title} <span aria-hidden className="inline-block transition-transform group-hover:translate-x-1">→</span>

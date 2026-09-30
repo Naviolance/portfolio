@@ -4,6 +4,8 @@ import type { Locale } from "@/i18n/routing";
 import { faq } from "@/data/faq";
 import { whatsappLink } from "@/lib/whatsapp";
 import { FaqAnswer } from "./FaqItem";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buttonClass } from "@/components/ui/button";
 
 // Answers open with the answer itself (see data/faq.ts), so the first
 // paragraph can be shown on its own: "Between 150K FCFA ... :" becomes a
@@ -28,14 +30,14 @@ export function FaqTeaser() {
     <section id="faq" className="border-b border-line">
       <div className="mx-auto grid max-w-5xl grid-cols-1 gap-10 px-5 py-16 sm:py-24 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-14">
         <div data-reveal>
-          <p className="font-mono text-xs uppercase tracking-wider text-label">FAQ</p>
+          <Eyebrow>FAQ</Eyebrow>
           <h2 className="mt-3 font-display text-3xl font-bold tracking-tight text-ink sm:text-[2.5rem] sm:leading-[1.08]">
             {t("heading")}
           </h2>
           <p className="mt-4 text-ink-soft">{t("intro")}</p>
           <Link
             href="/faq"
-            className="mt-6 inline-flex h-11 items-center gap-2 border border-line px-4 text-sm font-medium text-ink transition-colors hover:border-accent hover:text-accent-ink"
+            className={buttonClass({ variant: "secondary", size: "sm", className: "mt-6" })}
           >
             {tf("seeAll", { count: faq.length })} →
           </Link>
@@ -45,7 +47,7 @@ export function FaqTeaser() {
               href={whatsappLink(tf("askGeneralMessage"))}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-accent-ink underline decoration-line underline-offset-4 hover:decoration-accent"
+              className="text-accent-ink link-underline"
             >
               {t("ask")}
             </a>
@@ -77,7 +79,7 @@ export function FaqTeaser() {
                       {item.link && (
                         <Link
                           href={item.link.href}
-                          className="inline-block font-medium text-ink underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent"
+                          className="inline-block font-medium text-ink link-underline"
                         >
                           {item.link.label[locale]}
                         </Link>

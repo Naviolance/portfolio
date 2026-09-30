@@ -389,3 +389,26 @@ html[data-lang-switch] .deck-fan-in {
 html.reveal-instant [data-reveal] {
   transition: none !important;
 }
+
+/* ---------------------------------------------------------------------
+   Shared utilities (used as class names, like Tailwind's own).
+   --------------------------------------------------------------------- */
+
+/* Cells separated by 1px lines: a line-coloured background showing
+   through a 1px gap. Works for any number of columns and rows. */
+@utility hairline-grid {
+  gap: 1px;
+  border: 1px solid var(--color-line);
+  background-color: var(--color-line);
+}
+
+/* Underlined text link: a quiet underline that turns accent on hover. */
+@utility link-underline {
+  text-decoration-line: underline;
+  text-decoration-color: var(--color-line);
+  text-underline-offset: 4px;
+  &:hover {
+    color: var(--color-accent-ink);
+    text-decoration-color: var(--color-accent);
+  }
+}

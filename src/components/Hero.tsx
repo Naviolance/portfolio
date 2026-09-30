@@ -5,6 +5,8 @@ import type { Locale } from "@/i18n/routing";
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
 import { ProjectShowcase, type ShowcaseItem } from "./ProjectShowcase";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { buttonClass } from "@/components/ui/button";
 
 // What "done" means, each backed by a project on this page.
 const DONE = [
@@ -39,10 +41,10 @@ export function Hero() {
     <section className="overflow-x-clip border-b border-line">
       <div className="mx-auto grid max-w-5xl grid-cols-1 px-5 lg:grid-cols-[minmax(0,1.15fr)_minmax(0,1fr)]">
         <div className="py-12 sm:py-16 lg:py-20 lg:pr-12">
-          <p className="hero-rise flex flex-col gap-1 font-mono text-xs uppercase tracking-wider text-label sm:flex-row sm:gap-5">
+          <Eyebrow className="hero-rise flex flex-col gap-1 sm:flex-row sm:gap-5">
             <span>{t("role")}</span>
             <span className="text-ink-soft">{site.location[locale]}</span>
-          </p>
+          </Eyebrow>
           {/* Never animated: it is the page's LCP element, so it must paint
               on the first frame. */}
           <h1 className="mt-5 font-display text-[2rem] font-bold leading-[1.14] tracking-tight text-ink sm:text-5xl sm:leading-[1.08] lg:text-[2.75rem]">
@@ -54,7 +56,7 @@ export function Hero() {
           <div className="hero-rise mt-8 flex flex-col gap-2.5 [animation-delay:200ms] sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
             <Link
               href={{ pathname: "/", hash: "work" }}
-              className="group inline-flex h-12 items-center justify-center gap-2.5 border border-accent bg-accent px-5 text-[15px] font-medium text-paper transition-colors hover:border-accent-ink hover:bg-accent-ink"
+              className={buttonClass()}
             >
               {t("viewWork")}
               <span aria-hidden className="transition-transform duration-300 group-hover:translate-x-1">
@@ -63,14 +65,14 @@ export function Hero() {
             </Link>
             <Link
               href={{ pathname: "/", hash: "contact" }}
-              className="inline-flex h-12 items-center justify-center border border-ink px-5 text-[15px] font-medium text-ink transition-colors hover:border-accent hover:text-accent-ink"
+              className={buttonClass({ variant: "outline" })}
             >
               {t("workTogether")}
             </Link>
             {/* For recruiters: the CV, one click from the top (the page has the PDF). */}
             <Link
               href="/cv"
-              className="inline-flex min-h-11 items-center justify-center text-sm text-ink-soft underline decoration-line underline-offset-4 hover:text-accent-ink hover:decoration-accent sm:ml-2"
+              className="inline-flex min-h-11 items-center justify-center text-sm text-ink-soft link-underline sm:ml-2"
             >
               {t("cv")}
             </Link>
@@ -86,7 +88,7 @@ export function Hero() {
       <div aria-hidden className="draw-x h-px bg-line [animation-delay:300ms]" />
 
       <div className="mx-auto max-w-5xl px-5 py-10">
-        <h2 className="font-mono text-xs uppercase tracking-wider text-label">{t("doneHeading")}</h2>
+        <Eyebrow as="h2">{t("doneHeading")}</Eyebrow>
         <ul data-reveal className="mt-3 grid grid-cols-1 lg:mt-6 lg:grid-cols-5">
           {DONE.map((item, i) => (
             <li
