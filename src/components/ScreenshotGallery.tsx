@@ -16,10 +16,12 @@ const ScreenshotLightbox = dynamic(() => import("./ScreenshotLightbox"), {
 type Props = {
   projectTitle: string;
   screenshots: ScreenshotSlot[];
-  sizes: string;
 };
 
-export function ScreenshotGallery({ projectTitle, screenshots, sizes }: Props) {
+// Mosaic of screens: the first one large, the rest as tiles. Every tile
+// opens the full-size lightbox. Tiles are cropped from the top, where the
+// important part of a screen is; the lightbox shows the whole screenshot.
+export function ScreenshotGallery({ projectTitle, screenshots }: Props) {
   const t = useTranslations("gallery");
   const locale = useLocale() as Locale;
   const [index, setIndex] = useState(-1);
@@ -33,35 +35,32 @@ export function ScreenshotGallery({ projectTitle, screenshots, sizes }: Props) {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+      <ul className="grid grid-cols-2 gap-2.5 sm:grid-cols-3">
         {screenshots.map((shot, i) => (
-          <figure key={shot.key} className="border border-line">
+          <li key={shot.key} className={i === 0 ? "col-span-2 sm:row-span-2" : undefined}>
             <button
               type="button"
               onClick={() => open(i)}
               aria-label={t("viewFullSize", { label: shot.label[locale] })}
-              // Box takes the screenshot's own shape, so nothing gets cropped.
-              style={{ aspectRatio: `${shot.src.width} / ${shot.src.height}` }}
-              className="group relative block w-full cursor-zoom-in overflow-hidden bg-panel"
+              className="group relative block h-full min-h-full w-full cursor-zoom-in overflow-hidden border border-line bg-panel"
             >
-              <Image
-                src={shot.src}
-                alt={shot.alt[locale]}
-                placeholder="blur"
-                fill
-                sizes={sizes}
-                className="object-cover object-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
-              />
-              <span className="absolute bottom-2 right-2 bg-brand-navy/85 px-2 py-1 font-mono text-[11px] text-white opacity-100 transition-opacity sm:opacity-0 sm:group-hover:opacity-100 sm:group-focus-visible:opacity-100">
-                {t("view")}
+              <span className={`relative block w-full ${i === 0 ? "aspect-[16/10] sm:h-full sm:aspect-auto" : "aspect-[16/10]"}`}>
+                <Image
+                  src={shot.src}
+                  alt={shot.alt[locale]}
+                  placeholder="blur"
+                  fill
+                  sizes={i === 0 ? "(min-width: 1024px) 520px, 100vw" : "(min-width: 1024px) 260px, 50vw"}
+                  className="object-cover object-left-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                />
+              </span>
+              <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-2.5 pt-6 pb-2 text-left font-mono text-[11px] text-white">
+                {shot.label[locale]}
               </span>
             </button>
-            <figcaption className="border-t border-line px-3 py-2 font-mono text-xs text-ink-soft">
-              {shot.label[locale]}
-            </figcaption>
-          </figure>
+          </li>
         ))}
-      </div>
+      </ul>
 
       {loaded && (
         <ScreenshotLightbox

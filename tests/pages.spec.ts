@@ -18,6 +18,14 @@ test("every sitemap page has its SEO basics", async ({ page, request }) => {
       for (const lang of ["en", "fr", "x-default"]) {
         await expect(page.locator(`link[rel="alternate"][hreflang="${lang}"]`), `hreflang ${lang}`).toHaveCount(1);
       }
+      // A missing translation renders as its raw key ("gallery.view"),
+      // including text dropped from the client messages in the layout.
+      const text = await page.locator("body").innerText();
+      const aria = (await page.locator("[aria-label]").evaluateAll((els) => els.map((e) => e.getAttribute("aria-label")))).join(" ");
+      expect(`${text} ${aria}`, "raw message key on the page").not.toMatch(
+        /\b(?:nav|whatsapp|hero|work|gallery|faq|project|about|experience|contact|services|pricing|footer|faqTeaser)\.[a-z][A-Za-z]+\b/
+      );
+
       // Structured data must be valid JSON, or search engines ignore it.
       for (const json of await page.locator('script[type="application/ld+json"]').allTextContents()) {
         expect(() => JSON.parse(json), "valid JSON-LD").not.toThrow();

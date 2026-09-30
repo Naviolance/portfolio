@@ -43,6 +43,17 @@ export type ScreenshotSlot = {
   src: StaticImageData;
 };
 
+// Case-study page, chapter 01: one problem the client had, what was built,
+// and the screenshot that proves it. `tech` is the engineering detail; only
+// write it when the project's code actually does that.
+export type Decision = {
+  label: Localized; // "Payment"
+  problem: Localized;
+  built: Localized;
+  tech?: Localized;
+  shot: string; // key of one of the project's screenshots
+};
+
 export type Project = {
   slug: string;
   title: string;
@@ -55,6 +66,12 @@ export type Project = {
   techStack: TechStackEntry[];
   challenges: Localized[];
   outcome: Localized;
+  // Case-study facts box and closing call to action.
+  role: Localized;
+  statusNote: Localized; // honest status: demo, test mode, private code…
+  stackLine: string[]; // 3 headline technologies
+  decisions: Decision[];
+  cta: { title: Localized; text: Localized };
   liveUrl: string;
   // Omitted for projects whose code is private: the site then shows
   // "Private repository, available on request" instead of a GitHub link.
@@ -201,6 +218,84 @@ export const projects: Project[] = [
     outcome: {
       en: "It's live as a demo on Vercel. With the test accounts you can go through the whole flow: browse, check a part fits, add to cart, pay online or at pickup, confirm the payment, track the order, and handle it from the admin side. Payments run on Notch Pay's sandbox, so no real money is charged.",
       fr: "Elle est en ligne comme démo sur Vercel. Avec les comptes de test, on peut faire tout le parcours : parcourir, vérifier qu'une pièce va, ajouter au panier, payer en ligne ou au retrait, confirmer le paiement, suivre la commande et la traiter côté administration. Les paiements passent par le mode test de Notch Pay, donc aucun vrai argent n'est débité.",
+    },
+    role: {
+      en: "Solo · frontend + backend",
+      fr: "Seul · frontend + backend",
+    },
+    statusNote: {
+      en: "Demo · payments in Notch Pay test mode",
+      fr: "Démo · paiements Notch Pay en mode test",
+    },
+    stackLine: ["Next.js", "NestJS", "PostgreSQL"],
+    decisions: [
+      {
+        label: {
+          en: "Fit",
+          fr: "Compatibilité",
+        },
+        problem: {
+          en: "Customers need to know a part fits their truck before they buy.",
+          fr: "Les clients doivent savoir qu'une pièce va sur leur camion avant d'acheter.",
+        },
+        built: {
+          en: "\"Find My Part\": pick the truck's manufacturer, model and year, and only parts that fit are shown.",
+          fr: "« Find My Part » : on choisit le constructeur, le modèle et l'année du camion, et seules les pièces compatibles s'affichent.",
+        },
+        tech: {
+          en: "Parts and vehicles are linked through a compatibility table (one row per part–vehicle pair)",
+          fr: "Pièces et véhicules sont reliés par une table de compatibilité (une ligne par couple pièce–véhicule)",
+        },
+        shot: "find-my-part",
+      },
+      {
+        label: {
+          en: "Payment",
+          fr: "Paiement",
+        },
+        problem: {
+          en: "A \"Paid\" button the browser can fake isn't a payment.",
+          fr: "Un bouton « Payé » que le navigateur peut simuler n'est pas un paiement.",
+        },
+        built: {
+          en: "Orders are marked paid only when Notch Pay confirms: Mobile Money, card, or cash at pickup.",
+          fr: "Une commande n'est marquée payée que lorsque Notch Pay le confirme : Mobile Money, carte, ou espèces au retrait.",
+        },
+        tech: {
+          en: "Webhooks checked with an HMAC-SHA256 signature · a late webhook triggers a direct status check",
+          fr: "Webhooks vérifiés par signature HMAC-SHA256 · un webhook en retard déclenche une vérification directe du statut",
+        },
+        shot: "checkout",
+      },
+      {
+        label: {
+          en: "Stock",
+          fr: "Stock",
+        },
+        problem: {
+          en: "Two customers try to buy the last unit at the same second.",
+          fr: "Deux clients veulent acheter la dernière pièce à la même seconde.",
+        },
+        built: {
+          en: "Stock is reserved in one step: one checkout gets it, the other is told it's gone.",
+          fr: "Le stock est réservé en une seule étape : un seul paiement l'obtient, l'autre est prévenu qu'elle n'est plus disponible.",
+        },
+        tech: {
+          en: "One conditional UPDATE … WHERE quantity >= n inside a transaction",
+          fr: "Un seul UPDATE … WHERE quantity >= n conditionnel dans une transaction",
+        },
+        shot: "admin-products",
+      },
+    ],
+    cta: {
+      title: {
+        en: "Need a store like this?",
+        fr: "Besoin d'une boutique comme celle-ci ?",
+      },
+      text: {
+        en: "Mobile Money payments, stock that stays right, and an admin you run from your phone.",
+        fr: "Paiements Mobile Money, un stock toujours juste, et une administration que vous gérez depuis votre téléphone.",
+      },
     },
     liveUrl: "https://truck-spare-part-store-frontend.vercel.app",
     githubUrl: "https://github.com/Naviolance/Truck-spare-part-store",
@@ -435,6 +530,84 @@ export const projects: Project[] = [
       en: "It's live as an MVP: the web app on Vercel, the API on Render and the database on Neon, with unit and end-to-end tests running on every push. The code is in a private repository.",
       fr: "Elle est en ligne comme MVP : l'application sur Vercel, l'API sur Render et la base sur Neon, avec des tests unitaires et de bout en bout lancés à chaque push. Le code est dans un dépôt privé.",
     },
+    role: {
+      en: "Solo · frontend + backend",
+      fr: "Seul · frontend + backend",
+    },
+    statusNote: {
+      en: "MVP live · private code",
+      fr: "MVP en ligne · code privé",
+    },
+    stackLine: ["React", "NestJS", "PostgreSQL"],
+    decisions: [
+      {
+        label: {
+          en: "Find",
+          fr: "Trouver",
+        },
+        problem: {
+          en: "To find a medicine, people go from pharmacy to pharmacy or phone around.",
+          fr: "Pour trouver un médicament, on va de pharmacie en pharmacie ou on appelle partout.",
+        },
+        built: {
+          en: "Search by generic name or local brand name (Doliprane, Panadol) and see which pharmacies have it.",
+          fr: "Recherche par nom générique ou par marque locale (Doliprane, Panadol), et on voit quelles pharmacies l'ont.",
+        },
+        tech: {
+          en: "Plain PostgreSQL search: every word matched against name, generic and brand names, accents ignored, ranked by matches",
+          fr: "Recherche en PostgreSQL simple : chaque mot comparé au nom, au générique et aux marques, sans tenir compte des accents, classé par correspondances",
+        },
+        shot: "search",
+      },
+      {
+        label: {
+          en: "Trust",
+          fr: "Confiance",
+        },
+        problem: {
+          en: "Stock information is often out of date, and there's no easy way to know which pharmacy to trust.",
+          fr: "Les infos de stock sont souvent périmées, et rien n'indique à quelle pharmacie se fier.",
+        },
+        built: {
+          en: "Each pharmacy shows the price, the stock status and how recently it was updated. Only pharmacies checked by an admin are marked verified.",
+          fr: "Chaque pharmacie affiche le prix, l'état du stock et la date de mise à jour. Seules celles vérifiées par un administrateur portent le badge « vérifiée ».",
+        },
+        tech: {
+          en: "Verification is a state machine, and every status change is recorded in an audit trail",
+          fr: "La vérification suit une machine à états, et chaque changement de statut est enregistré dans un journal d'audit",
+        },
+        shot: "availability",
+      },
+      {
+        label: {
+          en: "Back in stock",
+          fr: "De retour en stock",
+        },
+        problem: {
+          en: "When a medicine is out of stock, patients have to keep checking.",
+          fr: "Quand un médicament est en rupture, les patients doivent revenir vérifier sans cesse.",
+        },
+        built: {
+          en: "When a pharmacy marks it back in stock, the patients waiting for it are notified.",
+          fr: "Quand une pharmacie le remet en stock, les patients qui l'attendent sont prévenus.",
+        },
+        tech: {
+          en: "Notifications are written in the same database transaction as the stock change, so no one is missed",
+          fr: "Les notifications sont écrites dans la même transaction que le changement de stock : personne n'est oublié",
+        },
+        shot: "pharmacy-home",
+      },
+    ],
+    cta: {
+      title: {
+        en: "Need an app like this?",
+        fr: "Besoin d'une application comme celle-ci ?",
+      },
+      text: {
+        en: "Search, maps and verified listings, in English and French.",
+        fr: "Recherche, carte et fiches vérifiées, en français et en anglais.",
+      },
+    },
     liveUrl: "https://pharmap-web.vercel.app",
     highlights: [
       {
@@ -653,6 +826,80 @@ export const projects: Project[] = [
     outcome: {
       en: "It's live as a working demo on Vercel, with a real Postgres database. The full flow works: search, book, confirm, and manage cars and bookings as an admin. The site says clearly that it's a portfolio demo, not a real rental business.",
       fr: "Elle est en ligne comme démo fonctionnelle sur Vercel, avec une vraie base Postgres. Tout le parcours marche : rechercher, réserver, confirmer, et gérer les voitures et les réservations en admin. Le site indique clairement que c'est une démo de portfolio, pas une vraie agence de location.",
+    },
+    role: {
+      en: "Solo · full-stack",
+      fr: "Seul · full-stack",
+    },
+    statusNote: {
+      en: "Working demo · real PostgreSQL database",
+      fr: "Démo fonctionnelle · vraie base PostgreSQL",
+    },
+    stackLine: ["Next.js", "PostgreSQL", "Prisma"],
+    decisions: [
+      {
+        label: {
+          en: "Availability",
+          fr: "Disponibilité",
+        },
+        problem: {
+          en: "Customers need to see which cars are free for their dates, and a car must never be booked twice.",
+          fr: "Les clients doivent voir quelles voitures sont libres à leurs dates, et une voiture ne doit jamais être réservée deux fois.",
+        },
+        built: {
+          en: "Search by dates, and the dates are checked again against existing bookings before a booking is saved.",
+          fr: "Recherche par dates, et les dates sont revérifiées face aux réservations existantes avant d'enregistrer la réservation.",
+        },
+        tech: {
+          en: "The overlap check and the insert run in one transaction; a database exclusion constraint is the next step to make it airtight",
+          fr: "La vérification de chevauchement et l'insertion se font dans une transaction ; une contrainte d'exclusion en base est la prochaine étape pour la rendre infaillible",
+        },
+        shot: "find-my-car",
+      },
+      {
+        label: {
+          en: "Price",
+          fr: "Prix",
+        },
+        problem: {
+          en: "The price shouldn't change after someone has booked.",
+          fr: "Le prix ne doit pas changer une fois la réservation faite.",
+        },
+        built: {
+          en: "The total is calculated and saved at booking, so later rate changes don't affect it.",
+          fr: "Le total est calculé et enregistré à la réservation : un changement de tarif ensuite ne le modifie pas.",
+        },
+        shot: "confirmation",
+      },
+      {
+        label: {
+          en: "Rules",
+          fr: "Règles",
+        },
+        problem: {
+          en: "The minimum driver age has to be checked the same way everywhere.",
+          fr: "L'âge minimum du conducteur doit être vérifié de la même façon partout.",
+        },
+        built: {
+          en: "One age rule is shared by the search, the car page and the booking.",
+          fr: "Une seule règle d'âge est partagée par la recherche, la page de la voiture et la réservation.",
+        },
+        tech: {
+          en: "The server re-checks it on every booking, since a direct request can skip the form",
+          fr: "Le serveur la revérifie à chaque réservation, car une requête directe peut contourner le formulaire",
+        },
+        shot: "booking",
+      },
+    ],
+    cta: {
+      title: {
+        en: "Need a booking system like this?",
+        fr: "Besoin d'un système de réservation comme celui-ci ?",
+      },
+      text: {
+        en: "Availability by date, prices fixed at booking, and an admin for your team.",
+        fr: "Disponibilités par date, prix fixés à la réservation, et une administration pour votre équipe.",
+      },
     },
     liveUrl: "https://car-rental-xi-lemon.vercel.app",
     githubUrl: "https://github.com/Naviolance/car-rental",
