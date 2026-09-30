@@ -1,13 +1,21 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useState, type ReactNode } from "react";
 import { useTranslations } from "next-intl";
 import { whatsappLink } from "@/lib/whatsapp";
-import { FaqItem, type FaqItemData } from "./FaqItem";
+import { spyLink, spyScope, spyTarget } from "@/lib/scroll-spy";
+import { buttonClass } from "@/components/ui/button";
+import { Eyebrow } from "@/components/ui/Eyebrow";
+import { pad2 } from "@/lib/format";
+import { FaqPreview, type FaqItemData } from "./FaqItem";
+import { CopyLink } from "./CopyLink";
 
 type Props = {
   items: FaqItemData[];
   categories: { id: string; label: string }[];
+  // Server-rendered parts: the page heading, and the "ask me" card.
+  header: ReactNode;
+  ask: ReactNode;
 };
 
 // Lowercase and drop accents, so "cout" finds "coût" and "delai" finds
@@ -16,10 +24,12 @@ function normalize(text: string) {
   return text.normalize("NFD").replace(/\p{Diacritic}/gu, "").toLowerCase();
 }
 
-export function FaqBrowser({ items, categories }: Props) {
+// The FAQ page: topics index + search on the side, questions grouped by
+// topic as answer previews. The whole list is in the server HTML; search
+// only hides what doesn't match.
+export function FaqBrowser({ items, categories, header, ask }: Props) {
   const t = useTranslations("faq");
   const [query, setQuery] = useState("");
-  const [category, setCategory] = useState<string | null>(null);
   // Opened from a shared link like /fr/faq#timeline.
   const [hashId, setHashId] = useState<string | null>(null);
 
@@ -38,79 +48,109 @@ export function FaqBrowser({ items, categories }: Props) {
   const visible = useMemo(() => {
     const words = normalize(query).split(/\s+/).filter(Boolean);
     return items.filter((item) => {
-      if (category && item.category !== category) return false;
       const haystack = normalize(`${item.question} ${item.answer}`);
       return words.every((word) => haystack.includes(word));
     });
-  }, [items, query, category]);
+  }, [items, query]);
 
-  const counts = useMemo(
-    () => Object.fromEntries(categories.map((c) => [c.id, items.filter((i) => i.category === c.id).length])),
-    [items, categories]
-  );
-
-  const chip = (active: boolean) =>
-    `whitespace-nowrap border px-3 py-1.5 text-sm transition-colors ${
-      active ? "border-ink bg-ink text-paper" : "border-line text-ink-soft hover:border-ink hover:text-ink"
-    }`;
+  const labels = { answer: t("answer"), details: t("details") };
 
   return (
-    <div>
-      <label htmlFor="faq-search" className="sr-only">
-        {t("searchLabel")}
-      </label>
-      <input
-        id="faq-search"
-        type="search"
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        placeholder={t("searchPlaceholder")}
-        autoComplete="off"
-        className="w-full border border-line bg-paper px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-ink focus:outline-none"
-      />
+    <div
+      style={spyScope(categories.map((c) => c.id))}
+      className="grid grid-cols-1 gap-10 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-14"
+    >
+      <aside>
+        {header}
+        <div className="mt-8 lg:sticky lg:top-24">
+          <label htmlFor="faq-search" className="sr-only">
+            {t("searchLabel")}
+          </label>
+          <input
+            id="faq-search"
+            type="search"
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            placeholder={t("searchPlaceholder")}
+            autoComplete="off"
+            className="w-full border border-line bg-paper px-4 py-3 text-base text-ink placeholder:text-ink-soft focus:border-ink focus:outline-none"
+          />
 
-      <div role="group" aria-label={t("filterLabel")} className="mt-4 flex gap-2 overflow-x-auto pb-1">
-        <button type="button" aria-pressed={category === null} onClick={() => setCategory(null)} className={chip(category === null)}>
-          {t("all")} <span className="opacity-60">{items.length}</span>
-        </button>
-        {categories.map((c) => (
-          <button
-            key={c.id}
-            type="button"
-            aria-pressed={category === c.id}
-            onClick={() => setCategory(category === c.id ? null : c.id)}
-            className={chip(category === c.id)}
-          >
-            {c.label} <span className="opacity-60">{counts[c.id]}</span>
-          </button>
-        ))}
+          {/* A row of jump links on phones, a list with a marker on desktop. */}
+          <nav aria-label={t("topics")} className="mt-6">
+            <Eyebrow className="hidden lg:block">{t("topics")}</Eyebrow>
+            <ul className="-mx-5 flex gap-2 overflow-x-auto px-5 pb-1 lg:mx-0 lg:mt-3 lg:flex-col lg:gap-0 lg:overflow-visible lg:px-0">
+              {categories.map((c) => (
+                <li key={c.id}>
+                  <a
+                    href={`#${c.id}`}
+                    style={spyLink(c.id)}
+                    className="spy-link flex items-center justify-between gap-3 whitespace-nowrap border border-line px-3 py-1.5 text-sm text-ink-soft transition-colors hover:text-accent-ink lg:border-0 lg:border-l-2 lg:py-2"
+                  >
+                    {c.label}
+                    <span className="font-mono text-xs text-label">
+                      {items.filter((i) => i.category === c.id).length}
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </nav>
+
+          <div className="hidden lg:block">{ask}</div>
+        </div>
+      </aside>
+
+      <div className="min-w-0">
+        {/* Announced to screen readers as the list changes. */}
+        <p aria-live="polite" className={query ? "mb-4 font-mono text-xs text-label" : "sr-only"}>
+          {t("resultCount", { count: visible.length })}
+        </p>
+
+        {categories.map((c, i) => {
+          const inTopic = visible.filter((item) => item.category === c.id);
+          if (inTopic.length === 0) return null;
+          return (
+            <section
+              key={c.id}
+              id={c.id}
+              style={spyTarget(c.id)}
+              className="scroll-mt-24 pb-10 last:pb-0"
+            >
+              <Eyebrow as="h2" className="mb-3">
+                {pad2(i + 1)} · {c.label}
+              </Eyebrow>
+              {inTopic.map((item) => (
+                <FaqPreview
+                  key={item.id}
+                  item={item}
+                  anchorId={item.id}
+                  labels={labels}
+                  open={item.id === hashId || undefined}
+                  action={<CopyLink id={item.id} label={t("copyLink")} copiedLabel={t("copied")} />}
+                />
+              ))}
+            </section>
+          );
+        })}
+
+        {visible.length === 0 && (
+          <div className="border border-line bg-panel p-6">
+            <p className="font-semibold text-ink">{t("noResults")}</p>
+            <p className="mt-1 text-ink-soft">{t("noResultsHint")}</p>
+            <a
+              href={whatsappLink(t("askMessage", { question: query.trim() || "…" }))}
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonClass({ variant: "outline", size: "sm", className: "mt-4" })}
+            >
+              {t("askWhatsapp")} ↗
+            </a>
+          </div>
+        )}
+
+        <div className="lg:hidden">{ask}</div>
       </div>
-
-      {/* Announced to screen readers as the list changes. */}
-      <p aria-live="polite" className="mt-6 font-mono text-xs text-label">
-        {t("resultCount", { count: visible.length })}
-      </p>
-
-      {visible.length > 0 ? (
-        <div className="mt-2 border-t border-line">
-          {visible.map((item) => (
-            <FaqItem key={item.id} item={item} open={item.id === hashId || undefined} />
-          ))}
-        </div>
-      ) : (
-        <div className="mt-4 border border-line bg-panel p-6">
-          <p className="font-semibold text-ink">{t("noResults")}</p>
-          <p className="mt-1 text-ink-soft">{t("noResultsHint")}</p>
-          <a
-            href={whatsappLink(t("askMessage", { question: query.trim() || "…" }))}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="mt-4 inline-block border border-ink px-4 py-2 text-sm font-medium text-ink transition-colors hover:border-accent hover:bg-accent hover:text-paper"
-          >
-            {t("askWhatsapp")}
-          </a>
-        </div>
-      )}
     </div>
   );
 }

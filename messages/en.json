@@ -189,11 +189,9 @@
   "faq": {
     "title": "Frequently asked questions",
     "metaDescription": "Website prices, timelines, payment by Mobile Money, what to provide and more: answers from JPFW Web Services, software engineer and web developer in Douala, Cameroon.",
-    "intro": "Prices, timelines, payments and how we work together. Can't find your question? Ask me directly on WhatsApp.",
+    "intro": "Prices, timelines, payments and how we work together. Each answer starts with the short answer.",
     "searchLabel": "Search the questions",
-    "searchPlaceholder": "Search, e.g. price, Mobile Money, WordPress",
-    "filterLabel": "Filter by topic",
-    "all": "All",
+    "searchPlaceholder": "Search, e.g. Mobile Money",
     "resultCount": "{count, plural, =0 {No questions} one {# question} other {# questions}}",
     "noResults": "No question matches that yet.",
     "noResultsHint": "Try another word, or ask me directly. I'll answer you myself.",
@@ -202,7 +200,14 @@
     "askGeneralMessage": "Hi Priestly, I read your FAQ and I have a question.",
     "stillQuestion": "Still have a question?",
     "stillQuestionHint": "Send it on WhatsApp. I read every message myself.",
-    "seeAll": "See all {count} questions"
+    "seeAll": "See all {count} questions",
+    "heading": "Questions clients ask before we start",
+    "topics": "Topics",
+    "answer": "Answer",
+    "details": "Details",
+    "copyLink": "Copy the link to this question",
+    "copied": "Link copied",
+    "updated": "Updated {date}"
   },
   "whatsapp": {
     "default": "Hi Priestly, I saw your portfolio and I'd like to talk about a project.",

@@ -412,3 +412,20 @@ html.reveal-instant [data-reveal] {
     text-decoration-color: var(--color-accent);
   }
 }
+
+/* On-page index "you are here" marker, CSS only: see lib/scroll-spy.ts.
+   The link's inline animation-timeline ties this animation to its
+   section; fill "none" means the colours apply only while that section
+   crosses the line, so the link falls back to its normal look otherwise. */
+@supports (animation-timeline: view()) {
+  .spy-link {
+    animation: spy-on linear none;
+  }
+}
+@keyframes spy-on {
+  from,
+  to {
+    color: var(--color-ink);
+    border-color: var(--color-accent);
+  }
+}

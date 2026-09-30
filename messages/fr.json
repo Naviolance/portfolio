@@ -189,11 +189,9 @@
   "faq": {
     "title": "Questions fréquentes",
     "metaDescription": "Prix d'un site internet, délais, paiement par Mobile Money, ce qu'il faut fournir : les réponses de JPFW Web Services, ingénieur logiciel et développeur web à Douala.",
-    "intro": "Prix, délais, paiements et comment on travaille ensemble. Vous ne trouvez pas votre question ? Posez-la-moi directement sur WhatsApp.",
+    "intro": "Prix, délais, paiements et déroulement. Chaque réponse commence par la réponse courte.",
     "searchLabel": "Rechercher dans les questions",
-    "searchPlaceholder": "Rechercher, ex. prix, Mobile Money, WordPress",
-    "filterLabel": "Filtrer par sujet",
-    "all": "Toutes",
+    "searchPlaceholder": "Chercher, ex. Mobile Money",
     "resultCount": "{count, plural, =0 {Aucune question} one {# question} other {# questions}}",
     "noResults": "Aucune question ne correspond pour l'instant.",
     "noResultsHint": "Essayez un autre mot, ou posez-moi la question directement. Je vous réponds moi-même.",
@@ -202,7 +200,14 @@
     "askGeneralMessage": "Bonjour Priestly, j'ai lu votre FAQ et j'ai une question.",
     "stillQuestion": "Encore une question ?",
     "stillQuestionHint": "Envoyez-la sur WhatsApp. Je lis chaque message moi-même.",
-    "seeAll": "Voir les {count} questions"
+    "seeAll": "Voir les {count} questions",
+    "heading": "Les questions qu'on me pose avant de commencer",
+    "topics": "Sujets",
+    "answer": "Réponse",
+    "details": "Détails",
+    "copyLink": "Copier le lien de cette question",
+    "copied": "Lien copié",
+    "updated": "Mis à jour le {date}"
   },
   "whatsapp": {
     "default": "Bonjour Priestly, j'ai vu votre portfolio et j'aimerais parler d'un projet.",
