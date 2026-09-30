@@ -131,22 +131,36 @@
     }
   },
   "project": {
-    "back": "Retour aux projets",
+    "back": "Tous les projets",
+    "kicker": "Étude de cas {n} / {total}",
     "liveDemo": "Démo en ligne",
-    "repo": "Dépôt GitHub",
-    "privateRepo": "Dépôt privé, code disponible sur demande",
-    "overview": "Aperçu",
-    "problem": "Le problème",
-    "solution": "La solution",
-    "features": "Fonctionnalités clés",
+    "repo": "GitHub",
+    "privateRepo": "Code privé, disponible sur demande",
+    "facts": {
+      "role": "Rôle",
+      "status": "Statut",
+      "stack": "Technologies",
+      "updated": "Mis à jour"
+    },
+    "onThisPage": "Sur cette page",
+    "toc": {
+      "decisions": "Problèmes → choix",
+      "built": "Comment c'est construit",
+      "hard": "Ce qui était difficile",
+      "result": "Résultat",
+      "screens": "Écrans"
+    },
+    "decisionsTitle": "Ce qu'il fallait, et ce que j'ai construit",
+    "problemLabel": "Problème",
+    "builtLabel": "Construit",
+    "hardTitle": "Ce qui était difficile",
+    "resultTitle": "Résultat",
+    "screensTitle": "Écrans",
+    "screensHint": "{count} écrans · touchez pour agrandir",
     "howBuilt": "Comment c'est construit",
-    "layer": "Couche",
-    "choice": "Choix",
-    "why": "Pourquoi",
-    "challenges": "Défis",
-    "result": "Résultat",
-    "screenshots": "Captures d'écran",
-    "screenshotsHint": "Touchez une capture pour l'ouvrir. Glissez pour voir la suivante, pincez ou touchez deux fois pour zoomer."
+    "next": "Étude de cas suivante · {n} / {total}",
+    "ctaButton": "Discuter sur WhatsApp",
+    "allFeatures": "Toutes les fonctionnalités ({count})"
   },
   "gallery": {
     "seeAll": "Voir les {count} captures",

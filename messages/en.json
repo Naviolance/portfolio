@@ -131,22 +131,36 @@
     }
   },
   "project": {
-    "back": "Back to work",
+    "back": "All projects",
+    "kicker": "Case study {n} / {total}",
     "liveDemo": "Live demo",
-    "repo": "GitHub repository",
-    "privateRepo": "Private repository, code available on request",
-    "overview": "Overview",
-    "problem": "Problem",
-    "solution": "Solution",
-    "features": "Key features",
+    "repo": "GitHub",
+    "privateRepo": "Private code, available on request",
+    "facts": {
+      "role": "Role",
+      "status": "Status",
+      "stack": "Stack",
+      "updated": "Updated"
+    },
+    "onThisPage": "On this page",
+    "toc": {
+      "decisions": "Problems → decisions",
+      "built": "How it's built",
+      "hard": "What was hard",
+      "result": "Result",
+      "screens": "Screens"
+    },
+    "decisionsTitle": "What the client needed, and what I built",
+    "problemLabel": "Problem",
+    "builtLabel": "Built",
+    "hardTitle": "What was hard",
+    "resultTitle": "Result",
+    "screensTitle": "Screens",
+    "screensHint": "{count} screens · tap to enlarge",
     "howBuilt": "How it's built",
-    "layer": "Layer",
-    "choice": "Choice",
-    "why": "Why",
-    "challenges": "Challenges",
-    "result": "Result",
-    "screenshots": "Screenshots",
-    "screenshotsHint": "Tap a screenshot to open it. Swipe to see the next one, and pinch or double-tap to zoom."
+    "next": "Next case study · {n} / {total}",
+    "ctaButton": "Talk on WhatsApp",
+    "allFeatures": "All features ({count})"
   },
   "gallery": {
     "seeAll": "See all {count} screenshots",

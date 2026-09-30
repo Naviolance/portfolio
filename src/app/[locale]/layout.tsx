@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { Sora, DM_Sans, IBM_Plex_Mono } from "next/font/google";
 import { hasLocale, NextIntlClientProvider } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
 import { site } from "@/data/site";
 import { projects } from "@/data/projects";
@@ -34,6 +34,11 @@ const plexMono = IBM_Plex_Mono({
 });
 
 // Pre-render every page in both languages at build time.
+// Message namespaces used by "use client" components. A client component
+// using another namespace would show raw keys: add it here (the e2e tests
+// catch that on the pages they visit).
+const CLIENT_NAMESPACES = ["nav", "whatsapp", "hero", "work", "gallery", "faq"] as const;
+
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }));
 }
@@ -86,6 +91,11 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
   // Lets every server component below render statically for this language.
   setRequestLocale(locale);
 
+  // Only the text that client components use (see CLIENT_NAMESPACES), not
+  // the whole site's: server components read their text on the server.
+  const messages = await getMessages();
+  const clientMessages = Object.fromEntries(CLIENT_NAMESPACES.map((ns) => [ns, messages[ns]]));
+
   // slug → title, for the WhatsApp buttons' "I saw your <project>" message.
   const projectTitles = Object.fromEntries(projects.map((p) => [p.slug, p.title]));
 
@@ -97,7 +107,7 @@ export default async function LocaleLayout({ children, params }: LayoutProps<"/[
     >
       <body className="min-h-full flex flex-col bg-paper text-ink">
         {/* Hands this language's interface text to the client components. */}
-        <NextIntlClientProvider>
+        <NextIntlClientProvider messages={clientMessages}>
           <Nav projectTitles={projectTitles} />
           <main className="flex-1">{children}</main>
           <Footer />

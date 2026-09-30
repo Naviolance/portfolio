@@ -10,8 +10,8 @@ export const updated = {
   faq: "2026-09-28",
   cv: "2026-09-28",
   projects: {
-    truckparts: "2026-09-28",
-    pharmap: "2026-09-28",
-    "car-rental": "2026-09-28",
+    truckparts: "2026-09-30",
+    pharmap: "2026-09-30",
+    "car-rental": "2026-09-30",
   } as Record<string, string>,
 };
