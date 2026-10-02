@@ -13,7 +13,7 @@ export const updated = {
   process: "2026-10-02",
   projects: {
     truckparts: "2026-09-30",
-    pharmap: "2026-09-30",
+    pharmap: "2026-10-02",
     "car-rental": "2026-09-30",
   } as Record<string, string>,
 };

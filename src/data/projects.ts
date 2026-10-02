@@ -17,14 +17,18 @@ import carRentalBooking from "@/assets/screenshots/car-rental/booking.png";
 import carRentalConfirmation from "@/assets/screenshots/car-rental/confirmation.png";
 import carRentalAdminCars from "@/assets/screenshots/car-rental/admin-cars.png";
 import carRentalAdminBookings from "@/assets/screenshots/car-rental/admin-bookings.png";
-import pharmapHome from "@/assets/screenshots/pharmap/home.png";
-import pharmapSearch from "@/assets/screenshots/pharmap/search.png";
-import pharmapAvailability from "@/assets/screenshots/pharmap/availability.png";
-import pharmapPharmacy from "@/assets/screenshots/pharmap/pharmacy.png";
-import pharmapRegisterLocation from "@/assets/screenshots/pharmap/register-location.png";
-import pharmapRegisterInfo from "@/assets/screenshots/pharmap/register-info.png";
-import pharmapPharmacyHome from "@/assets/screenshots/pharmap/pharmacy-home.png";
-import pharmapAdminVerification from "@/assets/screenshots/pharmap/admin-verification.png";
+import pharmapHome from "@/assets/screenshots/pharmap/home.webp";
+import pharmapAvailability from "@/assets/screenshots/pharmap/availability.webp";
+import pharmapPharmacy from "@/assets/screenshots/pharmap/pharmacy.webp";
+import pharmapNearby from "@/assets/screenshots/pharmap/nearby.webp";
+import pharmapRegisterLocation from "@/assets/screenshots/pharmap/register-location.webp";
+import pharmapOwnerDashboard from "@/assets/screenshots/pharmap/owner-dashboard.webp";
+import pharmapInventory from "@/assets/screenshots/pharmap/inventory.webp";
+import pharmapAdminHome from "@/assets/screenshots/pharmap/admin-home.webp";
+import pharmapAdminVerification from "@/assets/screenshots/pharmap/admin-verification.webp";
+import pharmapPhoneAdmin from "@/assets/screenshots/pharmap/phone-admin.webp";
+import pharmapPhoneInventory from "@/assets/screenshots/pharmap/phone-inventory.webp";
+import pharmapPhoneOwner from "@/assets/screenshots/pharmap/phone-owner.webp";
 import { withFrenchSpacing } from "@/lib/typography";
 
 export type TechStackEntry = {
@@ -81,6 +85,10 @@ export type Project = {
   // the Live demo button on the project page).
   demoNote?: { text: Localized; href: string; linkLabel: Localized };
   screenshots: ScreenshotSlot[];
+  // Optional phone screenshots, shown as a stair of phones over the case
+  // study's main screenshot on wide screens (hidden on phones, where the
+  // visitor is already looking at a phone).
+  phones?: { alt: Localized; src: StaticImageData }[];
   // Homepage "Featured work" card: three short proofs of the engineering,
   // short tech tags, and the screenshot keys shown there (first = cover).
   highlights: Localized[];
@@ -451,6 +459,26 @@ export const projects: Project[] = withFrenchSpacing([
         fr: "Vérification par un administrateur avec une vraie machine à états (en attente, en cours d'examen, vérifiée, refusée, suspendue) et un historique de qui a décidé quoi",
       },
       {
+        en: "“Best option near you”: the nearest pharmacy that has the medicine, with stock updated in the last 14 days, comes first, with Call and Directions buttons",
+        fr: "« Meilleure option près de chez vous » : la pharmacie la plus proche qui a le médicament, avec un stock mis à jour ces 14 derniers jours, apparaît en premier, avec les boutons appeler et itinéraire",
+      },
+      {
+        en: "A dashboard for pharmacy owners: several pharmacies on one account, what needs attention (stock not updated in 14 days, reports), and opening hours with lunch breaks",
+        fr: "Un tableau de bord pour les pharmaciens : plusieurs pharmacies sur un même compte, ce qui demande une action (stock non mis à jour depuis 14 jours, signalements), et des horaires avec pause de midi",
+      },
+      {
+        en: "One admin queue for everything waiting on a decision, oldest first: new pharmacies, reviews in progress, reports and new medicines",
+        fr: "Une seule file admin pour tout ce qui attend une décision, du plus ancien au plus récent : nouvelles pharmacies, examens en cours, signalements et nouveaux médicaments",
+      },
+      {
+        en: "Verification with a checklist (the pin is on a real pharmacy, the phone answers, the name matches its sign), and reports the admin can resolve, dismiss or turn into a suspension",
+        fr: "Une vérification avec liste de contrôle (le repère est sur une vraie pharmacie, le téléphone répond, le nom correspond à l'enseigne), et des signalements que l'admin peut résoudre, rejeter ou transformer en suspension",
+      },
+      {
+        en: "Pharmacies can add a medicine the catalogue doesn't have; it's usable right away, and the admin approves it, fixes the name or merges a duplicate",
+        fr: "Les pharmacies peuvent ajouter un médicament absent du catalogue ; il est utilisable tout de suite, et l'admin l'approuve, corrige le nom ou fusionne un doublon",
+      },
+      {
         en: "Restock notifications: a patient can ask to be told when an out-of-stock medicine is back at a pharmacy",
         fr: "Alertes de réapprovisionnement : un patient peut demander à être prévenu quand un médicament en rupture revient dans une pharmacie",
       },
@@ -551,14 +579,14 @@ export const projects: Project[] = withFrenchSpacing([
           fr: "Pour trouver un médicament, on va de pharmacie en pharmacie ou on appelle partout.",
         },
         built: {
-          en: "Search by generic name or local brand name (Doliprane, Panadol) and see which pharmacies have it.",
-          fr: "Recherche par nom générique ou par marque locale (Doliprane, Panadol), et on voit quelles pharmacies l'ont.",
+          en: "Search by generic name or local brand name (Doliprane, Panadol). The nearest pharmacy that has it, with stock updated in the last 14 days, comes first.",
+          fr: "Recherche par nom générique ou par marque locale (Doliprane, Panadol). La pharmacie la plus proche qui l'a, avec un stock mis à jour ces 14 derniers jours, apparaît en premier.",
         },
         tech: {
           en: "Plain PostgreSQL search: every word matched against name, generic and brand names, accents ignored, ranked by matches",
           fr: "Recherche en PostgreSQL simple : chaque mot comparé au nom, au générique et aux marques, sans tenir compte des accents, classé par correspondances",
         },
-        shot: "search",
+        shot: "availability",
       },
       {
         label: {
@@ -577,7 +605,7 @@ export const projects: Project[] = withFrenchSpacing([
           en: "Verification is a state machine, and every status change is recorded in an audit trail",
           fr: "La vérification suit une machine à états, et chaque changement de statut est enregistré dans un journal d'audit",
         },
-        shot: "availability",
+        shot: "pharmacy",
       },
       {
         label: {
@@ -596,7 +624,7 @@ export const projects: Project[] = withFrenchSpacing([
           en: "Notifications are written in the same database transaction as the stock change, so no one is missed",
           fr: "Les notifications sont écrites dans la même transaction que le changement de stock : personne n'est oublié",
         },
-        shot: "pharmacy-home",
+        shot: "inventory",
       },
     ],
     cta: {
@@ -625,79 +653,111 @@ export const projects: Project[] = withFrenchSpacing([
       },
     ],
     tags: ["React", "Vite", "Leaflet", "NestJS", "PostgreSQL"],
-    showcase: ["home", "search", "availability", "admin-verification"],
+    showcase: ["home", "availability", "pharmacy", "nearby"],
     screenshots: [
       {
         key: "home",
         label: { en: "Homepage", fr: "Page d'accueil" },
         alt: {
-          en: "PharMap homepage: “Find medicines and nearby pharmacies you can trust”, with Search medicines and Pharmacies near me buttons",
-          fr: "Page d'accueil de PharMap : trouver des médicaments et des pharmacies proches de confiance, avec les boutons de recherche de médicaments et de pharmacies à proximité",
+          en: "PharMap homepage: “Find your medicine before you leave home”, a medicine search box, and a live card showing which verified pharmacies have Paracetamol, with prices and stock levels",
+          fr: "Page d'accueil de PharMap : « Trouvez votre médicament avant de sortir de chez vous », un champ de recherche, et une carte en direct montrant les pharmacies vérifiées qui ont du paracétamol, avec les prix et l'état du stock",
         },
         src: pharmapHome,
       },
       {
-        key: "search",
-        label: { en: "Medicine search with local brand names", fr: "Recherche avec les marques locales" },
-        alt: {
-          en: "PharMap medicine search: typing “para” finds Paracetamol and its local brand names Doliprane, Panadol, Efferalgan and Dafalgan",
-          fr: "Recherche de médicaments PharMap : en tapant « para », on trouve le paracétamol et ses marques locales Doliprane, Panadol, Efferalgan et Dafalgan",
-        },
-        src: pharmapSearch,
-      },
-      {
         key: "availability",
-        label: { en: "Pharmacies with a medicine: price, stock, freshness", fr: "Pharmacies avec un médicament : prix, stock, fraîcheur" },
+        label: { en: "Where a medicine is in stock", fr: "Où un médicament est en stock" },
         alt: {
-          en: "Pharmacies that have the medicine: Pharmacie Kotto in Douala, in stock at 1,500 FCFA, reported 27 seconds ago",
-          fr: "Pharmacies qui ont le médicament : Pharmacie Kotto à Douala, en stock à 1 500 FCFA, signalé il y a 27 secondes",
+          en: "Where Paracetamol is in stock: the best option near you, Pharmacie Kotto, in stock at 1,500 FCFA 0.4 km away, with Call and Directions buttons, then other pharmacies with their prices and stock",
+          fr: "Où le paracétamol est en stock : la meilleure option près de chez vous, Pharmacie Kotto, en stock à 1 500 FCFA à 0,4 km, avec les boutons appeler et itinéraire, puis les autres pharmacies avec leurs prix et leur stock",
         },
         src: pharmapAvailability,
       },
       {
         key: "pharmacy",
-        label: { en: "Pharmacy page with opening hours", fr: "Page d'une pharmacie avec les horaires" },
+        label: { en: "Pharmacy page: stock, prices, hours", fr: "Page d'une pharmacie : stock, prix, horaires" },
         alt: {
-          en: "Pharmacie Kotto's page: verified badge, open or closed now, Call and Get directions buttons, address and opening hours",
-          fr: "Page de la Pharmacie Kotto : badge vérifié, ouverte ou fermée en ce moment, boutons appeler et itinéraire, adresse et horaires",
+          en: "Pharmacie de la Cité Bonamoussadi in Douala: open now, verified, rated 4.0, Call and Directions buttons, a searchable list of its medicines with prices and when each was reported, and its opening hours",
+          fr: "Pharmacie de la Cité Bonamoussadi à Douala : ouverte, vérifiée, notée 4,0, boutons appeler et itinéraire, la liste de ses médicaments avec les prix et la date de chaque signalement, et ses horaires",
         },
         src: pharmapPharmacy,
+      },
+      {
+        key: "nearby",
+        label: { en: "Pharmacies near you, on a map", fr: "Pharmacies proches, sur une carte" },
+        alt: {
+          en: "Pharmacies near you: verified pharmacies close to the visitor's location, shown as pins on a map of Douala",
+          fr: "Pharmacies près de chez vous : les pharmacies vérifiées proches de la position du visiteur, affichées sur une carte de Douala",
+        },
+        src: pharmapNearby,
       },
       {
         key: "register-location",
         label: { en: "Registration: place the pharmacy on the map", fr: "Inscription : placer la pharmacie sur la carte" },
         alt: {
-          en: "Pharmacy registration, step 1: find the pharmacy on a map of Cameroon or use the current location",
-          fr: "Inscription d'une pharmacie, étape 1 : trouver la pharmacie sur une carte du Cameroun ou utiliser la position actuelle",
+          en: "Pharmacy registration, step 1 of 3: “Where is your pharmacy?”, with search, current location and a map to place the pin",
+          fr: "Inscription d'une pharmacie, étape 1 sur 3 : « Où est votre pharmacie ? », avec la recherche, la position actuelle et une carte pour placer le repère",
         },
         src: pharmapRegisterLocation,
       },
       {
-        key: "register-info",
-        label: { en: "Registration: pharmacy details", fr: "Inscription : informations de la pharmacie" },
+        key: "owner-dashboard",
+        label: { en: "Pharmacy owner dashboard", fr: "Tableau de bord du pharmacien" },
         alt: {
-          en: "Pharmacy registration, step 2: pharmacy name, phone and description",
-          fr: "Inscription d'une pharmacie, étape 2 : nom, téléphone et description de la pharmacie",
+          en: "Owner dashboard for Pharmacie du Carrefour Warda, one of four pharmacies on the account: 17 medicines listed, 2 out of stock, 6 low, 2 not updated in 14 days, its rating and opening hours",
+          fr: "Tableau de bord de la Pharmacie du Carrefour Warda, une des quatre pharmacies du compte : 17 médicaments, 2 en rupture, 6 en stock faible, 2 non mis à jour depuis 14 jours, sa note et ses horaires",
         },
-        src: pharmapRegisterInfo,
+        src: pharmapOwnerDashboard,
       },
       {
-        key: "pharmacy-home",
-        label: { en: "Pharmacy account home", fr: "Accueil du compte pharmacie" },
+        key: "inventory",
+        label: { en: "Inventory: one tap per medicine", fr: "Stock : un geste par médicament" },
         alt: {
-          en: "Pharmacy owner's account: a verified pharmacy with Manage inventory, View public page and Remove pharmacy actions",
-          fr: "Compte du propriétaire : une pharmacie vérifiée avec les actions gérer le stock, voir la page publique et supprimer la pharmacie",
+          en: "Inventory of Pharmacie du Carrefour Warda: filters for needs update, out and low, and In stock, Low and Out buttons with the price on each medicine",
+          fr: "Stock de la Pharmacie du Carrefour Warda : filtres à mettre à jour, en rupture et faible, et boutons en stock, faible et en rupture avec le prix de chaque médicament",
         },
-        src: pharmapPharmacyHome,
+        src: pharmapInventory,
+      },
+      {
+        key: "admin-home",
+        label: { en: "Admin: what needs a decision", fr: "Admin : ce qui attend une décision" },
+        alt: {
+          en: "Admin home, “What needs you”: 1 new pharmacy, 1 under review, 3 open reports, 0 new medicines, and the items waiting longest",
+          fr: "Accueil admin, « Ce qui vous attend » : 1 nouvelle pharmacie, 1 en cours d'examen, 3 signalements ouverts, 0 nouveau médicament, et les éléments qui attendent depuis le plus longtemps",
+        },
+        src: pharmapAdminHome,
       },
       {
         key: "admin-verification",
         label: { en: "Admin: pharmacy verification", fr: "Admin : vérification des pharmacies" },
         alt: {
-          en: "Admin pharmacy verification queue: a pending pharmacy with Start review and Reject buttons",
-          fr: "File de vérification des pharmacies (admin) : une pharmacie en attente avec les boutons commencer l'examen et refuser",
+          en: "Pharmacy verification, under review: Pharmacie Makepe Espoir's address and phone, a link to its location on the map, and a checklist: the pin is on a real pharmacy, the phone answers, the name matches its sign",
+          fr: "Vérification d'une pharmacie en cours d'examen : adresse et téléphone de la Pharmacie Makepe Espoir, un lien vers sa position sur la carte, et une liste de contrôle : le repère est sur une vraie pharmacie, le téléphone répond, le nom correspond à l'enseigne",
         },
         src: pharmapAdminVerification,
+      },
+    ],
+    phones: [
+      {
+        alt: {
+          en: "PharMap on a phone, admin: “What needs you”, with counts of new pharmacies, reviews, reports and new medicines",
+          fr: "PharMap sur téléphone, admin : « Ce qui vous attend », avec le nombre de nouvelles pharmacies, d'examens, de signalements et de nouveaux médicaments",
+        },
+        src: pharmapPhoneAdmin,
+      },
+      {
+        alt: {
+          en: "PharMap on a phone, pharmacy inventory: In stock, Low and Out buttons for each medicine",
+          fr: "PharMap sur téléphone, stock d'une pharmacie : boutons en stock, faible et en rupture pour chaque médicament",
+        },
+        src: pharmapPhoneInventory,
+      },
+      {
+        alt: {
+          en: "PharMap on a phone, pharmacy owner dashboard with an Update stock button and stock counts",
+          fr: "PharMap sur téléphone, tableau de bord du pharmacien avec un bouton mettre à jour le stock et les chiffres du stock",
+        },
+        src: pharmapPhoneOwner,
       },
     ],
   },
