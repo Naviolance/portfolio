@@ -11,7 +11,7 @@ import photo from "@/assets/photo/priestly.webp";
 import { JsonLd } from "@/components/JsonLd";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buttonClass } from "@/components/ui/button";
-import { languageAlternates } from "@/lib/seo";
+import { languageAlternates, shareMetadata } from "@/lib/seo";
 import { personSchema } from "@/lib/person-schema";
 import { formatDate, pad2 } from "@/lib/format";
 
@@ -28,7 +28,7 @@ export async function generateMetadata(props: PageProps<"/[locale]/cv">): Promis
     title: t("title"),
     description: t("metaDescription"),
     alternates: languageAlternates(locale, "/cv"),
-    openGraph: { title: `${t("title")}: ${site.fullName}`, description: t("metaDescription"), url: `/${locale}/cv` },
+    ...shareMetadata(locale, { title: `${t("title")}: ${site.fullName}`, description: t("metaDescription"), path: `/${locale}/cv` }),
   };
 }
 

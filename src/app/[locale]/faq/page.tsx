@@ -4,7 +4,7 @@ import type { Locale } from "@/i18n/routing";
 import { faq, FAQ_CATEGORIES, faqCategoryLabels } from "@/data/faq";
 import { FaqBrowser } from "@/components/faq/FaqBrowser";
 import { JsonLd } from "@/components/JsonLd";
-import { languageAlternates } from "@/lib/seo";
+import { languageAlternates, shareMetadata } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
 import { updated } from "@/data/dates";
 import { formatDate } from "@/lib/format";
@@ -19,7 +19,7 @@ export async function generateMetadata(props: PageProps<"/[locale]/faq">): Promi
     title: t("title"),
     description: t("metaDescription"),
     alternates: languageAlternates(locale, "/faq"),
-    openGraph: { title: t("title"), description: t("metaDescription"), url: `/${locale}/faq` },
+    ...shareMetadata(locale, { title: t("title"), description: t("metaDescription"), path: `/${locale}/faq` }),
   };
 }
 

@@ -9,7 +9,7 @@ import { ScreenshotGallery } from "@/components/ScreenshotGallery";
 import { JsonLd } from "@/components/JsonLd";
 import { updated } from "@/data/dates";
 import { site } from "@/data/site";
-import { languageAlternates } from "@/lib/seo";
+import { languageAlternates, shareMetadata } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
 import { formatDate, pad2 } from "@/lib/format";
 import { spyLink, spyScope, spyTarget } from "@/lib/scroll-spy";
@@ -41,17 +41,8 @@ export async function generateMetadata(
     title: project.title,
     description: summary,
     alternates: languageAlternates(locale, path),
-    openGraph: {
-      title: project.title,
-      description: summary,
-      type: "article",
-      url: `/${locale}${path}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title: project.title,
-      description: summary,
-    },
+    // Its own share image: the opengraph-image file in this folder.
+    ...shareMetadata(locale, { title: project.title, description: summary, path: `/${locale}${path}`, type: "article", image: "own" }),
   };
 }
 

@@ -8,7 +8,7 @@ import { PROCESS_PATH } from "@/data/page-paths";
 import { getTier, priceLabel } from "@/data/pricing";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buttonClass } from "@/components/ui/button";
-import { languageAlternates } from "@/lib/seo";
+import { languageAlternates, shareMetadata } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
 import { pad2 } from "@/lib/format";
 import { cx } from "@/lib/cx";
@@ -30,7 +30,7 @@ export async function processMetadata({ params }: Props): Promise<Metadata> {
     title: P.title[locale],
     description: P.metaDescription[locale],
     alternates: languageAlternates(locale, PROCESS_PATH),
-    openGraph: { title: P.title[locale], description: P.metaDescription[locale], url: `/${locale}${PROCESS_PATH[locale]}` },
+    ...shareMetadata(locale, { title: P.title[locale], description: P.metaDescription[locale], path: `/${locale}${PROCESS_PATH[locale]}` }),
   };
 }
 
