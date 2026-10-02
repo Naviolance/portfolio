@@ -1,5 +1,6 @@
 import type { Locale } from "@/i18n/routing";
 import type { Localized } from "@/lib/localized";
+import { withFrenchSpacing } from "@/lib/typography";
 
 // ⚠ These prices are also written out in the FAQ answers (data/faq.ts:
 // website-cost, showcase-website, cost-after-launch, show-up-on-google).
@@ -31,7 +32,7 @@ export type PriceGroup = {
   tiers: PriceTier[];
 };
 
-export const pricing: PriceGroup[] = [
+export const pricing: PriceGroup[] = withFrenchSpacing([
   {
     id: "websites",
     title: { en: "Websites & online stores", fr: "Sites web et boutiques en ligne" },
@@ -129,7 +130,7 @@ export const pricing: PriceGroup[] = [
       },
     ],
   },
-];
+]);
 
 // 150_000 → "150K", 3_000_000 → "3M", 1_500_000 → "1.5M" (French: "1,5M")
 export function formatFcfa(amount: number, locale: Locale) {

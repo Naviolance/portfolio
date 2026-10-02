@@ -1,4 +1,5 @@
 import type { Localized } from "@/lib/localized";
+import { withFrenchSpacing } from "@/lib/typography";
 
 // Background from the CV (Forsangam_Junior_CV_2026.pdf). Keep this and the
 // PDF in public/cv/ in step: recruiters compare the two.
@@ -11,10 +12,10 @@ export const CV_PDF: Localized = {
 };
 
 // Used by the /cv page (the web version of the PDF).
-export const profile: Localized = {
+export const profile: Localized = withFrenchSpacing({
   en: "Full-stack software engineer who builds complete web applications with TypeScript, Next.js, NestJS and PostgreSQL. Recently built a truck spare parts e-commerce platform with secure authentication, oversell-safe checkout and payment gateway integration, and PharMap, a medicine and pharmacy finder for Cameroon. Two internships in WordPress and front-end development. Fluent in English and French. Available for full-time roles and for freelance projects through JPFW Web Services.",
   fr: "Ingénieur logiciel full-stack qui construit des applications web complètes avec TypeScript, Next.js, NestJS et PostgreSQL. J'ai récemment construit une plateforme e-commerce de pièces de camion avec authentification sécurisée, paiement sans survente et intégration d'une passerelle de paiement, et PharMap, un outil pour trouver un médicament et une pharmacie au Cameroun. Deux stages en WordPress et en développement front-end. Bilingue anglais et français. Disponible pour un poste à temps plein et pour des projets freelance via JPFW Web Services.",
-};
+});
 
 export type CvProject = {
   title: Localized;
@@ -29,7 +30,7 @@ export type CvProject = {
   points: Localized[];
 };
 
-export const cvProjects: CvProject[] = [
+export const cvProjects: CvProject[] = withFrenchSpacing([
   {
     title: { en: "TruckParts: Truck Spare Parts E-commerce Platform", fr: "TruckParts : plateforme e-commerce de pièces de camion" },
     year: "2026",
@@ -109,7 +110,7 @@ export const cvProjects: CvProject[] = [
       },
     ],
   },
-];
+]);
 
 export type Experience = {
   role: Localized;
@@ -124,7 +125,7 @@ export type Experience = {
 const CAMEROON = { en: "Cameroon", fr: "Cameroun" };
 const at = (city: string): Localized => ({ en: `${city}, ${CAMEROON.en}`, fr: `${city}, ${CAMEROON.fr}` });
 
-export const experience: Experience[] = [
+export const experience: Experience[] = withFrenchSpacing([
   {
     role: { en: "Freelance Full-Stack Software Engineer", fr: "Ingénieur logiciel full-stack freelance" },
     company: "JPFW Web Services",
@@ -176,7 +177,7 @@ export const experience: Experience[] = [
       },
     ],
   },
-];
+]);
 
 export type Education = {
   title: Localized;
@@ -186,7 +187,7 @@ export type Education = {
 
 const DOUALA: Localized = { en: "Douala", fr: "Douala" };
 
-export const education: Education[] = [
+export const education: Education[] = withFrenchSpacing([
   { title: { en: "BSc in Software Engineering", fr: "Licence (BSc) en génie logiciel" }, place: DOUALA, period: "2023 – 2024" },
   { title: { en: "HND in Software Engineering", fr: "HND en génie logiciel" }, place: DOUALA, period: "2022 – 2023" },
   {
@@ -195,11 +196,11 @@ export const education: Education[] = [
     period: "2022 – 2023",
   },
   { title: { en: "Baccalauréat TI (Computer Science)", fr: "Baccalauréat TI (informatique)" }, place: DOUALA, period: "2020 – 2021" },
-];
+]);
 
 export type SkillGroup = { label: Localized; items: string[] };
 
-export const skills: SkillGroup[] = [
+export const skills: SkillGroup[] = withFrenchSpacing([
   {
     label: { en: "Languages", fr: "Langages" },
     items: ["TypeScript", "JavaScript", "PHP", "Python", "C", "C++", "C#", "Ruby", "SQL", "HTML", "CSS"],
@@ -228,9 +229,9 @@ export const skills: SkillGroup[] = [
       "Accessibility (WCAG)",
     ],
   },
-];
+]);
 
-export const spokenLanguages: Localized = {
+export const spokenLanguages: Localized = withFrenchSpacing({
   en: "English and French, both fluent",
   fr: "Français et anglais, courants",
-};
+});

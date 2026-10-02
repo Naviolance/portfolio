@@ -4,6 +4,7 @@ import type { ServiceId } from "./services";
 import truckpartsHome from "@/assets/screenshots/truckparts/home.png";
 import carRentalHome from "@/assets/screenshots/car-rental/home.png";
 import siteHome from "@/assets/screenshots/site/home.webp";
+import { withFrenchSpacing } from "@/lib/typography";
 
 // The content of each service page (/en/services/..., /fr/services/...).
 // The page itself is [locale]/services/[slug]/page.tsx; the slugs and the
@@ -52,7 +53,7 @@ export type ServicePage = {
 
 const ONCE_CONTENT: Localized = { en: "once I have your content", fr: "une fois vos contenus reçus" };
 
-export const servicePages: Record<ServiceId, ServicePage> = {
+export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
   "business-websites": {
     heading: { en: "Business websites in Douala, Cameroon", fr: "Création de site vitrine à Douala" },
     lead: {
@@ -287,4 +288,4 @@ export const servicePages: Record<ServiceId, ServicePage> = {
       fr: "Bonjour Priestly, j'ai vu votre page sur le référencement et je voudrais que mon entreprise soit plus facile à trouver.",
     },
   },
-};
+});

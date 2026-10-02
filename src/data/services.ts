@@ -5,6 +5,7 @@ import { SERVICE_SLUGS, type ServiceId } from "./service-slugs";
 import truckpartsHome from "@/assets/screenshots/truckparts/home.png";
 import carRentalHome from "@/assets/screenshots/car-rental/home.png";
 import siteHome from "@/assets/screenshots/site/home.webp";
+import { withFrenchSpacing } from "@/lib/typography";
 
 export type { ServiceId };
 
@@ -24,7 +25,7 @@ export type Service = {
 };
 
 
-export const services: Service[] = [
+export const services: Service[] = withFrenchSpacing([
   {
     id: "business-websites",
     slug: SERVICE_SLUGS["business-websites"],
@@ -97,7 +98,7 @@ export const services: Service[] = [
     },
     image: { src: siteHome, label: { en: "this site", fr: "ce site" } },
   },
-];
+]);
 
 export function getService(id: string) {
   return services.find((service) => service.id === id);
