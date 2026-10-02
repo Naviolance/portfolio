@@ -94,6 +94,43 @@ export const pricing: PriceGroup[] = withFrenchSpacing([
     ],
   },
   {
+    id: "redesign",
+    title: { en: "Redesign", fr: "Refonte" },
+    tag: { en: "Redesign", fr: "Refonte" },
+    tiers: [
+      {
+        id: "redesign-refresh",
+        name: { en: "Site refresh", fr: "Refonte légère" },
+        description: {
+          en: "A new design on your existing pages and content (up to about 8 pages): works well on phones, loads faster, and keeps the same addresses so Google keeps your ranking.",
+          fr: "Un nouveau design sur vos pages et contenus actuels (jusqu'à environ 8 pages) : adapté au téléphone, plus rapide, avec les mêmes adresses pour garder votre place sur Google.",
+        },
+        fcfa: { min: 100_000, max: 250_000 },
+        period: "one-time",
+      },
+      {
+        id: "redesign-full",
+        name: { en: "Full redesign", fr: "Refonte complète" },
+        description: {
+          en: "A new structure and pages (up to about 20), content rewritten, and SEO handled: old addresses redirected, Google Search Console set up.",
+          fr: "Une nouvelle structure et de nouvelles pages (jusqu'à environ 20), des contenus réécrits, et le référencement géré : anciennes adresses redirigées, Google Search Console configurée.",
+        },
+        fcfa: { min: 300_000, max: 700_000 },
+        period: "one-time",
+      },
+      {
+        id: "redesign-app",
+        name: { en: "App redesign", fr: "Refonte d'application" },
+        description: {
+          en: "A new interface for an existing web app, screen by screen, with its features kept. Like PharMap.",
+          fr: "Une nouvelle interface pour une application web existante, écran par écran, en gardant ses fonctionnalités. Comme PharMap.",
+        },
+        fcfa: { min: 600_000, max: null },
+        period: "one-time",
+      },
+    ],
+  },
+  {
     id: "seo",
     title: { en: "SEO & AI search", fr: "Référencement Google et IA" },
     tag: { en: "SEO & AEO", fr: "SEO et AEO" },

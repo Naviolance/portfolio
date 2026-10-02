@@ -4,6 +4,12 @@ import type { ServiceId } from "./services";
 import truckpartsHome from "@/assets/screenshots/truckparts/home.png";
 import carRentalHome from "@/assets/screenshots/car-rental/home.png";
 import siteHome from "@/assets/screenshots/site/home.webp";
+import pharmapBeforeHome from "@/assets/screenshots/pharmap/before/home.webp";
+import pharmapBeforeAvailability from "@/assets/screenshots/pharmap/before/availability.webp";
+import pharmapBeforeAdmin from "@/assets/screenshots/pharmap/before/admin-verification.webp";
+import pharmapHome from "@/assets/screenshots/pharmap/home.webp";
+import pharmapAvailability from "@/assets/screenshots/pharmap/availability.webp";
+import pharmapAdmin from "@/assets/screenshots/pharmap/admin-verification.webp";
 import { withFrenchSpacing } from "@/lib/typography";
 
 // The content of each service page (/en/services/..., /fr/services/...).
@@ -43,6 +49,9 @@ export type ServicePage = {
     href: string; // internal ("/projects/...") or external
     image?: StaticImageData;
     host?: string;
+    // Redesign: before/after screenshot pairs, shown side by side instead
+    // of the single image.
+    pairs?: { label: Localized; before: StaticImageData; after: StaticImageData }[];
   };
   // FAQ entries (data/faq.ts ids) shown as answer previews.
   faqIds: string[];
@@ -286,6 +295,62 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
     whatsapp: {
       en: "Hi Priestly, I saw your SEO and AI search page and I'd like my business to be easier to find.",
       fr: "Bonjour Priestly, j'ai vu votre page sur le référencement et je voudrais que mon entreprise soit plus facile à trouver.",
+    },
+  },
+  redesign: {
+    heading: { en: "Website and app redesign", fr: "Refonte de site web et d'application" },
+    lead: {
+      en: "Your site or app works, but it looks dated, is slow on phones or doesn't bring in requests. I redesign it: a modern design you approve before anything is built, faster pages, and your content and Google ranking kept. From 100K FCFA, in 1 to 5 weeks.",
+      fr: "Votre site ou application fonctionne, mais il paraît daté, rame sur téléphone ou n'apporte pas de demandes. Je le refais : un design moderne que vous validez avant toute construction, des pages plus rapides, et vos contenus et votre place sur Google conservés. À partir de 100K FCFA, en 1 à 5 semaines.",
+    },
+    metaDescription: {
+      en: "Website and app redesign in Cameroon: a modern design, faster pages and your Google ranking kept. Site refresh from 100K FCFA, full redesign 300K–700K.",
+      fr: "Refonte de site web au Cameroun : design moderne, pages plus rapides et votre place sur Google conservée. Refonte légère dès 100K FCFA, refonte complète 300K–700K.",
+    },
+    summary: [
+      {
+        label: "price",
+        tiers: ["redesign-refresh", "redesign-full"],
+        note: { en: "app redesign from 600K, quoted", fr: "refonte d'application dès 600K, sur devis" },
+      },
+      {
+        label: "timeline",
+        value: { en: "1–5 weeks", fr: "1 à 5 semaines" },
+        note: { en: "depends on the number of pages", fr: "selon le nombre de pages" },
+      },
+    ],
+    includes: [
+      { en: "A look at your current site first: what works, what loses visitors", fr: "Un état des lieux de votre site actuel : ce qui marche, ce qui fait fuir les visiteurs" },
+      { en: "A mockup you approve before anything is built", fr: "Une maquette que vous validez avant toute construction" },
+      { en: "Built for phones first, and faster to load", fr: "Pensé d'abord pour le téléphone, et plus rapide à charger" },
+      { en: "Your content moved over, nothing lost", fr: "Vos contenus repris, rien de perdu" },
+      { en: "Same addresses or redirects, so Google keeps your ranking", fr: "Mêmes adresses ou redirections, pour garder votre place sur Google" },
+      { en: "Domain, hosting and accounts stay in your name", fr: "Domaine, hébergement et comptes restent à votre nom" },
+    ],
+    options: [
+      { tier: "redesign-refresh", timeline: { en: "1–2 weeks", fr: "1 à 2 semaines" } },
+      { tier: "redesign-full", timeline: { en: "2–5 weeks", fr: "2 à 5 semaines" } },
+      { tier: "redesign-app", timeline: { en: "quoted per project", fr: "devis par projet" } },
+    ],
+    proof: {
+      title: { en: "PharMap, before and after", fr: "PharMap, avant et après" },
+      text: {
+        en: "A client's medicine-finder app that I built, then redesigned: same features, clearer search, a live answer on the homepage, and pages built for phones.",
+        fr: "L'application d'un client pour trouver des médicaments, que j'ai construite puis refaite : mêmes fonctionnalités, recherche plus claire, une réponse en direct dès l'accueil, et des pages pensées pour le téléphone.",
+      },
+      href: "/projects/pharmap",
+      host: "pharmap-web.vercel.app",
+      pairs: [
+        { label: { en: "Homepage", fr: "Page d'accueil" }, before: pharmapBeforeHome, after: pharmapHome },
+        { label: { en: "Where a medicine is in stock", fr: "Où un médicament est en stock" }, before: pharmapBeforeAvailability, after: pharmapAvailability },
+        { label: { en: "Admin: pharmacy verification", fr: "Admin : vérification des pharmacies" }, before: pharmapBeforeAdmin, after: pharmapAdmin },
+      ],
+    },
+    faqIds: ["what-to-provide", "show-up-on-google", "how-to-pay"],
+    cta: { en: "Talk about my redesign ↗", fr: "Parler de ma refonte ↗" },
+    whatsapp: {
+      en: "Hi Priestly, I saw your redesign page and I'd like to redesign my site or app.",
+      fr: "Bonjour Priestly, j'ai vu votre page sur la refonte et je voudrais refaire mon site ou mon application.",
     },
   },
 });

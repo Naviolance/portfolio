@@ -7,6 +7,8 @@ import { pad2 } from "@/lib/format";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { buttonClass } from "@/components/ui/button";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
+import { beforeAfterTag as baTag } from "@/components/ui/before-after";
+import { cx } from "@/lib/cx";
 
 const exampleLink =
   "link-underline";
@@ -69,6 +71,31 @@ export function Services() {
                       className="absolute inset-0 h-full w-full object-cover object-top"
                     />
                   </div>                </BrowserFrame>              )}
+              {service.beforeAfter && (
+                <BrowserFrame size="sm" host={service.beforeAfter.label[locale]} className="sm:col-start-2 lg:col-start-3">
+                  {/* Split down the middle: the old version on the left, the
+                      new one on the right (CSS clip-path, no script). */}
+                  <div className="relative aspect-[2/1] overflow-hidden">
+                    <Image
+                      src={service.beforeAfter.after}
+                      alt={`${service.title[locale]}: ${service.evidence[locale]}`}
+                      sizes="(min-width: 1024px) 300px, 100vw"
+                      placeholder="blur"
+                      className="absolute inset-0 h-full w-full object-cover object-top"
+                    />
+                    <Image
+                      src={service.beforeAfter.before}
+                      alt=""
+                      sizes="(min-width: 1024px) 300px, 100vw"
+                      placeholder="blur"
+                      className="absolute inset-0 h-full w-full object-cover object-top [clip-path:inset(0_50%_0_0)]"
+                    />
+                    <span aria-hidden className="absolute inset-y-0 left-1/2 w-0.5 -translate-x-1/2 bg-accent" />
+                    <span aria-hidden className={cx(baTag, "left-2")}>{t("before")}</span>
+                    <span aria-hidden className={cx(baTag, "right-2")}>{t("after")}</span>
+                  </div>
+                </BrowserFrame>
+              )}
             </li>
           ))}
         </ul>
