@@ -7,12 +7,12 @@ export const site = {
   // Job title: the CV header and the Person jobTitle (what recruiters search).
   role: {
     en: "Full-Stack Software Engineer",
-    fr: "Ingénieur Logiciel Full-Stack",
+    fr: "Ingénieur logiciel full-stack",
   } satisfies Localized,
   // Page titles, share-card alt and footer: what clients type into Google.
   headline: {
     en: "Web Developer & Software Engineer",
-    fr: "Développeur Web et Ingénieur Logiciel",
+    fr: "Développeur web et ingénieur logiciel",
   } satisfies Localized,
   brand: "JPFW Web Services",
   // The homepage H1. Says "web developer" because that is what clients type
