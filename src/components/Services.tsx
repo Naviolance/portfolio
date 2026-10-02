@@ -64,10 +64,9 @@ export function Services() {
                     <Image
                       src={service.image.src}
                       alt={`${service.title[locale]}: ${service.evidence[locale]}`}
-                      fill
                       sizes="(min-width: 1024px) 300px, 100vw"
                       placeholder="blur"
-                      className="object-cover object-top"
+                      className="absolute inset-0 h-full w-full object-cover object-top"
                     />
                   </div>                </BrowserFrame>              )}
             </li>

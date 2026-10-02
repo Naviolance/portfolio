@@ -200,12 +200,11 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
             <Image
               src={cover.src}
               alt={cover.alt[locale]}
-              fill
               loading="eager"
               fetchPriority="high"
               placeholder="blur"
               sizes="(min-width: 1024px) 520px, 100vw"
-              className="object-cover object-top"
+              className="absolute inset-0 h-full w-full object-cover object-top"
             />
           </div>
         </BrowserFrame>
@@ -276,10 +275,9 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
                           <Image
                             src={proof.src}
                             alt={proof.alt[locale]}
-                            fill
                             placeholder="blur"
                             sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 100vw"
-                            className="object-cover object-left-top"
+                            className="absolute inset-0 h-full w-full object-cover object-left-top"
                           />
                         </div>
                       </BrowserFrame>

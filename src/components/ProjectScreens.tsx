@@ -65,10 +65,9 @@ export function ProjectScreens({ projectTitle, host, screenshots, showcase }: Pr
                 key={shot.key}
                 src={shot.src}
                 alt={shot.alt[locale]}
-                fill
                 sizes="(min-width: 1024px) 540px, 100vw"
                 placeholder="blur"
-                className={`screen-shot object-cover object-top ${k === current ? "is-on" : ""}`}
+                className={`absolute inset-0 h-full w-full screen-shot object-cover object-top ${k === current ? "is-on" : ""}`}
               />
             ) : null
           )}
@@ -90,7 +89,7 @@ export function ProjectScreens({ projectTitle, host, screenshots, showcase }: Pr
             onClick={() => show(k)}
             className={`relative h-11 overflow-hidden border bg-panel transition-[opacity,border-color,translate] duration-300 hover:-translate-y-0.5 hover:opacity-90 sm:h-auto sm:aspect-[2/1] ${k === current ? "border-accent opacity-100" : "border-line opacity-55"}`}
           >
-            <Image src={shot.src} alt="" fill sizes="140px" className="object-cover object-top" />
+            <Image src={shot.src} alt="" sizes="140px" className="absolute inset-0 h-full w-full object-cover object-top" />
           </button>
         ))}
       </div>
