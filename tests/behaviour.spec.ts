@@ -123,3 +123,21 @@ test("service pages: language switch and hreflang use the translated address", a
   await expect(page).toHaveURL(/\/fr\/services\/creation-boutique-en-ligne$/);
   await expect(page.locator("h1")).toContainText("Création de boutique en ligne");
 });
+
+test("How I work: translated address, redirect and nav link", async ({ page, request }) => {
+  // The wrong-language address is a real permanent redirect, not a 404.
+  const wrong = await request.get("/fr/how-i-work", { maxRedirects: 0 });
+  expect(wrong.status()).toBe(308);
+  expect(wrong.headers().location).toMatch(/\/fr\/ma-methode$/);
+
+  await page.goto("/en/services/ecommerce");
+  await page.locator("header nav").getByRole("link", { name: "How I work" }).click();
+  await expect(page).toHaveURL(/\/en\/how-i-work$/);
+  await expect(page.locator("h1")).toHaveText("What happens after you message me");
+  await expect(page.locator('link[hreflang="fr"]')).toHaveAttribute("href", /\/fr\/ma-methode$/);
+
+  await page.locator('header a[hreflang="fr"]').filter({ visible: true }).first().click();
+  await expect(page).toHaveURL(/\/fr\/ma-methode$/);
+  await expect(page.locator("h1")).toHaveText("Ce qui se passe après votre message");
+  await expect(page.locator("main ol > li")).toHaveCount(6);
+});

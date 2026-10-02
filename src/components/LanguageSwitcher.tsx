@@ -4,7 +4,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link, usePathname } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { rememberPlace } from "@/lib/lang-switch";
-import { servicePathIn } from "@/data/service-slugs";
+import { translatedPathIn } from "@/data/page-paths";
 
 // Links to the SAME page in the other language (/en/faq <-> /fr/faq).
 // A real link, not a button, so crawlers can follow it too. Choosing a
@@ -17,9 +17,9 @@ export function LanguageSwitcher({ className = "" }: { className?: string }) {
 
   return (
     <Link
-      // Service pages have a translated address; every other path is the
-      // same in both languages.
-      href={servicePathIn(pathname, locale, other) ?? pathname}
+      // Service pages and "How I work" have a translated address; every
+      // other path is the same in both languages.
+      href={translatedPathIn(pathname, locale, other) ?? pathname}
       locale={other}
       hrefLang={other}
       // Keep the reader's place instead of jumping to the top (lib/lang-switch).

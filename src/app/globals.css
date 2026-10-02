@@ -15,6 +15,8 @@
   --panel: #e9eff4;
   --brand-navy: #04162a;
   --brand-cyan: #01b6cb;
+  /* Money moments only (the "You pay 50%" tags on /how-i-work). */
+  --money: #8a5a00;
   /* Hero deck: card shadow, and how far the cards behind the front one dim. */
   --shade: rgba(4, 22, 42, 0.16);
   --dim-1: 0.92;
@@ -41,6 +43,7 @@
   --color-panel: var(--panel);
   --color-brand-navy: var(--brand-navy);
   --color-brand-cyan: var(--brand-cyan);
+  --color-money: var(--money);
   --font-display: var(--font-sora);
   --font-sans: var(--font-dm-sans);
   --font-mono: var(--font-plex-mono);
@@ -57,6 +60,7 @@
     --accent-ink: #5fd3e2;
     --label: #01b6cb;
     --panel: #0b2239;
+    --money: #f5b13d;
     --shade: rgba(0, 0, 0, 0.4);
     --dim-1: 0.6;
     --dim-2: 0.4;
@@ -427,5 +431,99 @@ html.reveal-instant [data-reveal] {
   to {
     color: var(--color-ink);
     border-color: var(--color-accent);
+  }
+}
+
+/* "How I work" steps light up as they pass the middle of the screen, CSS
+   only: see components/process/ProcessPage.tsx. Each step's number box names
+   a view timeline (inline style); the inline animation-timeline on the
+   step's other parts ties these animations to it. Fill "both" keeps passed
+   steps lit and upcoming ones dim. Without support, everything shows lit
+   and the step counter stays hidden. */
+.step-counter {
+  display: none;
+}
+@supports (animation-timeline: view()) {
+  .step-counter {
+    display: block;
+  }
+  .step-node {
+    animation: step-node-on linear both;
+  }
+  .step-dim {
+    animation: step-dim-on linear both;
+  }
+  .step-stub {
+    animation: step-stub-on linear both;
+  }
+  /* The spine segment fills while it crosses the same middle line. */
+  .step-fill {
+    animation: step-grow linear both;
+    animation-timeline: view(block 50% 49.9%);
+  }
+  .step-digit {
+    animation: step-digit-in linear both, step-digit-out linear both;
+  }
+  .step-digit-first {
+    animation: step-digit-out linear both;
+  }
+  .step-digit-last {
+    animation: step-digit-in linear both;
+  }
+}
+@keyframes step-node-on {
+  from {
+    background-color: var(--paper);
+    border-color: var(--line);
+    color: var(--ink-soft);
+  }
+  to {
+    background-color: var(--accent);
+    border-color: var(--accent);
+    color: var(--paper);
+  }
+}
+@keyframes step-dim-on {
+  from {
+    opacity: 0.45;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes step-stub-on {
+  from {
+    background-color: transparent;
+    border-color: var(--line);
+  }
+  to {
+    background-color: var(--panel);
+    border-color: var(--accent);
+  }
+}
+@keyframes step-grow {
+  from {
+    transform: scaleY(0);
+  }
+  to {
+    transform: scaleY(1);
+  }
+}
+@keyframes step-digit-in {
+  from {
+    opacity: 0;
+    transform: translateY(60%);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+@keyframes step-digit-out {
+  from {
+    transform: none;
+  }
+  to {
+    transform: translateY(-120%);
   }
 }

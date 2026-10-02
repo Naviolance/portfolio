@@ -4,6 +4,7 @@
     "about": "About",
     "experience": "Experience",
     "services": "Services",
+    "process": "How I work",
     "pricing": "Pricing",
     "faq": "FAQ",
     "cta": "Let's talk",
@@ -255,6 +256,7 @@
     "services": "Services",
     "more": "More",
     "pricing": "Pricing",
+    "process": "How I work",
     "faq": "FAQ",
     "cv": "CV",
     "remote": "remote worldwide",
@@ -325,6 +327,7 @@
         "text": "50% on delivery. Maintenance is optional: {care} FCFA a month."
       }
     },
+    "stepsMore": "The full process",
     "faqTitle": "Common questions",
     "otherTitle": "Other services"
   }

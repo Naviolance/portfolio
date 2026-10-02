@@ -1,19 +1,32 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { MobileMenu } from "./MobileMenu";
 import { LanguageSwitcher } from "./LanguageSwitcher";
 import { WhatsAppButton } from "./WhatsAppButton";
+import { PROCESS_PATH } from "@/data/page-paths";
+import type { Locale } from "@/i18n/routing";
 
-export type NavLink = { id: string; label: string; href: { pathname: "/" | "/faq"; hash?: string } };
+export type NavLink = { id: string; label: string; href: { pathname: string; hash?: string } };
 
-// Homepage section anchors, then the FAQ page.
-const SECTIONS = ["work", "about", "experience", "services", "pricing"] as const;
-
+// Homepage section anchors and pages, in the order a client decides:
+// what you've built, who you are, what you offer, how it goes, what it
+// costs, questions. Experience isn't here: the CV page and the homepage
+// section cover it, and the bar only fits six links.
 export function Nav({ projectTitles }: { projectTitles: Record<string, string> }) {
   const t = useTranslations("nav");
+  const locale = useLocale() as Locale;
+  const section = (id: "work" | "about" | "services" | "pricing"): NavLink => ({
+    id,
+    label: t(id),
+    href: { pathname: "/", hash: id },
+  });
   const links: NavLink[] = [
-    ...SECTIONS.map((id) => ({ id, label: t(id), href: { pathname: "/" as const, hash: id } })),
+    section("work"),
+    section("about"),
+    section("services"),
+    { id: "process", label: t("process"), href: { pathname: PROCESS_PATH[locale] } },
+    section("pricing"),
     { id: "faq", label: t("faq"), href: { pathname: "/faq" } },
   ];
 
@@ -38,7 +51,7 @@ export function Nav({ projectTitles }: { projectTitles: Record<string, string> }
             </span>
           </span>
         </Link>
-        {/* lg, not md: 5 links + CTA + language switch don't fit at tablet width. */}
+        {/* lg, not md: 6 links + CTA + language switch don't fit at tablet width. */}
         <nav className="hidden items-center gap-7 text-sm text-ink-soft lg:flex">
           {links.map((link) => (
             <Link key={link.id} href={link.href} className="transition-colors hover:text-ink">
