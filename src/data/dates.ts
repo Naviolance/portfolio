@@ -10,6 +10,7 @@ export const updated = {
   faq: "2026-09-30",
   cv: "2026-09-30",
   services: "2026-10-02",
+  process: "2026-10-02",
   projects: {
     truckparts: "2026-09-30",
     pharmap: "2026-09-30",

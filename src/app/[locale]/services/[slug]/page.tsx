@@ -17,6 +17,7 @@ import { buttonClass } from "@/components/ui/button";
 import { languageAlternates } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
 import { pad2 } from "@/lib/format";
+import { PROCESS_PATH } from "@/data/page-paths";
 
 // One page per service, at a translated address: /en/services/ecommerce,
 // /fr/services/creation-boutique-en-ligne. Content in data/service-pages.ts,
@@ -251,6 +252,9 @@ export default async function ServicePage(props: PageProps<"/[locale]/services/[
               </li>
             ))}
           </ol>
+          <Link href={PROCESS_PATH[locale]} className="mt-5 inline-flex min-h-11 items-center font-medium text-accent-ink hover:text-ink">
+            {t("stepsMore")} →
+          </Link>
         </section>
 
         <section className="mt-14">

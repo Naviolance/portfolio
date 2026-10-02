@@ -5,6 +5,7 @@ import { site } from "@/data/site";
 import { projects } from "@/data/projects";
 import { services } from "@/data/services";
 import { updated } from "@/data/dates";
+import { PROCESS_PATH } from "@/data/page-paths";
 import { whatsappLink } from "@/lib/whatsapp";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { formatDate } from "@/lib/format";
@@ -79,6 +80,11 @@ export function Footer() {
               <li>
                 <Link href={{ pathname: "/", hash: "pricing" }} className={link}>
                   {t("pricing")}
+                </Link>
+              </li>
+              <li>
+                <Link href={PROCESS_PATH[locale]} className={link}>
+                  {t("process")}
                 </Link>
               </li>
               <li>

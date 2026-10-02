@@ -4,6 +4,7 @@
     "about": "À propos",
     "experience": "Parcours",
     "services": "Services",
+    "process": "Ma méthode",
     "pricing": "Tarifs",
     "faq": "FAQ",
     "cta": "Discutons",
@@ -255,6 +256,7 @@
     "services": "Services",
     "more": "Plus",
     "pricing": "Tarifs",
+    "process": "Ma méthode",
     "faq": "FAQ",
     "cv": "CV",
     "remote": "à distance partout",
@@ -325,6 +327,7 @@
         "text": "50 % à la livraison. Maintenance en option : {care} FCFA par mois."
       }
     },
+    "stepsMore": "Toute la méthode",
     "faqTitle": "Questions fréquentes",
     "otherTitle": "Autres services"
   }
