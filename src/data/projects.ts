@@ -25,6 +25,7 @@ import pharmapRegisterLocation from "@/assets/screenshots/pharmap/register-locat
 import pharmapRegisterInfo from "@/assets/screenshots/pharmap/register-info.png";
 import pharmapPharmacyHome from "@/assets/screenshots/pharmap/pharmacy-home.png";
 import pharmapAdminVerification from "@/assets/screenshots/pharmap/admin-verification.png";
+import { withFrenchSpacing } from "@/lib/typography";
 
 export type TechStackEntry = {
   layer: Localized;
@@ -87,7 +88,7 @@ export type Project = {
   showcase: string[];
 };
 
-export const projects: Project[] = [
+export const projects: Project[] = withFrenchSpacing([
   {
     slug: "truckparts",
     title: "TruckParts",
@@ -994,7 +995,7 @@ export const projects: Project[] = [
       },
     ],
   },
-];
+]);
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

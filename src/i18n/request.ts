@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { getRequestConfig } from "next-intl/server";
 import { hasLocale } from "next-intl";
 import { routing } from "./routing";
+import { withFrenchSpacing } from "@/lib/typography";
 
 // Runs for every server render: works out the language and loads the
 // matching interface text from messages/<locale>.json. Pages get it from the
@@ -19,8 +20,10 @@ export default getRequestConfig(async ({ locale, requestLocale }) => {
     }
   }
 
+  const messages = (await import(`../../messages/${locale}.json`)).default;
   return {
     locale,
-    messages: (await import(`../../messages/${locale}.json`)).default,
+    // Non-breaking space before French : ; ? ! % (lib/typography.ts).
+    messages: locale === "fr" ? withFrenchSpacing(messages, true) : messages,
   };
 });

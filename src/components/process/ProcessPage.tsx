@@ -10,7 +10,6 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buttonClass } from "@/components/ui/button";
 import { languageAlternates } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
-import { frenchSpacing } from "@/lib/typography";
 import { pad2 } from "@/lib/format";
 import { cx } from "@/lib/cx";
 
@@ -50,7 +49,7 @@ const mono = "font-mono text-[11px] uppercase tracking-[0.12em]";
 export async function ProcessPage({ params }: Props) {
   const locale = (await params).locale as Locale;
   setRequestLocale(locale);
-  const L = (text: { en: string; fr: string }) => frenchSpacing(text[locale], locale);
+  const L = (text: { en: string; fr: string }) => text[locale];
   const care = priceLabel(getTier("care").fcfa, locale).amount;
   const steps = P.steps;
   const whatsapp = whatsappLink(P.whatsapp[locale]);

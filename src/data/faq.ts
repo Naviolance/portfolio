@@ -1,4 +1,5 @@
 import type { Localized } from "@/lib/localized";
+import { withFrenchSpacing } from "@/lib/typography";
 
 // FAQ content. To add a question: add one entry here with BOTH languages
 // (TypeScript won't build if one is missing). It appears on /en/faq and
@@ -31,15 +32,15 @@ export type FaqEntry = {
   link?: { href: string; label: Localized };
 };
 
-export const faqCategoryLabels: Record<FaqCategory, Localized> = {
+export const faqCategoryLabels: Record<FaqCategory, Localized> = withFrenchSpacing({
   prices: { en: "Prices", fr: "Prix" },
   process: { en: "How it works", fr: "Déroulement" },
   payments: { en: "Payments", fr: "Paiements" },
   seo: { en: "Google & SEO", fr: "Google et SEO" },
   general: { en: "General", fr: "Général" },
-};
+});
 
-export const faq: FaqEntry[] = [
+export const faq: FaqEntry[] = withFrenchSpacing([
   {
     id: "website-cost",
     category: "prices",
@@ -180,4 +181,4 @@ export const faq: FaqEntry[] = [
     },
     link: { href: "/#pricing", label: { en: "See SEO & AEO prices", fr: "Voir les tarifs SEO et AEO" } },
   },
-];
+]);

@@ -1,4 +1,5 @@
 import type { Localized } from "@/lib/localized";
+import { withFrenchSpacing } from "@/lib/typography";
 
 // The "How I work" page (/en/how-i-work, /fr/ma-methode): what happens
 // from the first message to launch, step by step.
@@ -22,7 +23,7 @@ export type ProcessStep = {
   handover?: boolean;
 };
 
-export const processPage = {
+export const processPage = withFrenchSpacing({
   title: {
     en: "How I work: from your first message to launch",
     fr: "Ma méthode : de votre premier message à la mise en ligne",
@@ -187,4 +188,4 @@ export const processPage = {
     prices: { en: "See prices", fr: "Voir les tarifs" },
     faq: { en: "More questions? Read the FAQ", fr: "D'autres questions ? Lisez la FAQ" },
   },
-};
+});

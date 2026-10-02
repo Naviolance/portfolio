@@ -1,7 +1,8 @@
 import { WHATSAPP_DISPLAY, whatsappLink } from "@/lib/whatsapp";
 import type { Localized } from "@/lib/localized";
+import { withFrenchSpacing } from "@/lib/typography";
 
-export const site = {
+export const site = withFrenchSpacing({
   name: "Priestly",
   fullName: "Forsangam Weyegho Junior Priestly",
   // Job title: the CV header and the Person jobTitle (what recruiters search).
@@ -41,7 +42,7 @@ export const site = {
   github: "https://github.com/Naviolance",
   upwork: "https://www.upwork.com/freelancers/~0160ee49eadc052094",
   url: siteUrl(),
-} as const;
+} as const);
 
 // Used for canonical/Open Graph URLs, the sitemap and robots.txt.
 // SITE_URL wins once a custom domain is attached; otherwise Vercel's own

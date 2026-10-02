@@ -26,6 +26,22 @@ test("every sitemap page has its SEO basics", async ({ page, request }) => {
         /\b(?:nav|whatsapp|hero|work|gallery|faq|project|about|experience|contact|services|pricing|footer|faqTeaser)\.[a-z][A-Za-z]+\b/
       );
 
+      // French: a breakable space before : ; ? ! % » (or after «) lets the
+      // sign wrap onto its own line. lib/typography.ts fixes data and
+      // messages; this catches text that bypasses it. Reads every text node
+      // (closed FAQ answers included) plus the title and meta description.
+      if (path.startsWith("/fr")) {
+        const french = await page.evaluate(() => {
+          const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT);
+          const parts = [document.title, document.querySelector('meta[name="description"]')?.getAttribute("content") ?? ""];
+          for (let node = walker.nextNode(); node; node = walker.nextNode()) {
+            if (!node.parentElement?.closest("script, style")) parts.push(node.textContent ?? "");
+          }
+          return parts.join("\n");
+        });
+        expect(french.match(/.{0,30}(?:\S [:;?!%»]|« ).{0,10}/g), "breakable space in French").toBeNull();
+      }
+
       // Structured data must be valid JSON, or search engines ignore it.
       for (const json of await page.locator('script[type="application/ld+json"]').allTextContents()) {
         expect(() => JSON.parse(json), "valid JSON-LD").not.toThrow();
