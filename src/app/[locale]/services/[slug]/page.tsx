@@ -17,6 +17,8 @@ import { buttonClass } from "@/components/ui/button";
 import { languageAlternates } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
 import { pad2 } from "@/lib/format";
+import { cx } from "@/lib/cx";
+import { beforeAfterTag } from "@/components/ui/before-after";
 import { PROCESS_PATH } from "@/data/page-paths";
 
 // One page per service, at a translated address: /en/services/ecommerce,
@@ -227,7 +229,35 @@ export default async function ServicePage(props: PageProps<"/[locale]/services/[
         </section>
 
         <section className="mt-14">
-          <Eyebrow as="h2">{t("proofTitle")}</Eyebrow>
+          <Eyebrow as="h2">{page.proof.pairs ? t("beforeAfterTitle") : t("proofTitle")}</Eyebrow>
+          {/* Redesign: before and after side by side, one pair per screen. */}
+          {page.proof.pairs && (
+            <div className="mt-4 space-y-6">
+              {page.proof.pairs.map((pair) => (
+                <figure key={pair.label.en}>
+                  <div className="grid grid-cols-1 gap-2.5 sm:grid-cols-2">
+                    {(["before", "after"] as const).map((when) => (
+                      <BrowserFrame key={when} size="sm" host={page.proof.host ?? ""}>
+                        <div className="relative aspect-[2/1]">
+                          <Image
+                            src={pair[when]}
+                            alt={`${page.proof.title[locale]}, ${pair.label[locale]}: ${t(when)}`}
+                            sizes="(min-width: 1024px) 330px, (min-width: 640px) 50vw, 100vw"
+                            placeholder="blur"
+                            className="absolute inset-0 h-full w-full object-cover object-top"
+                          />
+                          <span aria-hidden className={cx(beforeAfterTag, "left-2")}>
+                            {t(when)}
+                          </span>
+                        </div>
+                      </BrowserFrame>
+                    ))}
+                  </div>
+                  <figcaption className="mt-2 font-mono text-xs text-ink-soft">{pair.label[locale]}</figcaption>
+                </figure>
+              ))}
+            </div>
+          )}
           <div className="mt-4">
             {page.proof.href.startsWith("http") ? (
               <a href={page.proof.href} target="_blank" rel="noopener noreferrer" className={proofClass}>

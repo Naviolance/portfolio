@@ -12,6 +12,7 @@ export const SERVICE_SLUGS = {
   "web-applications": { en: "web-applications", fr: "developpement-application-web" },
   wordpress: { en: "wordpress", fr: "site-wordpress" },
   seo: { en: "seo-ai-search", fr: "referencement-google-ia" },
+  redesign: { en: "redesign", fr: "refonte-site-web" },
 } satisfies Record<string, Localized>;
 
 export type ServiceId = keyof typeof SERVICE_SLUGS;
