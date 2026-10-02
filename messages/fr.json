@@ -74,7 +74,8 @@
     "example": "Exemple :",
     "ctaTitle": "Vous ne savez pas ce qu'il vous faut ?",
     "ctaText": "Dites-moi ce que le site ou l'application doit faire, et je vous propose la façon la plus simple de le construire.",
-    "cta": "Parlons-en"
+    "cta": "Parlons-en",
+    "details": "Prix et détails →"
   },
   "experience": {
     "heading": "Expérience",
@@ -287,5 +288,44 @@
         "hint": "Parcours, compétences, PDF"
       }
     }
+  },
+  "service": {
+    "crumb": "Services",
+    "price": "Prix",
+    "timeline": "Délai",
+    "care": "Maintenance",
+    "monthly": "Suivi mensuel",
+    "payment": "Paiement",
+    "paymentValue": "50 % / 50 %",
+    "paymentNote": "au début / à la livraison",
+    "perMonth": "/ mois",
+    "seePrices": "Voir tous les tarifs",
+    "includesTitle": "Ce que vous obtenez",
+    "optionsTitle": "Options et prix",
+    "proofTitle": "La preuve",
+    "proofInternal": "Lire l'étude de cas →",
+    "proofExternal": "Voir le site ↗",
+    "proofHome": "Voir la page d'accueil →",
+    "stepsTitle": "Comment ça se passe",
+    "steps": {
+      "1": {
+        "title": "Vous m'expliquez",
+        "text": "Sur WhatsApp : ce dont vous avez besoin et pourquoi."
+      },
+      "2": {
+        "title": "Devis",
+        "text": "Un prix et un délai précis avant de commencer."
+      },
+      "3": {
+        "title": "Création",
+        "text": "Vous payez 50 % au départ, puis je construis."
+      },
+      "4": {
+        "title": "Mise en ligne",
+        "text": "50 % à la livraison. Maintenance en option : {care} FCFA par mois."
+      }
+    },
+    "faqTitle": "Questions fréquentes",
+    "otherTitle": "Autres services"
   }
 }

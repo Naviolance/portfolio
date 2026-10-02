@@ -65,7 +65,7 @@ export function Footer() {
             <ul className="mt-3 space-y-2">
               {services.map((service) => (
                 <li key={service.title.en}>
-                  <Link href={{ pathname: "/", hash: "services" }} className={link}>
+                  <Link href={`/services/${service.slug[locale]}`} className={link}>
                     {service.title[locale]}
                   </Link>
                 </li>

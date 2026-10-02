@@ -31,7 +31,11 @@ export function Services() {
             >
               <span className="font-mono text-xs text-label lg:self-start lg:pt-2">{pad2(i + 1)}</span>
               <div>
-                <h3 className="font-display text-2xl font-semibold tracking-tight text-ink">{service.title[locale]}</h3>
+                <h3 className="font-display text-2xl font-semibold tracking-tight text-ink">
+                  <Link href={`/services/${service.slug[locale]}`} className="transition-colors hover:text-accent-ink">
+                    {service.title[locale]}
+                  </Link>
+                </h3>
                 <p className="mt-2.5 max-w-xl text-ink-soft">{service.description[locale]}</p>
                 <p className="mt-3.5 font-mono text-xs leading-relaxed text-ink-soft">
                   <span className="text-label">{t("example")}</span>{" "}
@@ -47,6 +51,12 @@ export function Services() {
                     service.evidence[locale]
                   )}
                 </p>
+                <Link
+                  href={`/services/${service.slug[locale]}`}
+                  className="mt-3 inline-flex min-h-11 items-center text-sm font-medium text-accent-ink link-underline"
+                >
+                  {t("details")}
+                </Link>
               </div>
               {service.image && (
                 <BrowserFrame size="sm" host={service.image.label[locale]} className="sm:col-start-2 lg:col-start-3">
