@@ -3,6 +3,7 @@ import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { CV_PDF, education, experience } from "@/data/cv";
 import { Eyebrow } from "@/components/ui/Eyebrow";
+import { SectionTitle } from "@/components/ui/SectionTitle";
 import { buttonClass } from "@/components/ui/button";
 
 // Compact rows under About: experience and education side by side. Each
@@ -14,9 +15,13 @@ export function Experience() {
 
   return (
     <section id="experience" className="scroll-mt-16 border-b border-line">
-      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-12 px-5 pt-4 pb-16 sm:pb-24 lg:grid-cols-2 lg:gap-14">
+      <div className="mx-auto grid max-w-5xl grid-cols-1 gap-x-14 gap-y-10 px-5 pt-10 pb-16 sm:pt-14 sm:pb-24 lg:grid-cols-2">
+        <div data-reveal className="lg:col-span-2">
+          <Eyebrow>{t("eyebrow")}</Eyebrow>
+          <SectionTitle className="mt-3">{t("heading")}</SectionTitle>
+        </div>
         <div data-reveal>
-          <Eyebrow as="h2">{t("work")}</Eyebrow>
+          <Eyebrow as="h3">{t("work")}</Eyebrow>
           <ol className="mt-3">
             {experience.map((job) => (
               <li key={job.company} className="border-t border-line">
@@ -51,7 +56,7 @@ export function Experience() {
         </div>
 
         <div data-reveal>
-          <Eyebrow as="h2">{t("education")}</Eyebrow>
+          <Eyebrow as="h3">{t("education")}</Eyebrow>
           <ul className="mt-3">
             {education.map((item) => (
               <li
@@ -67,7 +72,7 @@ export function Experience() {
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <a
-              href={CV_PDF}
+              href={CV_PDF[locale]}
               download
               className={buttonClass({ variant: "secondary", size: "sm" })}
             >

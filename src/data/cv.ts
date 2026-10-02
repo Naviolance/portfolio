@@ -3,7 +3,12 @@ import type { Localized } from "@/lib/localized";
 // Background from the CV (Forsangam_Junior_CV_2026.pdf). Keep this and the
 // PDF in public/cv/ in step: recruiters compare the two.
 
-export const CV_PDF = "/cv/Forsangam-Junior-Priestly-CV-2026.pdf";
+// Both PDFs are generated from this file: `npm run cv:pdf` (see
+// scripts/cv-pdf.mjs). Edit here, re-run it, commit the PDFs.
+export const CV_PDF: Localized = {
+  en: "/cv/Forsangam-Junior-Priestly-CV-2026.pdf",
+  fr: "/cv/Forsangam-Junior-Priestly-CV-2026-FR.pdf",
+};
 
 // Used by the /cv page (the web version of the PDF).
 export const profile: Localized = {
@@ -19,6 +24,8 @@ export type CvProject = {
   slug?: string;
   liveUrl?: string;
   codeUrl?: string;
+  // One line for the proof cards at the top of the web CV.
+  proof?: Localized;
   points: Localized[];
 };
 
@@ -28,6 +35,7 @@ export const cvProjects: CvProject[] = [
     year: "2026",
     stack: "Next.js, NestJS, TypeScript, PostgreSQL, Prisma, Docker, MinIO",
     slug: "truckparts",
+    proof: { en: "Online store with Mobile Money checkout that can't oversell stock", fr: "Boutique en ligne avec paiement Mobile Money qui ne peut pas survendre le stock" },
     liveUrl: "https://truck-spare-part-store-frontend.vercel.app",
     codeUrl: "https://github.com/Naviolance/Truck-spare-part-store",
     points: [
@@ -54,6 +62,7 @@ export const cvProjects: CvProject[] = [
     year: "2026",
     stack: "React, TypeScript, Vite, NestJS, PostgreSQL, Prisma, Leaflet",
     slug: "pharmap",
+    proof: { en: "Medicine finder app with verified pharmacies and an audit trail", fr: "Application pour trouver un médicament, avec pharmacies vérifiées et historique des validations" },
     liveUrl: "https://pharmap-web.vercel.app",
     // No codeUrl: the repository is private.
     points: [
@@ -76,6 +85,7 @@ export const cvProjects: CvProject[] = [
     year: "2026",
     stack: "Next.js, TypeScript, Prisma, PostgreSQL, Auth.js",
     slug: "car-rental",
+    proof: { en: "Booking site that checks for overlapping bookings inside a transaction", fr: "Site de réservation qui vérifie les chevauchements dans une transaction" },
     liveUrl: "https://car-rental-xi-lemon.vercel.app",
     codeUrl: "https://github.com/Naviolance/car-rental",
     points: [
