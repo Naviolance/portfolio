@@ -113,3 +113,13 @@ test("404: server-rendered, right status and language", async ({ request }) => {
     expect(html, path).toContain('content="noindex"');
   }
 });
+
+// Service pages have a translated address: the language switch must land
+// on the other language's address, and hreflang must point to it too.
+test("service pages: language switch and hreflang use the translated address", async ({ page }) => {
+  await page.goto("/en/services/ecommerce");
+  await expect(page.locator('link[hreflang="fr"]')).toHaveAttribute("href", /\/fr\/services\/creation-boutique-en-ligne$/);
+  await page.locator('header a[hreflang="fr"]').filter({ visible: true }).first().click();
+  await expect(page).toHaveURL(/\/fr\/services\/creation-boutique-en-ligne$/);
+  await expect(page.locator("h1")).toContainText("Création de boutique en ligne");
+});

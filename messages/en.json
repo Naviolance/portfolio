@@ -74,7 +74,8 @@
     "example": "Example:",
     "ctaTitle": "Not sure what you need?",
     "ctaText": "Tell me what the site or app should do, and I'll suggest the simplest way to build it.",
-    "cta": "Let's talk"
+    "cta": "Let's talk",
+    "details": "Prices and details →"
   },
   "experience": {
     "heading": "Experience",
@@ -287,5 +288,44 @@
         "hint": "Experience, skills, PDF"
       }
     }
+  },
+  "service": {
+    "crumb": "Services",
+    "price": "Price",
+    "timeline": "Timeline",
+    "care": "Maintenance",
+    "monthly": "Monthly follow-up",
+    "payment": "Payment",
+    "paymentValue": "50% / 50%",
+    "paymentNote": "at the start / on delivery",
+    "perMonth": "/ month",
+    "seePrices": "See all prices",
+    "includesTitle": "What you get",
+    "optionsTitle": "Options and prices",
+    "proofTitle": "Proof",
+    "proofInternal": "Read the case study →",
+    "proofExternal": "Visit the site ↗",
+    "proofHome": "See the homepage →",
+    "stepsTitle": "How it works",
+    "steps": {
+      "1": {
+        "title": "You tell me",
+        "text": "On WhatsApp: what you need and what it's for."
+      },
+      "2": {
+        "title": "Quote",
+        "text": "An exact price and timeline before we start."
+      },
+      "3": {
+        "title": "Build",
+        "text": "You pay 50% to start, then I build it."
+      },
+      "4": {
+        "title": "Launch",
+        "text": "50% on delivery. Maintenance is optional: {care} FCFA a month."
+      }
+    },
+    "faqTitle": "Common questions",
+    "otherTitle": "Other services"
   }
 }

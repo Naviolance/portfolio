@@ -1,10 +1,17 @@
 import type { StaticImageData } from "next/image";
 import type { Localized } from "@/lib/localized";
+import type { Locale } from "@/i18n/routing";
+import { SERVICE_SLUGS, type ServiceId } from "./service-slugs";
 import truckpartsHome from "@/assets/screenshots/truckparts/home.png";
 import carRentalHome from "@/assets/screenshots/car-rental/home.png";
 import siteHome from "@/assets/screenshots/site/home.webp";
 
+export type { ServiceId };
+
 export type Service = {
+  id: ServiceId;
+  // The service page's address in each language (service-slugs.ts).
+  slug: Localized;
   title: Localized;
   description: Localized;
   evidence: Localized;
@@ -16,8 +23,11 @@ export type Service = {
   image?: { src: StaticImageData; label: Localized };
 };
 
+
 export const services: Service[] = [
   {
+    id: "business-websites",
+    slug: SERVICE_SLUGS["business-websites"],
     title: { en: "Business websites", fr: "Sites vitrines" },
     description: {
       en: "Websites for businesses and organizations. They load fast, work well on phones and are easy to find on Google.",
@@ -27,6 +37,8 @@ export const services: Service[] = [
     href: "https://theastuteink.com",
   },
   {
+    id: "ecommerce",
+    slug: SERVICE_SLUGS["ecommerce"],
     title: { en: "E-commerce", fr: "E-commerce" },
     description: {
       en: "Online stores with a product catalog, cart and checkout that takes Mobile Money and card payments. Plus the admin tools you need to run the store every day.",
@@ -43,6 +55,8 @@ export const services: Service[] = [
     },
   },
   {
+    id: "web-applications",
+    slug: SERVICE_SLUGS["web-applications"],
     title: { en: "Web applications", fr: "Applications web" },
     description: {
       en: "Custom tools built around how your business works: dashboards, booking systems and management portals.",
@@ -59,6 +73,8 @@ export const services: Service[] = [
     },
   },
   {
+    id: "wordpress",
+    slug: SERVICE_SLUGS["wordpress"],
     title: { en: "WordPress", fr: "WordPress" },
     description: {
       en: "Business websites, theme changes and ongoing maintenance, when WordPress is the better choice for the project.",
@@ -68,6 +84,8 @@ export const services: Service[] = [
     href: "https://theastuteink.com",
   },
   {
+    id: "seo",
+    slug: SERVICE_SLUGS["seo"],
     title: { en: "SEO & AI search (AEO)", fr: "Référencement Google et IA (SEO/AEO)" },
     description: {
       en: "Get found on Google and in AI answers like ChatGPT and Google's AI Overviews: speed, page structure, structured data, Google and Bing setup, and content written so it can be quoted.",
@@ -80,3 +98,12 @@ export const services: Service[] = [
     image: { src: siteHome, label: { en: "this site", fr: "ce site" } },
   },
 ];
+
+export function getService(id: string) {
+  return services.find((service) => service.id === id);
+}
+
+// The service whose slug (in that language) is `slug`.
+export function serviceBySlug(slug: string, locale: Locale) {
+  return services.find((service) => service.slug[locale] === slug);
+}

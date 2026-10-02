@@ -168,3 +168,19 @@ export function priceLabel({ min, max }: PriceTier["fcfa"], locale: Locale) {
     usd: max === null ? `≈ ${FROM[locale]} ${u(min)}` : `≈ ${u(min)}–${u(max)}`,
   };
 }
+
+const allTiers = pricing.flatMap((group) => group.tiers);
+
+export function getTier(id: string) {
+  const tier = allTiers.find((t) => t.id === id);
+  if (!tier) throw new Error(`Unknown price tier: ${id}`);
+  return tier;
+}
+
+// The combined range of several tiers (a service page's "Price" row):
+// lowest minimum to highest maximum, open-ended if any tier is.
+export function tiersRange(ids: string[]): PriceTier["fcfa"] {
+  const tiers = ids.map(getTier);
+  const max = tiers.some((t) => t.fcfa.max === null) ? null : Math.max(...tiers.map((t) => t.fcfa.max!));
+  return { min: Math.min(...tiers.map((t) => t.fcfa.min)), max };
+}
