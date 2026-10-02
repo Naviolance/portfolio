@@ -168,14 +168,13 @@ function Deck({ items }: Props) {
                 <Image
                   src={item.image}
                   alt={item.alt}
-                  fill
                   // Phones never show the deck: "1px" makes them fetch the
                   // tiniest variant for the one eagerly loaded image.
                   sizes="(min-width: 1024px) 512px, 1px"
                   loading={i === 0 ? "eager" : "lazy"}
                   fetchPriority={i === 0 ? "high" : "auto"}
                   placeholder="blur"
-                  className="object-cover object-top"
+                  className="absolute inset-0 h-full w-full object-cover object-top"
                 />
               </span>
             </Link>

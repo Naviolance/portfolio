@@ -154,10 +154,9 @@ export default async function ServicePage(props: PageProps<"/[locale]/services/[
             <Image
               src={page.proof.image}
               alt={`${page.proof.title[locale]}: ${page.proof.text[locale]}`}
-              fill
               sizes="(min-width: 1024px) 260px, 100vw"
               placeholder="blur"
-              className="object-cover object-left-top"
+              className="absolute inset-0 h-full w-full object-cover object-left-top"
             />
           </div>
         </BrowserFrame>

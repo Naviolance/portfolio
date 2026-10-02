@@ -49,9 +49,8 @@ export function ScreenshotGallery({ projectTitle, screenshots }: Props) {
                   src={shot.src}
                   alt={shot.alt[locale]}
                   placeholder="blur"
-                  fill
                   sizes={i === 0 ? "(min-width: 1024px) 520px, 100vw" : "(min-width: 1024px) 260px, 50vw"}
-                  className="object-cover object-left-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
+                  className="absolute inset-0 h-full w-full object-cover object-left-top transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
               </span>
               <span className="absolute inset-x-0 bottom-0 bg-gradient-to-t from-black/75 to-transparent px-2.5 pt-6 pb-2 text-left font-mono text-[11px] text-white">
