@@ -1,4 +1,5 @@
 import { ImageResponse } from "next/og";
+import { existsSync } from "node:fs";
 import { join } from "node:path";
 import sharp from "sharp";
 import { getProject, projects } from "@/data/projects";
@@ -51,10 +52,15 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   // First clause of the summary: "An online store for truck spare parts."
   const lead = project.summary[locale].split(/[.:]/)[0].trim();
 
-  // Crop the 1.7MB source PNG to the panel (its top-left corner, where the
+  // Crop the large source screenshot to the panel (its top-left corner, where the
   // headline is) before embedding it. Messaging apps (WhatsApp especially)
   // silently drop previews whose image is too heavy.
-  const shot = await sharp(join(process.cwd(), `src/assets/screenshots/${slug}/home.png`))
+  // The project's home screenshot, PNG or WebP (a path, not an import, so
+  // nothing checks it at build time: tests/pages.spec.ts loads every card).
+  const dir = join(process.cwd(), `src/assets/screenshots/${slug}`);
+  const source = ["home.png", "home.webp"].map((file) => join(dir, file)).find((file) => existsSync(file));
+  if (!source) return new Response("Screenshot not found", { status: 500 });
+  const shot = await sharp(source)
     .resize(624, 632, { fit: "cover", position: "northwest" })
     .jpeg({ quality: 62 })
     .toBuffer();

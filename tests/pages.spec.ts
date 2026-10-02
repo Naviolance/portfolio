@@ -42,6 +42,16 @@ test("every sitemap page has its SEO basics", async ({ page, request }) => {
         expect(french.match(/.{0,30}(?:\S [:;?!%»]|« ).{0,10}/g), "breakable space in French").toBeNull();
       }
 
+      // Link previews (WhatsApp, LinkedIn, X): exactly one share image that
+      // loads, and the X title is this page's, not the homepage's. A page
+      // setting its own openGraph replaces the layout's (lib/seo.ts).
+      const images = await page.locator('meta[property="og:image"]').evaluateAll((els) => els.map((e) => e.getAttribute("content") ?? ""));
+      expect(images, "one share image").toHaveLength(1);
+      const image = new URL(images[0]);
+      expect((await request.get(image.pathname + image.search)).status(), "share image loads").toBe(200);
+      const ogTitle = await page.locator('meta[property="og:title"]').getAttribute("content");
+      await expect(page.locator('meta[name="twitter:title"]'), "X preview title").toHaveAttribute("content", ogTitle ?? "");
+
       // Structured data must be valid JSON, or search engines ignore it.
       for (const json of await page.locator('script[type="application/ld+json"]').allTextContents()) {
         expect(() => JSON.parse(json), "valid JSON-LD").not.toThrow();

@@ -14,7 +14,7 @@ import { FaqPreview, localizeFaq } from "@/components/faq/FaqItem";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { buttonClass } from "@/components/ui/button";
-import { languageAlternates } from "@/lib/seo";
+import { languageAlternates, shareMetadata } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
 import { pad2 } from "@/lib/format";
 import { cx } from "@/lib/cx";
@@ -49,11 +49,12 @@ export async function generateMetadata(props: PageProps<"/[locale]/services/[slu
     title: page.heading[locale],
     description: page.metaDescription[locale],
     alternates: languageAlternates(locale, pathsOf(service)),
-    openGraph: {
+    ...shareMetadata(locale, {
       title: page.heading[locale],
       description: page.metaDescription[locale],
-      url: `/${locale}${pathsOf(service)[locale]}`,
-    },
+      path: `/${locale}${pathsOf(service)[locale]}`,
+      image: "own",
+    }),
   };
 }
 

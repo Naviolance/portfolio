@@ -4,7 +4,7 @@ import { hasLocale } from "next-intl";
 import { setRequestLocale } from "next-intl/server";
 import { routing, type Locale } from "@/i18n/routing";
 import { site } from "@/data/site";
-import { languageAlternates } from "@/lib/seo";
+import { languageAlternates, shareMetadata } from "@/lib/seo";
 import { SiteShell } from "@/components/SiteShell";
 import "../globals.css";
 
@@ -29,20 +29,9 @@ export async function generateMetadata(
     // canonical = this language's URL; languages = hreflang tags pointing
     // Google to the same page in the other language.
     alternates: languageAlternates(locale, ""),
-    openGraph: {
-      title,
-      description: site.description[locale],
-      siteName: site.brand,
-      type: "website",
-      locale: locale === "fr" ? "fr_FR" : "en_US",
-      alternateLocale: locale === "fr" ? "en_US" : "fr_FR",
-      url: `/${locale}`,
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description: site.description[locale],
-    },
+    // The homepage's link preview; every other page sets its own through
+    // the same helper (lib/seo.ts explains why each page must).
+    ...shareMetadata(locale, { title, description: site.description[locale], path: `/${locale}` }),
     // Search engine ownership checks (HTML tag method): Google Search Console
     // and Bing Webmaster Tools. Public by design; they only prove the site is
     // ours. Bing's index also feeds ChatGPT search and Copilot.
