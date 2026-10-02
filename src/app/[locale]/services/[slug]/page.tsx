@@ -53,6 +53,7 @@ export async function generateMetadata(props: PageProps<"/[locale]/services/[slu
       title: page.heading[locale],
       description: page.metaDescription[locale],
       path: `/${locale}${pathsOf(service)[locale]}`,
+      image: "own",
     }),
   };
 }

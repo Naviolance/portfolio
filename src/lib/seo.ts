@@ -33,8 +33,8 @@ export function languageAlternates(locale: Locale, path: string | Record<Locale,
 // image and its own title.
 //
 // image: the site's card ([locale]/opengraph-image.tsx) by default, or "own"
-// for a page whose folder has its own opengraph-image file (case studies),
-// which Next then adds itself.
+// for a page whose folder has its own opengraph-image file (case studies,
+// service pages, How I work), which Next then adds itself.
 export function shareMetadata(
   locale: Locale,
   { title, description, path, type = "website", image = "site" }: {

@@ -53,6 +53,11 @@ export type ServicePage = {
     // of the single image.
     pairs?: { label: Localized; before: StaticImageData; after: StaticImageData }[];
   };
+  // The share card (link previews on WhatsApp, LinkedIn...): three short
+  // ticked points, and the screenshot shown on the right, a file under
+  // src/assets/screenshots ("before" adds a before/after pair). No
+  // screenshot: the card shows the starting price instead.
+  card: { items: Localized<string[]>; shot?: string; before?: string };
   // FAQ entries (data/faq.ts ids) shown as answer previews.
   faqIds: string[];
   // The main button's label, and its pre-typed WhatsApp message.
@@ -97,6 +102,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       },
       href: "https://theastuteink.com",
     },
+    card: { items: { en: ["Fast on phones", "Ready for Google", "Yours to keep"], fr: ["Rapide sur mobile", "Prêt pour Google", "Bien à vous"] } },
     faqIds: ["showcase-website", "what-to-provide", "cost-after-launch"],
     cta: { en: "Talk about my website ↗", fr: "Parler de mon site ↗" },
     whatsapp: {
@@ -147,6 +153,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       image: truckpartsHome,
       host: "truck-spare-part-store-frontend.vercel.app",
     },
+    card: { items: { en: ["Catalog & cart", "Mobile Money", "Admin on a phone"], fr: ["Catalogue, panier", "Mobile Money", "Admin sur mobile"] }, shot: "truckparts/home.png" },
     faqIds: ["mobile-money-store", "timeline", "cost-after-launch"],
     cta: { en: "Talk about my store ↗", fr: "Parler de ma boutique ↗" },
     whatsapp: {
@@ -195,6 +202,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       image: carRentalHome,
       host: "car-rental-xi-lemon.vercel.app",
     },
+    card: { items: { en: ["Your workflow", "Staff accounts", "Works on phones"], fr: ["Sur mesure", "Comptes d'équipe", "Sur téléphone"] }, shot: "car-rental/home.png" },
     faqIds: ["app-or-website", "wordpress-or-custom", "how-to-pay"],
     cta: { en: "Talk about my app ↗", fr: "Parler de mon application ↗" },
     whatsapp: {
@@ -241,6 +249,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       },
       href: "https://theastuteink.com",
     },
+    card: { items: { en: ["You edit it", "WooCommerce", "Maintenance"], fr: ["Vous le modifiez", "WooCommerce", "Maintenance"] } },
     faqIds: ["wordpress-or-custom", "what-to-provide", "cost-after-launch"],
     cta: { en: "Talk about my WordPress site ↗", fr: "Parler de mon WordPress ↗" },
     whatsapp: {
@@ -290,6 +299,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       image: siteHome,
       host: "jpfw-webservices.vercel.app",
     },
+    card: { items: { en: ["Google & Bing", "AI answers", "Plain reports"], fr: ["Google et Bing", "Réponses IA", "Rapports clairs"] }, shot: "site/home.webp" },
     faqIds: ["show-up-on-google", "where-do-you-work", "how-to-pay"],
     cta: { en: "Get my business found ↗", fr: "Parler de mon référencement ↗" },
     whatsapp: {
@@ -346,6 +356,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
         { label: { en: "Admin: pharmacy verification", fr: "Admin : vérification des pharmacies" }, before: pharmapBeforeAdmin, after: pharmapAdmin },
       ],
     },
+    card: { items: { en: ["Mockup first", "Faster pages", "Google ranking kept"], fr: ["Maquette d'abord", "Plus rapide", "Google gardé"] }, shot: "pharmap/home.webp", before: "pharmap/before/home.webp" },
     faqIds: ["what-to-provide", "show-up-on-google", "how-to-pay"],
     cta: { en: "Talk about my redesign ↗", fr: "Parler de ma refonte ↗" },
     whatsapp: {

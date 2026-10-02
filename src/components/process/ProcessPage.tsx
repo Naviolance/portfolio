@@ -30,7 +30,7 @@ export async function processMetadata({ params }: Props): Promise<Metadata> {
     title: P.title[locale],
     description: P.metaDescription[locale],
     alternates: languageAlternates(locale, PROCESS_PATH),
-    ...shareMetadata(locale, { title: P.title[locale], description: P.metaDescription[locale], path: `/${locale}${PROCESS_PATH[locale]}` }),
+    ...shareMetadata(locale, { title: P.title[locale], description: P.metaDescription[locale], path: `/${locale}${PROCESS_PATH[locale]}`, image: "own" }),
   };
 }
 
