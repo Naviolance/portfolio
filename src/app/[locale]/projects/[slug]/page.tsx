@@ -15,6 +15,7 @@ import { formatDate, pad2 } from "@/lib/format";
 import { spyLink, spyScope, spyTarget } from "@/lib/scroll-spy";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
+import { cx } from "@/lib/cx";
 import { buttonClass } from "@/components/ui/button";
 
 // Only the known projects: any other slug matches no route and gets the
@@ -195,19 +196,38 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
 
         {/* The page's main image: requested first and eagerly, at the size it
             is shown (it's the likely LCP element on desktop). */}
-        <BrowserFrame host={new URL(project.liveUrl).host}>
-          <div className="relative aspect-[2/1]">
-            <Image
-              src={cover.src}
-              alt={cover.alt[locale]}
-              loading="eager"
-              fetchPriority="high"
-              placeholder="blur"
-              sizes="(min-width: 1024px) 520px, 100vw"
-              className="absolute inset-0 h-full w-full object-cover object-top"
-            />
-          </div>
-        </BrowserFrame>
+        <div className={cx("relative", project.phones && "lg:mb-24")}>
+          <BrowserFrame host={new URL(project.liveUrl).host}>
+            <div className="relative aspect-[2/1]">
+              <Image
+                src={cover.src}
+                alt={cover.alt[locale]}
+                loading="eager"
+                fetchPriority="high"
+                placeholder="blur"
+                sizes="(min-width: 1024px) 520px, 100vw"
+                className="absolute inset-0 h-full w-full object-cover object-top"
+              />
+            </div>
+          </BrowserFrame>
+          {/* Phone screenshots as a stair over the bottom-right corner, each
+              one a step higher. Wide screens only: on a phone the visitor is
+              already looking at one. Lazy images inside display:none aren't
+              downloaded, so phones don't pay for them. */}
+          {project.phones && (
+            <div className="absolute -bottom-24 right-0 hidden items-end lg:flex xl:-right-12">
+              {project.phones.map((phone, i) => (
+                <div
+                  key={i}
+                  className="w-[108px] overflow-hidden rounded-[20px] border-[5px] border-brand-navy bg-brand-navy shadow-[0_16px_36px_var(--shade)]"
+                  style={{ marginLeft: i ? -22 : 0, transform: `translateY(${-28 * i}px)`, zIndex: i + 1 }}
+                >
+                  <Image src={phone.src} alt={phone.alt[locale]} sizes="108px" className="block h-auto w-full rounded-[15px]" />
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
       </header>
 
       <div
