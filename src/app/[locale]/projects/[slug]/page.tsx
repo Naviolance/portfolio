@@ -17,6 +17,12 @@ import { Eyebrow } from "@/components/ui/Eyebrow";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
 import { buttonClass } from "@/components/ui/button";
 
+// Only the known projects: any other slug matches no route and gets the
+// server-rendered global 404 (app/global-not-found.tsx). Next.js logs
+// "NoFallbackError" for such a request: expected, the visitor still gets
+// the 404 page.
+export const dynamicParams = false;
+
 // Combined with the layout's locales: every project in every language.
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));

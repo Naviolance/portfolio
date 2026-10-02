@@ -258,5 +258,34 @@
     "cv": "CV",
     "remote": "à distance partout",
     "updated": "Mis à jour le {date}"
+  },
+  "notFound": {
+    "title": "Page introuvable",
+    "eyebrow": "404",
+    "heading": "Cette page n'existe pas.",
+    "text": "Le lien est peut-être ancien ou mal tapé. Choisissez où vous alliez :",
+    "home": "Accueil",
+    "to": "À",
+    "status": "STATUT",
+    "stamp": "ADRESSE INTROUVABLE",
+    "tryInstead": "ESSAYEZ PLUTÔT",
+    "pages": {
+      "projects": {
+        "label": "Projets",
+        "hint": "Trois études de cas avec démo"
+      },
+      "pricing": {
+        "label": "Tarifs",
+        "hint": "Les fourchettes de prix"
+      },
+      "faq": {
+        "label": "FAQ",
+        "hint": "Prix, délais, paiements"
+      },
+      "cv": {
+        "label": "CV",
+        "hint": "Parcours, compétences, PDF"
+      }
+    }
   }
 }

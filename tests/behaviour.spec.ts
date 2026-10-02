@@ -95,3 +95,21 @@ test("CV page: PDF in the page's language, ProfilePage data", async ({ page }) =
     expect(data.mainEntity["@id"]).toMatch(/\/#person$/);
   }
 });
+
+// Broken links get a real 404, rendered on the server (visible before any
+// JavaScript loads), in the address's language, inside the site frame.
+test("404: server-rendered, right status and language", async ({ request }) => {
+  for (const [path, lang, heading] of [
+    ["/en/old-page", "en", "This page doesn't exist."],
+    ["/fr/projets", "fr", "Cette page n&#x27;existe pas."],
+    ["/en/projects/unknown", "en", "This page doesn't exist."],
+  ] as const) {
+    const response = await request.get(path);
+    expect(response.status(), path).toBe(404);
+    const html = await response.text();
+    expect(html, path).toContain(`<html lang="${lang}"`);
+    expect(html, path).toMatch(/<h1[^>]*>/);
+    expect(html, path).toContain(heading.replace("'", "&#x27;"));
+    expect(html, path).toContain('content="noindex"');
+  }
+});
