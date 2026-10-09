@@ -25,7 +25,7 @@ export async function generateMetadata(props: PageProps<"/[locale]/cv">): Promis
   const { locale } = (await props.params) as { locale: Locale };
   const t = await getTranslations({ locale, namespace: "cv" });
   return {
-    title: t("title"),
+    title: t("metaTitle"),
     description: t("metaDescription"),
     alternates: languageAlternates(locale, "/cv"),
     ...shareMetadata(locale, { title: `${t("title")}: ${site.fullName}`, description: t("metaDescription"), path: `/${locale}/cv` }),
