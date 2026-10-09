@@ -36,7 +36,7 @@ export async function generateMetadata(
   const project = getProject(slug);
   if (!project) return {};
   const path = `/projects/${project.slug}`;
-  const summary = project.summary[locale];
+  const summary = project.metaDescription[locale];
   return {
     title: project.title,
     description: summary,

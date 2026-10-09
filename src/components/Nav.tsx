@@ -1,4 +1,7 @@
 import Image from "next/image";
+// Imported, not from /public: the build gives it a hashed name, so browsers
+// can cache it for good instead of re-downloading it on every visit.
+import mark from "@/assets/brand/mark.webp";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { MobileMenu } from "./MobileMenu";
@@ -35,7 +38,7 @@ export function Nav({ projectTitles }: { projectTitles: Record<string, string> }
       <div className="relative mx-auto flex h-16 max-w-5xl items-center justify-between gap-3 px-5">
         <Link href="/" className="flex items-center gap-2.5">
           <Image
-            src="/brand/mark.webp"
+            src={mark}
             alt=""
             width={32}
             height={32}

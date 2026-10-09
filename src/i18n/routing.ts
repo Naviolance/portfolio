@@ -9,6 +9,11 @@ export const routing = defineRouting({
   // English because clients can come from anywhere; French browsers
   // (most of Cameroon) are sent to /fr automatically.
   defaultLocale: "en",
+  // No hreflang Link header from the middleware: it doesn't know the
+  // translated addresses (/fr/services/creation-site-vitrine...) and sent
+  // Google wrong ones. The <link hreflang> tags in each page and the sitemap
+  // carry the right list (lib/seo.ts, app/sitemap.ts).
+  alternateLinks: false,
 });
 
 export type Locale = (typeof routing.locales)[number];

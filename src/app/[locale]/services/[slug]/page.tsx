@@ -46,11 +46,11 @@ export async function generateMetadata(props: PageProps<"/[locale]/services/[slu
   if (!service) return {};
   const page = servicePages[service.id];
   return {
-    title: page.heading[locale],
+    title: (page.title ?? page.heading)[locale],
     description: page.metaDescription[locale],
     alternates: languageAlternates(locale, pathsOf(service)),
     ...shareMetadata(locale, {
-      title: page.heading[locale],
+      title: (page.title ?? page.heading)[locale],
       description: page.metaDescription[locale],
       path: `/${locale}${pathsOf(service)[locale]}`,
       image: "own",

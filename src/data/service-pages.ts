@@ -35,6 +35,9 @@ export type SummaryRow = {
 export type ServicePage = {
   // The H1: the words a client types into Google.
   heading: Localized;
+  // Shorter page title for Google when the heading is too long to fit
+  // (about 48 characters, before " | Priestly"). Defaults to the heading.
+  title?: Localized;
   // The first paragraph: the answer in one go (what, for whom, price,
   // timeline). What Google snippets and AI tools quote.
   lead: Localized;
@@ -76,7 +79,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
     },
     metaDescription: {
       en: "Showcase website for your business in Douala or anywhere in Cameroon: 150K–350K FCFA, online in 1–2 weeks, mobile-friendly and ready for Google.",
-      fr: "Création de site vitrine pour votre entreprise à Douala et partout au Cameroun : 150K–350K FCFA, en ligne en 1 à 2 semaines, adapté au téléphone et prêt pour Google.",
+      fr: "Création de site vitrine à Douala et partout au Cameroun : 150K–350K FCFA, en ligne en 1 à 2 semaines, adapté au téléphone et prêt pour Google.",
     },
     summary: [
       { label: "price", tiers: ["showcase"], note: { en: "one-time", fr: "une seule fois" } },
@@ -113,13 +116,14 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
 
   ecommerce: {
     heading: { en: "Online stores with Mobile Money payments", fr: "Création de boutique en ligne avec paiement Mobile Money" },
+    title: { en: "Online stores with Mobile Money payments", fr: "Boutique en ligne avec paiement Mobile Money" },
     lead: {
       en: "I build online stores for businesses in Cameroon and abroad: product catalogue, cart, Mobile Money and card payments, and an admin panel you can run from your phone. From 150K FCFA, online in 2 to 6 weeks.",
       fr: "Je crée des boutiques en ligne pour les entreprises au Cameroun et ailleurs : catalogue, panier, paiement Mobile Money et carte, et un espace d'administration que vous gérez depuis votre téléphone. À partir de 150K FCFA, en ligne en 2 à 6 semaines.",
     },
     metaDescription: {
       en: "Online store with Mobile Money and card payments, built in Cameroon: from 150K FCFA, online in 2–6 weeks, with an admin panel that works on a phone.",
-      fr: "Création de boutique en ligne avec paiement Mobile Money et carte au Cameroun : à partir de 150K FCFA, en ligne en 2 à 6 semaines, avec un espace d'administration sur téléphone.",
+      fr: "Boutique en ligne avec paiement Mobile Money et carte au Cameroun : dès 150K FCFA, en ligne en 2 à 6 semaines, gérée depuis votre téléphone.",
     },
     summary: [
       {
@@ -170,7 +174,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
     },
     metaDescription: {
       en: "Custom web applications for businesses in Cameroon and abroad: booking systems, dashboards and management tools that work on any phone. From 5M FCFA.",
-      fr: "Développement d'applications web sur mesure au Cameroun : systèmes de réservation, tableaux de bord et outils de gestion, sur tous les téléphones. À partir de 5M FCFA.",
+      fr: "Applications web sur mesure au Cameroun : réservations, tableaux de bord et outils de gestion, sur tous les téléphones. À partir de 5M FCFA.",
     },
     summary: [
       { label: "price", tiers: ["custom"], note: { en: "quoted per project", fr: "devis par projet" } },
@@ -266,7 +270,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
     },
     metaDescription: {
       en: "SEO and AI search (AEO) for businesses in Cameroon: get found on Google and in ChatGPT answers. Audit from 75K FCFA, audit and fixes from 200K FCFA.",
-      fr: "Référencement Google et IA (SEO/AEO) au Cameroun : soyez trouvé sur Google et dans les réponses de ChatGPT. Audit dès 75K FCFA, audit et corrections dès 200K FCFA.",
+      fr: "Référencement Google et IA au Cameroun : soyez trouvé sur Google et dans les réponses de ChatGPT. Audit dès 75K FCFA, corrections dès 200K.",
     },
     summary: [
       {
@@ -315,7 +319,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
     },
     metaDescription: {
       en: "Website and app redesign in Cameroon: a modern design, faster pages and your Google ranking kept. Site refresh from 100K FCFA, full redesign 300K–700K.",
-      fr: "Refonte de site web au Cameroun : design moderne, pages plus rapides et votre place sur Google conservée. Refonte légère dès 100K FCFA, refonte complète 300K–700K.",
+      fr: "Refonte de site web au Cameroun : design moderne, pages plus rapides, place sur Google conservée. Refonte légère dès 100K FCFA, complète 300K–700K.",
     },
     summary: [
       {
