@@ -11,9 +11,19 @@ test("every sitemap page has its SEO basics", async ({ page, request }) => {
     await test.step(path, async () => {
       const response = await page.goto(path);
       expect(response?.status(), "status").toBe(200);
+      // The hreflang list lives in the HTML and the sitemap only. A second
+      // list in a Link header (the i18n middleware's) gave Google wrong,
+      // 404ing addresses for translated pages (i18n/routing.ts).
+      expect(response?.headers().link ?? "", "no hreflang Link header").not.toContain("hreflang");
       await expect(page.locator("h1"), "exactly one h1").toHaveCount(1);
-      expect((await page.title()).length, "title").toBeGreaterThan(10);
-      await expect(page.locator('meta[name="description"]')).toHaveAttribute("content", /.{50,}/);
+      // Lengths Google shows in full on a computer: ~60 characters of title,
+      // ~160 of description. Longer gets cut, often at the important part.
+      const title = await page.title();
+      expect(title.length, `title: "${title}"`).toBeGreaterThan(10);
+      expect(title.length, `title over 60: "${title}"`).toBeLessThanOrEqual(60);
+      const description = (await page.locator('meta[name="description"]').getAttribute("content")) ?? "";
+      expect(description.length, "description").toBeGreaterThanOrEqual(50);
+      expect(description.length, `description over 160: "${description}"`).toBeLessThanOrEqual(160);
       await expect(page.locator('link[rel="canonical"]')).toHaveAttribute("href", new RegExp(`${path}$`));
       for (const lang of ["en", "fr", "x-default"]) {
         await expect(page.locator(`link[rel="alternate"][hreflang="${lang}"]`), `hreflang ${lang}`).toHaveCount(1);

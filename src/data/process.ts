@@ -26,7 +26,7 @@ export type ProcessStep = {
 export const processPage = withFrenchSpacing({
   title: {
     en: "How I work: from your first message to launch",
-    fr: "Ma méthode : de votre premier message à la mise en ligne",
+    fr: "Ma méthode : du premier message au site en ligne",
   },
   metaDescription: {
     en: "How a website project with me works: a written quote before you pay, 50% to start, previews as it's built, and a domain and hosting in your name.",

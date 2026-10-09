@@ -17,11 +17,14 @@ export async function generateMetadata(
   props: LayoutProps<"/[locale]">
 ): Promise<Metadata> {
   const { locale } = (await props.params) as { locale: Locale };
-  const title = `${site.name}: ${site.headline[locale]} | ${site.brand}`;
+  // Search words and city first, name last; under 60 characters so Google
+  // shows it whole (tests/pages.spec.ts checks every page).
+  const title = `${site.headline[locale]} ${locale === "fr" ? "à" : "in"} Douala | ${site.name}`;
 
   return {
     metadataBase: new URL(site.url),
-    title: { default: title, template: `%s | ${site.name}, ${site.headline[locale]}` },
+    // Short suffix: the page's own words get the space Google shows.
+    title: { default: title, template: `%s | ${site.name}` },
     description: site.description[locale],
     applicationName: site.brand,
     authors: [{ name: site.fullName, url: site.url }],

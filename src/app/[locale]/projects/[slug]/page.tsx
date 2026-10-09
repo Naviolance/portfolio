@@ -36,13 +36,13 @@ export async function generateMetadata(
   const project = getProject(slug);
   if (!project) return {};
   const path = `/projects/${project.slug}`;
-  const summary = project.summary[locale];
+  const summary = project.metaDescription[locale];
   return {
-    title: project.title,
+    title: project.seoTitle[locale],
     description: summary,
     alternates: languageAlternates(locale, path),
     // Its own share image: the opengraph-image file in this folder.
-    ...shareMetadata(locale, { title: project.title, description: summary, path: `/${locale}${path}`, type: "article", image: "own" }),
+    ...shareMetadata(locale, { title: project.seoTitle[locale], description: summary, path: `/${locale}${path}`, type: "article", image: "own" }),
   };
 }
 

@@ -65,6 +65,11 @@ export type Project = {
   category: Localized;
   status: "live-demo";
   summary: Localized;
+  // The page title for Google and link previews: what the project is, not
+  // just its name (at most ~48 characters, before " | Priestly").
+  seoTitle: Localized;
+  // What Google shows under the title: at most ~155 characters.
+  metaDescription: Localized;
   problem: Localized;
   solution: Localized;
   keyFeatures: Localized[];
@@ -102,6 +107,11 @@ export const projects: Project[] = withFrenchSpacing([
     title: "TruckParts",
     category: { en: "Automotive / E-commerce", fr: "Automobile / E-commerce" },
     status: "live-demo",
+    seoTitle: { en: "TruckParts: truck parts store case study", fr: "TruckParts : boutique de pièces de camion" },
+    metaDescription: {
+      en: "Case study: a truck parts store with a “Find My Part” fit check, Notch Pay checkout, order tracking and an admin panel that works on a phone.",
+      fr: "Étude de cas : une boutique de pièces de camion avec vérification « Find My Part », paiement Notch Pay, suivi de commande et admin sur téléphone.",
+    },
     summary: {
       en: "An online store for truck spare parts. Customers can check that a part fits their truck, pay online or at pickup, and track their order. The owner runs everything from an admin panel that also works on a phone.",
       fr: "Une boutique en ligne de pièces de camion. Les clients vérifient qu'une pièce va sur leur camion, paient en ligne ou au retrait, et suivent leur commande. Le propriétaire gère tout depuis un espace d'administration qui marche aussi sur téléphone.",
@@ -421,6 +431,11 @@ export const projects: Project[] = withFrenchSpacing([
     title: "PharMap",
     category: { en: "Health / Location-based web app", fr: "Santé / Application web géolocalisée" },
     status: "live-demo",
+    seoTitle: { en: "PharMap: medicine finder app case study", fr: "PharMap : application pour trouver un médicament" },
+    metaDescription: {
+      en: "Case study: a client's app to find a medicine in Cameroon, with nearby pharmacies, prices and how fresh the stock is. Built, then redesigned.",
+      fr: "Étude de cas : l'application d'un client pour trouver un médicament au Cameroun, avec pharmacies proches, prix et fraîcheur du stock.",
+    },
     summary: {
       en: "An app that helps people in Cameroon find a medicine: which nearby pharmacies have it in stock, at what price, and how fresh that information is. Pharmacies manage their own listings, and an admin verifies them.",
       fr: "Une application qui aide les gens au Cameroun à trouver un médicament : quelles pharmacies proches l'ont en stock, à quel prix, et à quel point l'information est récente. Les pharmacies gèrent leurs propres fiches, et un administrateur les vérifie.",
@@ -766,6 +781,11 @@ export const projects: Project[] = withFrenchSpacing([
     title: "Car Rental",
     category: { en: "Vehicle Rental / Business App", fr: "Location de voitures / Application métier" },
     status: "live-demo",
+    seoTitle: { en: "Car Rental: booking web app case study", fr: "Car Rental : site de réservation de voitures" },
+    metaDescription: {
+      en: "Case study: a car rental booking site with search by dates, booking by the day, no double bookings, and an admin panel for cars and bookings.",
+      fr: "Étude de cas : un site de location de voitures avec recherche par dates, réservation à la journée, sans double réservation, et un espace admin.",
+    },
     summary: {
       en: "A car rental booking site. Customers search for a car by dates and type, then book it by the day. Staff manage the cars and bookings from an admin panel.",
       fr: "Un site de réservation de location de voitures. Les clients cherchent une voiture par dates et par type, puis la réservent à la journée. L'équipe gère les voitures et les réservations depuis un espace d'administration.",

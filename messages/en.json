@@ -175,6 +175,7 @@
   },
   "cv": {
     "title": "CV",
+    "metaTitle": "CV: Full-Stack Software Engineer in Douala",
     "metaDescription": "CV of Forsangam Weyegho Junior Priestly, full-stack software engineer in Douala, Cameroon: experience, projects, education and skills.",
     "download": "Download PDF",
     "downloadHint": "One page, English",
@@ -218,7 +219,7 @@
   },
   "faq": {
     "title": "Frequently asked questions",
-    "metaDescription": "Website prices, timelines, payment by Mobile Money, what to provide and more: answers from JPFW Web Services, software engineer and web developer in Douala, Cameroon.",
+    "metaDescription": "Website prices, timelines, Mobile Money payment, what to provide and more: answers from JPFW Web Services, web developer in Douala, Cameroon.",
     "intro": "Prices, timelines, payments and how we work together. Each answer starts with the short answer.",
     "searchLabel": "Search the questions",
     "searchPlaceholder": "Search, e.g. Mobile Money",
