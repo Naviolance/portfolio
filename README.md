@@ -3,7 +3,7 @@
 My portfolio and business site, in English and French. It shows the projects I've built, what I
 can do for clients, my prices, answers to common questions, my CV, and how to reach me.
 
-**Live:** https://jpfw-webservices.vercel.app
+**Live:** https://jpfwwebservices.com
 
 ## What's on it
 
@@ -77,7 +77,7 @@ both FAQ pages automatically. `featured: true` also shows it on the homepage (ke
 Share the site with `?ref=` at the end to see if a specific person opened it:
 
 ```
-https://jpfw-webservices.vercel.app/?ref=acme-corp
+https://jpfwwebservices.com/?ref=acme-corp
 ```
 
 The visit shows up in Vercel Analytics under **Pages** as `/ref/acme-corp/en` (or `/fr`). Only

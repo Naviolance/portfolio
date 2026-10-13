@@ -6,14 +6,14 @@
 // screenshots), not for code or styling changes. A date that changes on
 // every deploy tells Google nothing, which is why these aren't automatic.
 export const updated = {
-  home: "2026-10-02",
-  faq: "2026-09-30",
-  cv: "2026-09-30",
-  services: "2026-10-02",
-  process: "2026-10-02",
+  home: "2026-10-09",
+  faq: "2026-10-09",
+  cv: "2026-10-09",
+  services: "2026-10-09",
+  process: "2026-10-09",
   projects: {
-    truckparts: "2026-09-30",
-    pharmap: "2026-10-02",
-    "car-rental": "2026-09-30",
+    truckparts: "2026-10-09",
+    pharmap: "2026-10-09",
+    "car-rental": "2026-10-09",
   } as Record<string, string>,
 };

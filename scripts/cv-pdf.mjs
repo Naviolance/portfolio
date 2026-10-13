@@ -18,7 +18,8 @@ import { chromium } from "@playwright/test";
 
 register("./alias-hooks.mjs", import.meta.url);
 // Links in the PDF point at the live site, not localhost.
-process.env.SITE_URL ??= "https://jpfw-webservices.vercel.app";
+const { SITE_DOMAIN } = await import("../src/data/domains.ts");
+process.env.SITE_URL ??= `https://${SITE_DOMAIN}`;
 
 const { CV_PDF, cvProjects, education, experience, profile, skills } = await import("../src/data/cv.ts");
 const { site } = await import("../src/data/site.ts");
