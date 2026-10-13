@@ -24,3 +24,20 @@ test("no broken internal links", async ({ page, request }) => {
     expect(response.status(), target).toBeLessThan(400);
   }
 });
+
+// The old address must keep every shared link working: same page on the
+// real domain, query string kept, and permanent (308), the code that tells
+// search engines to move their ranking over (data/domains.ts).
+test("the old address redirects permanently to the real domain", async ({ request }) => {
+  const { OLD_DOMAINS, SITE_DOMAIN } = await import("../src/data/domains");
+  for (const host of OLD_DOMAINS) {
+    for (const path of ["/", "/fr/ma-methode", "/en/projects/pharmap?ref=linkedin", "/sitemap.xml"]) {
+      const response = await request.get(path, { headers: { host }, maxRedirects: 0 });
+      expect(response.status(), `${host}${path}`).toBe(308);
+      // Compared as URLs: the homepage's Location is "https://domain", no "/".
+      expect(new URL(response.headers().location).href, `${host}${path}`).toBe(new URL(path, `https://${SITE_DOMAIN}`).href);
+    }
+  }
+  // The real address itself is served, not redirected.
+  expect((await request.get("/en", { maxRedirects: 0 })).status()).toBe(200);
+});

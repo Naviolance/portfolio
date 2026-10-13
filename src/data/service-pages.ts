@@ -10,6 +10,7 @@ import pharmapBeforeAdmin from "@/assets/screenshots/pharmap/before/admin-verifi
 import pharmapHome from "@/assets/screenshots/pharmap/home.webp";
 import pharmapAvailability from "@/assets/screenshots/pharmap/availability.webp";
 import pharmapAdmin from "@/assets/screenshots/pharmap/admin-verification.webp";
+import { SITE_DOMAIN } from "@/data/domains";
 import { withFrenchSpacing } from "@/lib/typography";
 
 // The content of each service page (/en/services/..., /fr/services/...).
@@ -301,7 +302,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       },
       href: "/",
       image: siteHome,
-      host: "jpfw-webservices.vercel.app",
+      host: SITE_DOMAIN,
     },
     card: { items: { en: ["Google & Bing", "AI answers", "Plain reports"], fr: ["Google et Bing", "Réponses IA", "Rapports clairs"] }, shot: "site/home.webp" },
     faqIds: ["show-up-on-google", "where-do-you-work", "how-to-pay"],

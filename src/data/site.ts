@@ -1,6 +1,7 @@
 import { WHATSAPP_DISPLAY, whatsappLink } from "@/lib/whatsapp";
 import type { Localized } from "@/lib/localized";
 import { withFrenchSpacing } from "@/lib/typography";
+import { SITE_DOMAIN } from "@/data/domains";
 
 export const site = withFrenchSpacing({
   name: "Priestly",
@@ -45,13 +46,11 @@ export const site = withFrenchSpacing({
 } as const);
 
 // Used for canonical/Open Graph URLs, the sitemap and robots.txt.
-// SITE_URL wins once a custom domain is attached; otherwise Vercel's own
-// production domain (a system env var set on every Vercel build); localhost
-// for local dev.
+// SITE_URL can override it (the CV PDF script, a test); every Vercel build,
+// previews included, uses the real domain, so a preview never asks to be
+// indexed under its own address; localhost for local dev.
 function siteUrl() {
   if (process.env.SITE_URL) return process.env.SITE_URL.replace(/\/$/, "");
-  if (process.env.VERCEL_PROJECT_PRODUCTION_URL) {
-    return `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`;
-  }
+  if (process.env.VERCEL) return `https://${SITE_DOMAIN}`;
   return "http://localhost:3000";
 }
