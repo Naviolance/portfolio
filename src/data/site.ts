@@ -34,7 +34,7 @@ export const site = withFrenchSpacing({
     en: "Douala, Cameroon",
     fr: "Douala, Cameroun",
   } satisfies Localized,
-  email: "forsangamjunior@gmail.com",
+  email: "contact@jpfwwebservices.com",
   whatsapp: {
     display: WHATSAPP_DISPLAY,
     href: whatsappLink(),
