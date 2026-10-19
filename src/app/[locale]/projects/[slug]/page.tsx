@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { getProject, projects, type Project } from "@/data/projects";
+import { demoHref, frameHost, getProject, projects, type Project } from "@/data/projects";
 import { ScreenshotGallery } from "@/components/ScreenshotGallery";
 import { JsonLd } from "@/components/JsonLd";
 import { updated } from "@/data/dates";
@@ -101,9 +101,9 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
     name: project.title,
     description: project.summary[locale],
     inLanguage: locale,
-    url: project.liveUrl,
+    url: demoHref(project, locale),
     applicationCategory: "BusinessApplication",
-    operatingSystem: "Web",
+    operatingSystem: project.status === "live-demo" ? "Web" : project.platform,
     ...(project.githubUrl && { sameAs: project.githubUrl }),
     author: { "@type": "Person", name: site.fullName, url: `${site.url}/${locale}` },
     ...(lastUpdate && { dateModified: lastUpdate }),
@@ -144,12 +144,12 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
 
           <div className="mt-6 flex flex-wrap items-center gap-3">
             <a
-              href={project.liveUrl}
+              href={demoHref(project, locale)}
               target="_blank"
               rel="noopener noreferrer"
               className={buttonClass()}
             >
-              {t("liveDemo")} <span aria-hidden>↗</span>
+              {t(project.status === "live-demo" ? "liveDemo" : "sampleReport")} <span aria-hidden>↗</span>
             </a>
             {project.githubUrl ? (
               <a
@@ -188,7 +188,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
         {/* The page's main image: requested first and eagerly, at the size it
             is shown (it's the likely LCP element on desktop). */}
         <div className={cx("relative", project.phones && "lg:mb-24")}>
-          <BrowserFrame host={new URL(project.liveUrl).host}>
+          <BrowserFrame host={frameHost(project)}>
             <div className="relative aspect-[2/1]">
               <Image
                 src={cover.src}

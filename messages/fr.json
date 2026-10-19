@@ -36,10 +36,11 @@
     "heading": "Projets",
     "howBuilt": "Comment je l'ai construit",
     "liveDemo": "Démo en ligne",
+    "sampleReport": "Exemple de rapport",
     "github": "GitHub",
     "privateCode": "Code : privé",
     "eyebrow": "Projets choisis · {count} projets",
-    "intro": "Trois produits que j'ai construits de bout en bout. Chacun est en ligne, et chaque étude de cas montre comment il fonctionne.",
+    "intro": "Quatre produits que j'ai construits de bout en bout. Chacun peut être essayé, et chaque étude de cas montre comment il fonctionne.",
     "showScreen": "Afficher : {label}",
     "stack": "Stack technique"
   },
@@ -140,6 +141,7 @@
     "back": "Tous les projets",
     "kicker": "Étude de cas {n} / {total}",
     "liveDemo": "Démo en ligne",
+    "sampleReport": "Exemple de rapport",
     "repo": "GitHub",
     "privateRepo": "Code privé, disponible sur demande",
     "facts": {
@@ -278,7 +280,7 @@
     "pages": {
       "projects": {
         "label": "Projets",
-        "hint": "Trois études de cas avec démo"
+        "hint": "Quatre études de cas à essayer"
       },
       "pricing": {
         "label": "Tarifs",

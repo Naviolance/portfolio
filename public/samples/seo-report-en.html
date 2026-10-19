@@ -1,0 +1,320 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>SEO and AEO audit · boutique-exemple.cm</title>
+<style>
+:root{--ink:#101828;--soft:#475467;--line:#e4e7ec;--bg:#f6f7f9;--card:#fff;--accent:#0b6b5d}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+main{max-width:880px;margin:0 auto;padding:32px 20px 48px}
+.top{display:flex;justify-content:space-between;align-items:flex-start;gap:16px}
+.eyebrow{margin:0;color:var(--accent);font-weight:600;font-size:13px;text-transform:uppercase;letter-spacing:.06em}
+h1{margin:4px 0 2px;font-size:28px;line-height:1.2;word-break:break-word}
+.meta{margin:0;color:var(--soft);font-size:14px}
+.print{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:8px 14px;font:inherit;font-size:14px;cursor:pointer}
+.note{background:#fffaeb;border:1px solid #fedf89;border-radius:8px;padding:10px 14px;font-size:14px}
+.summary{display:flex;gap:16px;align-items:stretch;margin:24px 0}
+.total{background:var(--ink);color:#fff;border-radius:12px;padding:16px 22px;display:flex;flex-direction:column;justify-content:center;min-width:120px}
+.total .num{font-size:40px;font-weight:700;line-height:1}
+.total .lbl{font-size:14px;opacity:.8}
+.tiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;flex:1}
+.tile{background:var(--card);border:1px solid var(--line);border-top:4px solid;border-radius:10px;padding:12px;display:flex;flex-direction:column;font:inherit;color:inherit;text-align:left;cursor:pointer}.tile:disabled{cursor:default;opacity:.6}.tile:hover:not(:disabled){border-color:var(--accent)}
+.tile .num{font-size:26px;font-weight:700;line-height:1.1}
+.tile .lbl{font-size:13px;color:var(--soft);display:flex;align-items:center;gap:6px}
+.tile.sev-critical{border-top-color:var(--crit)}.tile.sev-high{border-top-color:var(--high)}.tile.sev-medium{border-top-color:var(--med)}.tile.sev-low{border-top-color:var(--low)}
+h2{font-size:18px;margin:28px 0 12px}
+.cat-num{text-align:right;font-weight:600}
+.finding{background:var(--card);border:1px solid var(--line);border-left:4px solid;border-radius:10px;padding:14px 18px;margin-bottom:12px;break-inside:avoid}
+.finding.sev-critical{border-left-color:var(--crit)}.finding.sev-high{border-left-color:var(--high)}.finding.sev-medium{border-left-color:var(--med)}.finding.sev-low{border-left-color:var(--low)}
+.finding header{display:flex;gap:10px;align-items:center;font-size:12px;color:var(--soft)}
+.pill{display:inline-flex;align-items:center;gap:6px;color:var(--ink);font-weight:600}
+.actions{display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.copy{margin-left:auto;border:1px solid var(--line);background:var(--card);border-radius:6px;padding:2px 10px;font:inherit;font-size:12px;color:var(--accent);cursor:pointer}
+.copy:hover,.print:hover{border-color:var(--accent)}
+.rid{font-family:ui-monospace,monospace;color:var(--soft);font-size:12px}
+.how{color:var(--soft);font-size:14px;margin:-4px 0 14px}
+.evidence{border:1px dashed var(--line);border-radius:8px;padding:8px 12px;margin:10px 0}
+.also{color:var(--soft);font-size:13px;margin:2px 0 6px}
+.ev-head{margin:0 0 4px!important;font-size:13px!important;font-weight:600;color:var(--soft)}
+.ev{padding:6px 0;border-top:1px solid var(--line)}.ev:first-of-type{border-top:0}
+.ev-page{font-size:12px;word-break:break-all}
+.same{margin:4px 0 0!important;font-weight:600}.same .ev-page{font-size:inherit}
+.ev-label{margin:6px 0 0!important;font-size:13px!important;color:var(--soft)}
+.cutline,.quote{margin:4px 0 0!important;font-size:15px!important;word-break:break-word}
+.shown{color:#1a0dab;font-weight:500}
+.scissors{background:#fef0c7;color:#93370d;border-radius:4px;padding:1px 6px;font-size:12px;white-space:nowrap}
+.hidden{color:var(--soft);text-decoration:line-through;text-decoration-color:#d0d5dd}
+.quote{font-family:ui-monospace,monospace;font-size:13px!important;background:var(--bg);border-radius:4px;padding:4px 8px}
+.tech{margin-top:10px;background:var(--bg);border-radius:6px;padding:6px 10px}.tech p{font-size:13px}
+.finding h3{margin:8px 0 6px;font-size:16px}
+.finding p{margin:6px 0;font-size:14px}
+.fix{background:#f0faf7;border-radius:6px;padding:8px 10px}
+.affected{margin:10px 0 0;font-size:13px;font-weight:600;color:var(--soft)}
+details{margin-top:4px;font-size:14px}summary{cursor:pointer;color:var(--accent);font-weight:600}
+ul{margin:6px 0 0;padding-left:20px}li{word-break:break-all}a{color:var(--accent)}
+.more,.site-wide{color:var(--soft);font-size:13px}
+.empty{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:18px}
+.not-checked{border-color:var(--med);margin-top:10px}
+footer{margin-top:32px;color:var(--soft);font-size:12px}
+@media (max-width:640px){.summary{flex-direction:column}.tiles{grid-template-columns:repeat(2,1fr)}.top{flex-direction:column}}
+.brand-line{margin:6px 0 0;color:var(--soft);font-size:14px}.brand-line a{color:inherit}
+.start-here{background:#fff;border:1px solid var(--line);border-radius:12px;padding:18px 20px;margin:16px 0}
+.start-here h2{margin:0 0 4px;font-size:20px}.start-here .how{margin:0 0 10px}
+.start-here ol{margin:0;padding-left:22px;display:grid;gap:12px}.start-here li{word-break:normal;overflow-wrap:break-word}.start-here li a{font-weight:700;color:var(--ink)}
+.start-here .sh-meta{display:block;font-size:13px;color:var(--soft);margin-top:2px}.start-here .sh-meta .dot{margin-right:6px}
+.start-here .sh-fix{display:block;margin-top:4px}
+@media print{.start-here{break-after:page}}
+@media print{body{background:#fff}.print,.copy,.actions{display:none}.finding,.cats,.tile{border-color:#ccc}details.tech>*{display:block}details::details-content{content-visibility:visible;display:block}}
+
+:root{--crit:#6b1a10;--high:#b8321f;--med:#e06a50;--low:#ee9e89}
+.app-nav{display:flex;gap:6px;flex-wrap:wrap;margin:0 0 18px}
+.app-nav a{border:1px solid var(--line);background:var(--card);border-radius:8px;padding:6px 12px;text-decoration:none;font-size:14px;font-weight:600}
+.app-nav a:hover{border-color:var(--accent)}
+.toolbar{position:sticky;top:0;z-index:5;background:var(--bg);padding:10px 0;margin:8px 0;border-bottom:1px solid var(--line);display:grid;gap:8px}
+.jump{display:flex;gap:14px;flex-wrap:wrap;font-size:14px}.jump a{text-decoration:none;font-weight:600}
+.filters{display:flex;gap:6px;flex-wrap:wrap;align-items:center;font-size:13px}.filters .lbl{color:var(--soft)}
+.chip{border:1px solid var(--line);background:var(--card);border-radius:999px;padding:4px 11px;font:inherit;font-size:13px;color:var(--ink);cursor:pointer;display:inline-flex;align-items:center;gap:6px}
+.chip[aria-pressed="true"],.topic-chip{border-color:var(--ink);background:var(--ink);color:#fff}
+.showing{color:var(--soft);margin-left:auto}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;flex:none}
+.dot.sev-critical{background:var(--crit)}.dot.sev-high{background:var(--high)}.dot.sev-medium{background:var(--med)}.dot.sev-low{background:var(--low)}
+.cats{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 18px 14px}
+.cats-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap}
+.legend{list-style:none;display:flex;gap:14px;flex-wrap:wrap;margin:0;padding:0;font-size:13px;color:var(--soft)}.legend li{display:flex;align-items:center;gap:6px}
+.hint{margin:0 0 6px;font-size:13px;color:var(--soft)}
+.cat-row{all:unset;box-sizing:border-box;display:grid;grid-template-columns:190px 1fr 32px;gap:12px;align-items:center;padding:7px 6px;margin:0 -6px;border-radius:8px;font-size:14px;cursor:pointer;width:calc(100% + 12px)}
+.cat-row:hover,.cat-row:focus-visible{background:var(--bg)}.cat-row:focus-visible{outline:2px solid var(--accent)}
+.cat-row.dim{opacity:.45}
+.track{display:block;height:12px}
+.bar{display:flex;gap:2px;height:12px;min-width:6px}
+.seg{height:100%;min-width:4px}.bar .seg:last-child{border-radius:0 4px 4px 0}
+.seg.sev-critical{background:var(--crit)}.seg.sev-high{background:var(--high)}.seg.sev-medium{background:var(--med)}.seg.sev-low{background:var(--low)}
+.table-view{margin-top:8px}.table-view table{border-collapse:collapse;font-size:13px;margin-top:6px}
+.table-view th,.table-view td{border-bottom:1px solid var(--line);padding:4px 10px;text-align:right}.table-view th:first-child{text-align:left}
+.tip{position:fixed;z-index:10;background:var(--ink);color:#fff;font-size:12px;padding:4px 8px;border-radius:6px;pointer-events:none;white-space:nowrap}
+.changes{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:6px 18px 14px;margin-top:20px}
+.ctiles{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:10px 0}
+.ctile{border:1px solid var(--line);border-radius:10px;padding:10px;display:flex;flex-direction:column}
+.ctile .num{font-size:24px;font-weight:700;line-height:1.1}.ctile .lbl{font-size:13px;color:var(--soft)}
+.ctile.ch-added{border-top:4px solid var(--high)}.ctile.ch-fixed{border-top:4px solid #0b6b5d}.ctile.ch-changed{border-top:4px solid #98a2b3}
+.changes h3{font-size:15px;margin:14px 0 6px}
+.change-list{list-style:none;padding:0;margin:0}.change-list li{padding:6px 0;border-top:1px solid var(--line);font-size:14px;word-break:normal}
+.change-list .dot{margin-right:6px}.sev-name{color:var(--soft);font-size:12px;margin-right:4px}
+.ch-pages{display:block;color:var(--soft);font-size:12px;margin-left:16px;word-break:break-all}
+[hidden]{display:none!important}
+@media (max-width:640px){.toolbar{position:static}.cat-row{grid-template-columns:1fr 1fr 28px}.ctiles{grid-template-columns:repeat(2,1fr)}.showing{margin-left:0;width:100%}}
+@media print{.app-nav,.toolbar,.hint,.tip,.table-view summary{display:none}.table-view>*{display:block}.finding[hidden]{display:block!important}}
+</style>
+</head>
+<body>
+<main>
+  
+  <header class="top">
+    <div>
+      <p class="eyebrow">SEO and AEO audit</p>
+      <h1>boutique-exemple.cm</h1>
+      <p class="meta">5 pages analysed · Report generated on 1 January 2026</p>
+      <p class="brand-line">Audit by <strong>JPFW Web Services</strong> · <a href="https://jpfwwebservices.com">https://jpfwwebservices.com</a></p>
+    </div>
+    <div class="actions"><button class="print" type="button" data-copy="all">Copy report</button><button class="print" type="button" onclick="window.print()">Print / PDF</button></div>
+  </header>
+  
+  
+  
+  
+  
+  <div class="toolbar"><nav class="jump" aria-label="Go to"><a href="#summary">Summary</a><a href="#by-topic">By topic</a><a href="#problems">Problems</a></nav><div class="filters" role="group" aria-label="Show"><span class="lbl">Show</span><button type="button" class="chip" data-filter-sev="" aria-pressed="true">All</button><button type="button" class="chip" data-filter-sev="critical" aria-pressed="false"><span class="dot sev-critical"></span>Urgent</button><button type="button" class="chip" data-filter-sev="high" aria-pressed="false"><span class="dot sev-high"></span>Important</button><button type="button" class="chip" data-filter-sev="medium" aria-pressed="false"><span class="dot sev-medium"></span>Should fix</button><button type="button" class="chip" data-filter-sev="low" aria-pressed="false"><span class="dot sev-low"></span>Minor</button><button type="button" class="chip topic-chip" data-filter-cat="" hidden></button><span class="showing" aria-live="polite"></span></div></div>
+  <section class="summary" id="summary">
+    <div class="total"><span class="num">12</span><span class="lbl">problems</span></div>
+    <div class="tiles"><button type="button" class="tile sev-critical" data-filter-sev="critical"><span class="num">1</span><span class="lbl"><span class="dot sev-critical"></span>Urgent</span></button><button type="button" class="tile sev-high" data-filter-sev="high"><span class="num">3</span><span class="lbl"><span class="dot sev-high"></span>Important</span></button><button type="button" class="tile sev-medium" data-filter-sev="medium"><span class="num">5</span><span class="lbl"><span class="dot sev-medium"></span>Should fix</span></button><button type="button" class="tile sev-low" data-filter-sev="low"><span class="num">3</span><span class="lbl"><span class="dot sev-low"></span>Minor</span></button></div>
+  </section>
+  <section class="start-here" id="start-here"><h2>Start with these 3</h2><p class="how">The most serious and widespread problems in this report. Each one is detailed further down.</p><ol><li><a href="#f-0">5 pages don&#39;t adapt to phones</a><span class="sh-meta"><span class="dot sev-critical"></span>Urgent · 5 pages</span><span class="sh-fix">Ask whoever runs your site to add the “viewport” setting that fits the page to the phone&#39;s screen. Every recent WordPress theme has it: its absence often means a very old theme or a hand-made page.</span></li><li><a href="#f-1">2 pages without a title</a><span class="sh-meta"><span class="dot sev-high"></span>Important · 2 pages</span><span class="sh-fix">Give every page a unique title that says what it offers, ending with the business name.</span></li><li><a href="#f-2">2 pages share the title “Boutique Exemple”</a><span class="sh-meta"><span class="dot sev-high"></span>Important · 2 pages</span><span class="sh-fix">Give each page its own title that says what makes it different (product, service, city).</span></li></ol></section>
+  
+  <section class="cats" id="by-topic"><div class="cats-head"><h2>By topic</h2><ul class="legend"><li><span class="dot sev-critical"></span>Urgent</li><li><span class="dot sev-high"></span>Important</li><li><span class="dot sev-medium"></span>Should fix</li><li><span class="dot sev-low"></span>Minor</li></ul></div><p class="hint">Click a topic to show only its problems.</p><div class="chart"><button type="button" class="cat-row" data-filter-cat="crawl" aria-label="Visibility in Google: 1 (1 Should fix)"><span class="cat-name">Visibility in Google</span><span class="track"><span class="bar" style="width:11.1%"><span class="seg sev-medium" style="flex-grow:1" data-tip="Visibility in Google · Should fix: 1"></span></span></span><span class="cat-num">1</span></button><button type="button" class="cat-row" data-filter-cat="on-page" aria-label="Page text: 9 (2 Important, 4 Should fix, 3 Minor)"><span class="cat-name">Page text</span><span class="track"><span class="bar" style="width:100.0%"><span class="seg sev-high" style="flex-grow:2" data-tip="Page text · Important: 2"></span><span class="seg sev-medium" style="flex-grow:4" data-tip="Page text · Should fix: 4"></span><span class="seg sev-low" style="flex-grow:3" data-tip="Page text · Minor: 3"></span></span></span><span class="cat-num">9</span></button><button type="button" class="cat-row" data-filter-cat="structured-data" aria-label="Information for Google: 1 (1 Important)"><span class="cat-name">Information for Google</span><span class="track"><span class="bar" style="width:11.1%"><span class="seg sev-high" style="flex-grow:1" data-tip="Information for Google · Important: 1"></span></span></span><span class="cat-num">1</span></button><button type="button" class="cat-row" data-filter-cat="performance" aria-label="Speed and mobile: 1 (1 Urgent)"><span class="cat-name">Speed and mobile</span><span class="track"><span class="bar" style="width:11.1%"><span class="seg sev-critical" style="flex-grow:1" data-tip="Speed and mobile · Urgent: 1"></span></span></span><span class="cat-num">1</span></button></div><details class="table-view"><summary>See as a table</summary><table><thead><tr><th>Topic</th><th>Urgent</th><th>Important</th><th>Should fix</th><th>Minor</th><th>Total</th></tr></thead><tbody><tr><th>Visibility in Google</th><td>0</td><td>0</td><td>1</td><td>0</td><td>1</td></tr><tr><th>Page text</th><td>0</td><td>2</td><td>4</td><td>3</td><td>9</td></tr><tr><th>Information for Google</th><td>0</td><td>1</td><td>0</td><td>0</td><td>1</td></tr><tr><th>Speed and mobile</th><td>1</td><td>0</td><td>0</td><td>0</td><td>1</td></tr></tbody></table></details></section>
+  <section class="list" id="problems">
+    <h2>Fix first</h2>
+    <p class="how">Each problem explains what it changes for you and what to do. The “For your developer” boxes hold the technical details to pass on to whoever runs your website.</p>
+    <article class="finding sev-critical" id="f-0" data-sev="critical" data-cat="performance">
+  <header><span class="pill"><span class="dot sev-critical"></span>Urgent</span><span class="cat">Speed and mobile</span><button class="copy" type="button" data-copy="0">Copy</button></header>
+  <h3>5 pages don&#39;t adapt to phones</h3>
+  <p><strong>What this means:</strong> On a phone, these pages show as they would on a computer, shrunk down: people have to zoom to read and to tap buttons. Most of your customers come from phones, and Google judges your site on its mobile version.</p>
+  <p class="fix"><strong>What to do:</strong> Ask whoever runs your site to add the “viewport” setting that fits the page to the phone&#39;s screen. Every recent WordPress theme has it: its absence often means a very old theme or a hand-made page.</p>
+  
+  <p class="affected">Pages affected (5)</p><ul><li><a href="https://boutique-exemple.cm/">/</a></li><li><a href="https://boutique-exemple.cm/contact">/contact</a></li><li><a href="https://boutique-exemple.cm/livraison">/livraison</a></li><li><a href="https://boutique-exemple.cm/freins">/freins</a></li><li><a href="https://boutique-exemple.cm/filtres">/filtres</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>No &lt;meta name=&quot;viewport&quot;&gt; in the &lt;head&gt;. Add &lt;meta name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1&quot;&gt;. Without it, mobile browsers lay the page out ~980 px wide, then shrink it.</p><p class="rid">Check M01 · viewport-missing</p></details>
+</article>
+<article class="finding sev-high" id="f-1" data-sev="high" data-cat="on-page">
+  <header><span class="pill"><span class="dot sev-high"></span>Important</span><span class="cat">Page text</span><button class="copy" type="button" data-copy="1">Copy</button></header>
+  <h3>2 pages without a title</h3>
+  <p><strong>What this means:</strong> The title is the clickable text Google shows. Without one, Google makes one up, often a poor one, and the page gets fewer clicks.</p>
+  <p class="fix"><strong>What to do:</strong> Give every page a unique title that says what it offers, ending with the business name.</p>
+  
+  <p class="affected">Pages affected (2)</p><ul><li><a href="https://boutique-exemple.cm/contact">/contact</a></li><li><a href="https://boutique-exemple.cm/livraison">/livraison</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>No &lt;title&gt; (or an empty &lt;title&gt;) in the &lt;head&gt;.</p><p class="rid">Check P01 · title-missing</p></details>
+</article>
+<article class="finding sev-high" id="f-2" data-sev="high" data-cat="on-page">
+  <header><span class="pill"><span class="dot sev-high"></span>Important</span><span class="cat">Page text</span><button class="copy" type="button" data-copy="2">Copy</button></header>
+  <h3>2 pages share the title “Boutique Exemple”</h3>
+  <p><strong>What this means:</strong> When several pages have the same title, Google can&#39;t tell which one to show and may show none. Visitors can&#39;t tell them apart either.</p>
+  <p class="fix"><strong>What to do:</strong> Give each page its own title that says what makes it different (product, service, city).</p>
+  
+  <p class="affected">Pages affected (2)</p><ul><li><a href="https://boutique-exemple.cm/freins">/freins</a></li><li><a href="https://boutique-exemple.cm/filtres">/filtres</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>Same &lt;title&gt; on several indexable pages in the same language.</p><p class="rid">Check P02 · duplicate-titles</p></details>
+</article>
+<article class="finding sev-high" id="f-3" data-sev="high" data-cat="structured-data">
+  <header><span class="pill"><span class="dot sev-high"></span>Important</span><span class="cat">Information for Google</span><button class="copy" type="button" data-copy="3">Copy</button></header>
+  <h3>Your homepage doesn&#39;t tell Google who you are</h3>
+  <p><strong>What this means:</strong> Google reads an “ID card” hidden in the page&#39;s code: name, logo, address, phone. Without it, it has to guess, and may confuse you with another business of the same name. AI assistants may use it too, but none has confirmed it: it&#39;s first of all for Google.</p>
+  <p class="fix"><strong>What to do:</strong> Ask whoever runs your website to add this ID card to the homepage, with your name, logo, address, phone and opening hours. On WordPress, an SEO plugin (Yoast, Rank Math) does it.</p>
+  
+  <p class="affected">Pages affected (1)</p><ul><li><a href="https://boutique-exemple.cm/">/</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>No JSON-LD block (or microdata) of type Organization, LocalBusiness or a subtype, or Person, on the homepage. Add an Organization block (or LocalBusiness / the precise subtype if customers visit in person) with name, url, logo, address (PostalAddress), telephone, sameAs and, for a shop, openingHoursSpecification. Check it with Google&#39;s Rich Results Test.</p><p class="rid">Check S03 · business-identity-missing</p></details>
+</article>
+<article class="finding sev-medium" id="f-4" data-sev="medium" data-cat="crawl">
+  <header><span class="pill"><span class="dot sev-medium"></span>Should fix</span><span class="cat">Visibility in Google</span><button class="copy" type="button" data-copy="4">Copy</button></header>
+  <h3>Your homepage leads to no other page of your site</h3>
+  <p><strong>What this means:</strong> Google, AI assistants and your visitors discover your pages by following the links on the homepage. Yours has no link to another page of the site: its links go to sections of the same page, to other sites (social networks, WhatsApp) or nowhere (see the example). If your site has other pages, nobody can find them from the homepage, and without a sitemap neither can Google. If your site is deliberately a single page, ignore this point.</p>
+  <p class="fix"><strong>What to do:</strong> Add real links to your other pages (products, services, contact…) in the menu or at the bottom of the page, and a sitemap declared in Google Search Console.</p>
+  <div class="evidence"><p class="ev-head">On your site</p><div class="ev"><a class="ev-page" href="https://boutique-exemple.cm/">/</a><p class="quote">0 &lt;a href&gt;</p></div></div>
+  <p class="affected">Pages affected (1)</p><ul><li><a href="https://boutique-exemple.cm/">/</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>No &lt;a href&gt; to another URL of the same site in the homepage&#39;s served HTML, nor (when Chrome could read it before the crawl) once its JavaScript has run. Buttons without href, JavaScript handlers and client-side routers that switch views without links aren&#39;t followed by crawlers. Serve real &lt;a href&gt; links and an XML sitemap.</p><p class="rid">Check C07 · orphan-pages</p></details>
+</article>
+<article class="finding sev-medium" id="f-5" data-sev="medium" data-cat="on-page">
+  <header><span class="pill"><span class="dot sev-medium"></span>Should fix</span><span class="cat">Page text</span><button class="copy" type="button" data-copy="5">Copy</button></header>
+  <h3>2 pages without a short summary for Google</h3>
+  <p><strong>What this means:</strong> Under the title, Google often shows a short summary of the page that you can write yourself. Without it, Google picks a random bit of text from the page, often unappealing.</p>
+  <p class="fix"><strong>What to do:</strong> Write one or two sentences per page (about 150 characters) that sum up the offer and make people want to click. On WordPress: the “meta description” field in Yoast or Rank Math.</p>
+  
+  <p class="affected">Pages affected (2)</p><ul><li><a href="https://boutique-exemple.cm/contact">/contact</a></li><li><a href="https://boutique-exemple.cm/livraison">/livraison</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>No &lt;meta name=&quot;description&quot; content=&quot;…&quot;&gt; (or an empty one) on an indexable page.</p><p class="rid">Check P04 · meta-description-missing</p></details>
+</article>
+<article class="finding sev-medium" id="f-6" data-sev="medium" data-cat="on-page">
+  <header><span class="pill"><span class="dot sev-medium"></span>Should fix</span><span class="cat">Page text</span><button class="copy" type="button" data-copy="6">Copy</button></header>
+  <h3>5 pages without a big visible heading</h3>
+  <p><strong>What this means:</strong> The big heading at the top of the page tells Google, AI assistants and visitors what the page is about. Without it, they guess.</p>
+  <p class="fix"><strong>What to do:</strong> Add a big heading at the top of each page that clearly states its topic (e.g. “Brake pads in Douala”).</p>
+  
+  <p class="affected">Pages affected (5)</p><ul><li><a href="https://boutique-exemple.cm/">/</a></li><li><a href="https://boutique-exemple.cm/contact">/contact</a></li><li><a href="https://boutique-exemple.cm/livraison">/livraison</a></li><li><a href="https://boutique-exemple.cm/freins">/freins</a></li><li><a href="https://boutique-exemple.cm/filtres">/filtres</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>No &lt;h1&gt; element on the page.</p><p class="rid">Check P07 · h1-missing</p></details>
+</article>
+<article class="finding sev-medium" id="f-7" data-sev="medium" data-cat="on-page">
+  <header><span class="pill"><span class="dot sev-medium"></span>Should fix</span><span class="cat">Page text</span><button class="copy" type="button" data-copy="7">Copy</button></header>
+  <h3>5 pages without an image when shared on WhatsApp or Facebook</h3>
+  <p><strong>What this means:</strong> When someone shares these pages on WhatsApp or Facebook, no image appears: the link goes unnoticed and inspires less trust.</p>
+  <p class="fix"><strong>What to do:</strong> Pick an image for each page (a photo of the product, shop or service) that will appear when it&#39;s shared. On WordPress: the “Social” tab in Yoast or Rank Math.</p>
+  
+  <p class="affected">Pages affected (5)</p><ul><li><a href="https://boutique-exemple.cm/">/</a></li><li><a href="https://boutique-exemple.cm/contact">/contact</a></li><li><a href="https://boutique-exemple.cm/livraison">/livraison</a></li><li><a href="https://boutique-exemple.cm/freins">/freins</a></li><li><a href="https://boutique-exemple.cm/filtres">/filtres</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>No &lt;meta property=&quot;og:image&quot;&gt; (recommended image: 1200 × 630 px). Google doesn&#39;t use it for ranking: it&#39;s for share previews (Open Graph).</p><p class="rid">Check P13 · social-preview-missing</p></details>
+</article>
+<article class="finding sev-medium" id="f-8" data-sev="medium" data-cat="on-page">
+  <header><span class="pill"><span class="dot sev-medium"></span>Should fix</span><span class="cat">Page text</span><button class="copy" type="button" data-copy="8">Copy</button></header>
+  <h3>5 pages without a title or description when shared</h3>
+  <p><strong>What this means:</strong> Without them, WhatsApp and Facebook show an incomplete or poorly chosen preview when the page is shared.</p>
+  <p class="fix"><strong>What to do:</strong> For each page, fill in the share title and description (often the same as for Google). On WordPress: the “Social” tab in Yoast or Rank Math.</p>
+  
+  <p class="affected">Pages affected (5)</p><ul><li><a href="https://boutique-exemple.cm/">/</a></li><li><a href="https://boutique-exemple.cm/contact">/contact</a></li><li><a href="https://boutique-exemple.cm/livraison">/livraison</a></li><li><a href="https://boutique-exemple.cm/freins">/freins</a></li><li><a href="https://boutique-exemple.cm/filtres">/filtres</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>No &lt;meta property=&quot;og:title&quot;&gt; or &lt;meta property=&quot;og:description&quot;&gt; (often the same as the &lt;title&gt; and meta description).</p><p class="rid">Check P13 · social-preview-missing</p></details>
+</article>
+<article class="finding sev-low" id="f-9" data-sev="low" data-cat="on-page">
+  <header><span class="pill"><span class="dot sev-low"></span>Minor</span><span class="cat">Page text</span><button class="copy" type="button" data-copy="9">Copy</button></header>
+  <h3>2 titles too short to say what the page offers</h3>
+  <p><strong>What this means:</strong> A very short title (like “Home” or “Blog”) doesn&#39;t say what the page offers. Google may replace it with other text, and customers don&#39;t know what they&#39;re clicking on.</p>
+  <p class="fix"><strong>What to do:</strong> Complete these titles: what the page offers, then your name or city (50 to 60 characters).</p>
+  <div class="evidence"><p class="ev-head">On your site</p><div class="ev"><a class="ev-page" href="https://boutique-exemple.cm/freins">/freins</a><p class="quote">Boutique Exemple</p><p class="also">also on 1 other page</p></div></div>
+  <p class="affected">Pages affected (2)</p><ul><li><a href="https://boutique-exemple.cm/freins">/freins</a></li><li><a href="https://boutique-exemple.cm/filtres">/filtres</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>&lt;title&gt; under 30 characters. Google recommends descriptive, concise titles and avoiding vague labels like “Home”.</p><p class="rid">Check P03 · title-length</p></details>
+</article>
+<article class="finding sev-low" id="f-10" data-sev="low" data-cat="on-page">
+  <header><span class="pill"><span class="dot sev-low"></span>Minor</span><span class="cat">Page text</span><button class="copy" type="button" data-copy="10">Copy</button></header>
+  <h3>3 summaries too short to make people click</h3>
+  <p><strong>What this means:</strong> A very short summary leaves empty space in Google&#39;s results and gives few reasons to pick your page.</p>
+  <p class="fix"><strong>What to do:</strong> Expand these descriptions to 140–160 characters: the offer, a concrete benefit, the city.</p>
+  <div class="evidence"><p class="ev-head">On your site</p><div class="ev"><a class="ev-page" href="https://boutique-exemple.cm/">/</a><p class="quote">Pièces auto neuves et d&#39;occasion, livrées à Douala et Yaoundé.</p></div><div class="ev"><a class="ev-page" href="https://boutique-exemple.cm/freins">/freins</a><p class="quote">Plaquettes et disques de frein.</p></div><div class="ev"><a class="ev-page" href="https://boutique-exemple.cm/filtres">/filtres</a><p class="quote">Filtres à huile, à air et à carburant.</p></div></div>
+  <p class="affected">Pages affected (3)</p><ul><li><a href="https://boutique-exemple.cm/">/</a></li><li><a href="https://boutique-exemple.cm/freins">/freins</a></li><li><a href="https://boutique-exemple.cm/filtres">/filtres</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>&lt;meta name=&quot;description&quot;&gt; under 70 characters.</p><p class="rid">Check P06 · meta-description-length</p></details>
+</article>
+<article class="finding sev-low" id="f-11" data-sev="low" data-cat="on-page">
+  <header><span class="pill"><span class="dot sev-low"></span>Minor</span><span class="cat">Page text</span><button class="copy" type="button" data-copy="11">Copy</button></header>
+  <h3>4 pages with very little text</h3>
+  <p><strong>What this means:</strong> Google doesn&#39;t count words or require any length. But with this little text of the page&#39;s own (menu and footer excluded), there&#39;s little for Google and AI assistants to understand or quote: what, for whom, where, at what price.</p>
+  <p class="fix"><strong>What to do:</strong> If the page should be found on Google, add what your customers ask: what you offer, for whom, where, at what price, common questions. A listing page or a tool can stay short.</p>
+  
+  <p class="affected">Pages affected (4)</p><ul><li><a href="https://boutique-exemple.cm/">/</a></li><li><a href="https://boutique-exemple.cm/livraison">/livraison</a></li><li><a href="https://boutique-exemple.cm/freins">/freins</a></li><li><a href="https://boutique-exemple.cm/filtres">/filtres</a></li></ul>
+  <details class="tech"><summary>For your developer</summary><p>Under 200 words of main content (&lt;main&gt;, without nav, aside, forms or the site header/footer) on an indexable, non-utility page. A heuristic, not a Google rule (Google says there&#39;s no ideal word count).</p><p class="rid">Check P10 · thin-content</p></details>
+</article>
+    
+  </section>
+  <footer><p class="brand-line">Audit by <strong>JPFW Web Services</strong> · <a href="https://jpfwwebservices.com">https://jpfwwebservices.com</a></p>Automatic checks on the pages' code, with no artificial intelligence: the same scan always gives the same report. Some checks are estimates and need a human to confirm.</footer>
+</main>
+<script type="application/json" id="copy-data">{"all":"SEO and AEO audit · boutique-exemple.cm\n\n5 pages analysed · Report generated on 1 January 2026\n\nAudit by JPFW Web Services · https://jpfwwebservices.com\n\nStart with these 3\n1. 5 pages don't adapt to phones (Urgent · 5 pages)\n   Ask whoever runs your site to add the “viewport” setting that fits the page to the phone's screen. Every recent WordPress theme has it: its absence often means a very old theme or a hand-made page.\n2. 2 pages without a title (Important · 2 pages)\n   Give every page a unique title that says what it offers, ending with the business name.\n3. 2 pages share the title “Boutique Exemple” (Important · 2 pages)\n   Give each page its own title that says what makes it different (product, service, city).\n\n12 problems\n\n[Urgent] 5 pages don't adapt to phones\nWhat this means: On a phone, these pages show as they would on a computer, shrunk down: people have to zoom to read and to tap buttons. Most of your customers come from phones, and Google judges your site on its mobile version.\nWhat to do: Ask whoever runs your site to add the “viewport” setting that fits the page to the phone's screen. Every recent WordPress theme has it: its absence often means a very old theme or a hand-made page.\nPages affected (5):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: No \u003cmeta name=\"viewport\"> in the \u003chead>. Add \u003cmeta name=\"viewport\" content=\"width=device-width, initial-scale=1\">. Without it, mobile browsers lay the page out ~980 px wide, then shrink it. (M01)\n\n[Important] 2 pages without a title\nWhat this means: The title is the clickable text Google shows. Without one, Google makes one up, often a poor one, and the page gets fewer clicks.\nWhat to do: Give every page a unique title that says what it offers, ending with the business name.\nPages affected (2):\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\nFor your developer: No \u003ctitle> (or an empty \u003ctitle>) in the \u003chead>. (P01)\n\n[Important] 2 pages share the title “Boutique Exemple”\nWhat this means: When several pages have the same title, Google can't tell which one to show and may show none. Visitors can't tell them apart either.\nWhat to do: Give each page its own title that says what makes it different (product, service, city).\nPages affected (2):\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: Same \u003ctitle> on several indexable pages in the same language. (P02)\n\n[Important] Your homepage doesn't tell Google who you are\nWhat this means: Google reads an “ID card” hidden in the page's code: name, logo, address, phone. Without it, it has to guess, and may confuse you with another business of the same name. AI assistants may use it too, but none has confirmed it: it's first of all for Google.\nWhat to do: Ask whoever runs your website to add this ID card to the homepage, with your name, logo, address, phone and opening hours. On WordPress, an SEO plugin (Yoast, Rank Math) does it.\nPages affected (1):\n  - https://boutique-exemple.cm/\nFor your developer: No JSON-LD block (or microdata) of type Organization, LocalBusiness or a subtype, or Person, on the homepage. Add an Organization block (or LocalBusiness / the precise subtype if customers visit in person) with name, url, logo, address (PostalAddress), telephone, sameAs and, for a shop, openingHoursSpecification. Check it with Google's Rich Results Test. (S03)\n\n[Should fix] Your homepage leads to no other page of your site\nWhat this means: Google, AI assistants and your visitors discover your pages by following the links on the homepage. Yours has no link to another page of the site: its links go to sections of the same page, to other sites (social networks, WhatsApp) or nowhere (see the example). If your site has other pages, nobody can find them from the homepage, and without a sitemap neither can Google. If your site is deliberately a single page, ignore this point.\nWhat to do: Add real links to your other pages (products, services, contact…) in the menu or at the bottom of the page, and a sitemap declared in Google Search Console.\nOn your site:\n  https://boutique-exemple.cm/\n    0 \u003ca href>\nPages affected (1):\n  - https://boutique-exemple.cm/\nFor your developer: No \u003ca href> to another URL of the same site in the homepage's served HTML, nor (when Chrome could read it before the crawl) once its JavaScript has run. Buttons without href, JavaScript handlers and client-side routers that switch views without links aren't followed by crawlers. Serve real \u003ca href> links and an XML sitemap. (C07)\n\n[Should fix] 2 pages without a short summary for Google\nWhat this means: Under the title, Google often shows a short summary of the page that you can write yourself. Without it, Google picks a random bit of text from the page, often unappealing.\nWhat to do: Write one or two sentences per page (about 150 characters) that sum up the offer and make people want to click. On WordPress: the “meta description” field in Yoast or Rank Math.\nPages affected (2):\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\nFor your developer: No \u003cmeta name=\"description\" content=\"…\"> (or an empty one) on an indexable page. (P04)\n\n[Should fix] 5 pages without a big visible heading\nWhat this means: The big heading at the top of the page tells Google, AI assistants and visitors what the page is about. Without it, they guess.\nWhat to do: Add a big heading at the top of each page that clearly states its topic (e.g. “Brake pads in Douala”).\nPages affected (5):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: No \u003ch1> element on the page. (P07)\n\n[Should fix] 5 pages without an image when shared on WhatsApp or Facebook\nWhat this means: When someone shares these pages on WhatsApp or Facebook, no image appears: the link goes unnoticed and inspires less trust.\nWhat to do: Pick an image for each page (a photo of the product, shop or service) that will appear when it's shared. On WordPress: the “Social” tab in Yoast or Rank Math.\nPages affected (5):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: No \u003cmeta property=\"og:image\"> (recommended image: 1200 × 630 px). Google doesn't use it for ranking: it's for share previews (Open Graph). (P13)\n\n[Should fix] 5 pages without a title or description when shared\nWhat this means: Without them, WhatsApp and Facebook show an incomplete or poorly chosen preview when the page is shared.\nWhat to do: For each page, fill in the share title and description (often the same as for Google). On WordPress: the “Social” tab in Yoast or Rank Math.\nPages affected (5):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: No \u003cmeta property=\"og:title\"> or \u003cmeta property=\"og:description\"> (often the same as the \u003ctitle> and meta description). (P13)\n\n[Minor] 2 titles too short to say what the page offers\nWhat this means: A very short title (like “Home” or “Blog”) doesn't say what the page offers. Google may replace it with other text, and customers don't know what they're clicking on.\nWhat to do: Complete these titles: what the page offers, then your name or city (50 to 60 characters).\nOn your site:\n  https://boutique-exemple.cm/freins\n    Boutique Exemple (also on 1 other page)\nPages affected (2):\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: \u003ctitle> under 30 characters. Google recommends descriptive, concise titles and avoiding vague labels like “Home”. (P03)\n\n[Minor] 3 summaries too short to make people click\nWhat this means: A very short summary leaves empty space in Google's results and gives few reasons to pick your page.\nWhat to do: Expand these descriptions to 140–160 characters: the offer, a concrete benefit, the city.\nOn your site:\n  https://boutique-exemple.cm/\n    Pièces auto neuves et d'occasion, livrées à Douala et Yaoundé.\n  https://boutique-exemple.cm/freins\n    Plaquettes et disques de frein.\n  https://boutique-exemple.cm/filtres\n    Filtres à huile, à air et à carburant.\nPages affected (3):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: \u003cmeta name=\"description\"> under 70 characters. (P06)\n\n[Minor] 4 pages with very little text\nWhat this means: Google doesn't count words or require any length. But with this little text of the page's own (menu and footer excluded), there's little for Google and AI assistants to understand or quote: what, for whom, where, at what price.\nWhat to do: If the page should be found on Google, add what your customers ask: what you offer, for whom, where, at what price, common questions. A listing page or a tool can stay short.\nPages affected (4):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/livraison\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: Under 200 words of main content (\u003cmain>, without nav, aside, forms or the site header/footer) on an indexable, non-utility page. A heuristic, not a Google rule (Google says there's no ideal word count). (P10)","findings":["[Urgent] 5 pages don't adapt to phones\nWhat this means: On a phone, these pages show as they would on a computer, shrunk down: people have to zoom to read and to tap buttons. Most of your customers come from phones, and Google judges your site on its mobile version.\nWhat to do: Ask whoever runs your site to add the “viewport” setting that fits the page to the phone's screen. Every recent WordPress theme has it: its absence often means a very old theme or a hand-made page.\nPages affected (5):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: No \u003cmeta name=\"viewport\"> in the \u003chead>. Add \u003cmeta name=\"viewport\" content=\"width=device-width, initial-scale=1\">. Without it, mobile browsers lay the page out ~980 px wide, then shrink it. (M01)","[Important] 2 pages without a title\nWhat this means: The title is the clickable text Google shows. Without one, Google makes one up, often a poor one, and the page gets fewer clicks.\nWhat to do: Give every page a unique title that says what it offers, ending with the business name.\nPages affected (2):\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\nFor your developer: No \u003ctitle> (or an empty \u003ctitle>) in the \u003chead>. (P01)","[Important] 2 pages share the title “Boutique Exemple”\nWhat this means: When several pages have the same title, Google can't tell which one to show and may show none. Visitors can't tell them apart either.\nWhat to do: Give each page its own title that says what makes it different (product, service, city).\nPages affected (2):\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: Same \u003ctitle> on several indexable pages in the same language. (P02)","[Important] Your homepage doesn't tell Google who you are\nWhat this means: Google reads an “ID card” hidden in the page's code: name, logo, address, phone. Without it, it has to guess, and may confuse you with another business of the same name. AI assistants may use it too, but none has confirmed it: it's first of all for Google.\nWhat to do: Ask whoever runs your website to add this ID card to the homepage, with your name, logo, address, phone and opening hours. On WordPress, an SEO plugin (Yoast, Rank Math) does it.\nPages affected (1):\n  - https://boutique-exemple.cm/\nFor your developer: No JSON-LD block (or microdata) of type Organization, LocalBusiness or a subtype, or Person, on the homepage. Add an Organization block (or LocalBusiness / the precise subtype if customers visit in person) with name, url, logo, address (PostalAddress), telephone, sameAs and, for a shop, openingHoursSpecification. Check it with Google's Rich Results Test. (S03)","[Should fix] Your homepage leads to no other page of your site\nWhat this means: Google, AI assistants and your visitors discover your pages by following the links on the homepage. Yours has no link to another page of the site: its links go to sections of the same page, to other sites (social networks, WhatsApp) or nowhere (see the example). If your site has other pages, nobody can find them from the homepage, and without a sitemap neither can Google. If your site is deliberately a single page, ignore this point.\nWhat to do: Add real links to your other pages (products, services, contact…) in the menu or at the bottom of the page, and a sitemap declared in Google Search Console.\nOn your site:\n  https://boutique-exemple.cm/\n    0 \u003ca href>\nPages affected (1):\n  - https://boutique-exemple.cm/\nFor your developer: No \u003ca href> to another URL of the same site in the homepage's served HTML, nor (when Chrome could read it before the crawl) once its JavaScript has run. Buttons without href, JavaScript handlers and client-side routers that switch views without links aren't followed by crawlers. Serve real \u003ca href> links and an XML sitemap. (C07)","[Should fix] 2 pages without a short summary for Google\nWhat this means: Under the title, Google often shows a short summary of the page that you can write yourself. Without it, Google picks a random bit of text from the page, often unappealing.\nWhat to do: Write one or two sentences per page (about 150 characters) that sum up the offer and make people want to click. On WordPress: the “meta description” field in Yoast or Rank Math.\nPages affected (2):\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\nFor your developer: No \u003cmeta name=\"description\" content=\"…\"> (or an empty one) on an indexable page. (P04)","[Should fix] 5 pages without a big visible heading\nWhat this means: The big heading at the top of the page tells Google, AI assistants and visitors what the page is about. Without it, they guess.\nWhat to do: Add a big heading at the top of each page that clearly states its topic (e.g. “Brake pads in Douala”).\nPages affected (5):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: No \u003ch1> element on the page. (P07)","[Should fix] 5 pages without an image when shared on WhatsApp or Facebook\nWhat this means: When someone shares these pages on WhatsApp or Facebook, no image appears: the link goes unnoticed and inspires less trust.\nWhat to do: Pick an image for each page (a photo of the product, shop or service) that will appear when it's shared. On WordPress: the “Social” tab in Yoast or Rank Math.\nPages affected (5):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: No \u003cmeta property=\"og:image\"> (recommended image: 1200 × 630 px). Google doesn't use it for ranking: it's for share previews (Open Graph). (P13)","[Should fix] 5 pages without a title or description when shared\nWhat this means: Without them, WhatsApp and Facebook show an incomplete or poorly chosen preview when the page is shared.\nWhat to do: For each page, fill in the share title and description (often the same as for Google). On WordPress: the “Social” tab in Yoast or Rank Math.\nPages affected (5):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/contact\n  - https://boutique-exemple.cm/livraison\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: No \u003cmeta property=\"og:title\"> or \u003cmeta property=\"og:description\"> (often the same as the \u003ctitle> and meta description). (P13)","[Minor] 2 titles too short to say what the page offers\nWhat this means: A very short title (like “Home” or “Blog”) doesn't say what the page offers. Google may replace it with other text, and customers don't know what they're clicking on.\nWhat to do: Complete these titles: what the page offers, then your name or city (50 to 60 characters).\nOn your site:\n  https://boutique-exemple.cm/freins\n    Boutique Exemple (also on 1 other page)\nPages affected (2):\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: \u003ctitle> under 30 characters. Google recommends descriptive, concise titles and avoiding vague labels like “Home”. (P03)","[Minor] 3 summaries too short to make people click\nWhat this means: A very short summary leaves empty space in Google's results and gives few reasons to pick your page.\nWhat to do: Expand these descriptions to 140–160 characters: the offer, a concrete benefit, the city.\nOn your site:\n  https://boutique-exemple.cm/\n    Pièces auto neuves et d'occasion, livrées à Douala et Yaoundé.\n  https://boutique-exemple.cm/freins\n    Plaquettes et disques de frein.\n  https://boutique-exemple.cm/filtres\n    Filtres à huile, à air et à carburant.\nPages affected (3):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: \u003cmeta name=\"description\"> under 70 characters. (P06)","[Minor] 4 pages with very little text\nWhat this means: Google doesn't count words or require any length. But with this little text of the page's own (menu and footer excluded), there's little for Google and AI assistants to understand or quote: what, for whom, where, at what price.\nWhat to do: If the page should be found on Google, add what your customers ask: what you offer, for whom, where, at what price, common questions. A listing page or a tool can stay short.\nPages affected (4):\n  - https://boutique-exemple.cm/\n  - https://boutique-exemple.cm/livraison\n  - https://boutique-exemple.cm/freins\n  - https://boutique-exemple.cm/filtres\nFor your developer: Under 200 words of main content (\u003cmain>, without nav, aside, forms or the site header/footer) on an indexable, non-utility page. A heuristic, not a Google rule (Google says there's no ideal word count). (P10)"]}</script>
+<script>(() => {
+  const data = JSON.parse(document.getElementById("copy-data").textContent);
+  const fallback = (text) => {
+    const area = Object.assign(document.createElement("textarea"), { value: text });
+    area.style.cssText = "position:fixed;opacity:0";
+    document.body.append(area);
+    area.select();
+    const ok = document.execCommand("copy");
+    area.remove();
+    return ok;
+  };
+  const copy = (text) => (navigator.clipboard ? navigator.clipboard.writeText(text).then(() => true, () => fallback(text)) : Promise.resolve(fallback(text)));
+  document.addEventListener("click", async (event) => {
+    const button = event.target.closest("[data-copy]");
+    if (!button) return;
+    const key = button.dataset.copy;
+    const ok = await copy(key === "all" ? data.all : data.findings[Number(key)]);
+    const label = button.dataset.label || (button.dataset.label = button.textContent);
+    button.textContent = ok ? "Copied ✓" : "Couldn't copy";
+    setTimeout(() => (button.textContent = label), 1600);
+  });
+})();</script>
+<script>addEventListener("beforeprint", () => document.querySelectorAll("details").forEach((d) => { d.open = true; }));</script>
+<script>(() => {
+  const cards = [...document.querySelectorAll(".finding")];
+  const count = document.querySelector(".showing");
+  const topicChip = document.querySelector(".topic-chip");
+  let sev = "", cat = "";
+  const apply = () => {
+    let shown = 0;
+    for (const card of cards) {
+      const visible = (!sev || card.dataset.sev === sev) && (!cat || card.dataset.cat === cat);
+      card.hidden = !visible;
+      if (visible) shown++;
+    }
+    document.querySelectorAll("[data-filter-sev]").forEach((b) => b.setAttribute("aria-pressed", String(b.dataset.filterSev === sev)));
+    document.querySelectorAll(".cat-row").forEach((r) => r.classList.toggle("dim", !!cat && r.dataset.filterCat !== cat));
+    if (topicChip) {
+      topicChip.hidden = !cat;
+      const row = document.querySelector('.cat-row[data-filter-cat="' + cat + '"] .cat-name');
+      topicChip.textContent = cat && row ? row.textContent + " ✕" : "";
+    }
+    if (count) count.textContent = "Problems shown: {shown} of {total}".replace("{shown}", shown).replace("{total}", cards.length);
+  };
+  document.addEventListener("click", (event) => {
+    const s = event.target.closest("[data-filter-sev]");
+    if (s) { sev = s.dataset.filterSev; apply(); return; }
+    const c = event.target.closest("[data-filter-cat]");
+    if (c) {
+      cat = c.dataset.filterCat === cat ? "" : c.dataset.filterCat;
+      apply();
+      if (cat) document.getElementById("problems")?.scrollIntoView({ behavior: "smooth" });
+    }
+  });
+  const tip = Object.assign(document.createElement("div"), { className: "tip", hidden: true });
+  document.body.append(tip);
+  document.addEventListener("pointermove", (event) => {
+    const seg = event.target.closest("[data-tip]");
+    if (!seg) { tip.hidden = true; return; }
+    tip.textContent = seg.dataset.tip;
+    tip.hidden = false;
+    tip.style.left = Math.min(event.clientX + 12, innerWidth - tip.offsetWidth - 8) + "px";
+    tip.style.top = event.clientY + 14 + "px";
+  });
+  apply();
+})();</script>
+</body>
+</html>

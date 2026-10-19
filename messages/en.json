@@ -36,10 +36,11 @@
     "heading": "Featured work",
     "howBuilt": "How I built it",
     "liveDemo": "Live demo",
+    "sampleReport": "Sample report",
     "github": "GitHub",
     "privateCode": "Code: private",
     "eyebrow": "Selected work · {count} projects",
-    "intro": "Three products I built end to end. Each one is live, and each case study shows how it works.",
+    "intro": "Four products I built end to end. Each one can be tried, and each case study shows how it works.",
     "showScreen": "Show {label}",
     "stack": "Tech stack"
   },
@@ -140,6 +141,7 @@
     "back": "All projects",
     "kicker": "Case study {n} / {total}",
     "liveDemo": "Live demo",
+    "sampleReport": "Sample report",
     "repo": "GitHub",
     "privateRepo": "Private code, available on request",
     "facts": {
@@ -278,7 +280,7 @@
     "pages": {
       "projects": {
         "label": "Projects",
-        "hint": "Three case studies with live demos"
+        "hint": "Four case studies you can try"
       },
       "pricing": {
         "label": "Pricing",
