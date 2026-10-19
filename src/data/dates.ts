@@ -15,5 +15,6 @@ export const updated = {
     truckparts: "2026-10-09",
     pharmap: "2026-10-09",
     "car-rental": "2026-10-09",
+    "seo-audit-tool": "2026-10-19",
   } as Record<string, string>,
 };

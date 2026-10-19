@@ -1,5 +1,6 @@
 import type { StaticImageData } from "next/image";
 import type { Localized } from "@/lib/localized";
+import type { Locale } from "@/i18n/routing";
 import truckpartsHome from "@/assets/screenshots/truckparts/home.png";
 import truckpartsListing from "@/assets/screenshots/truckparts/listing.png";
 import truckpartsDetail from "@/assets/screenshots/truckparts/detail.png";
@@ -29,6 +30,12 @@ import pharmapAdminVerification from "@/assets/screenshots/pharmap/admin-verific
 import pharmapPhoneAdmin from "@/assets/screenshots/pharmap/phone-admin.webp";
 import pharmapPhoneInventory from "@/assets/screenshots/pharmap/phone-inventory.webp";
 import pharmapPhoneOwner from "@/assets/screenshots/pharmap/phone-owner.webp";
+import seoHome from "@/assets/screenshots/seo-audit-tool/home.webp";
+import seoReportTop3 from "@/assets/screenshots/seo-audit-tool/report-top3.webp";
+import seoReportChart from "@/assets/screenshots/seo-audit-tool/report-chart.webp";
+import seoQueue from "@/assets/screenshots/seo-audit-tool/queue.webp";
+import seoHistory from "@/assets/screenshots/seo-audit-tool/history.webp";
+import seoForm from "@/assets/screenshots/seo-audit-tool/form.webp";
 import { withFrenchSpacing } from "@/lib/typography";
 
 export type TechStackEntry = {
@@ -59,11 +66,23 @@ export type Decision = {
   shot: string; // key of one of the project's screenshots
 };
 
-export type Project = {
+// How a visitor tries the project. A web app links to its live demo. A tool
+// that runs on its user's computer has nothing to open online: it links to a
+// sample of what it produces instead (a static file in public/, in the page's
+// language), and says where it runs.
+export type ProjectDemo =
+  | { status: "live-demo"; liveUrl: string }
+  | {
+      status: "sample-report";
+      sample: Localized; // "/samples/....html"
+      platform: string; // "Windows": the operating system it runs on
+      frameHost: string; // the address shown in the screenshots' browser frame
+    };
+
+export type Project = ProjectDemo & {
   slug: string;
   title: string;
   category: Localized;
-  status: "live-demo";
   summary: Localized;
   // The page title for Google and link previews: what the project is, not
   // just its name (at most ~48 characters, before " | Priestly").
@@ -82,7 +101,6 @@ export type Project = {
   stackLine: string[]; // 3 headline technologies
   decisions: Decision[];
   cta: { title: Localized; text: Localized };
-  liveUrl: string;
   // Omitted for projects whose code is private: the site then shows
   // "Private repository, available on request" instead of a GitHub link.
   githubUrl?: string;
@@ -1074,8 +1092,298 @@ export const projects: Project[] = withFrenchSpacing([
         src: carRentalAdminBookings,
       },
     ],
+  },  {
+    slug: "seo-audit-tool",
+    title: "JPFW SEO",
+    category: { en: "SEO / Desktop tool", fr: "SEO / Outil de bureau" },
+    status: "sample-report",
+    sample: { en: "/samples/seo-report-en.html", fr: "/samples/seo-report-fr.html" },
+    platform: "Windows",
+    frameHost: "localhost:4321",
+    seoTitle: { en: "JPFW SEO: website audit tool case study", fr: "JPFW SEO : outil d'audit de site web" },
+    metaDescription: {
+      en: "Case study: a tool that audits a website like Google reads it and writes a report a business owner can act on, in French or English.",
+      fr: "Étude de cas : un outil qui audite un site comme Google le lit et rédige un rapport qu'un chef d'entreprise peut suivre, en français ou en anglais.",
+    },
+    summary: {
+      en: "A tool I built to audit websites: it reads a site the way Google does, runs 76 checks, and writes a report that a business owner understands, with a technical note for their developer. In French or English.",
+      fr: "Un outil que j'ai construit pour auditer des sites web : il lit un site comme Google, fait 76 vérifications, et rédige un rapport qu'un chef d'entreprise comprend, avec une note technique pour son développeur. En français ou en anglais.",
+    },
+    problem: {
+      en: "Many business sites in Cameroon can't be found on Google, and their owners don't know why. Audit tools exist, but they're in English, written for SEO specialists, and full of warnings that aren't real problems. An owner can't tell what matters, and a report with false alarms loses their trust.",
+      fr: "Beaucoup de sites d'entreprises au Cameroun sont introuvables sur Google, et leurs propriétaires ne savent pas pourquoi. Les outils d'audit existent, mais ils sont en anglais, écrits pour des spécialistes du SEO, et pleins d'alertes qui ne sont pas de vrais problèmes. Le propriétaire ne sait pas ce qui compte, et un rapport avec de fausses alertes perd sa confiance.",
+    },
+    solution: {
+      en: "I built a diagnostic engine and a small app that runs it. The engine reads the site's pages like Google, then checks titles, links, redirects, structured data, local business details, speed on a phone and what AI assistants can read. Each problem comes with what it means, what to do, examples taken from the site, and a folded note for the developer. The report opens with the three things to fix first, and prints to a PDF ready to send.",
+      fr: "J'ai construit un moteur de diagnostic et une petite application qui le lance. Le moteur lit les pages du site comme Google, puis vérifie les titres, les liens, les redirections, les données structurées, les informations d'entreprise locale, la vitesse sur téléphone et ce que les assistants IA peuvent lire. Chaque problème explique ce qu'il change, quoi faire, avec des exemples pris sur le site, et une note repliée pour le développeur. Le rapport commence par les trois choses à corriger en premier, et s'imprime en PDF prêt à envoyer.",
+    },
+    keyFeatures: [
+      {
+        en: "76 checks: indexing, broken links and redirects, titles and descriptions, headings, structured data, HTTPS, images, speed and local business details",
+        fr: "76 vérifications : indexation, liens cassés et redirections, titres et descriptions, titres de section, données structurées, HTTPS, images, vitesse et informations d'entreprise locale",
+      },
+      {
+        en: "A report written for the owner: what each problem means and what to do, with examples from their own site, and a folded technical note for their developer",
+        fr: "Un rapport écrit pour le propriétaire : ce que chaque problème change et quoi faire, avec des exemples de son propre site, et une note technique repliée pour son développeur",
+      },
+      {
+        en: "\"Start with these 3\": the most serious and widespread problems first, on a first page that prints as a summary to send a client",
+        fr: "« Commencez par ces 3 » : les problèmes les plus graves et les plus répandus d'abord, sur une première page qui s'imprime comme un résumé à envoyer au client",
+      },
+      {
+        en: "Speed measured in a real Chrome with Lighthouse, three runs per page, judged on the median and adjusted to the computer's speed",
+        fr: "Vitesse mesurée dans un vrai Chrome avec Lighthouse, trois mesures par page, jugées sur la médiane et ajustées à la vitesse de l'ordinateur",
+      },
+      {
+        en: "Menus built by JavaScript are followed: the home page is read in Chrome first, so the scan doesn't stop at one page",
+        fr: "Les menus construits en JavaScript sont suivis : la page d'accueil est d'abord lue dans Chrome, donc l'analyse ne s'arrête pas à une page",
+      },
+      {
+        en: "A queue of up to 20 sites with a live progress bar, a history of every scan, and \"what changed since the last scan\" in each report",
+        fr: "Une file de 20 sites maximum avec une barre de progression en direct, l'historique de chaque analyse, et « ce qui a changé depuis la dernière analyse » dans chaque rapport",
+      },
+      {
+        en: "The site type can be set (shop, local business, media, nonprofit…), so a news site is never asked for payment options",
+        fr: "Le type de site peut être choisi (boutique, commerce local, média, association…), donc un site d'actualité n'est jamais jugé sur ses moyens de paiement",
+      },
+      {
+        en: "Prospecting: finds dead links on directory pages, the web archive's copy of what they pointed to, and a ready-to-send message to the page's owner",
+        fr: "Prospection : trouve les liens morts sur des pages d'annuaire, la copie archivée de ce qu'ils pointaient, et un message prêt à envoyer au propriétaire de la page",
+      },
+      {
+        en: "Interface and reports in French or English, with the agency's name on every report",
+        fr: "Interface et rapports en français ou en anglais, avec le nom de l'agence sur chaque rapport",
+      },
+      {
+        en: "A Windows package with its own Node.js, and updates that only download the code that changed (about 1 MB instead of 74 MB)",
+        fr: "Un paquet Windows avec son propre Node.js, et des mises à jour qui ne téléchargent que le code modifié (environ 1 Mo au lieu de 74 Mo)",
+      },
+    ],
+    techStack: [
+      {
+        layer: { en: "Language", fr: "Langage" },
+        choice: "TypeScript on Node.js 22",
+        why: {
+          en: "One language from the crawler to the report. Node runs TypeScript directly, so there's no build step to break.",
+          fr: "Un seul langage du robot au rapport. Node exécute le TypeScript directement, donc pas d'étape de compilation qui casse.",
+        },
+      },
+      {
+        layer: { en: "Crawler", fr: "Robot" },
+        choice: "Crawlee + Cheerio",
+        why: {
+          en: "Crawlee handles the queue, retries, robots.txt and rate limits; Cheerio reads the HTML without a browser, which is fast.",
+          fr: "Crawlee gère la file, les nouvelles tentatives, robots.txt et le rythme ; Cheerio lit le HTML sans navigateur, ce qui est rapide.",
+        },
+      },
+      {
+        layer: { en: "Speed", fr: "Vitesse" },
+        choice: "Lighthouse + Puppeteer",
+        why: {
+          en: "The same measurements Google uses, in a real Chrome on a simulated phone, kept in a separate package so the crawler stays light.",
+          fr: "Les mêmes mesures que Google, dans un vrai Chrome sur un téléphone simulé, dans un module à part pour que le robot reste léger.",
+        },
+      },
+      {
+        layer: { en: "Interface", fr: "Interface" },
+        choice: "Plain HTML, no framework",
+        why: {
+          en: "A local app on 127.0.0.1 with a handful of pages. Plain HTML has nothing to build or update.",
+          fr: "Une application locale sur 127.0.0.1 avec quelques pages. Du HTML simple n'a rien à compiler ni à mettre à jour.",
+        },
+      },
+      {
+        layer: { en: "Tests", fr: "Tests" },
+        choice: "Vitest + recorded sites",
+        why: {
+          en: "Every check is tested against sites with planted problems and real sites recorded byte for byte, offline and the same on every run.",
+          fr: "Chaque vérification est testée sur des sites avec des problèmes plantés et sur de vrais sites enregistrés à l'octet près, hors ligne et identiques à chaque fois.",
+        },
+      },
+      {
+        layer: { en: "Delivery", fr: "Distribution" },
+        choice: "GitHub Actions + Releases",
+        why: {
+          en: "Each merge is tested on Linux and Windows, packaged, and published as an update the app installs itself after checking its fingerprint.",
+          fr: "Chaque fusion est testée sur Linux et Windows, empaquetée, et publiée comme mise à jour que l'application installe seule après avoir vérifié son empreinte.",
+        },
+      },
+    ],
+    challenges: [
+      {
+        en: "No false alarms. A report that flags something that isn't a problem loses the owner's trust. Each check is tested against 18 sites with planted problems and traps, and against 7 real sites recorded and reviewed finding by finding: a test fails if a problem is missed or if one appears that shouldn't.",
+        fr: "Pas de fausses alertes. Un rapport qui signale ce qui n'est pas un problème perd la confiance du propriétaire. Chaque vérification est testée sur 18 sites avec des problèmes plantés et des pièges, et sur 7 vrais sites enregistrés et revus constat par constat : un test échoue si un problème est manqué ou si un problème qui ne devrait pas apparaître apparaît.",
+      },
+      {
+        en: "The same site, the same report. Servers answer in random order, so a page limit could cut the crawl at a different page each time. The crawler reads pages in waves, in link order, so two scans of the same site stop at the same place.",
+        fr: "Même site, même rapport. Les serveurs répondent dans un ordre aléatoire, donc une limite de pages pouvait couper l'exploration à une page différente à chaque fois. Le robot lit les pages par vagues, dans l'ordre des liens, donc deux analyses du même site s'arrêtent au même endroit.",
+      },
+      {
+        en: "Menus built by JavaScript. Some sites have no links in their HTML, so the scan stopped at the home page. The tool now opens the home page in Chrome first and follows the links that appear once JavaScript has run.",
+        fr: "Les menus construits en JavaScript. Certains sites n'ont aucun lien dans leur HTML, donc l'analyse s'arrêtait à la page d'accueil. L'outil ouvre maintenant la page d'accueil dans Chrome et suit les liens qui apparaissent une fois le JavaScript exécuté.",
+      },
+      {
+        en: "Updates on mobile data. The full package is 74 MB. Each release records a fingerprint of Node.js and the libraries; when it hasn't changed, the app downloads only the code, about 1 MB.",
+        fr: "Les mises à jour sur données mobiles. Le paquet complet pèse 74 Mo. Chaque version enregistre une empreinte de Node.js et des bibliothèques ; quand elle n'a pas changé, l'application ne télécharge que le code, environ 1 Mo.",
+      },
+    ],
+    outcome: {
+      en: "It's a working tool I use for audits: a Windows app that updates itself, with 865 automated tests run on Linux and Windows on every change. The code is in a private repository; the sample report shows exactly what a client receives.",
+      fr: "C'est un outil fonctionnel que j'utilise pour mes audits : une application Windows qui se met à jour seule, avec 865 tests automatisés lancés sur Linux et Windows à chaque modification. Le code est dans un dépôt privé ; l'exemple de rapport montre exactement ce que reçoit un client.",
+    },
+    role: {
+      en: "Solo · design + engineering",
+      fr: "Seul · conception + développement",
+    },
+    statusNote: {
+      en: "Working tool · private code",
+      fr: "Outil fonctionnel · code privé",
+    },
+    stackLine: ["TypeScript", "Node.js", "Lighthouse"],
+    decisions: [
+      {
+        label: { en: "Plain words", fr: "Des mots simples" },
+        problem: {
+          en: "Audit tools speak to SEO specialists. A business owner can't tell what matters or what to do.",
+          fr: "Les outils d'audit parlent aux spécialistes du SEO. Un chef d'entreprise ne sait pas ce qui compte ni quoi faire.",
+        },
+        built: {
+          en: "Each problem says what it means and what to do, with examples from the site. The three to fix first open the report.",
+          fr: "Chaque problème dit ce qu'il change et quoi faire, avec des exemples du site. Les trois à corriger en premier ouvrent le rapport.",
+        },
+        tech: {
+          en: "Messages in French and English with the same placeholders, real plurals, and the technical note folded for the developer",
+          fr: "Messages en français et en anglais avec les mêmes variables, de vrais pluriels, et la note technique repliée pour le développeur",
+        },
+        shot: "report-top3",
+      },
+      {
+        label: { en: "Trust", fr: "Confiance" },
+        problem: {
+          en: "A false alarm in a report makes the owner doubt everything else in it.",
+          fr: "Une fausse alerte dans un rapport fait douter le propriétaire de tout le reste.",
+        },
+        built: {
+          en: "Checks only fire on clear evidence, and the report says what it couldn't check instead of claiming there's no problem.",
+          fr: "Les vérifications ne se déclenchent que sur une preuve claire, et le rapport dit ce qu'il n'a pas pu vérifier au lieu d'affirmer qu'il n'y a pas de problème.",
+        },
+        tech: {
+          en: "Recorded sites replayed offline: the test requires exactly the expected findings, in order",
+          fr: "Des sites enregistrés rejoués hors ligne : le test exige exactement les constats attendus, dans l'ordre",
+        },
+        shot: "home",
+      },
+      {
+        label: { en: "Several sites", fr: "Plusieurs sites" },
+        problem: {
+          en: "Auditing several sites one by one, then comparing with last month by hand, takes an afternoon.",
+          fr: "Auditer plusieurs sites un par un, puis comparer à la main avec le mois dernier, prend un après-midi.",
+        },
+        built: {
+          en: "A queue of up to 20 sites with a live progress bar, and each report compared with the site's previous scan.",
+          fr: "Une file de 20 sites maximum avec une barre de progression en direct, et chaque rapport comparé avec l'analyse précédente du site.",
+        },
+        tech: {
+          en: "One scan at a time, so speed measurements don't compete; each scan saved as JSON with its report",
+          fr: "Une analyse à la fois, pour que les mesures de vitesse ne se gênent pas ; chaque analyse enregistrée en JSON avec son rapport",
+        },
+        shot: "queue",
+      },
+    ],
+    cta: {
+      title: {
+        en: "Want to know what Google sees on your site?",
+        fr: "Vous voulez savoir ce que Google voit de votre site ?",
+      },
+      text: {
+        en: "I run this audit on your site and walk you through the report.",
+        fr: "Je lance cet audit sur votre site et je vous explique le rapport.",
+      },
+    },
+    highlights: [
+      {
+        en: "76 checks, explained in plain words with examples from the site",
+        fr: "76 vérifications, expliquées simplement avec des exemples du site",
+      },
+      {
+        en: "Tested against real recorded sites: no false alarms",
+        fr: "Testé sur de vrais sites enregistrés : pas de fausses alertes",
+      },
+      {
+        en: "Speed measured in a real Chrome with Lighthouse",
+        fr: "Vitesse mesurée dans un vrai Chrome avec Lighthouse",
+      },
+    ],
+    tags: ["TypeScript", "Node.js", "Crawlee", "Lighthouse", "Vitest"],
+    showcase: ["home", "report-top3", "queue", "history"],
+    screenshots: [
+      {
+        key: "home",
+        label: { en: "Audit report", fr: "Rapport d'audit" },
+        alt: {
+          en: "Audit report for www.garage-exemple.cm: 13 pages analysed, the agency's name and website, and 13 problems counted by severity: 4 urgent, 1 important, 6 to fix, 2 minor",
+          fr: "Rapport d'audit de www.garage-exemple.cm : 13 pages analysées, le nom et le site de l'agence, et 13 problèmes comptés par gravité : 4 urgents, 1 important, 6 à prévoir, 2 mineurs",
+        },
+        src: seoHome,
+      },
+      {
+        key: "report-top3",
+        label: { en: "Start with these 3", fr: "Commencez par ces 3" },
+        alt: {
+          en: "“Start with these 3”: a page that crashes, a site without the padlock, and a page that doesn't adapt to phones, each with what to do in one sentence",
+          fr: "« Commencez par ces 3 » : une page qui plante, un site sans cadenas, et une page qui ne s'adapte pas aux téléphones, chacun avec quoi faire en une phrase",
+        },
+        src: seoReportTop3,
+      },
+      {
+        key: "queue",
+        label: { en: "Queue with live progress", fr: "File d'attente en direct" },
+        alt: {
+          en: "Queue of three sites: one measuring speed on a simulated phone at 60%, the two others waiting their turn",
+          fr: "File de trois sites : l'un mesure la vitesse sur un téléphone simulé à 60 %, les deux autres attendent leur tour",
+        },
+        src: seoQueue,
+      },
+      {
+        key: "history",
+        label: { en: "History of scans", fr: "Historique des analyses" },
+        alt: {
+          en: "History of scans: three sites with the date, pages read, problems by severity, and Report and Run again buttons",
+          fr: "Historique des analyses : trois sites avec la date, les pages lues, les problèmes par gravité, et les boutons rapport et relancer",
+        },
+        src: seoHistory,
+      },
+      {
+        key: "form",
+        label: { en: "New scan", fr: "Nouvelle analyse" },
+        alt: {
+          en: "New scan form: site addresses, one per line, maximum pages per site, report language, site type, and speed measurement in a browser",
+          fr: "Formulaire de nouvelle analyse : adresses des sites, une par ligne, pages maximum par site, langue du rapport, type de site, et mesure de la vitesse dans un navigateur",
+        },
+        src: seoForm,
+      },
+      {
+        key: "report-chart",
+        label: { en: "Problems by topic", fr: "Problèmes par thème" },
+        alt: {
+          en: "Problems by topic as stacked bars by severity, with a legend and a table view",
+          fr: "Problèmes par thème en barres empilées par gravité, avec une légende et une vue en tableau",
+        },
+        src: seoReportChart,
+      },
+    ],
   },
 ]);
+
+// The demo button's address: the live app, or the sample in this language.
+export function demoHref(project: Project, locale: Locale): string {
+  return project.status === "live-demo" ? project.liveUrl : project.sample[locale];
+}
+
+// The address shown above the project's screenshots.
+export function frameHost(project: Project): string {
+  return project.status === "live-demo" ? new URL(project.liveUrl).host : project.frameHost;
+}
 
 export function getProject(slug: string) {
   return projects.find((project) => project.slug === slug);

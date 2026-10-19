@@ -22,6 +22,11 @@ const nextConfig: NextConfig = {
   // A former address (data/domains.ts) sends every page to the same page on
   // the real domain, query string included (?ref= links keep their source).
   // Matched on the Host header, so preview deployments are untouched.
+  // Sample reports (public/samples/) show what a tool produces, about a
+  // made-up site: linked from their case study, kept out of search results.
+  async headers() {
+    return [{ source: "/samples/:file*", headers: [{ key: "X-Robots-Tag", value: "noindex" }] }];
+  },
   async redirects() {
     return [
       ...OLD_DOMAINS.map((host) => ({

@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { projects } from "@/data/projects";
+import { demoHref, frameHost, projects } from "@/data/projects";
 import { ProjectScreens } from "./ProjectScreens";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -30,7 +30,7 @@ export function ProjectsSection() {
               <div className={i % 2 === 1 ? "lg:order-2" : undefined}>
                 <ProjectScreens
                   projectTitle={project.title}
-                  host={new URL(project.liveUrl).host}
+                  host={frameHost(project)}
                   screenshots={project.screenshots}
                   showcase={project.showcase}
                 />
@@ -89,12 +89,12 @@ export function ProjectsSection() {
                     </span>
                   </Link>
                   <a
-                    href={project.liveUrl}
+                    href={demoHref(project, locale)}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="inline-flex min-h-11 items-center text-ink-soft link-underline"
                   >
-                    {t("liveDemo")} <span aria-hidden>&nbsp;↗</span>
+                    {t(project.status === "live-demo" ? "liveDemo" : "sampleReport")} <span aria-hidden>&nbsp;↗</span>
                   </a>
                   {project.githubUrl ? (
                     <a

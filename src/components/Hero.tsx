@@ -3,7 +3,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { site } from "@/data/site";
-import { projects } from "@/data/projects";
+import { frameHost, projects } from "@/data/projects";
 import { ProjectShowcase, type ShowcaseItem } from "./ProjectShowcase";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { buttonClass } from "@/components/ui/button";
@@ -29,7 +29,7 @@ export function Hero() {
       slug: project.slug,
       title: project.title,
       category: project.category[locale],
-      host: new URL(project.liveUrl).host,
+      host: frameHost(project),
       image: shot.src,
       alt: shot.alt[locale],
     };
