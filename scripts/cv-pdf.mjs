@@ -47,7 +47,7 @@ function html(locale) {
       return `<div class="item">
         <div class="row"><b>${esc(p.title[locale])}</b><span>${p.year}</span></div>
         ${p.stack ? `<p class="sub">${esc(p.stack)}${links.length ? ` <span class="sep">|</span> ${links.join(" · ")}` : ""}</p>` : ""}
-        <ul>${p.points.map((x) => `<li>${esc(x[locale])}</li>`).join("")}</ul></div>`;
+        <ul>${p.points.filter((x) => !x.webOnly).map((x) => `<li>${esc(x[locale])}</li>`).join("")}</ul></div>`;
     })
     .join("");
 
