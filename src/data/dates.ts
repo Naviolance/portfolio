@@ -8,7 +8,7 @@
 export const updated = {
   home: "2026-10-09",
   faq: "2026-10-09",
-  cv: "2026-10-09",
+  cv: "2026-10-20",
   services: "2026-10-09",
   process: "2026-10-09",
   projects: {

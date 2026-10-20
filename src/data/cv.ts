@@ -17,6 +17,10 @@ export const profile: Localized = withFrenchSpacing({
   fr: "Ingénieur logiciel full-stack qui construit des applications web complètes avec TypeScript, Next.js, NestJS et PostgreSQL. J'ai récemment construit une plateforme e-commerce de pièces de camion avec authentification sécurisée, paiement sans survente et intégration d'une passerelle de paiement, et PharMap, un outil pour trouver un médicament et une pharmacie au Cameroun. Deux stages en WordPress et en développement front-end. Bilingue anglais et français. Disponible pour un poste à temps plein et pour des projets freelance via JPFW Web Services.",
 });
 
+// A point marked webOnly shows on the /cv page but not in the PDF, which must
+// stay one page (the web page can be as long as it needs).
+export type CvPoint = Localized & { webOnly?: true };
+
 export type CvProject = {
   title: Localized;
   year: string;
@@ -27,7 +31,7 @@ export type CvProject = {
   codeUrl?: string;
   // One line for the proof cards at the top of the web CV.
   proof?: Localized;
-  points: Localized[];
+  points: CvPoint[];
 };
 
 export const cvProjects: CvProject[] = withFrenchSpacing([
@@ -41,6 +45,7 @@ export const cvProjects: CvProject[] = withFrenchSpacing([
     codeUrl: "https://github.com/Naviolance/Truck-spare-part-store",
     points: [
       {
+        webOnly: true,
         en: "Built a full-stack store with a product catalogue, a \"Find My Part\" vehicle-compatibility lookup, and shareable search filters.",
         fr: "Construction d'une boutique full-stack avec catalogue produits, recherche de compatibilité « Find My Part » par véhicule, et filtres de recherche partageables.",
       },
@@ -97,6 +102,30 @@ export const cvProjects: CvProject[] = withFrenchSpacing([
       {
         en: "Added real-time availability checks that block double bookings, and show the full price before the customer submits.",
         fr: "Vérification de disponibilité en temps réel qui bloque les doubles réservations, et affichage du prix total avant la validation.",
+      },
+    ],
+  },
+  {
+    title: { en: "JPFW SEO: Website Audit Tool", fr: "JPFW SEO : outil d'audit de site web" },
+    year: "2026",
+    stack: "TypeScript, Node.js, Crawlee, Lighthouse, Vitest",
+    slug: "seo-audit-tool",
+    proof: { en: "SEO audit tool with 76 checks and reports a business owner can act on", fr: "Outil d'audit SEO avec 76 vérifications et des rapports qu'un chef d'entreprise peut suivre" },
+    // No liveUrl or codeUrl: a Windows app with private code; the case study links its sample report.
+    points: [
+      {
+        en: "Built a crawler and 76 checks that explain a site's problems in plain words (EN/FR), with no false alarms.",
+        fr: "Robot et 76 vérifications qui expliquent simplement les problèmes d'un site (FR/EN), sans fausses alertes.",
+      },
+      {
+        webOnly: true,
+        en: "Built a crawler and 76 checks that read a site like Google and explain each problem in plain words, in English or French, tested against real recorded sites so reports show no false alarms.",
+        fr: "Robot et 76 vérifications qui lisent un site comme Google et expliquent chaque problème simplement, en français ou en anglais, testés sur de vrais sites enregistrés pour éviter les fausses alertes.",
+      },
+      {
+        webOnly: true,
+        en: "Measured speed in a real Chrome with Lighthouse; shipped as a Windows app that updates itself, downloading only the code that changed.",
+        fr: "Vitesse mesurée dans un vrai Chrome avec Lighthouse ; livré comme application Windows qui se met à jour seule, en ne téléchargeant que le code modifié.",
       },
     ],
   },
