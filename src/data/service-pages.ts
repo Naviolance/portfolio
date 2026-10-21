@@ -3,14 +3,13 @@ import type { Localized } from "@/lib/localized";
 import type { ServiceId } from "./services";
 import truckpartsHome from "@/assets/screenshots/truckparts/home.png";
 import carRentalHome from "@/assets/screenshots/car-rental/home.png";
-import siteHome from "@/assets/screenshots/site/home.webp";
 import pharmapBeforeHome from "@/assets/screenshots/pharmap/before/home.webp";
 import pharmapBeforeAvailability from "@/assets/screenshots/pharmap/before/availability.webp";
 import pharmapBeforeAdmin from "@/assets/screenshots/pharmap/before/admin-verification.webp";
 import pharmapHome from "@/assets/screenshots/pharmap/home.webp";
 import pharmapAvailability from "@/assets/screenshots/pharmap/availability.webp";
 import pharmapAdmin from "@/assets/screenshots/pharmap/admin-verification.webp";
-import { SITE_DOMAIN } from "@/data/domains";
+import seoToolReport from "@/assets/screenshots/seo-audit-tool/home.webp";
 import { withFrenchSpacing } from "@/lib/typography";
 
 // The content of each service page (/en/services/..., /fr/services/...).
@@ -266,8 +265,8 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
   seo: {
     heading: { en: "SEO and AI search (AEO)", fr: "Référencement Google et IA (SEO/AEO)" },
     lead: {
-      en: "I help your business show up on Google and in AI answers like ChatGPT: faster pages, a clear structure, structured data, Google and Bing set up, and content written so it can be quoted. An audit from 75K FCFA, or the audit and fixes from 200K FCFA.",
-      fr: "J'aide votre entreprise à apparaître sur Google et dans les réponses des IA comme ChatGPT : pages plus rapides, structure claire, données structurées, Google et Bing configurés, et des contenus rédigés pour être cités. Un audit à partir de 75K FCFA, ou l'audit avec les corrections à partir de 200K FCFA.",
+      en: "I help your business show up on Google and in AI answers like ChatGPT. It starts with an audit made with my own tool: 76 checks, and a report in plain words that says what to fix first. Then faster pages, a clear structure, structured data, Google and Bing set up, and content written so it can be quoted. An audit from 75K FCFA, or the audit and fixes from 200K FCFA.",
+      fr: "J'aide votre entreprise à apparaître sur Google et dans les réponses des IA comme ChatGPT. Tout commence par un audit fait avec mon propre outil : 76 vérifications, et un rapport en mots simples qui dit quoi corriger en premier. Ensuite : pages plus rapides, structure claire, données structurées, Google et Bing configurés, et des contenus rédigés pour être cités. Un audit à partir de 75K FCFA, ou l'audit avec les corrections à partir de 200K FCFA.",
     },
     metaDescription: {
       en: "SEO and AI search (AEO) for businesses in Cameroon: get found on Google and in ChatGPT answers. Audit from 75K FCFA, audit and fixes from 200K FCFA.",
@@ -282,11 +281,11 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       { label: "monthly", tiers: ["seo-care"], note: { en: "optional", fr: "en option" } },
     ],
     includes: [
-      { en: "A technical audit: speed, structure and what Google has indexed", fr: "Un audit technique : vitesse, structure et ce que Google a indexé" },
+      { en: "An audit with my own tool: 76 checks, from what Google has indexed to speed on a phone and your business details", fr: "Un audit avec mon propre outil : 76 vérifications, de ce que Google a indexé à la vitesse sur téléphone et aux informations de votre entreprise" },
       { en: "Structured data (schema.org) that search engines and AI tools read", fr: "Des données structurées (schema.org) lues par les moteurs et les IA" },
       { en: "Google Search Console and Bing Webmaster Tools set up", fr: "Google Search Console et Bing Webmaster Tools configurés" },
       { en: "Answer-first content that AI tools can quote", fr: "Des contenus qui répondent d'abord, que les IA peuvent citer" },
-      { en: "A written report in plain language", fr: "Un rapport écrit en langage simple" },
+      { en: "A report in plain language, in French or English, that opens with the three things to fix first", fr: "Un rapport en langage simple, en français ou en anglais, qui commence par les trois choses à corriger en premier" },
       { en: "Monthly monitoring, if you want it", fr: "Un suivi mensuel, si vous le souhaitez" },
     ],
     options: [
@@ -295,16 +294,16 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       { tier: "seo-care", timeline: { en: "monthly, optional", fr: "mensuel, en option" } },
     ],
     proof: {
-      title: { en: "This site", fr: "Ce site" },
+      title: { en: "JPFW SEO/AEO, my audit tool", fr: "JPFW SEO/AEO, mon outil d'audit" },
       text: {
-        en: "Structured data, an answer-first FAQ, fast pages, verified on Google and Bing.",
-        fr: "Données structurées, une FAQ qui répond d'abord, des pages rapides, vérifié sur Google et Bing.",
+        en: "The tool behind every audit: 76 checks tested on real sites so reports carry no false alarms. The case study links a sample report.",
+        fr: "L'outil derrière chaque audit : 76 vérifications testées sur de vrais sites pour que les rapports n'aient pas de fausses alertes. L'étude de cas donne un exemple de rapport.",
       },
-      href: "/",
-      image: siteHome,
-      host: SITE_DOMAIN,
+      href: "/projects/seo-audit-tool",
+      image: seoToolReport,
+      host: "localhost:4321",
     },
-    card: { items: { en: ["Google & Bing", "AI answers", "Plain reports"], fr: ["Google et Bing", "Réponses IA", "Rapports clairs"] }, shot: "site/home.webp" },
+    card: { items: { en: ["76 checks", "AI answers", "Plain reports"], fr: ["76 vérifications", "Réponses IA", "Rapports clairs"] }, shot: "seo-audit-tool/home.webp" },
     faqIds: ["show-up-on-google", "where-do-you-work", "how-to-pay"],
     cta: { en: "Get my business found ↗", fr: "Parler de mon référencement ↗" },
     whatsapp: {

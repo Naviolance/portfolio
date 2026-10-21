@@ -95,6 +95,9 @@ export type Project = ProjectDemo & {
   techStack: TechStackEntry[];
   challenges: Localized[];
   outcome: Localized;
+  // Planned next, shown under the result as "Coming soon". Only what is
+  // actually planned.
+  comingSoon?: Localized[];
   // Case-study facts box and closing call to action.
   role: Localized;
   statusNote: Localized; // honest status: demo, test mode, private code…
@@ -1094,20 +1097,20 @@ export const projects: Project[] = withFrenchSpacing([
     ],
   },  {
     slug: "seo-audit-tool",
-    title: "JPFW SEO",
-    category: { en: "SEO / Desktop tool", fr: "SEO / Outil de bureau" },
+    title: "JPFW SEO/AEO",
+    category: { en: "SEO & AI search / Desktop tool", fr: "SEO et recherche IA / Outil de bureau" },
     status: "sample-report",
     sample: { en: "/samples/seo-report-en.html", fr: "/samples/seo-report-fr.html" },
     platform: "Windows",
     frameHost: "localhost:4321",
-    seoTitle: { en: "JPFW SEO: website audit tool case study", fr: "JPFW SEO : outil d'audit de site web" },
+    seoTitle: { en: "JPFW SEO/AEO: SEO and AI search audit tool", fr: "JPFW SEO/AEO : audit SEO et recherche IA" },
     metaDescription: {
-      en: "Case study: a tool that audits a website like Google reads it and writes a report a business owner can act on, in French or English.",
-      fr: "Étude de cas : un outil qui audite un site comme Google le lit et rédige un rapport qu'un chef d'entreprise peut suivre, en français ou en anglais.",
+      en: "Case study: a tool that audits a site for Google and AI answers (SEO and AEO) and writes a report a business owner can act on, in French or English.",
+      fr: "Étude de cas : un outil qui audite un site pour Google et les réponses des IA (SEO et AEO), avec un rapport clair, en français ou en anglais.",
     },
     summary: {
-      en: "A tool I built to audit websites: it reads a site the way Google does, runs 76 checks, and writes a report that a business owner understands, with a technical note for their developer. In French or English.",
-      fr: "Un outil que j'ai construit pour auditer des sites web : il lit un site comme Google, fait 76 vérifications, et rédige un rapport qu'un chef d'entreprise comprend, avec une note technique pour son développeur. En français ou en anglais.",
+      en: "An SEO and AEO audit tool I built: it checks whether a site can be found on Google and quoted by AI assistants like ChatGPT. It reads the site the way Google does, runs 76 checks, and writes a report that a business owner understands, with a technical note for their developer. In French or English.",
+      fr: "Un outil d'audit SEO et AEO que j'ai construit : il vérifie si un site peut être trouvé sur Google et cité par les assistants IA comme ChatGPT. Il lit le site comme Google, fait 76 vérifications, et rédige un rapport qu'un chef d'entreprise comprend, avec une note technique pour son développeur. En français ou en anglais.",
     },
     problem: {
       en: "Many business sites in Cameroon can't be found on Google, and their owners don't know why. Audit tools exist, but they're in English, written for SEO specialists, and full of warnings that aren't real problems. An owner can't tell what matters, and a report with false alarms loses their trust.",
@@ -1231,6 +1234,16 @@ export const projects: Project[] = withFrenchSpacing([
       en: "It's a working tool I use for audits: a Windows app that updates itself, with 865 automated tests run on Linux and Windows on every change. The code is in a private repository; the sample report shows exactly what a client receives.",
       fr: "C'est un outil fonctionnel que j'utilise pour mes audits : une application Windows qui se met à jour seule, avec 865 tests automatisés lancés sur Linux et Windows à chaque modification. Le code est dans un dépôt privé ; l'exemple de rapport montre exactement ce que reçoit un client.",
     },
+    comingSoon: [
+      {
+        en: "Automatic fixes: the tool will correct the problems it finds, not just report them.",
+        fr: "Corrections automatiques : l'outil corrigera les problèmes qu'il trouve, au lieu de seulement les signaler.",
+      },
+      {
+        en: "A WordPress plugin: the audit and its fixes inside the WordPress dashboard.",
+        fr: "Une extension WordPress : l'audit et ses corrections directement dans le tableau de bord WordPress.",
+      },
+    ],
     role: {
       en: "Solo · design + engineering",
       fr: "Seul · conception + développement",
@@ -1302,8 +1315,8 @@ export const projects: Project[] = withFrenchSpacing([
     },
     highlights: [
       {
-        en: "76 checks, explained in plain words with examples from the site",
-        fr: "76 vérifications, expliquées simplement avec des exemples du site",
+        en: "76 checks for Google and AI answers, explained in plain words",
+        fr: "76 vérifications pour Google et les réponses des IA, expliquées simplement",
       },
       {
         en: "Tested against real recorded sites: no false alarms",
