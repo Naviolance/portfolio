@@ -1,6 +1,6 @@
 import { useTranslations } from "next-intl";
 import { site } from "@/data/site";
-import { whatsappLink } from "@/lib/whatsapp";
+import { WHATSAPP_NUMBER, whatsappLink } from "@/lib/whatsapp";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 
 const cardLink =
@@ -35,7 +35,10 @@ export function Contact() {
             <Eyebrow>{t("whatsapp.kicker")}</Eyebrow>
             <h3 className="mt-2 font-display text-xl font-semibold text-ink">{t("whatsapp.title")}</h3>
             <p className="mt-2 flex-1 text-[15px] text-ink-soft">{t("whatsapp.text")}</p>
-            <p className="mt-4 font-mono text-sm text-ink">{site.whatsapp.display}</p>
+            {/* A call link: tapping the number on a phone calls it (the button below opens WhatsApp). */}
+            <p className="mt-4 font-mono text-sm text-ink">
+              <a href={`tel:+${WHATSAPP_NUMBER}`} className="hover:text-accent-ink">{site.whatsapp.display}</a>
+            </p>
             <a href={whatsappLink(tw("default"))} {...external} className={cardLink}>
               {t("whatsapp.action")} ↗
             </a>

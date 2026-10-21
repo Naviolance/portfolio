@@ -42,6 +42,10 @@ export const site = withFrenchSpacing({
   linkedin: "https://www.linkedin.com/in/forsangam-weyegho-junior-priestly-965897236",
   github: "https://github.com/Naviolance",
   upwork: "https://www.upwork.com/freelancers/~0160ee49eadc052094",
+  // Directory listings: the person on GoAfrica, the agency on Sortlist. Only
+  // in the structured data (sameAs), so Google ties them to this site.
+  goafrica: "https://www.goafricaonline.com/cm/user/723646-junior-priestly-forsangam-weyegho",
+  sortlist: "https://www.sortlist.com/agency/jpfw-web-services",
   url: siteUrl(),
 } as const);
 

@@ -27,8 +27,9 @@ export function personSchema(locale: Locale) {
       name: site.brand,
       url: site.url,
       logo: `${site.url}/brand/jpfw-logo-512.png`,
+      sameAs: [site.sortlist],
     },
-    sameAs: [site.linkedin, site.github, site.upwork],
+    sameAs: [site.linkedin, site.github, site.upwork, site.goafrica],
     knowsLanguage: ["en", "fr"],
     knowsAbout: [
       "Next.js",
