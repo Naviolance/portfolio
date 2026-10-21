@@ -2,7 +2,7 @@ import type { CSSProperties } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
-import { demoHref, frameHost, projects } from "@/data/projects";
+import { frameHost, projects } from "@/data/projects";
 import { ProjectScreens } from "./ProjectScreens";
 import { SectionHeader } from "@/components/ui/SectionHeader";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -88,14 +88,19 @@ export function ProjectsSection() {
                       →
                     </span>
                   </Link>
-                  <a
-                    href={demoHref(project, locale)}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex min-h-11 items-center text-ink-soft link-underline"
-                  >
-                    {t(project.status === "live-demo" ? "liveDemo" : "sampleReport")} <span aria-hidden>&nbsp;↗</span>
-                  </a>
+                  {/* Live demos only: a sample report is noindex (like every report the tool writes), and a hidden page
+                      linked from the homepage reads as a mistake to search engines and to the tool's own audit (C04).
+                      The case study links it. */}
+                  {project.status === "live-demo" && (
+                    <a
+                      href={project.liveUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-11 items-center text-ink-soft link-underline"
+                    >
+                      {t("liveDemo")} <span aria-hidden>&nbsp;↗</span>
+                    </a>
+                  )}
                   {project.githubUrl ? (
                     <a
                       href={project.githubUrl}
