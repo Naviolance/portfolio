@@ -4,9 +4,9 @@ import type { Locale } from "@/i18n/routing";
 import { SERVICE_SLUGS, type ServiceId } from "./service-slugs";
 import truckpartsHome from "@/assets/screenshots/truckparts/home.png";
 import carRentalHome from "@/assets/screenshots/car-rental/home.png";
-import siteHome from "@/assets/screenshots/site/home.webp";
 import pharmapBeforeHome from "@/assets/screenshots/pharmap/before/home.webp";
 import pharmapHome from "@/assets/screenshots/pharmap/home.webp";
+import seoToolReport from "@/assets/screenshots/seo-audit-tool/home.webp";
 import { withFrenchSpacing } from "@/lib/typography";
 
 export type { ServiceId };
@@ -97,10 +97,11 @@ export const services: Service[] = withFrenchSpacing([
       fr: "Soyez trouvé sur Google et dans les réponses des IA comme ChatGPT et les AI Overviews de Google : vitesse, structure des pages, données structurées, configuration Google et Bing, et des contenus rédigés pour être cités.",
     },
     evidence: {
-      en: "This site: structured data, answer-first FAQ, verified on Google and Bing",
-      fr: "Ce site : données structurées, FAQ qui répond d'abord, vérifié sur Google et Bing",
+      en: "JPFW SEO: my own audit tool, 76 checks and plain-language reports",
+      fr: "JPFW SEO : mon propre outil d'audit, 76 vérifications et des rapports clairs",
     },
-    image: { src: siteHome, label: { en: "this site", fr: "ce site" } },
+    href: "/projects/seo-audit-tool",
+    image: { src: seoToolReport, label: { en: "JPFW SEO", fr: "JPFW SEO" } },
   },
   {
     id: "redesign",

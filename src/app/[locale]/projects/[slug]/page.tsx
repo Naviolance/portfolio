@@ -347,6 +347,16 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
 
           <Chapter id="result" n={4} title={t("resultTitle")}>
             <p className="mt-3 max-w-2xl text-ink-soft">{project.outcome[locale]}</p>
+            {project.comingSoon && (
+              <div className="mt-6 max-w-2xl border border-dashed border-line p-5">
+                <Eyebrow>{t("comingSoon")}</Eyebrow>
+                <ul className="mt-3 flex flex-col gap-2 text-[15px] text-ink-soft">
+                  {project.comingSoon.map((item) => (
+                    <li key={item.en}>{item[locale]}</li>
+                  ))}
+                </ul>
+              </div>
+            )}
           </Chapter>
 
           <Chapter id="screens" n={5} title={t("screensTitle")}>

@@ -95,6 +95,9 @@ export type Project = ProjectDemo & {
   techStack: TechStackEntry[];
   challenges: Localized[];
   outcome: Localized;
+  // Planned next, shown under the result as "Coming soon". Only what is
+  // actually planned.
+  comingSoon?: Localized[];
   // Case-study facts box and closing call to action.
   role: Localized;
   statusNote: Localized; // honest status: demo, test mode, private code…
@@ -1231,6 +1234,16 @@ export const projects: Project[] = withFrenchSpacing([
       en: "It's a working tool I use for audits: a Windows app that updates itself, with 865 automated tests run on Linux and Windows on every change. The code is in a private repository; the sample report shows exactly what a client receives.",
       fr: "C'est un outil fonctionnel que j'utilise pour mes audits : une application Windows qui se met à jour seule, avec 865 tests automatisés lancés sur Linux et Windows à chaque modification. Le code est dans un dépôt privé ; l'exemple de rapport montre exactement ce que reçoit un client.",
     },
+    comingSoon: [
+      {
+        en: "Automatic fixes: the tool will correct the problems it finds, not just report them.",
+        fr: "Corrections automatiques : l'outil corrigera les problèmes qu'il trouve, au lieu de seulement les signaler.",
+      },
+      {
+        en: "A WordPress plugin: the audit and its fixes inside the WordPress dashboard.",
+        fr: "Une extension WordPress : l'audit et ses corrections directement dans le tableau de bord WordPress.",
+      },
+    ],
     role: {
       en: "Solo · design + engineering",
       fr: "Seul · conception + développement",
