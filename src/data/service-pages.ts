@@ -294,7 +294,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       { tier: "seo-care", timeline: { en: "monthly, optional", fr: "mensuel, en option" } },
     ],
     proof: {
-      title: { en: "JPFW SEO, my audit tool", fr: "JPFW SEO, mon outil d'audit" },
+      title: { en: "JPFW SEO/AEO, my audit tool", fr: "JPFW SEO/AEO, mon outil d'audit" },
       text: {
         en: "The tool behind every audit: 76 checks tested on real sites so reports carry no false alarms. The case study links a sample report.",
         fr: "L'outil derrière chaque audit : 76 vérifications testées sur de vrais sites pour que les rapports n'aient pas de fausses alertes. L'étude de cas donne un exemple de rapport.",

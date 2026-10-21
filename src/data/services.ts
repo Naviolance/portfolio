@@ -97,11 +97,11 @@ export const services: Service[] = withFrenchSpacing([
       fr: "Soyez trouvé sur Google et dans les réponses des IA comme ChatGPT et les AI Overviews de Google : vitesse, structure des pages, données structurées, configuration Google et Bing, et des contenus rédigés pour être cités.",
     },
     evidence: {
-      en: "JPFW SEO: my own audit tool, 76 checks and plain-language reports",
-      fr: "JPFW SEO : mon propre outil d'audit, 76 vérifications et des rapports clairs",
+      en: "JPFW SEO/AEO: my own SEO and AI search audit tool, 76 checks and plain-language reports",
+      fr: "JPFW SEO/AEO : mon propre outil d'audit SEO et IA, 76 vérifications et des rapports clairs",
     },
     href: "/projects/seo-audit-tool",
-    image: { src: seoToolReport, label: { en: "JPFW SEO", fr: "JPFW SEO" } },
+    image: { src: seoToolReport, label: { en: "JPFW SEO/AEO", fr: "JPFW SEO/AEO" } },
   },
   {
     id: "redesign",

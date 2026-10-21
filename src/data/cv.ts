@@ -106,11 +106,11 @@ export const cvProjects: CvProject[] = withFrenchSpacing([
     ],
   },
   {
-    title: { en: "JPFW SEO: Website Audit Tool", fr: "JPFW SEO : outil d'audit de site web" },
+    title: { en: "JPFW SEO/AEO: SEO and AI Search Audit Tool", fr: "JPFW SEO/AEO : outil d'audit SEO et recherche IA" },
     year: "2026",
     stack: "TypeScript, Node.js, Crawlee, Lighthouse, Vitest",
     slug: "seo-audit-tool",
-    proof: { en: "SEO audit tool with 76 checks and reports a business owner can act on", fr: "Outil d'audit SEO avec 76 vérifications et des rapports qu'un chef d'entreprise peut suivre" },
+    proof: { en: "SEO and AI search audit tool with 76 checks and reports a business owner can act on", fr: "Outil d'audit SEO et IA avec 76 vérifications et des rapports qu'un chef d'entreprise peut suivre" },
     // No liveUrl or codeUrl: a Windows app with private code; the case study links its sample report.
     points: [
       {
