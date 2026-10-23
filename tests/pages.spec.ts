@@ -65,6 +65,11 @@ test("every sitemap page has its SEO basics", async ({ page, request }) => {
       // Structured data must be valid JSON, or search engines ignore it.
       for (const json of await page.locator('script[type="application/ld+json"]').allTextContents()) {
         expect(() => JSON.parse(json), "valid JSON-LD").not.toThrow();
+        // Dates there need a time and a timezone; a plain YYYY-MM-DD is
+        // "Invalid datetime value" in Search Console (data/dates.ts).
+        for (const [, key, value] of Array.from(json.matchAll(/"(date\w*)":"([^"]*)"/g))) {
+          expect(value, `JSON-LD ${key}`).toMatch(/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(Z|[+-]\d{2}:\d{2})$/);
+        }
       }
     });
   }

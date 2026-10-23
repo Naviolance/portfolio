@@ -6,7 +6,7 @@ import { FaqBrowser } from "@/components/faq/FaqBrowser";
 import { JsonLd } from "@/components/JsonLd";
 import { languageAlternates, shareMetadata } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
-import { updated } from "@/data/dates";
+import { updated, schemaDate } from "@/data/dates";
 import { formatDate } from "@/lib/format";
 import { localizeFaq } from "@/components/faq/FaqItem";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -42,7 +42,7 @@ export default async function FaqPage(props: PageProps<"/[locale]/faq">) {
     "@context": "https://schema.org",
     "@type": "FAQPage",
     inLanguage: locale,
-    dateModified: updated.faq,
+    dateModified: schemaDate(updated.faq),
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,

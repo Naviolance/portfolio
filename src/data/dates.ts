@@ -18,3 +18,10 @@ export const updated = {
     "seo-audit-tool": "2026-10-19",
   } as Record<string, string>,
 };
+
+// The same dates for structured data (JSON-LD). Google wants a full date and
+// time with a timezone there ("Invalid datetime value" otherwise); the
+// sitemap takes the plain date. Midnight, Cameroon time (WAT, no DST).
+export function schemaDate(date: string) {
+  return `${date}T00:00:00+01:00`;
+}
