@@ -8,7 +8,7 @@ import { servicePages, type SummaryRow } from "@/data/service-pages";
 import { getTier, priceLabel, tiersRange } from "@/data/pricing";
 import { faq } from "@/data/faq";
 import { site } from "@/data/site";
-import { updated } from "@/data/dates";
+import { updated, schemaDate } from "@/data/dates";
 import { JsonLd } from "@/components/JsonLd";
 import { FaqPreview, localizeFaq } from "@/components/faq/FaqItem";
 import { Eyebrow } from "@/components/ui/Eyebrow";
@@ -100,7 +100,7 @@ export default async function ServicePage(props: PageProps<"/[locale]/services/[
           ...(range.max !== null && { maxPrice: range.max }),
         },
       },
-      dateModified: updated.services,
+      dateModified: schemaDate(updated.services),
     },
     {
       "@type": "FAQPage",

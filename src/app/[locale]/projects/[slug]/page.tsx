@@ -7,7 +7,7 @@ import type { Locale } from "@/i18n/routing";
 import { demoHref, frameHost, getProject, projects, type Project } from "@/data/projects";
 import { ScreenshotGallery } from "@/components/ScreenshotGallery";
 import { JsonLd } from "@/components/JsonLd";
-import { updated } from "@/data/dates";
+import { updated, schemaDate } from "@/data/dates";
 import { site } from "@/data/site";
 import { languageAlternates, shareMetadata } from "@/lib/seo";
 import { whatsappLink } from "@/lib/whatsapp";
@@ -106,7 +106,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
     operatingSystem: project.status === "live-demo" ? "Web" : project.platform,
     ...(project.githubUrl && { sameAs: project.githubUrl }),
     author: { "@type": "Person", name: site.fullName, url: `${site.url}/${locale}` },
-    ...(lastUpdate && { dateModified: lastUpdate }),
+    ...(lastUpdate && { dateModified: schemaDate(lastUpdate) }),
   };
 
   return (

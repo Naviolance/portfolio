@@ -4,7 +4,7 @@ import { getTranslations, setRequestLocale } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Locale } from "@/i18n/routing";
 import { site } from "@/data/site";
-import { updated } from "@/data/dates";
+import { updated, schemaDate } from "@/data/dates";
 import { CV_PDF, cvProjects, education, experience, profile, skills, spokenLanguages } from "@/data/cv";
 import { getProject } from "@/data/projects";
 import photo from "@/assets/photo/priestly.webp";
@@ -86,7 +86,7 @@ export default async function CvPage(props: PageProps<"/[locale]/cv">) {
     "@type": "ProfilePage",
     url: `${site.url}/${locale}/cv`,
     inLanguage: locale,
-    dateModified: updated.cv,
+    dateModified: schemaDate(updated.cv),
     mainEntity: person,
   };
 
