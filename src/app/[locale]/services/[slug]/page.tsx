@@ -20,6 +20,7 @@ import { pad2 } from "@/lib/format";
 import { cx } from "@/lib/cx";
 import { beforeAfterTag } from "@/components/ui/before-after";
 import { PROCESS_PATH } from "@/data/page-paths";
+import { TestSiteForm } from "@/components/test-site/TestSiteForm";
 
 // One page per service, at a translated address: /en/services/ecommerce,
 // /fr/services/creation-boutique-en-ligne. Content in data/service-pages.ts,
@@ -191,6 +192,9 @@ export default async function ServicePage(props: PageProps<"/[locale]/services/[
 
         {/* Phones: the price card right under the heading. */}
         <div className="mt-8 lg:hidden">{summaryCard}</div>
+
+        {/* SEO: visitors can ask for their own site to be analysed. */}
+        {service.id === "seo" && <TestSiteForm email={site.email} />}
 
         <section className="mt-14">
           <Eyebrow as="h2">{t("includesTitle")}</Eyebrow>

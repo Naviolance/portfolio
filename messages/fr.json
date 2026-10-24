@@ -338,5 +338,50 @@
     "stepsMore": "Toute la méthode",
     "faqTitle": "Questions fréquentes",
     "otherTitle": "Autres services"
+  },
+  "testSite": {
+    "kicker": "Testez votre site",
+    "title": "Faites analyser votre site",
+    "intro": "Donnez-moi l'adresse de votre site : je l'analyse avec mon outil (ce que voient Google et les assistants IA, la vitesse sur téléphone, les informations de votre entreprise) et je vous envoie le rapport dès qu'il est prêt.",
+    "optional": "(facultatif)",
+    "fields": {
+      "site": {
+        "label": "Adresse de votre site",
+        "placeholder": "monentreprise.cm"
+      },
+      "name": {
+        "label": "Votre nom",
+        "placeholder": "Marie Ngo"
+      },
+      "contact": {
+        "label": "Où recevoir le rapport",
+        "placeholder": "Numéro WhatsApp ou e-mail"
+      },
+      "sector": {
+        "label": "Votre activité",
+        "placeholder": "clinique, hôtel, école…"
+      },
+      "city": {
+        "label": "Ville",
+        "placeholder": "Douala"
+      }
+    },
+    "errors": {
+      "site": "Indiquez l'adresse de votre site, par exemple monentreprise.cm.",
+      "name": "Indiquez votre nom.",
+      "contact": "Indiquez un numéro WhatsApp ou une adresse e-mail pour recevoir le rapport."
+    },
+    "sendWhatsapp": "Envoyer la demande sur WhatsApp",
+    "sendEmail": "Envoyer par e-mail",
+    "note": "La demande s'ouvre dans WhatsApp (ou votre messagerie), déjà écrite : vous n'avez plus qu'à l'envoyer. Rien n'est enregistré sur ce site.",
+    "message": {
+      "hello": "Bonjour Priestly, je voudrais faire tester mon site.",
+      "site": "Site :",
+      "name": "Nom :",
+      "sector": "Activité :",
+      "city": "Ville :",
+      "contact": "Envoyez-moi le rapport sur :",
+      "subject": "Demande d'analyse de mon site"
+    }
   }
 }
