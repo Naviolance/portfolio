@@ -171,6 +171,6 @@ test("Test your site: checks the fields, then opens the written request in Whats
   expect(url).toMatch(/^https:\/\/wa\.me\/237678369216\?text=/);
   const text = decodeURIComponent(url!.split("text=")[1]!).replace(/[  ]/g, " ");
   expect(text).toBe(
-    "Bonjour Priestly, je voudrais faire tester mon site.\n\nSite : https://clinique-exemple.cm/\nNom : Marie Ngo\nVille : Douala\nEnvoyez-moi le rapport sur : +237 6 99 11 22 33",
+    "Bonjour Priestly, je voudrais faire tester mon site (analyse à 50K FCFA).\n\nSite : https://clinique-exemple.cm/\nNom : Marie Ngo\nVille : Douala\nEnvoyez-moi le rapport sur : +237 6 99 11 22 33",
   );
 });

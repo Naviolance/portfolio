@@ -375,13 +375,14 @@
     "sendEmail": "Envoyer par e-mail",
     "note": "La demande s'ouvre dans WhatsApp (ou votre messagerie), déjà écrite : vous n'avez plus qu'à l'envoyer. Rien n'est enregistré sur ce site.",
     "message": {
-      "hello": "Bonjour Priestly, je voudrais faire tester mon site.",
+      "hello": "Bonjour Priestly, je voudrais faire tester mon site (analyse à 50K FCFA).",
       "site": "Site :",
       "name": "Nom :",
       "sector": "Activité :",
       "city": "Ville :",
       "contact": "Envoyez-moi le rapport sur :",
       "subject": "Demande d'analyse de mon site"
-    }
+    },
+    "price": "Analyse : 50K FCFA"
   }
 }

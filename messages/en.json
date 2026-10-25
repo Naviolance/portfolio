@@ -375,13 +375,14 @@
     "sendEmail": "Send by e-mail",
     "note": "The request opens in WhatsApp (or your e-mail program), already written: you just send it. Nothing is stored on this site.",
     "message": {
-      "hello": "Hi Priestly, I'd like my site to be tested.",
+      "hello": "Hi Priestly, I'd like my site to be tested (analysis at 50K FCFA).",
       "site": "Site:",
       "name": "Name:",
       "sector": "Business:",
       "city": "City:",
       "contact": "Send me the report at:",
       "subject": "Request to analyse my site"
-    }
+    },
+    "price": "Analysis: 50K FCFA"
   }
 }

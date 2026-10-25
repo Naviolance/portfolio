@@ -80,6 +80,7 @@ export function TestSiteForm({ email }: { email: string }) {
     <section id="test-site" className="mt-14 scroll-mt-24 border border-line bg-panel p-5 shadow-[inset_0_3px_0_var(--color-accent)] sm:p-7">
       <Eyebrow as="h2">{t("kicker")}</Eyebrow>
       <p className="mt-2 font-display text-2xl font-bold text-ink">{t("title")}</p>
+      <p className="mt-1 font-mono text-sm text-label">{t("price")}</p>
       <p className="mt-2 text-[15.5px] text-ink-soft">{t("intro")}</p>
       <form
         noValidate
