@@ -1109,8 +1109,8 @@ export const projects: Project[] = withFrenchSpacing([
       fr: "Étude de cas : un outil qui audite un site pour Google et les réponses des IA (SEO et AEO), avec un rapport clair, en français ou en anglais.",
     },
     summary: {
-      en: "An SEO and AEO audit tool I built: it checks whether a site can be found on Google and quoted by AI assistants like ChatGPT. It reads the site the way Google does, runs 76 checks, and writes a report that a business owner understands, with a technical note for their developer. In French or English.",
-      fr: "Un outil d'audit SEO et AEO que j'ai construit : il vérifie si un site peut être trouvé sur Google et cité par les assistants IA comme ChatGPT. Il lit le site comme Google, fait 76 vérifications, et rédige un rapport qu'un chef d'entreprise comprend, avec une note technique pour son développeur. En français ou en anglais.",
+      en: "An SEO and AEO audit tool I built: it checks whether a site can be found on Google and quoted by AI assistants like ChatGPT. It reads the site the way Google does, runs 80+ checks, and writes a report that a business owner understands, with a technical note for their developer. In French or English.",
+      fr: "Un outil d'audit SEO et AEO que j'ai construit : il vérifie si un site peut être trouvé sur Google et cité par les assistants IA comme ChatGPT. Il lit le site comme Google, fait plus de 80 vérifications, et rédige un rapport qu'un chef d'entreprise comprend, avec une note technique pour son développeur. En français ou en anglais.",
     },
     problem: {
       en: "Many business sites in Cameroon can't be found on Google, and their owners don't know why. Audit tools exist, but they're in English, written for SEO specialists, and full of warnings that aren't real problems. An owner can't tell what matters, and a report with false alarms loses their trust.",
@@ -1122,8 +1122,8 @@ export const projects: Project[] = withFrenchSpacing([
     },
     keyFeatures: [
       {
-        en: "76 checks: indexing, broken links and redirects, titles and descriptions, headings, structured data, HTTPS, images, speed and local business details",
-        fr: "76 vérifications : indexation, liens cassés et redirections, titres et descriptions, titres de section, données structurées, HTTPS, images, vitesse et informations d'entreprise locale",
+        en: "80+ checks: indexing, broken links and redirects, titles and descriptions, headings, structured data, HTTPS, images, speed and local business details",
+        fr: "Plus de 80 vérifications : indexation, liens cassés et redirections, titres et descriptions, titres de section, données structurées, HTTPS, images, vitesse et informations d'entreprise locale",
       },
       {
         en: "A report written for the owner: what each problem means and what to do, with examples from their own site, and a folded technical note for their developer",
@@ -1214,8 +1214,8 @@ export const projects: Project[] = withFrenchSpacing([
     ],
     challenges: [
       {
-        en: "No false alarms. A report that flags something that isn't a problem loses the owner's trust. Each check is tested against 18 sites with planted problems and traps, and against 7 real sites recorded and reviewed finding by finding: a test fails if a problem is missed or if one appears that shouldn't.",
-        fr: "Pas de fausses alertes. Un rapport qui signale ce qui n'est pas un problème perd la confiance du propriétaire. Chaque vérification est testée sur 18 sites avec des problèmes plantés et des pièges, et sur 7 vrais sites enregistrés et revus constat par constat : un test échoue si un problème est manqué ou si un problème qui ne devrait pas apparaître apparaît.",
+        en: "Built to avoid false alarms. A report that flags something that isn't a problem loses the owner's trust. Each check is tested against 18 sites with planted problems and traps, and against 7 real sites recorded and reviewed finding by finding: a test fails if a problem is missed or if one appears that shouldn't.",
+        fr: "Conçu pour éviter les fausses alertes. Un rapport qui signale ce qui n'est pas un problème perd la confiance du propriétaire. Chaque vérification est testée sur 18 sites avec des problèmes plantés et des pièges, et sur 7 vrais sites enregistrés et revus constat par constat : un test échoue si un problème est manqué ou si un problème qui ne devrait pas apparaître apparaît.",
       },
       {
         en: "The same site, the same report. Servers answer in random order, so a page limit could cut the crawl at a different page each time. The crawler reads pages in waves, in link order, so two scans of the same site stop at the same place.",
@@ -1315,12 +1315,12 @@ export const projects: Project[] = withFrenchSpacing([
     },
     highlights: [
       {
-        en: "76 checks for Google and AI answers, explained in plain words",
-        fr: "76 vérifications pour Google et les réponses des IA, expliquées simplement",
+        en: "80+ checks for Google and AI answers, explained in plain words",
+        fr: "Plus de 80 vérifications pour Google et les réponses des IA, expliquées simplement",
       },
       {
-        en: "Tested against real recorded sites: no false alarms",
-        fr: "Testé sur de vrais sites enregistrés : pas de fausses alertes",
+        en: "Tested on real recorded sites to avoid false alarms",
+        fr: "Testé sur de vrais sites enregistrés pour éviter les fausses alertes",
       },
       {
         en: "Speed measured in a real Chrome with Lighthouse",

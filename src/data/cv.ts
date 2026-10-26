@@ -110,17 +110,17 @@ export const cvProjects: CvProject[] = withFrenchSpacing([
     year: "2026",
     stack: "TypeScript, Node.js, Crawlee, Lighthouse, Vitest",
     slug: "seo-audit-tool",
-    proof: { en: "SEO and AI search audit tool with 76 checks and reports a business owner can act on", fr: "Outil d'audit SEO et IA avec 76 vérifications et des rapports qu'un chef d'entreprise peut suivre" },
+    proof: { en: "SEO and AI search audit tool with 80+ checks and reports a business owner can act on", fr: "Outil d'audit SEO et IA avec plus de 80 vérifications et des rapports qu'un chef d'entreprise peut suivre" },
     // No liveUrl or codeUrl: a Windows app with private code; the case study links its sample report.
     points: [
       {
-        en: "Built a crawler and 76 checks that explain a site's problems in plain words (EN/FR), with no false alarms.",
-        fr: "Robot et 76 vérifications qui expliquent simplement les problèmes d'un site (FR/EN), sans fausses alertes.",
+        en: "Built a crawler and 80+ checks that explain a site's problems in plain words (EN/FR), tested against real recorded sites.",
+        fr: "Robot et plus de 80 vérifications qui expliquent simplement les problèmes d'un site (FR/EN), testées sur de vrais sites enregistrés.",
       },
       {
         webOnly: true,
-        en: "Built a crawler and 76 checks that read a site like Google and explain each problem in plain words, in English or French, tested against real recorded sites so reports show no false alarms.",
-        fr: "Robot et 76 vérifications qui lisent un site comme Google et expliquent chaque problème simplement, en français ou en anglais, testés sur de vrais sites enregistrés pour éviter les fausses alertes.",
+        en: "Built a crawler and 80+ checks that read a site like Google and explain each problem in plain words, in English or French, tested against real recorded sites to avoid false alarms.",
+        fr: "Robot et plus de 80 vérifications qui lisent un site comme Google et expliquent chaque problème simplement, en français ou en anglais, testés sur de vrais sites enregistrés pour éviter les fausses alertes.",
       },
       {
         webOnly: true,
