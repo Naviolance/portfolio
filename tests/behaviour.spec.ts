@@ -141,3 +141,36 @@ test("How I work: translated address, redirect and nav link", async ({ page, req
   await expect(page.locator("h1")).toHaveText("Ce qui se passe après votre message");
   await expect(page.locator("main ol > li")).toHaveCount(6);
 });
+
+// "Test your site": the request opens in WhatsApp, written in the page's
+// language; missing fields are named before anything opens.
+test("Test your site: checks the fields, then opens the written request in WhatsApp", async ({ page }) => {
+  await page.goto("/fr/services/referencement-google-ia");
+  await page.evaluate(() => {
+    (window as unknown as { opened: string[] }).opened = [];
+    window.open = (url?: string | URL) => {
+      (window as unknown as { opened: string[] }).opened.push(String(url));
+      return null;
+    };
+  });
+  const form = page.locator("#test-site");
+  await form.getByRole("button", { name: /Envoyer la demande sur WhatsApp/ }).click();
+  await expect(form.getByRole("alert")).toHaveText("Indiquez l'adresse de votre site, par exemple monentreprise.cm.");
+  await expect(page.locator("#test-site")).toBeVisible();
+  await expect(page.locator("#test-field-site")).toBeFocused();
+  await form.getByLabel(/Adresse de votre site/).fill("clinique-exemple.cm");
+  await form.getByLabel(/Votre nom/).fill("Marie Ngo");
+  await form.getByRole("button", { name: /Envoyer la demande sur WhatsApp/ }).click();
+  await expect(form.getByRole("alert")).toHaveText("Indiquez un numéro WhatsApp ou une adresse e-mail pour recevoir le rapport.");
+  await expect(page.locator("#test-field-contact")).toBeFocused();
+  await form.getByLabel(/Où recevoir le rapport/).fill("+237 6 99 11 22 33");
+  await form.getByLabel(/Ville/).fill("Douala");
+  await form.getByRole("button", { name: /Envoyer la demande sur WhatsApp/ }).click();
+  await expect(form.getByRole("alert")).toBeHidden();
+  const [url] = await page.evaluate(() => (window as unknown as { opened: string[] }).opened);
+  expect(url).toMatch(/^https:\/\/wa\.me\/237678369216\?text=/);
+  const text = decodeURIComponent(url!.split("text=")[1]!).replace(/[  ]/g, " ");
+  expect(text).toBe(
+    "Bonjour Priestly, je voudrais faire tester mon site (analyse à 50K FCFA).\n\nSite : https://clinique-exemple.cm/\nNom : Marie Ngo\nVille : Douala\nEnvoyez-moi le rapport sur : +237 6 99 11 22 33",
+  );
+});

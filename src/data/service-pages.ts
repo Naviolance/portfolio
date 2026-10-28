@@ -265,8 +265,8 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
   seo: {
     heading: { en: "SEO and AI search (AEO)", fr: "Référencement Google et IA (SEO/AEO)" },
     lead: {
-      en: "I help your business show up on Google and in AI answers like ChatGPT. It starts with an audit made with my own tool: 76 checks, and a report in plain words that says what to fix first. Then faster pages, a clear structure, structured data, Google and Bing set up, and content written so it can be quoted. An audit from 75K FCFA, or the audit and fixes from 200K FCFA.",
-      fr: "J'aide votre entreprise à apparaître sur Google et dans les réponses des IA comme ChatGPT. Tout commence par un audit fait avec mon propre outil : 76 vérifications, et un rapport en mots simples qui dit quoi corriger en premier. Ensuite : pages plus rapides, structure claire, données structurées, Google et Bing configurés, et des contenus rédigés pour être cités. Un audit à partir de 75K FCFA, ou l'audit avec les corrections à partir de 200K FCFA.",
+      en: "I help your business show up on Google and in AI answers like ChatGPT. It starts with an audit made with my own tool: 80+ checks, and a report in plain words that says what to fix first. Then faster pages, a clear structure, structured data, Google and Bing set up, and content written so it can be quoted. An audit from 75K FCFA, or the audit and fixes from 200K FCFA.",
+      fr: "J'aide votre entreprise à apparaître sur Google et dans les réponses des IA comme ChatGPT. Tout commence par un audit fait avec mon propre outil : plus de 80 vérifications, et un rapport en mots simples qui dit quoi corriger en premier. Ensuite : pages plus rapides, structure claire, données structurées, Google et Bing configurés, et des contenus rédigés pour être cités. Un audit à partir de 75K FCFA, ou l'audit avec les corrections à partir de 200K FCFA.",
     },
     metaDescription: {
       en: "SEO and AI search (AEO) for businesses in Cameroon: get found on Google and in ChatGPT answers. Audit from 75K FCFA, audit and fixes from 200K FCFA.",
@@ -281,7 +281,7 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       { label: "monthly", tiers: ["seo-care"], note: { en: "optional", fr: "en option" } },
     ],
     includes: [
-      { en: "An audit with my own tool: 76 checks, from what Google has indexed to speed on a phone and your business details", fr: "Un audit avec mon propre outil : 76 vérifications, de ce que Google a indexé à la vitesse sur téléphone et aux informations de votre entreprise" },
+      { en: "An audit with my own tool: 80+ checks, from what Google has indexed to speed on a phone and your business details", fr: "Un audit avec mon propre outil : plus de 80 vérifications, de ce que Google a indexé à la vitesse sur téléphone et aux informations de votre entreprise" },
       { en: "Structured data (schema.org) that search engines and AI tools read", fr: "Des données structurées (schema.org) lues par les moteurs et les IA" },
       { en: "Google Search Console and Bing Webmaster Tools set up", fr: "Google Search Console et Bing Webmaster Tools configurés" },
       { en: "Answer-first content that AI tools can quote", fr: "Des contenus qui répondent d'abord, que les IA peuvent citer" },
@@ -296,14 +296,14 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
     proof: {
       title: { en: "JPFW SEO/AEO, my audit tool", fr: "JPFW SEO/AEO, mon outil d'audit" },
       text: {
-        en: "The tool behind every audit: 76 checks tested on real sites so reports carry no false alarms. The case study links a sample report.",
-        fr: "L'outil derrière chaque audit : 76 vérifications testées sur de vrais sites pour que les rapports n'aient pas de fausses alertes. L'étude de cas donne un exemple de rapport.",
+        en: "The tool behind every audit: 80+ checks tested on real sites to keep false alarms out of reports. The case study links a sample report.",
+        fr: "L'outil derrière chaque audit : plus de 80 vérifications testées sur de vrais sites pour écarter les fausses alertes des rapports. L'étude de cas donne un exemple de rapport.",
       },
       href: "/projects/seo-audit-tool",
       image: seoToolReport,
       host: "localhost:4321",
     },
-    card: { items: { en: ["76 checks", "AI answers", "Plain reports"], fr: ["76 vérifications", "Réponses IA", "Rapports clairs"] }, shot: "seo-audit-tool/home.webp" },
+    card: { items: { en: ["80+ checks", "Ready for AI", "Plain reports"], fr: ["80+ vérifications", "Prêt pour les IA", "Rapports clairs"] }, shot: "seo-audit-tool/home.webp" },
     faqIds: ["show-up-on-google", "where-do-you-work", "how-to-pay"],
     cta: { en: "Get my business found ↗", fr: "Parler de mon référencement ↗" },
     whatsapp: {

@@ -12,7 +12,7 @@ import { RevealOnScroll } from "@/components/RevealOnScroll";
 // Message namespaces used by "use client" components. A client component
 // using another namespace would show raw keys: add it here (the e2e tests
 // catch that on the pages they visit).
-const CLIENT_NAMESPACES = ["nav", "whatsapp", "hero", "work", "gallery", "faq"] as const;
+const CLIENT_NAMESPACES = ["nav", "whatsapp", "hero", "work", "gallery", "faq", "testSite"] as const;
 
 // The page frame around every page: <html>, fonts, nav, footer, WhatsApp
 // button, analytics. Used by [locale]/layout.tsx and by the global 404

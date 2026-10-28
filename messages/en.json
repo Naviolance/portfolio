@@ -338,5 +338,51 @@
     "stepsMore": "The full process",
     "faqTitle": "Common questions",
     "otherTitle": "Other services"
+  },
+  "testSite": {
+    "kicker": "Test your site",
+    "title": "Get your site analysed",
+    "intro": "Give me your site's address: I analyse it with my tool (what Google and AI assistants see, speed on a phone, your business details) and send you the report as soon as it's ready.",
+    "optional": "(optional)",
+    "fields": {
+      "site": {
+        "label": "Your site's address",
+        "placeholder": "mybusiness.com"
+      },
+      "name": {
+        "label": "Your name",
+        "placeholder": "Marie Ngo"
+      },
+      "contact": {
+        "label": "Where to send the report",
+        "placeholder": "WhatsApp number or e-mail"
+      },
+      "sector": {
+        "label": "Your business",
+        "placeholder": "clinic, hotel, school…"
+      },
+      "city": {
+        "label": "City",
+        "placeholder": "Douala"
+      }
+    },
+    "errors": {
+      "site": "Enter your site's address, for example mybusiness.com.",
+      "name": "Enter your name.",
+      "contact": "Enter a WhatsApp number or an e-mail address to receive the report."
+    },
+    "sendWhatsapp": "Send the request on WhatsApp",
+    "sendEmail": "Send by e-mail",
+    "note": "The request opens in WhatsApp (or your e-mail program), already written: you just send it. Nothing is stored on this site.",
+    "message": {
+      "hello": "Hi Priestly, I'd like my site to be tested (analysis at 50K FCFA).",
+      "site": "Site:",
+      "name": "Name:",
+      "sector": "Business:",
+      "city": "City:",
+      "contact": "Send me the report at:",
+      "subject": "Request to analyse my site"
+    },
+    "price": "Analysis: 50K FCFA"
   }
 }
