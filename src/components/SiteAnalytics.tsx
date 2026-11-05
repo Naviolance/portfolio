@@ -11,7 +11,8 @@ import { landingRef } from "@/lib/landing-ref";
 // a path makes it visible for free.
 //
 // Only the landing pageview is tagged. Nothing is stored in the browser to
-// follow the visitor around, which keeps this cookie-free and banner-free.
+// follow the visitor around: Vercel Analytics sets no cookies. (GA4, which
+// does, waits for consent: lib/consent.ts.)
 function tagRef(event: BeforeSendEvent): BeforeSendEvent {
   const url = new URL(event.url);
   const ref = url.searchParams.get("ref");

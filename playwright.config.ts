@@ -13,6 +13,12 @@ export default defineConfig({
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "list",
   use: {
     baseURL: `http://localhost:${PORT}`,
+    // Every test starts with analytics already refused, so the cookie banner
+    // doesn't cover what tests click. The banner's own test clears this.
+    storageState: {
+      cookies: [],
+      origins: [{ origin: `http://localhost:${PORT}`, localStorage: [{ name: "analytics-consent", value: "denied" }] }],
+    },
     // A machine with its own browser (no `playwright install`) can point at
     // it: PW_CHROMIUM_PATH=/path/to/headless_shell npm run test:e2e. Use the
     // headless shell, like CI: it renders slightly differently from full

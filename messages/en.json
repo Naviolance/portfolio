@@ -265,7 +265,8 @@
     "faq": "FAQ",
     "cv": "CV",
     "remote": "remote worldwide",
-    "updated": "Updated {date}"
+    "updated": "Updated {date}",
+    "cookies": "Cookie settings"
   },
   "notFound": {
     "title": "Page not found",
@@ -384,5 +385,12 @@
       "subject": "Request to analyse my site"
     },
     "price": "Analysis: 50K FCFA"
+  },
+  "consent": {
+    "label": "Cookie consent",
+    "eyebrow": "Cookies",
+    "text": "May I use Google Analytics to see which pages are useful? It only runs if you accept. No ads, and nothing is sold.",
+    "accept": "Accept",
+    "refuse": "Refuse"
   }
 }

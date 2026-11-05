@@ -265,7 +265,8 @@
     "faq": "FAQ",
     "cv": "CV",
     "remote": "à distance partout",
-    "updated": "Mis à jour le {date}"
+    "updated": "Mis à jour le {date}",
+    "cookies": "Paramètres des cookies"
   },
   "notFound": {
     "title": "Page introuvable",
@@ -384,5 +385,12 @@
       "subject": "Demande d'analyse de mon site"
     },
     "price": "Analyse : 50K FCFA"
+  },
+  "consent": {
+    "label": "Consentement aux cookies",
+    "eyebrow": "Cookies",
+    "text": "Puis-je utiliser Google Analytics pour voir quelles pages sont utiles ? Il ne s'active que si vous acceptez. Aucune publicité, et rien n'est vendu.",
+    "accept": "Accepter",
+    "refuse": "Refuser"
   }
 }

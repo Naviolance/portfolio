@@ -9,6 +9,7 @@ import { PROCESS_PATH } from "@/data/page-paths";
 import { whatsappLink } from "@/lib/whatsapp";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { formatDate } from "@/lib/format";
+import { CookieSettingsButton } from "@/components/CookieBanner";
 
 const link = "text-sm text-ink-soft transition-colors hover:text-ink";
 
@@ -116,7 +117,10 @@ export function Footer() {
           <p>
             © {updated.home.slice(0, 4)} {site.brand}
           </p>
-          <p>{t("updated", { date: lastUpdate })}</p>
+          <p className="flex flex-wrap gap-x-4 gap-y-2">
+            <span>{t("updated", { date: lastUpdate })}</span>
+            <CookieSettingsButton label={t("cookies")} />
+          </p>
         </div>
       </div>
     </footer>
