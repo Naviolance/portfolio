@@ -19,12 +19,12 @@ export async function generateMetadata(
   const { locale } = (await props.params) as { locale: Locale };
   // Search words and city first, name last; under 60 characters so Google
   // shows it whole (tests/pages.spec.ts checks every page).
-  const title = `${site.headline[locale]} ${locale === "fr" ? "à" : "in"} Douala | ${site.name}`;
+  const title = `${site.headline[locale]} ${locale === "fr" ? "à" : "in"} Douala | ${site.shortBrand}`;
 
   return {
     metadataBase: new URL(site.url),
     // Short suffix: the page's own words get the space Google shows.
-    title: { default: title, template: `%s | ${site.name}` },
+    title: { default: title, template: `%s | ${site.shortBrand}` },
     description: site.description[locale],
     applicationName: site.brand,
     authors: [{ name: site.fullName, url: site.url }],

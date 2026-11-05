@@ -2,6 +2,7 @@ import type { Locale } from "@/i18n/routing";
 import photo from "@/assets/photo/priestly.webp";
 import { site } from "@/data/site";
 import { services } from "@/data/services";
+import { businessId } from "@/lib/business-schema";
 
 // Tells Google who this site is about, in a form it can use for rich results
 // and its knowledge of the person/business, not just the page text.
@@ -22,24 +23,22 @@ export function personSchema(locale: Locale) {
     email: `mailto:${site.email}`,
     telephone: site.whatsapp.display,
     address: { "@type": "PostalAddress", addressLocality: "Douala", addressCountry: "CM" },
-    worksFor: {
-      "@type": "Organization",
-      name: site.brand,
-      url: site.url,
-      logo: `${site.url}/brand/jpfw-logo-512.png`,
-      sameAs: [site.sortlist],
-    },
+    // The business is its own entity (lib/business-schema.ts).
+    worksFor: { "@id": businessId },
     sameAs: [site.linkedin, site.github, site.upwork, site.goafrica],
     knowsLanguage: ["en", "fr"],
+    // A Set: a service title can repeat a skill ("WordPress").
     knowsAbout: [
-      "Next.js",
-      "React",
-      "TypeScript",
-      "NestJS",
-      "Node.js",
-      "PostgreSQL",
-      "WordPress",
-      ...services.map((service) => service.title[locale]),
+      ...new Set([
+        "Next.js",
+        "React",
+        "TypeScript",
+        "NestJS",
+        "Node.js",
+        "PostgreSQL",
+        "WordPress",
+        ...services.map((service) => service.title[locale]),
+      ]),
     ],
   };
 }

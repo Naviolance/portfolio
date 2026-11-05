@@ -21,6 +21,7 @@ test("every sitemap page has its SEO basics", async ({ page, request }) => {
       const title = await page.title();
       expect(title.length, `title: "${title}"`).toBeGreaterThan(10);
       expect(title.length, `title over 60: "${title}"`).toBeLessThanOrEqual(60);
+      expect(title, "short brand at the end of the title").toMatch(/ \| JPFW$/);
       const description = (await page.locator('meta[name="description"]').getAttribute("content")) ?? "";
       expect(description.length, "description").toBeGreaterThanOrEqual(50);
       expect(description.length, `description over 160: "${description}"`).toBeLessThanOrEqual(160);
@@ -87,3 +88,45 @@ for (const width of [390, 1280]) {
     }
   });
 }
+
+// Who's behind the site, for search engines and AI answer tools
+// (lib/business-schema.ts): the business is its own entity, linked by @id to
+// the site and the person, and it is the provider of every service.
+test("structured data: business, site and person are one linked entity", async ({ page, request }) => {
+  const graphOf = async (path: string) => {
+    await page.goto(path);
+    const blocks = await page.locator('script[type="application/ld+json"]').allTextContents();
+    return blocks.flatMap((json) => JSON.parse(json)["@graph"] ?? [JSON.parse(json)]) as Record<string, unknown>[];
+  };
+  const byType = (graph: Record<string, unknown>[], type: string) => graph.find((node) => node["@type"] === type)!;
+
+  for (const locale of ["en", "fr"]) {
+    const home = await graphOf(`/${locale}`);
+    const business = byType(home, "ProfessionalService");
+    const site = byType(home, "WebSite");
+    expect(site).toMatchObject({ name: "JPFW Web Services", alternateName: "JPFW", publisher: { "@id": business["@id"] } });
+    expect(business).toMatchObject({ name: "JPFW Web Services", address: { addressLocality: "Douala", addressCountry: "CM" } });
+    expect(JSON.stringify(business.areaServed)).toMatch(/Cameroon.*Central Africa.*West Africa.*Worldwide/);
+    const person = byType(home, "Person");
+    expect(person.worksFor).toEqual({ "@id": business["@id"] });
+    const skills = person.knowsAbout as string[];
+    expect(skills.length, "no repeated skill").toBe(new Set(skills).size);
+  }
+
+  for (const path of (await sitemapPaths(request)).filter((p) => p.includes("/services/"))) {
+    const graph = await graphOf(path);
+    const business = byType(graph, "ProfessionalService");
+    expect(byType(graph, "Service").provider, path).toEqual({ "@id": business["@id"] });
+  }
+});
+
+// The sitemap lists the same language versions as each page's own links,
+// x-default included.
+test("sitemap: every page has en, fr and x-default", async ({ request }) => {
+  const xml = await (await request.get("/sitemap.xml")).text();
+  const entries = xml.split("<url>").slice(1);
+  expect(entries.length).toBeGreaterThanOrEqual(12);
+  for (const entry of entries) {
+    for (const lang of ["en", "fr", "x-default"]) expect(entry, entry.slice(0, 80)).toContain(`hreflang="${lang}"`);
+  }
+});

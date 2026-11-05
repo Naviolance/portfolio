@@ -37,8 +37,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: date,
       changeFrequency: "monthly" as const,
       priority,
+      // The same three as each page's own <link rel="alternate">, x-default
+      // (English) included, so the sitemap and the pages agree.
       alternates: {
-        languages: Object.fromEntries(routing.locales.map((l) => [l, `${site.url}/${l}${pathFor(l)}`])),
+        languages: {
+          ...Object.fromEntries(routing.locales.map((l) => [l, `${site.url}/${l}${pathFor(l)}`])),
+          "x-default": `${site.url}/${routing.defaultLocale}${pathFor(routing.defaultLocale)}`,
+        },
       },
     }));
   });

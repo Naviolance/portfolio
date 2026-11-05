@@ -9,6 +9,7 @@
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
     "test:e2e": "playwright test",
+    "check:dates": "node scripts/check-dates.mjs",
     "cv:pdf": "node --experimental-strip-types scripts/cv-pdf.mjs"
   },
   "dependencies": {

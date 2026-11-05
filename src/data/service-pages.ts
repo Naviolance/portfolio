@@ -118,8 +118,8 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
     heading: { en: "Online stores with Mobile Money payments", fr: "Création de boutique en ligne avec paiement Mobile Money" },
     title: { en: "Online stores with Mobile Money payments", fr: "Boutique en ligne avec paiement Mobile Money" },
     lead: {
-      en: "I build online stores for businesses in Cameroon and abroad: product catalogue, cart, Mobile Money and card payments, and an admin panel you can run from your phone. From 150K FCFA, online in 2 to 6 weeks.",
-      fr: "Je crée des boutiques en ligne pour les entreprises au Cameroun et ailleurs : catalogue, panier, paiement Mobile Money et carte, et un espace d'administration que vous gérez depuis votre téléphone. À partir de 150K FCFA, en ligne en 2 à 6 semaines.",
+      en: "I build online stores for businesses in Cameroon and across Africa: product catalogue, cart, Mobile Money and card payments, and an admin panel you can run from your phone. From 150K FCFA, online in 2 to 6 weeks.",
+      fr: "Je crée des boutiques en ligne pour les entreprises au Cameroun et en Afrique : catalogue, panier, paiement Mobile Money et carte, et un espace d'administration que vous gérez depuis votre téléphone. À partir de 150K FCFA, en ligne en 2 à 6 semaines.",
     },
     metaDescription: {
       en: "Online store with Mobile Money and card payments, built in Cameroon: from 150K FCFA, online in 2–6 weeks, with an admin panel that works on a phone.",
@@ -173,8 +173,8 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       fr: "Je développe des applications web pensées pour votre façon de travailler : systèmes de réservation, tableaux de bord et outils de gestion, avec des comptes pour votre équipe et vos clients. Elles marchent sur tous les téléphones et s'installent comme une application. À partir de 5M FCFA, devis par projet.",
     },
     metaDescription: {
-      en: "Custom web applications for businesses in Cameroon and abroad: booking systems, dashboards and management tools that work on any phone. From 5M FCFA.",
-      fr: "Applications web sur mesure au Cameroun : réservations, tableaux de bord et outils de gestion, sur tous les téléphones. À partir de 5M FCFA.",
+      en: "Custom web applications for businesses in Cameroon and across Africa: booking systems, dashboards and management tools that work on any phone. From 5M FCFA.",
+      fr: "Applications web sur mesure au Cameroun et en Afrique : réservations, tableaux de bord et outils de gestion, sur tous les téléphones. À partir de 5M FCFA.",
     },
     summary: [
       { label: "price", tiers: ["custom"], note: { en: "quoted per project", fr: "devis par projet" } },

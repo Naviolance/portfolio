@@ -164,8 +164,8 @@ export const faq: FaqEntry[] = withFrenchSpacing([
       fr: "Travaillez-vous seulement avec des clients au Cameroun ?",
     },
     answer: {
-      en: "No. I'm based in Douala, where we can also meet in person. For clients anywhere else, in Cameroon, in Africa or abroad, I work remotely. I work in English and in French.",
-      fr: "Non. Je suis basé à Douala, où on peut aussi se rencontrer en personne. Pour les clients ailleurs, au Cameroun, en Afrique ou à l'étranger, je travaille à distance. Je travaille en français et en anglais.",
+      en: "No. Cameroon comes first: I'm based in Douala, where we can also meet in person. I also work remotely with businesses across Central and West Africa, French-speaking and English-speaking alike, and with clients anywhere else in the world. I work in English and in French.",
+      fr: "Non. Le Cameroun d'abord : je suis basé à Douala, où on peut aussi se rencontrer en personne. Je travaille aussi à distance avec des entreprises partout en Afrique centrale et de l'Ouest, francophones comme anglophones, et avec des clients ailleurs dans le monde. Je travaille en français et en anglais.",
     },
   },
   {
