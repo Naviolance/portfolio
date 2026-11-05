@@ -30,6 +30,9 @@ export default defineConfig({
     command: `npx next start -p ${PORT}`,
     url: `http://localhost:${PORT}/en`,
     reuseExistingServer: !process.env.CI,
+    // For the IndexNow route's test (app/api/indexnow), which only answers
+    // requests carrying this secret.
+    env: { CRON_SECRET: "test-secret" },
     timeout: 60_000,
   },
 });

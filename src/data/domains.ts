@@ -8,7 +8,7 @@ export const SITE_DOMAIN = "jpfwwebservices.com";
 // engines move their ranking to the new address. Never remove one.
 export const OLD_DOMAINS = ["jpfw-webservices.vercel.app"];
 
-// IndexNow (scripts/indexnow.mjs): tells Bing (so ChatGPT search and
+// IndexNow (app/api/indexnow, daily via Vercel Cron): tells Bing (so ChatGPT search and
 // Copilot), Yandex, Seznam and Naver which pages just changed. Public by
 // design: public/<key>.txt holds the same value, which proves the
 // notifications come from this site.
