@@ -174,3 +174,51 @@ test("Test your site: checks the fields, then opens the written request in Whats
     "Bonjour Priestly, je voudrais faire tester mon site (analyse à 50K FCFA).\n\nSite : https://clinique-exemple.cm/\nNom : Marie Ngo\nVille : Douala\nEnvoyez-moi le rapport sur : +237 6 99 11 22 33",
   );
 });
+
+// GA4 waits for consent (lib/consent.ts): every Google signal starts denied,
+// the banner asks once, the choice sticks, and the footer link reopens it.
+test.describe("cookie banner", () => {
+  test.use({ storageState: { cookies: [], origins: [] } });
+  const consentCommands = (page: import("@playwright/test").Page) =>
+    page.evaluate(() =>
+      (window.dataLayer ?? [])
+        .map((entry) => Array.from(entry as ArrayLike<unknown>))
+        .filter((args) => args[0] === "consent")
+        .map((args) => `${args[1]} ${(args[2] as Record<string, string>).analytics_storage}`)
+    );
+
+  test("asks once; accepting turns analytics on, refusing keeps it off", async ({ page }) => {
+    for (const width of [390, 1280]) {
+      await page.setViewportSize({ width, height: 844 });
+      await page.goto("/fr");
+      await page.evaluate(() => localStorage.clear());
+      await page.reload();
+      const banner = page.getByRole("region", { name: "Consentement aux cookies" });
+      await expect(banner).toBeVisible();
+      expect(await consentCommands(page)).toEqual(["default denied"]);
+      // Within the screen: no sideways scroll at phone width.
+      expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(0);
+
+      await banner.getByRole("button", { name: "Accepter" }).click();
+      await expect(banner).toBeHidden();
+      expect(await consentCommands(page)).toEqual(["default denied", "update granted"]);
+      // Next page view: no banner, analytics granted from the start.
+      await page.reload();
+      await expect(banner).toBeHidden();
+      expect(await consentCommands(page)).toEqual(["default denied", "update granted"]);
+
+      // The footer link reopens it; refusing turns analytics back off.
+      await page.getByRole("button", { name: "Paramètres des cookies" }).click();
+      await banner.getByRole("button", { name: "Refuser" }).click();
+      await expect(banner).toBeHidden();
+      await page.reload();
+      await expect(banner).toBeHidden();
+      expect(await consentCommands(page)).toEqual(["default denied"]);
+    }
+  });
+
+  test("Google Tag Manager only loads on the live site", async ({ page }) => {
+    await page.goto("/en");
+    await expect(page.locator('script[src*="googletagmanager.com"]')).toHaveCount(0);
+  });
+});
