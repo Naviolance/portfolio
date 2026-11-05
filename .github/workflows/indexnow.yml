@@ -1,0 +1,45 @@
+# After each successful production deployment on Vercel, tells IndexNow
+# (Bing, so ChatGPT search and Copilot) which pages changed
+# (scripts/indexnow.mjs). Vercel reports deployments to GitHub, which starts
+# this workflow; it can also be run by hand from the Actions tab.
+name: IndexNow
+
+on:
+  deployment_status:
+  workflow_dispatch:
+    inputs:
+      since:
+        description: "Send pages whose sitemap date is on or after (YYYY-MM-DD)"
+        required: true
+
+permissions:
+  contents: read
+
+jobs:
+  notify:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production')
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event.deployment.sha || github.sha }}
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      # Pages dated from the deployed commit's day, minus one: a date set in
+      # Cameroon time the evening before a push is still sent. Sending a page
+      # twice is harmless; missing one isn't.
+      - name: Work out the date
+        id: since
+        env:
+          MANUAL: ${{ github.event.inputs.since }}
+        run: echo "since=${MANUAL:-$(date -u -d "$(git log -1 --format=%cs) -1 day" +%F)}" >> "$GITHUB_OUTPUT"
+
+      - run: node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/indexnow.mjs
+        env:
+          SINCE: ${{ steps.since.outputs.since }}

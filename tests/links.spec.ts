@@ -41,3 +41,13 @@ test("the old address redirects permanently to the real domain", async ({ reques
   // The real address itself is served, not redirected.
   expect((await request.get("/en", { maxRedirects: 0 })).status()).toBe(200);
 });
+
+// IndexNow checks this file before accepting a notification
+// (scripts/indexnow.mjs): it must hold exactly the key, as plain text.
+test("IndexNow key file is served", async ({ request }) => {
+  const { INDEXNOW_KEY } = await import("../src/data/domains");
+  const response = await request.get(`/${INDEXNOW_KEY}.txt`);
+  expect(response.status()).toBe(200);
+  expect(response.headers()["content-type"]).toContain("text/plain");
+  expect((await response.text()).trim()).toBe(INDEXNOW_KEY);
+});
