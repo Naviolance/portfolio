@@ -10,6 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit",
     "test:e2e": "playwright test",
     "check:dates": "node scripts/check-dates.mjs",
+    "indexnow": "node --experimental-strip-types --disable-warning=MODULE_TYPELESS_PACKAGE_JSON scripts/indexnow.mjs",
     "cv:pdf": "node --experimental-strip-types scripts/cv-pdf.mjs"
   },
   "dependencies": {
