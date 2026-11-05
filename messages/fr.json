@@ -389,7 +389,7 @@
   "consent": {
     "label": "Consentement aux cookies",
     "eyebrow": "Cookies",
-    "text": "Puis-je utiliser Google Analytics pour voir quelles pages sont utiles ? Il ne s'active que si vous acceptez. Aucune publicité, et rien n'est vendu.",
+    "text": "Ce site utilise des données analytiques (Google Analytics) pour voir quelles pages sont utiles. Elles ne sont collectées que si vous acceptez. Aucune publicité, et rien n'est vendu.",
     "accept": "Accepter",
     "refuse": "Refuser"
   }
