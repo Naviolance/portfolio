@@ -3,8 +3,9 @@
 // hours instead of waiting for their next visit. Google doesn't use IndexNow:
 // the sitemap's dates do that job there.
 //
-// Runs after a production deployment (.github/workflows/indexnow.yml), never
-// during the build: the pages must already be live when a crawler comes.
+// The daily run is src/app/api/indexnow/route.ts (Vercel Cron). This script
+// is the manual version, from any computer, once a deploy is live: never
+// during the build, the pages must already be online when a crawler comes.
 // Sends only the changed pages: sitemap entries whose lastmod is on or after
 // SINCE. CI already makes every content change update its date
 // (scripts/check-dates.mjs), so lastmod is a reliable "changed" signal.

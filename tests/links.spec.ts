@@ -51,3 +51,17 @@ test("IndexNow key file is served", async ({ request }) => {
   expect(response.headers()["content-type"]).toContain("text/plain");
   expect((await response.text()).trim()).toBe(INDEXNOW_KEY);
 });
+
+// The daily IndexNow call (Vercel Cron): refuses requests without the cron
+// secret; with it, lists the changed pages (dry run: nothing is sent).
+test("IndexNow route: secret required, lists changed pages", async ({ request }) => {
+  expect((await request.get("/api/indexnow")).status()).toBe(401);
+  expect((await request.get("/api/indexnow", { headers: { authorization: "Bearer wrong" } })).status()).toBe(401);
+
+  const response = await request.get("/api/indexnow?dry=1&since=2000-01-01", { headers: { authorization: "Bearer test-secret" } });
+  expect(response.status()).toBe(200);
+  const body = await response.json();
+  expect(body.sent).toBe(false);
+  const sitemap = await (await request.get("/sitemap.xml")).text();
+  expect(body.urls).toHaveLength(sitemap.split("<url>").length - 1);
+});
