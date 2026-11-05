@@ -10,6 +10,7 @@ import { faq } from "@/data/faq";
 import { site } from "@/data/site";
 import { updated, schemaDate } from "@/data/dates";
 import { JsonLd } from "@/components/JsonLd";
+import { areaServed, businessId, businessSchema } from "@/lib/business-schema";
 import { FaqPreview, localizeFaq } from "@/components/faq/FaqItem";
 import { Eyebrow } from "@/components/ui/Eyebrow";
 import { BrowserFrame } from "@/components/ui/BrowserFrame";
@@ -77,8 +78,8 @@ export default async function ServicePage(props: PageProps<"/[locale]/services/[
   const questions = page.faqIds.map((id) => localizeFaq(faq.find((entry) => entry.id === id)!, locale));
   const care = priceLabel(getTier("care").fcfa, locale).amount;
 
-  // What this service is, who provides it (the same Person as the homepage
-  // and CV) and its price range: for search engines and AI answer tools.
+  // What this service is, who provides it (the business, the same entity as
+  // on the homepage) and its price range: for search engines and AI tools.
   const priceTiers = page.summary.find((row) => row.label === "price")!.tiers!;
   const range = tiersRange(priceTiers);
   const schema = [
@@ -89,8 +90,8 @@ export default async function ServicePage(props: PageProps<"/[locale]/services/[
       description: page.metaDescription[locale],
       url,
       inLanguage: locale,
-      provider: { "@id": `${site.url}/#person` },
-      areaServed: [{ "@type": "Country", name: "Cameroon" }, "Worldwide"],
+      provider: { "@id": businessId },
+      areaServed,
       offers: {
         "@type": "Offer",
         url,
@@ -103,6 +104,7 @@ export default async function ServicePage(props: PageProps<"/[locale]/services/[
       },
       dateModified: schemaDate(updated.services),
     },
+    businessSchema(locale),
     {
       "@type": "FAQPage",
       inLanguage: locale,

@@ -17,6 +17,9 @@ export const site = withFrenchSpacing({
     fr: "Développeur web et ingénieur logiciel",
   } satisfies Localized,
   brand: "JPFW Web Services",
+  // The short brand: the end of every page title ("… | JPFW") and the
+  // site's alternate name in the structured data.
+  shortBrand: "JPFW",
   // The homepage H1. Says "web developer" because that is what clients type
   // into Google (the title says "Software Engineer").
   tagline: {
@@ -27,8 +30,8 @@ export const site = withFrenchSpacing({
   // The title is "Software Engineer", but clients search for "web developer" /
   // "développeur web", so the description keeps both on purpose.
   description: {
-    en: "Priestly (JPFW Web Services), software engineer and web developer in Douala, Cameroon, for clients worldwide. Websites, online stores and web apps.",
-    fr: "Priestly (JPFW Web Services), ingénieur logiciel et développeur web à Douala, Cameroun. Sites vitrines, boutiques en ligne et applications web.",
+    en: "Priestly (JPFW Web Services), web developer and software engineer in Douala, Cameroon, for businesses across Africa and worldwide. Websites, stores, web apps.",
+    fr: "Priestly (JPFW Web Services), développeur web à Douala, Cameroun, pour les entreprises en Afrique et ailleurs. Sites vitrines, boutiques, applications web.",
   } satisfies Localized,
   location: {
     en: "Douala, Cameroon",

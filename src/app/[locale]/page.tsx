@@ -10,6 +10,7 @@ import { Contact } from "@/components/Contact";
 import { FaqTeaser } from "@/components/faq/FaqTeaser";
 import { JsonLd } from "@/components/JsonLd";
 import { personSchema } from "@/lib/person-schema";
+import { businessSchema, websiteSchema } from "@/lib/business-schema";
 
 export default async function Home({ params }: PageProps<"/[locale]">) {
   const { locale } = (await params) as { locale: Locale };
@@ -17,7 +18,13 @@ export default async function Home({ params }: PageProps<"/[locale]">) {
 
   return (
     <>
-      <JsonLd data={personSchema(locale)} />
+      {/* The site, the business and the person, linked by @id. */}
+      <JsonLd
+        data={{
+          "@context": "https://schema.org",
+          "@graph": [websiteSchema(), businessSchema(locale), { ...personSchema(locale), "@context": undefined }],
+        }}
+      />
       <Hero />
       <ProjectsSection />
       <About />

@@ -17,6 +17,9 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Full history: check:dates compares the pull request with its base.
+          fetch-depth: 0
 
       - uses: actions/setup-node@v4
         with:
@@ -24,6 +27,9 @@ jobs:
           cache: npm
 
       - run: npm ci
+      # Pages whose content changed need a new date in src/data/dates.ts.
+      - run: npm run check:dates
+        if: github.event_name == 'pull_request'
       - run: npm run lint
       - run: npm run typecheck
       - run: npm run build

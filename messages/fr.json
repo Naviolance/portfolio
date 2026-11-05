@@ -46,7 +46,7 @@
   "about": {
     "heading": "À propos",
     "statement": "Un ingénieur full-stack à Douala qui livre des projets qui marchent.",
-    "intro": "Je crée des boutiques en ligne, des systèmes de réservation et des outils d'administration pour des entreprises au Cameroun et à l'étranger, en anglais ou en français, avec Next.js, NestJS et PostgreSQL. WordPress quand c'est le meilleur choix.",
+    "intro": "Je crée des boutiques en ligne, des systèmes de réservation et des outils d'administration pour des entreprises au Cameroun, en Afrique centrale et de l'Ouest, et au-delà, en anglais ou en français, avec Next.js, NestJS et PostgreSQL. WordPress quand c'est le meilleur choix.",
     "photoAlt": "Priestly (Forsangam Weyegho Junior Priestly), développeur web à Douala, Cameroun",
     "facts": {
       "since": {
@@ -108,7 +108,7 @@
   },
   "contact": {
     "heading": "Comment voulez-vous commencer ?",
-    "intro": "Chaque canal arrive directement chez moi, en français ou en anglais. Basé à Douala, je travaille avec des clients partout.",
+    "intro": "Chaque canal arrive directement chez moi, en français ou en anglais. Basé à Douala, je travaille avec des entreprises partout en Afrique et dans le monde.",
     "hours": "Heure du Cameroun (WAT, UTC+1). Je réponds rapidement dès que je ne suis pas en plein travail.",
     "whatsapp": {
       "kicker": "Le plus rapide",
@@ -264,7 +264,7 @@
     "process": "Ma méthode",
     "faq": "FAQ",
     "cv": "CV",
-    "remote": "à distance partout",
+    "remote": "partout en Afrique et dans le monde",
     "updated": "Mis à jour le {date}",
     "cookies": "Paramètres des cookies"
   },
