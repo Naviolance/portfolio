@@ -111,6 +111,11 @@ export type Project = ProjectDemo & {
   // Planned next, shown under the result as "Coming soon". Only what is
   // actually planned.
   comingSoon?: Localized[];
+  // The client's own words, shown under the result. Quoted exactly as they
+  // wrote it (in its original language, on both pages), and only with their
+  // agreement. "…" marks a cut. No Review structured data: Google ignores a
+  // business's reviews of itself and may treat them as spam.
+  testimonial?: { quote: string; lang: Locale; name: string; role: Localized; source: Localized };
   // Case-study facts box and closing call to action.
   role: Localized;
   statusNote: Localized; // honest status: demo, test mode, private code…
@@ -245,6 +250,14 @@ export const projects: Project[] = withFrenchSpacing([
     outcome: {
       en: "The new design went live on 7 November 2026 with no downtime. Across the site's 611 pages, the HTML readers download went from 149 MB to 26 MB, 82% less. Zero broken addresses, zero changed redirects and zero PHP errors at launch. The newest stories now appear on every section page, the site has the contact, privacy and disclaimer pages readers and advertisers look for, and its security was tightened at the same time.",
       fr: "Le nouveau design est en ligne depuis le 7 novembre 2026, sans coupure. Sur les 611 pages du site, le HTML téléchargé par les lecteurs est passé de 149 Mo à 26 Mo, 82 % de moins. Zéro adresse cassée, zéro redirection modifiée et zéro erreur PHP à la mise en ligne. Les derniers articles apparaissent maintenant dans chaque rubrique, le site a les pages de contact, de confidentialité et de mentions légales que cherchent lecteurs et annonceurs, et sa sécurité a été renforcée en même temps.",
+    },
+    testimonial: {
+      quote:
+        "JPFW Web Services is not just capable but affordable. They are innovative. … I loved the modifications they did on my site. They are my sustainable partner in digital solutions.",
+      lang: "en",
+      name: "Fonban Emmanuel",
+      role: { en: "Founder, The Astute Ink", fr: "Fondateur, The Astute Ink" },
+      source: { en: "Google review", fr: "Avis Google" },
     },
     role: { en: "Audit, design, development and launch", fr: "Audit, design, développement et mise en ligne" },
     statusNote: { en: "Live site, launched November 2026", fr: "Site en ligne depuis novembre 2026" },
