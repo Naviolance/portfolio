@@ -100,8 +100,8 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
     proof: {
       title: { en: "The Astute Ink", fr: "The Astute Ink" },
       text: {
-        en: "A news site from Yaoundé that I built on WordPress, then redesigned: 82% lighter pages, and all 611 addresses kept.",
-        fr: "Un site d'actualité de Yaoundé que j'ai créé sur WordPress, puis refait : des pages 82 % plus légères, et les 611 adresses conservées.",
+        en: "A news and opinion site based in Cameroon, covering global stories, that I built on WordPress, then redesigned: 82% lighter pages, and all 611 addresses kept.",
+        fr: "Un site d'actualité et d'opinion basé au Cameroun, qui couvre l'actualité mondiale, que j'ai créé sur WordPress, puis refait : des pages 82 % plus légères, et les 611 adresses conservées.",
       },
       href: "/projects/astute-ink",
       image: astuteHome,
@@ -250,8 +250,8 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
     proof: {
       title: { en: "The Astute Ink", fr: "The Astute Ink" },
       text: {
-        en: "A news site from Yaoundé that I built on WordPress, then redesigned: 82% lighter pages, and all 611 addresses kept.",
-        fr: "Un site d'actualité de Yaoundé que j'ai créé sur WordPress, puis refait : des pages 82 % plus légères, et les 611 adresses conservées.",
+        en: "A news and opinion site based in Cameroon, covering global stories, that I built on WordPress, then redesigned: 82% lighter pages, and all 611 addresses kept.",
+        fr: "Un site d'actualité et d'opinion basé au Cameroun, qui couvre l'actualité mondiale, que j'ai créé sur WordPress, puis refait : des pages 82 % plus légères, et les 611 adresses conservées.",
       },
       href: "/projects/astute-ink",
       image: astuteHome,

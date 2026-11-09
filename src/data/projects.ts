@@ -151,12 +151,12 @@ export const projects: Project[] = withFrenchSpacing([
     liveUrl: "https://theastuteink.com",
     seoTitle: { en: "The Astute Ink: WordPress news site redesign", fr: "The Astute Ink : refonte d'un site d'actualité" },
     metaDescription: {
-      en: "Case study: the redesign of a live Cameroonian news site on WordPress. 82% lighter pages, 611 addresses checked, none broken, no downtime.",
-      fr: "Étude de cas : la refonte d'un site d'actualité camerounais sur WordPress. Pages 82 % plus légères, 611 adresses vérifiées, aucune cassée.",
+      en: "Case study: redesigning a live WordPress news site based in Cameroon and covering global stories. 82% lighter pages, 611 addresses kept, no downtime.",
+      fr: "Étude de cas : la refonte d'un site d'actualité WordPress basé au Cameroun et couvrant l'actualité mondiale. Pages 82 % plus légères, 611 adresses gardées.",
     },
     summary: {
-      en: "The Astute Ink is a news and opinion site from Yaoundé, with a printed newspaper. I redesigned the WordPress site I first built for them: a design made for reading, the newspaper readable online edition by edition, and the trust pages readers and advertisers look for. Every existing address, title and search setting was kept, and pages got 82% lighter.",
-      fr: "The Astute Ink est un site d'actualité et d'opinion de Yaoundé, avec un journal imprimé. J'ai refait le site WordPress que j'avais construit pour eux : un design fait pour la lecture, le journal lisible en ligne édition par édition, et les pages de confiance que cherchent les lecteurs et les annonceurs. Chaque adresse, titre et réglage de référencement a été conservé, et les pages sont 82 % plus légères.",
+      en: "The Astute Ink is a news and opinion site based in Cameroon that covers stories from around the world, with a printed newspaper. I redesigned the WordPress site I first built for them: a design made for reading, the newspaper readable online edition by edition, and the trust pages readers and advertisers look for. Every existing address, title and search setting was kept, and pages got 82% lighter.",
+      fr: "The Astute Ink est un site d'actualité et d'opinion basé au Cameroun, qui couvre l'actualité du monde entier, avec un journal imprimé. J'ai refait le site WordPress que j'avais construit pour eux : un design fait pour la lecture, le journal lisible en ligne édition par édition, et les pages de confiance que cherchent les lecteurs et les annonceurs. Chaque adresse, titre et réglage de référencement a été conservé, et les pages sont 82 % plus légères.",
     },
     problem: {
       en: "The site ran on a heavy theme made for demos, not for a small newsroom. Pages were slow on phones, the newest stories were missing from section pages, photo captions were unreadable, and there was no contact page, privacy policy or disclaimer. And it's a live business: it earns from search traffic and advertising, so nothing Google already knew could break.",
