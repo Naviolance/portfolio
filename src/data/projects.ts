@@ -36,6 +36,17 @@ import seoReportChart from "@/assets/screenshots/seo-audit-tool/report-chart.web
 import seoQueue from "@/assets/screenshots/seo-audit-tool/queue.webp";
 import seoHistory from "@/assets/screenshots/seo-audit-tool/history.webp";
 import seoForm from "@/assets/screenshots/seo-audit-tool/form.webp";
+import astuteHome from "@/assets/screenshots/astute-ink/home.webp";
+import astuteStory from "@/assets/screenshots/astute-ink/story.webp";
+import astuteEdition from "@/assets/screenshots/astute-ink/edition.webp";
+import astuteMenu from "@/assets/screenshots/astute-ink/menu.webp";
+import astuteLatest from "@/assets/screenshots/astute-ink/latest.webp";
+import astuteAbout from "@/assets/screenshots/astute-ink/about.webp";
+import astuteWriters from "@/assets/screenshots/astute-ink/writers.webp";
+import astuteContact from "@/assets/screenshots/astute-ink/contact.webp";
+import astuteBeforeHome from "@/assets/screenshots/astute-ink/before-home.webp";
+import astuteBeforeMenu from "@/assets/screenshots/astute-ink/before-menu.webp";
+import astuteBeforeSidebar from "@/assets/screenshots/astute-ink/before-sidebar.webp";
 import { withFrenchSpacing } from "@/lib/typography";
 
 export type TechStackEntry = {
@@ -72,6 +83,8 @@ export type Decision = {
 // language), and says where it runs.
 export type ProjectDemo =
   | { status: "live-demo"; liveUrl: string }
+  // A client's site in production: the button says "Visit the site".
+  | { status: "live-site"; liveUrl: string }
   | {
       status: "sample-report";
       sample: Localized; // "/samples/....html"
@@ -115,6 +128,13 @@ export type Project = ProjectDemo & {
   // study's main screenshot on wide screens (hidden on phones, where the
   // visitor is already looking at a phone).
   phones?: { alt: Localized; src: StaticImageData }[];
+  // Redesigns: the same screen before and after, side by side, in their own
+  // chapter. Only real screenshots of the old site.
+  beforeAfter?: {
+    label: Localized;
+    before: { alt: Localized; src: StaticImageData };
+    after: { alt: Localized; src: StaticImageData };
+  }[];
   // Homepage "Featured work" card: three short proofs of the engineering,
   // short tech tags, and the screenshot keys shown there (first = cover).
   highlights: Localized[];
@@ -123,6 +143,246 @@ export type Project = ProjectDemo & {
 };
 
 export const projects: Project[] = withFrenchSpacing([
+  {
+    slug: "astute-ink",
+    title: "The Astute Ink",
+    category: { en: "News media / WordPress redesign", fr: "Média d'information / Refonte WordPress" },
+    status: "live-site",
+    liveUrl: "https://theastuteink.com",
+    seoTitle: { en: "The Astute Ink: WordPress news site redesign", fr: "The Astute Ink : refonte d'un site d'actualité" },
+    metaDescription: {
+      en: "Case study: the redesign of a live Cameroonian news site on WordPress. 82% lighter pages, 611 addresses checked, none broken, no downtime.",
+      fr: "Étude de cas : la refonte d'un site d'actualité camerounais sur WordPress. Pages 82 % plus légères, 611 adresses vérifiées, aucune cassée.",
+    },
+    summary: {
+      en: "The Astute Ink is a news and opinion site from Yaoundé, with a printed newspaper. I redesigned the WordPress site I first built for them: a design made for reading, the newspaper readable online edition by edition, and the trust pages readers and advertisers look for. Every existing address, title and search setting was kept, and pages got 82% lighter.",
+      fr: "The Astute Ink est un site d'actualité et d'opinion de Yaoundé, avec un journal imprimé. J'ai refait le site WordPress que j'avais construit pour eux : un design fait pour la lecture, le journal lisible en ligne édition par édition, et les pages de confiance que cherchent les lecteurs et les annonceurs. Chaque adresse, titre et réglage de référencement a été conservé, et les pages sont 82 % plus légères.",
+    },
+    problem: {
+      en: "The site ran on a heavy theme made for demos, not for a small newsroom. Pages were slow on phones, the newest stories were missing from section pages, photo captions were unreadable, and there was no contact page, privacy policy or disclaimer. And it's a live business: it earns from search traffic and advertising, so nothing Google already knew could break.",
+      fr: "Le site tournait sur un thème lourd fait pour des démos, pas pour une petite rédaction. Les pages étaient lentes sur téléphone, les derniers articles manquaient dans les rubriques, les légendes des photos étaient illisibles, et il n'y avait ni page de contact, ni politique de confidentialité, ni mentions légales. Et c'est une activité en ligne : elle vit du trafic Google et de la publicité, donc rien de ce que Google connaissait déjà ne pouvait casser.",
+    },
+    solution: {
+      en: "Instead of rebuilding the site, I wrote a child theme: a layer on top of the existing WordPress theme that redesigns every page readers see, while keeping the articles, plugins and search settings. All the work happened on a private copy of the site, under version control. The owner approved it on a password-protected preview, then it went live in three steps, with a tested backup and a one-click way back.",
+      fr: "Au lieu de reconstruire le site, j'ai écrit un thème enfant : une couche au-dessus du thème WordPress existant qui refait chaque page que voient les lecteurs, tout en gardant les articles, les extensions et les réglages de référencement. Tout le travail s'est fait sur une copie privée du site, sous contrôle de version. Le propriétaire l'a validé sur un aperçu protégé par mot de passe, puis il a été mis en ligne en trois étapes, avec une sauvegarde testée et un retour en arrière en un clic.",
+    },
+    keyFeatures: [
+      { en: "A homepage built around the journalism: a lead story, three secondary stories, the latest news, recent newspaper editions, and Politics and Columns sections", fr: "Une page d'accueil centrée sur le journalisme : un article principal, trois articles secondaires, les dernières nouvelles, les éditions récentes du journal, et les rubriques Politique et Chroniques" },
+      { en: "Story pages with a serif reading layout, author and reading time, WhatsApp, Facebook and X sharing, and real captions under photos", fr: "Des pages d'article avec une mise en page de lecture à empattements, l'auteur et le temps de lecture, le partage WhatsApp, Facebook et X, et de vraies légendes sous les photos" },
+      { en: "Section, tag and writer pages with story cards, newest first, and a profile for each writer", fr: "Des pages de rubrique, de mot-clé et d'auteur avec des cartes d'articles, les plus récents d'abord, et un profil pour chaque auteur" },
+      { en: "The newspaper online: a page for each print edition with its cover, front-page headlines and the full PDF readable on the page, plus an archive of every edition", fr: "Le journal en ligne : une page par édition imprimée avec sa couverture, les titres de la une et le PDF complet lisible sur la page, plus les archives de toutes les éditions" },
+      { en: "Search that shows results as you type, filtered by section, and that also matches writers' names", fr: "Une recherche qui affiche les résultats pendant la saisie, filtrée par rubrique, et qui trouve aussi les noms des auteurs" },
+      { en: "A full-screen menu with every section and a preview of its latest story, including the latest newspaper cover", fr: "Un menu plein écran avec chaque rubrique et un aperçu de son dernier article, y compris la dernière couverture du journal" },
+      { en: "Light and dark mode, remembered for each reader", fr: "Mode clair et mode sombre, mémorisés pour chaque lecteur" },
+      { en: "New trust pages: Contact with a message form protected against spam, Privacy Policy, Disclaimer, and an About page with the mission and the writing team", fr: "De nouvelles pages de confiance : Contact avec un formulaire protégé contre le spam, Politique de confidentialité, Mentions légales, et une page À propos avec la mission et l'équipe de rédaction" },
+      { en: "A library of Cameroonian and OHADA legal texts, each with an explanation and the official PDF readable on the page, added to bring in search traffic", fr: "Une bibliothèque de textes juridiques camerounais et OHADA, chacun avec une explication et le PDF officiel lisible sur la page, ajoutée pour attirer du trafic Google" },
+      { en: "A helpful 404 page with search and the latest stories", fr: "Une page 404 utile, avec la recherche et les derniers articles" },
+    ],
+    techStack: [
+      {
+        layer: { en: "Platform", fr: "Plateforme" },
+        choice: "WordPress",
+        why: {
+          en: "The editors already publish with it. Keeping it meant no migration, no retraining, and every article stayed where it was.",
+          fr: "Les rédacteurs publient déjà avec. Le garder voulait dire aucune migration, aucune formation, et chaque article est resté à sa place.",
+        },
+      },
+      {
+        layer: { en: "Theme", fr: "Thème" },
+        choice: "Child theme in PHP",
+        why: {
+          en: "13 modules, each owning one part of the site. It reuses the existing content and plugins, and switching back to the old design takes one click.",
+          fr: "13 modules, chacun responsable d'une partie du site. Il réutilise le contenu et les extensions existants, et revenir à l'ancien design prend un clic.",
+        },
+      },
+      {
+        layer: { en: "Front end", fr: "Interface" },
+        choice: "Plain JavaScript + CSS",
+        why: {
+          en: "No jQuery, self-hosted fonts and one stylesheet per page type, so each page only loads what it uses.",
+          fr: "Pas de jQuery, des polices hébergées sur le site et une feuille de style par type de page, donc chaque page ne charge que ce qu'elle utilise.",
+        },
+      },
+      {
+        layer: { en: "Search engines", fr: "Référencement" },
+        choice: "Yoast SEO, kept as it was",
+        why: {
+          en: "Titles, descriptions and structured data still come from the same plugin, so nothing Google reads changed by accident.",
+          fr: "Les titres, descriptions et données structurées viennent toujours de la même extension, donc rien de ce que lit Google n'a changé par accident.",
+        },
+      },
+      {
+        layer: { en: "Workflow", fr: "Méthode" },
+        choice: "LocalWP + Git",
+        why: {
+          en: "A full copy of the site on my computer, and every build step committed, so any change can be traced or undone.",
+          fr: "Une copie complète du site sur mon ordinateur, et chaque étape enregistrée dans Git, donc chaque changement peut être retrouvé ou annulé.",
+        },
+      },
+    ],
+    challenges: [
+      {
+        en: "Keeping 611 addresses exactly as they were. Before changing anything, I crawled every public address and recorded its status, redirect, title, canonical tag and robots setting. After launch I crawled again and compared line by line: all identical. The only difference was a fix: the homepage used to print two canonical tags, now every page has exactly one.",
+        fr: "Garder 611 adresses exactement comme avant. Avant de toucher à quoi que ce soit, j'ai parcouru chaque adresse publique et noté son statut, sa redirection, son titre, sa balise canonique et sa consigne pour les robots. Après la mise en ligne, j'ai tout refait et comparé ligne par ligne : tout est identique. La seule différence est une correction : la page d'accueil avait deux balises canoniques, chaque page en a maintenant exactement une.",
+      },
+      {
+        en: "Finding why the newest stories were missing. A hidden setting in the theme's template library forced an offset and a fixed order on section pages. The child theme resets that query, so every list shows the newest stories first.",
+        fr: "Trouver pourquoi les derniers articles manquaient. Un réglage caché dans la bibliothèque de modèles du thème imposait un décalage et un ordre fixe aux pages de rubrique. Le thème enfant réinitialise cette requête, donc chaque liste montre les articles les plus récents en premier.",
+      },
+      {
+        en: "Fixing captions without editing hundreds of articles. Editors had placed captions on top of photos, unreadable in light mode. The theme now turns them into proper captions under the image as the page is built, and the stored articles are untouched.",
+        fr: "Corriger les légendes sans modifier des centaines d'articles. Les rédacteurs avaient placé les légendes sur les photos, illisibles en mode clair. Le thème les transforme maintenant en vraies légendes sous l'image au moment de construire la page, et les articles enregistrés ne sont pas modifiés.",
+      },
+      {
+        en: "Removing the weight the old theme still loaded. Its styles, scripts and leftover page-builder code are switched off on new-design pages. That's where the 82% comes from.",
+        fr: "Enlever le poids que l'ancien thème chargeait encore. Ses styles, ses scripts et le code restant de son constructeur de pages sont désactivés sur les pages du nouveau design. C'est de là que viennent les 82 %.",
+      },
+      {
+        en: "Launching on a live site with no downtime. A backup proven by a test restore, the new theme checked on the real content with WordPress Live Preview where visitors couldn't see it, then the switch, with a one-click way back.",
+        fr: "Mettre en ligne sur un site actif sans coupure. Une sauvegarde vérifiée par une restauration de test, le nouveau thème contrôlé sur le vrai contenu avec l'aperçu en direct de WordPress, invisible pour les visiteurs, puis la bascule, avec un retour en arrière en un clic.",
+      },
+    ],
+    outcome: {
+      en: "The new design went live on 7 November 2026 with no downtime. Across the site's 611 pages, the HTML readers download went from 149 MB to 26 MB, 82% less. Zero broken addresses, zero changed redirects and zero PHP errors at launch. The newest stories now appear on every section page, the site has the contact, privacy and disclaimer pages readers and advertisers look for, and its security was tightened at the same time.",
+      fr: "Le nouveau design est en ligne depuis le 7 novembre 2026, sans coupure. Sur les 611 pages du site, le HTML téléchargé par les lecteurs est passé de 149 Mo à 26 Mo, 82 % de moins. Zéro adresse cassée, zéro redirection modifiée et zéro erreur PHP à la mise en ligne. Les derniers articles apparaissent maintenant dans chaque rubrique, le site a les pages de contact, de confidentialité et de mentions légales que cherchent lecteurs et annonceurs, et sa sécurité a été renforcée en même temps.",
+    },
+    role: { en: "Audit, design, development and launch", fr: "Audit, design, développement et mise en ligne" },
+    statusNote: { en: "Live site, launched November 2026", fr: "Site en ligne depuis novembre 2026" },
+    stackLine: ["WordPress", "PHP", "JavaScript"],
+    decisions: [
+      {
+        label: { en: "Homepage", fr: "Page d'accueil" },
+        problem: { en: "The homepage was assembled from the theme's demo blocks and buried the journalism.", fr: "La page d'accueil était faite des blocs de démo du thème et noyait le journalisme." },
+        built: { en: "A lead story with three secondary stories, then the latest news, the recent newspaper editions, and the Politics and Columns sections.", fr: "Un article principal avec trois articles secondaires, puis les dernières nouvelles, les éditions récentes du journal, et les rubriques Politique et Chroniques." },
+        shot: "home",
+      },
+      {
+        label: { en: "Reading", fr: "Lecture" },
+        problem: { en: "On phones, captions sat on top of photos and the comment form was cramped.", fr: "Sur téléphone, les légendes couvraient les photos et le formulaire de commentaire était à l'étroit." },
+        built: { en: "A serif reading layout with author and reading time, WhatsApp, Facebook and X sharing, real captions under photos, and a comment form made for phones.", fr: "Une mise en page de lecture à empattements avec l'auteur et le temps de lecture, le partage WhatsApp, Facebook et X, de vraies légendes sous les photos, et un formulaire de commentaire fait pour le téléphone." },
+        shot: "story",
+      },
+      {
+        label: { en: "The newspaper", fr: "Le journal" },
+        problem: { en: "Each print edition was a PDF in a generic viewer, with nothing for search engines to read.", fr: "Chaque édition imprimée était un PDF dans une visionneuse générique, sans rien à lire pour les moteurs de recherche." },
+        built: { en: "A page for each edition: cover, front-page headlines with page numbers, the full PDF readable on the page, and links to the previous and next edition.", fr: "Une page par édition : couverture, titres de la une avec leurs pages, le PDF complet lisible sur la page, et des liens vers l'édition précédente et la suivante." },
+        tech: { en: "The page count is read from the PDF file itself and stored, so editors only upload the file.", fr: "Le nombre de pages est lu directement dans le fichier PDF puis enregistré, donc les rédacteurs n'ont qu'à envoyer le fichier." },
+        shot: "edition",
+      },
+      {
+        label: { en: "Finding a story", fr: "Trouver un article" },
+        problem: { en: "Readers had no quick way to reach a section or find an older story.", fr: "Les lecteurs n'avaient aucun moyen rapide d'aller à une rubrique ou de retrouver un ancien article." },
+        built: { en: "A full-screen menu with every section and the latest newspaper cover, and search that shows results as you type, filtered by section and writer.", fr: "Un menu plein écran avec chaque rubrique et la dernière couverture du journal, et une recherche qui affiche les résultats pendant la saisie, filtrés par rubrique et par auteur." },
+        tech: { en: "A small endpoint returns only the result list, so results update without reloading the page.", fr: "Un petit point d'accès ne renvoie que la liste des résultats, donc ils se mettent à jour sans recharger la page." },
+        shot: "menu",
+      },
+      {
+        label: { en: "Trust", fr: "Confiance" },
+        problem: { en: "No contact page, privacy policy or disclaimer: the first things readers and ad networks look for.", fr: "Pas de page de contact, de politique de confidentialité ni de mentions légales : ce que les lecteurs et les régies publicitaires cherchent en premier." },
+        built: { en: "Contact with a message form protected against spam, Privacy Policy, Disclaimer, and an About page with the mission and the writing team.", fr: "Contact avec un formulaire protégé contre le spam, Politique de confidentialité, Mentions légales, et une page À propos avec la mission et l'équipe de rédaction." },
+        shot: "contact",
+      },
+    ],
+    cta: {
+      title: { en: "Is your WordPress site slow or dated?", fr: "Votre site WordPress est lent ou vieillissant ?" },
+      text: {
+        en: "I can redesign it without losing your Google traffic: same addresses, checked page by page.",
+        fr: "Je peux le refaire sans perdre votre trafic Google : les mêmes adresses, vérifiées page par page.",
+      },
+    },
+    beforeAfter: [
+      {
+        label: { en: "Homepage", fr: "Page d'accueil" },
+        before: {
+          alt: { en: "The old homepage: a grid of photos with titles printed over them, under a long menu of sections", fr: "L'ancienne page d'accueil : une grille de photos avec les titres écrits dessus, sous un long menu de rubriques" },
+          src: astuteBeforeHome,
+        },
+        after: {
+          alt: { en: "The new homepage: a large lead story, three secondary stories with photos beside them, and a short menu", fr: "La nouvelle page d'accueil : un grand article principal, trois articles secondaires avec leur photo à côté, et un menu court" },
+          src: astuteHome,
+        },
+      },
+      {
+        label: { en: "Full-screen menu", fr: "Menu plein écran" },
+        before: {
+          alt: { en: "The old menu: a list of sections over a dimmed story photo", fr: "L'ancien menu : une liste de rubriques sur une photo d'article assombrie" },
+          src: astuteBeforeMenu,
+        },
+        after: {
+          alt: { en: "The new menu: main sections in large type, other sections below, search, and the latest newspaper edition", fr: "Le nouveau menu : les rubriques principales en grand, les autres en dessous, la recherche, et la dernière édition du journal" },
+          src: astuteMenu,
+        },
+      },
+      {
+        label: { en: "Story lists and sidebar", fr: "Listes d'articles et colonne" },
+        before: {
+          alt: { en: "The old story grid with social follower counts and an empty advertisement slot in the sidebar", fr: "L'ancienne grille d'articles, avec des compteurs d'abonnés et un emplacement publicitaire vide dans la colonne" },
+          src: astuteBeforeSidebar,
+        },
+        after: {
+          alt: { en: "The new Latest list, newest first, with an advertising space and links to follow the site", fr: "La nouvelle liste Dernières nouvelles, les plus récents d'abord, avec un espace publicitaire et des liens pour suivre le site" },
+          src: astuteLatest,
+        },
+      },
+    ],
+    highlights: [
+      { en: "82% less HTML across 611 pages", fr: "82 % de HTML en moins sur 611 pages" },
+      { en: "0 broken addresses after launch, checked page by page", fr: "0 adresse cassée après la mise en ligne, vérifié page par page" },
+      { en: "The print newspaper readable online, edition by edition", fr: "Le journal imprimé lisible en ligne, édition par édition" },
+    ],
+    tags: ["WordPress", "PHP", "JavaScript", "SEO"],
+    showcase: ["home", "story", "edition"],
+    screenshots: [
+      {
+        key: "home",
+        label: { en: "Homepage", fr: "Page d'accueil" },
+        alt: { en: "The Astute Ink homepage: a large lead story about student research, and three secondary stories with photos", fr: "Page d'accueil de The Astute Ink : un grand article principal sur une recherche étudiante, et trois articles secondaires avec photos" },
+        src: astuteHome,
+      },
+      {
+        key: "story",
+        label: { en: "Story page", fr: "Page d'article" },
+        alt: { en: "A story page with a large photo, a drop-cap first paragraph, an advertising space and the latest stories beside it", fr: "Une page d'article avec une grande photo, une lettrine au premier paragraphe, un espace publicitaire et les derniers articles à côté" },
+        src: astuteStory,
+      },
+      {
+        key: "edition",
+        label: { en: "Newspaper edition", fr: "Édition du journal" },
+        alt: { en: "Edition No. 32 page: date, previous and next edition, Read and Download PDF buttons, pages, format, publisher and print price", fr: "Page de l'édition n° 32 : date, édition précédente et suivante, boutons Lire et Télécharger le PDF, pages, format, éditeur et prix" },
+        src: astuteEdition,
+      },
+      {
+        key: "menu",
+        label: { en: "Full-screen menu", fr: "Menu plein écran" },
+        alt: { en: "The full-screen menu: sections in large type, search, and the latest newspaper edition", fr: "Le menu plein écran : rubriques en grand, recherche, et la dernière édition du journal" },
+        src: astuteMenu,
+      },
+      {
+        key: "latest",
+        label: { en: "Latest stories", fr: "Derniers articles" },
+        alt: { en: "The Latest list with category labels, authors and dates, beside an advertising space and follow links", fr: "La liste des derniers articles avec rubriques, auteurs et dates, à côté d'un espace publicitaire et de liens pour suivre le site" },
+        src: astuteLatest,
+      },
+      {
+        key: "about",
+        label: { en: "About", fr: "À propos" },
+        alt: { en: "The About page header with the site's motto, number of stories and writers, and links to Contact, Privacy Policy and Disclaimer", fr: "L'en-tête de la page À propos avec la devise du site, le nombre d'articles et d'auteurs, et les liens Contact, Confidentialité et Mentions légales" },
+        src: astuteAbout,
+      },
+      {
+        key: "writers",
+        label: { en: "Writers", fr: "Auteurs" },
+        alt: { en: "Our writers: six writer cards with initials, and a Reporters wanted notice", fr: "Nos auteurs : six cartes d'auteurs avec leurs initiales, et un avis Reporters recherchés" },
+        src: astuteWriters,
+      },
+      {
+        key: "contact",
+        label: { en: "Contact", fr: "Contact" },
+        alt: { en: "The Contact page: email and WhatsApp numbers with copy buttons, and a Send a message form", fr: "La page Contact : e-mail et numéros WhatsApp avec boutons pour copier, et un formulaire Envoyer un message" },
+        src: astuteContact,
+      },
+    ],
+  },
   {
     slug: "truckparts",
     title: "TruckParts",
@@ -1388,14 +1648,14 @@ export const projects: Project[] = withFrenchSpacing([
   },
 ]);
 
-// The demo button's address: the live app, or the sample in this language.
+// The demo button's address: the live app or site, or the sample in this language.
 export function demoHref(project: Project, locale: Locale): string {
-  return project.status === "live-demo" ? project.liveUrl : project.sample[locale];
+  return project.status === "sample-report" ? project.sample[locale] : project.liveUrl;
 }
 
 // The address shown above the project's screenshots.
 export function frameHost(project: Project): string {
-  return project.status === "live-demo" ? new URL(project.liveUrl).host : project.frameHost;
+  return project.status === "sample-report" ? project.frameHost : new URL(project.liveUrl).host;
 }
 
 export function getProject(slug: string) {

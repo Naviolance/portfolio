@@ -36,6 +36,7 @@
     "heading": "Featured work",
     "howBuilt": "How I built it",
     "liveDemo": "Live demo",
+    "visitSite": "Visit the site",
     "github": "GitHub",
     "privateCode": "Code: private",
     "eyebrow": "Selected work · {count} projects",
@@ -140,6 +141,7 @@
     "back": "All projects",
     "kicker": "Case study {n} / {total}",
     "liveDemo": "Live demo",
+    "visitSite": "Visit the site",
     "sampleReport": "Sample report",
     "repo": "GitHub",
     "privateRepo": "Private code, available on request",
@@ -152,6 +154,7 @@
     "onThisPage": "On this page",
     "toc": {
       "decisions": "Problems → decisions",
+      "before": "Before → after",
       "built": "How it's built",
       "hard": "What was hard",
       "result": "Result",
@@ -168,7 +171,10 @@
     "howBuilt": "How it's built",
     "next": "Next case study · {n} / {total}",
     "ctaButton": "Talk on WhatsApp",
-    "allFeatures": "All features ({count})"
+    "allFeatures": "All features ({count})",
+    "beforeAfterTitle": "Before and after",
+    "before": "Before",
+    "after": "After"
   },
   "gallery": {
     "seeAll": "See all {count} screenshots",

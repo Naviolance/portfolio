@@ -37,6 +37,7 @@ function html(locale) {
   const home = `${site.url}/${locale}`;
 
   const projects = cvProjects
+    .filter((p) => !p.webOnly)
     .map((p) => {
       const links = [
         p.liveUrl && link(p.liveUrl, t.liveDemo),

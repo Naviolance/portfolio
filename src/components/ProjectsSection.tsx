@@ -91,14 +91,14 @@ export function ProjectsSection() {
                   {/* Live demos only: a sample report is noindex (like every report the tool writes), and a hidden page
                       linked from the homepage reads as a mistake to search engines and to the tool's own audit (C04).
                       The case study links it. */}
-                  {project.status === "live-demo" && (
+                  {project.status !== "sample-report" && (
                     <a
                       href={project.liveUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="inline-flex min-h-11 items-center text-ink-soft link-underline"
                     >
-                      {t("liveDemo")} <span aria-hidden>&nbsp;↗</span>
+                      {t(project.status === "live-site" ? "visitSite" : "liveDemo")} <span aria-hidden>&nbsp;↗</span>
                     </a>
                   )}
                   {project.githubUrl ? (
