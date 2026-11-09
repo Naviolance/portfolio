@@ -401,6 +401,22 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
 
           <Chapter id="result" n={num("result")} title={t("resultTitle")}>
             <p className="mt-3 max-w-2xl text-ink-soft">{project.outcome[locale]}</p>
+            {project.testimonial && (
+              <figure className="mt-8 max-w-2xl border-l-2 border-accent bg-panel px-6 py-6 sm:px-8">
+                <Eyebrow>{t("clientSays")}</Eyebrow>
+                <blockquote lang={project.testimonial.lang} className="mt-3">
+                  <p className="font-display text-xl font-semibold leading-snug text-ink sm:text-[1.4rem]">
+                    “{project.testimonial.quote}”
+                  </p>
+                </blockquote>
+                <figcaption className="mt-4 text-sm text-ink-soft">
+                  <span className="font-semibold text-ink">{project.testimonial.name}</span>
+                  {", "}
+                  {project.testimonial.role[locale]}
+                  <span className="text-label"> · {project.testimonial.source[locale]}</span>
+                </figcaption>
+              </figure>
+            )}
             {project.comingSoon && (
               <div className="mt-6 max-w-2xl border border-dashed border-line p-5">
                 <Eyebrow>{t("comingSoon")}</Eyebrow>
