@@ -6,6 +6,7 @@ import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { MobileMenu } from "./MobileMenu";
 import { LanguageSwitcher } from "./LanguageSwitcher";
+import { ThemeToggle } from "./ThemeToggle";
 import { WhatsAppButton } from "./WhatsAppButton";
 import { PROCESS_PATH } from "@/data/page-paths";
 import type { Locale } from "@/i18n/routing";
@@ -66,6 +67,7 @@ export function Nav({ projectTitles }: { projectTitles: Record<string, string> }
           {/* Desktop: the direct action. Phones and tablets have the floating
               button, and "Let's talk" in the menu. */}
           <WhatsAppButton projectTitles={projectTitles} variant="nav" />
+          <ThemeToggle />
           <LanguageSwitcher />
           <MobileMenu links={links} ctaLabel={t("cta")} />
         </div>

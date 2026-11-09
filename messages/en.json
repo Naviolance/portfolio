@@ -13,6 +13,7 @@
     "language": "Language",
     "switchTo": "Français",
     "switchToShort": "FR",
+    "theme": "Light or dark mode",
     "whatsapp": "WhatsApp"
   },
   "hero": {
