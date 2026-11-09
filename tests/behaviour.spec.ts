@@ -242,3 +242,16 @@ test("theme toggle: follows the device, then remembers the choice", async ({ pag
   expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe("light");
   expect(await paper()).toBe("rgb(246, 248, 250)");
 });
+
+// Switching language swaps the root layout, and React resets <html>'s
+// attributes when it does: the chosen theme must survive that.
+test("theme choice survives switching language", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/en");
+  await page.getByRole("button", { name: "Light or dark mode" }).click();
+  await page.getByRole("link", { name: "Language: Français" }).click();
+  await expect(page).toHaveURL(/\/fr$/);
+  await expect(page.getByRole("button", { name: "Mode clair ou sombre" })).toBeVisible();
+  expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe("light");
+  expect(await page.evaluate(() => getComputedStyle(document.body).backgroundColor)).toBe("rgb(246, 248, 250)");
+});
