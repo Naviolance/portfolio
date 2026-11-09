@@ -3,13 +3,13 @@ import type { Localized } from "@/lib/localized";
 import type { ServiceId } from "./services";
 import truckpartsHome from "@/assets/screenshots/truckparts/home.png";
 import carRentalHome from "@/assets/screenshots/car-rental/home.png";
-import pharmapBeforeHome from "@/assets/screenshots/pharmap/before/home.webp";
-import pharmapBeforeAvailability from "@/assets/screenshots/pharmap/before/availability.webp";
-import pharmapBeforeAdmin from "@/assets/screenshots/pharmap/before/admin-verification.webp";
-import pharmapHome from "@/assets/screenshots/pharmap/home.webp";
-import pharmapAvailability from "@/assets/screenshots/pharmap/availability.webp";
-import pharmapAdmin from "@/assets/screenshots/pharmap/admin-verification.webp";
 import seoToolReport from "@/assets/screenshots/seo-audit-tool/home.webp";
+import astuteHome from "@/assets/screenshots/astute-ink/home.webp";
+import astuteMenu from "@/assets/screenshots/astute-ink/menu.webp";
+import astuteLatest from "@/assets/screenshots/astute-ink/latest.webp";
+import astuteBeforeHome from "@/assets/screenshots/astute-ink/before-home.webp";
+import astuteBeforeMenu from "@/assets/screenshots/astute-ink/before-menu.webp";
+import astuteBeforeSidebar from "@/assets/screenshots/astute-ink/before-sidebar.webp";
 import { withFrenchSpacing } from "@/lib/typography";
 
 // The content of each service page (/en/services/..., /fr/services/...).
@@ -98,12 +98,14 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       { tier: "care", timeline: { en: "monthly, optional", fr: "mensuel, en option" } },
     ],
     proof: {
-      title: { en: "theastuteink.com", fr: "theastuteink.com" },
+      title: { en: "The Astute Ink", fr: "The Astute Ink" },
       text: {
-        en: "A WordPress website I built, online now.",
-        fr: "Un site WordPress que j'ai créé, en ligne.",
+        en: "A news site from Yaoundé that I built on WordPress, then redesigned: 82% lighter pages, and all 611 addresses kept.",
+        fr: "Un site d'actualité de Yaoundé que j'ai créé sur WordPress, puis refait : des pages 82 % plus légères, et les 611 adresses conservées.",
       },
-      href: "https://theastuteink.com",
+      href: "/projects/astute-ink",
+      image: astuteHome,
+      host: "theastuteink.com",
     },
     card: { items: { en: ["Fast on phones", "Ready for Google", "Yours to keep"], fr: ["Rapide sur mobile", "Prêt pour Google", "Bien à vous"] } },
     faqIds: ["showcase-website", "what-to-provide", "cost-after-launch"],
@@ -246,14 +248,16 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       { tier: "care", timeline: { en: "monthly, optional", fr: "mensuel, en option" } },
     ],
     proof: {
-      title: { en: "theastuteink.com", fr: "theastuteink.com" },
+      title: { en: "The Astute Ink", fr: "The Astute Ink" },
       text: {
-        en: "A WordPress website I built, online now.",
-        fr: "Un site WordPress que j'ai créé, en ligne.",
+        en: "A news site from Yaoundé that I built on WordPress, then redesigned: 82% lighter pages, and all 611 addresses kept.",
+        fr: "Un site d'actualité de Yaoundé que j'ai créé sur WordPress, puis refait : des pages 82 % plus légères, et les 611 adresses conservées.",
       },
-      href: "https://theastuteink.com",
+      href: "/projects/astute-ink",
+      image: astuteHome,
+      host: "theastuteink.com",
     },
-    card: { items: { en: ["You edit it", "WooCommerce", "Maintenance"], fr: ["Vous le modifiez", "WooCommerce", "Maintenance"] } },
+    card: { items: { en: ["You edit it", "WooCommerce", "Maintenance"], fr: ["Vous le modifiez", "WooCommerce", "Maintenance"] }, shot: "astute-ink/home.webp" },
     faqIds: ["wordpress-or-custom", "what-to-provide", "cost-after-launch"],
     cta: { en: "Talk about my WordPress site ↗", fr: "Parler de mon WordPress ↗" },
     whatsapp: {
@@ -347,20 +351,20 @@ export const servicePages: Record<ServiceId, ServicePage> = withFrenchSpacing({
       { tier: "redesign-app", timeline: { en: "quoted per project", fr: "devis par projet" } },
     ],
     proof: {
-      title: { en: "PharMap, before and after", fr: "PharMap, avant et après" },
+      title: { en: "The Astute Ink, before and after", fr: "The Astute Ink, avant et après" },
       text: {
-        en: "A client's medicine-finder app that I built, then redesigned: same features, clearer search, a live answer on the homepage, and pages built for phones.",
-        fr: "L'application d'un client pour trouver des médicaments, que j'ai construite puis refaite : mêmes fonctionnalités, recherche plus claire, une réponse en direct dès l'accueil, et des pages pensées pour le téléphone.",
+        en: "A live news site redesigned on WordPress: a design made for reading, 82% lighter pages, and all 611 addresses kept, so it lost none of its Google traffic.",
+        fr: "Un site d'actualité en ligne refait sur WordPress : un design fait pour la lecture, des pages 82 % plus légères, et les 611 adresses conservées, sans rien perdre du trafic Google.",
       },
-      href: "/projects/pharmap",
-      host: "pharmap-web.vercel.app",
+      href: "/projects/astute-ink",
+      host: "theastuteink.com",
       pairs: [
-        { label: { en: "Homepage", fr: "Page d'accueil" }, before: pharmapBeforeHome, after: pharmapHome },
-        { label: { en: "Where a medicine is in stock", fr: "Où un médicament est en stock" }, before: pharmapBeforeAvailability, after: pharmapAvailability },
-        { label: { en: "Admin: pharmacy verification", fr: "Admin : vérification des pharmacies" }, before: pharmapBeforeAdmin, after: pharmapAdmin },
+        { label: { en: "Homepage", fr: "Page d'accueil" }, before: astuteBeforeHome, after: astuteHome },
+        { label: { en: "Full-screen menu", fr: "Menu plein écran" }, before: astuteBeforeMenu, after: astuteMenu },
+        { label: { en: "Story lists and sidebar", fr: "Listes d'articles et colonne" }, before: astuteBeforeSidebar, after: astuteLatest },
       ],
     },
-    card: { items: { en: ["Mockup first", "Faster pages", "Google ranking kept"], fr: ["Maquette d'abord", "Plus rapide", "Google gardé"] }, shot: "pharmap/home.webp", before: "pharmap/before/home.webp" },
+    card: { items: { en: ["Mockup first", "Faster pages", "Google ranking kept"], fr: ["Maquette d'abord", "Plus rapide", "Google gardé"] }, shot: "astute-ink/home.webp", before: "astute-ink/before-home.webp" },
     faqIds: ["what-to-provide", "show-up-on-google", "how-to-pay"],
     cta: { en: "Talk about my redesign ↗", fr: "Parler de ma refonte ↗" },
     whatsapp: {

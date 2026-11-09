@@ -48,7 +48,10 @@ export async function generateMetadata(
 
 
 // The chapters, in page order. Their ids are the index's link targets.
-const CHAPTERS = ["decisions", "built", "hard", "result", "screens"] as const;
+// "before" (before → after) only exists for redesigns.
+function chaptersOf(project: Project) {
+  return ["decisions", ...(project.beforeAfter ? ["before"] : []), "built", "hard", "result", "screens"];
+}
 
 function Chapter({
   id,
@@ -94,18 +97,29 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
   const cover = shot(project.showcase[0]) ?? project.screenshots[0];
   const lastUpdate = updated.projects[project.slug];
   const lastUpdateLabel = lastUpdate && formatDate(lastUpdate, locale, "month");
+  const chapters = chaptersOf(project);
+  const num = (id: string) => chapters.indexOf(id) + 1;
 
+  // A client's live site is a WebSite I made for them (creator, not
+  // author: the client writes it); everything else is an app.
   const projectSchema = {
     "@context": "https://schema.org",
-    "@type": "WebApplication",
+    ...(project.status === "live-site"
+      ? {
+          "@type": "WebSite",
+          creator: { "@type": "Person", name: site.fullName, url: `${site.url}/${locale}` },
+        }
+      : {
+          "@type": "WebApplication",
+          applicationCategory: "BusinessApplication",
+          operatingSystem: project.status === "live-demo" ? "Web" : project.platform,
+          author: { "@type": "Person", name: site.fullName, url: `${site.url}/${locale}` },
+        }),
     name: project.title,
     description: project.summary[locale],
     inLanguage: locale,
     url: demoHref(project, locale),
-    applicationCategory: "BusinessApplication",
-    operatingSystem: project.status === "live-demo" ? "Web" : project.platform,
     ...(project.githubUrl && { sameAs: project.githubUrl }),
-    author: { "@type": "Person", name: site.fullName, url: `${site.url}/${locale}` },
     ...(lastUpdate && { dateModified: schemaDate(lastUpdate) }),
   };
 
@@ -149,7 +163,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
               rel="noopener noreferrer"
               className={buttonClass()}
             >
-              {t(project.status === "live-demo" ? "liveDemo" : "sampleReport")} <span aria-hidden>↗</span>
+              {t(({ "live-demo": "liveDemo", "live-site": "visitSite", "sample-report": "sampleReport" } as const)[project.status])} <span aria-hidden>↗</span>
             </a>
             {project.githubUrl ? (
               <a
@@ -160,7 +174,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
               >
                 {t("repo")} <span aria-hidden>↗</span>
               </a>
-            ) : (
+            ) : project.status === "live-site" ? null : (
               <span className="inline-flex min-h-12 items-center gap-2 border border-dashed border-line px-4 text-sm text-ink-soft">
                 <svg width="13" height="13" viewBox="0 0 14 14" aria-hidden="true">
                   <rect x="2.5" y="6" width="9" height="6.5" rx="1.2" fill="none" stroke="currentColor" strokeWidth="1.4" />
@@ -222,7 +236,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
       </header>
 
       <div
-        style={spyScope(CHAPTERS)}
+        style={spyScope(chapters)}
         className="mt-14 grid grid-cols-1 gap-10 sm:mt-20 lg:grid-cols-[180px_minmax(0,1fr)] lg:gap-12"
       >
         {/* Sticky index: plain links + position: sticky, and a "you are
@@ -232,7 +246,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
           <div className="sticky top-24">
             <Eyebrow>{t("onThisPage")}</Eyebrow>
             <ol className="mt-3 font-mono text-[13px]">
-              {CHAPTERS.map((id, i) => (
+              {chapters.map((id, i) => (
                 <li key={id}>
                   <a
                     href={`#${id}`}
@@ -248,7 +262,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
         </nav>
 
         <div className="min-w-0">
-          <Chapter id="decisions" n={1} title={t("decisionsTitle")}>
+          <Chapter id="decisions" n={num("decisions")} title={t("decisionsTitle")}>
             <p className="mt-3 max-w-2xl text-ink-soft">{project.problem[locale]}</p>
             <div className="mt-8 space-y-10">
               {project.decisions.map((decision, i) => {
@@ -312,7 +326,47 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
             </details>
           </Chapter>
 
-          <Chapter id="built" n={2} title={t("howBuilt")}>
+          {project.beforeAfter && (
+            <Chapter id="before" n={num("before")} title={t("beforeAfterTitle")}>
+              <div className="mt-6 space-y-10">
+                {project.beforeAfter.map((pair) => (
+                  <figure key={pair.label.en}>
+                    <figcaption>
+                      <Eyebrow as="span">{pair.label[locale]}</Eyebrow>
+                    </figcaption>
+                    <div className="mt-3 grid grid-cols-1 gap-5 sm:grid-cols-2">
+                      {(["before", "after"] as const).map((side) => (
+                        <div key={side}>
+                          <p
+                            className={cx(
+                              "mb-2 font-mono text-[11px] font-semibold uppercase tracking-wider",
+                              side === "before" ? "text-ink-soft" : "text-accent-ink"
+                            )}
+                          >
+                            {t(side)}
+                          </p>
+                          <BrowserFrame>
+                            {/* Whole-width screenshots: the comparison is the layout. */}
+                            <div className="relative aspect-[21/10]">
+                              <Image
+                                src={pair[side].src}
+                                alt={pair[side].alt[locale]}
+                                placeholder="blur"
+                                sizes="(min-width: 1024px) 380px, (min-width: 640px) 45vw, 100vw"
+                                className="absolute inset-0 h-full w-full object-cover object-top"
+                              />
+                            </div>
+                          </BrowserFrame>
+                        </div>
+                      ))}
+                    </div>
+                  </figure>
+                ))}
+              </div>
+            </Chapter>
+          )}
+
+          <Chapter id="built" n={num("built")} title={t("howBuilt")}>
             <p className="mt-3 max-w-2xl text-ink-soft">{project.solution[locale]}</p>
             <dl className="mt-6 border-b border-line text-[15px]">
               {project.techStack.map((entry) => (
@@ -332,7 +386,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
             </dl>
           </Chapter>
 
-          <Chapter id="hard" n={3} title={t("hardTitle")}>
+          <Chapter id="hard" n={num("hard")} title={t("hardTitle")}>
             <ul className="mt-5 border-b border-line">
               {project.challenges.map((challenge) => {
                 const { head, rest } = splitFirstSentence(challenge[locale]);
@@ -345,7 +399,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
             </ul>
           </Chapter>
 
-          <Chapter id="result" n={4} title={t("resultTitle")}>
+          <Chapter id="result" n={num("result")} title={t("resultTitle")}>
             <p className="mt-3 max-w-2xl text-ink-soft">{project.outcome[locale]}</p>
             {project.comingSoon && (
               <div className="mt-6 max-w-2xl border border-dashed border-line p-5">
@@ -359,7 +413,7 @@ export default async function ProjectPage(props: PageProps<"/[locale]/projects/[
             )}
           </Chapter>
 
-          <Chapter id="screens" n={5} title={t("screensTitle")}>
+          <Chapter id="screens" n={num("screens")} title={t("screensTitle")}>
             <p className="mt-2 font-mono text-xs text-ink-soft">
               {t("screensHint", { count: project.screenshots.length })}
             </p>

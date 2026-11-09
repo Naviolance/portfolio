@@ -31,10 +31,31 @@ export type CvProject = {
   codeUrl?: string;
   // One line for the proof cards at the top of the web CV.
   proof?: Localized;
+  // On the /cv page but left out of the one-page PDF.
+  webOnly?: true;
   points: CvPoint[];
 };
 
 export const cvProjects: CvProject[] = withFrenchSpacing([
+  {
+    title: { en: "The Astute Ink: News Website Redesign (client)", fr: "The Astute Ink : refonte de site d'actualité (client)" },
+    year: "2026",
+    stack: "WordPress, PHP, JavaScript",
+    slug: "astute-ink",
+    proof: { en: "Live news site redesigned with 82% lighter pages and 0 broken addresses", fr: "Site d'actualité en ligne refait, pages 82 % plus légères et 0 adresse cassée" },
+    // No liveUrl: the button would say "Live demo"; the case study links the site.
+    points: [
+      {
+        en: "Redesigned a live WordPress news site as a 13-module child theme: 82% less HTML across 611 pages.",
+        fr: "Refonte d'un site WordPress en ligne (thème enfant de 13 modules) : 82 % de HTML en moins sur 611 pages.",
+      },
+      {
+        webOnly: true,
+        en: "Crawled all 611 addresses before and after launch: identical status codes, redirects, titles and canonicals, with no downtime.",
+        fr: "Vérification des 611 adresses avant et après la mise en ligne : statuts, redirections, titres et balises canoniques identiques, sans coupure.",
+      },
+    ],
+  },
   {
     title: { en: "TruckParts: Truck Spare Parts E-commerce Platform", fr: "TruckParts : plateforme e-commerce de pièces de camion" },
     year: "2026",
@@ -87,6 +108,8 @@ export const cvProjects: CvProject[] = withFrenchSpacing([
     ],
   },
   {
+    // Left out of the PDF to keep it on one page; the web CV lists it.
+    webOnly: true,
     title: { en: "Car Rental Booking Platform", fr: "Plateforme de réservation de location de voitures" },
     year: "2026",
     stack: "Next.js, TypeScript, Prisma, PostgreSQL, Auth.js",
