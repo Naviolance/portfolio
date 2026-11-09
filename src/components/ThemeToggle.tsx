@@ -1,7 +1,8 @@
 "use client";
 
+import { useLayoutEffect } from "react";
 import { useTranslations } from "next-intl";
-import { currentTheme, setTheme } from "@/lib/theme";
+import { applyStoredTheme, currentTheme, setTheme } from "@/lib/theme";
 
 // Light/dark switch in the header. The icon is chosen by CSS (the dark:
 // prefix), not by React state: the server can't know the visitor's theme,
@@ -10,6 +11,9 @@ import { currentTheme, setTheme } from "@/lib/theme";
 // "switch to light".
 export function ThemeToggle() {
   const t = useTranslations("nav");
+  // A layout effect runs after React has updated <html> but before the
+  // browser paints, so restoring the choice here never shows a flash.
+  useLayoutEffect(applyStoredTheme, []);
   return (
     <button
       type="button"

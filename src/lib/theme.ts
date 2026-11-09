@@ -11,6 +11,19 @@ export type Theme = "light" | "dark";
 // windows, blocked site data): then the device setting applies.
 export const themeScript = `try{var t=localStorage.getItem("${THEME_KEY}");if(t==="light"||t==="dark")document.documentElement.dataset.theme=t}catch(e){}`;
 
+// Puts the saved choice back on <html>. Switching language swaps the root
+// layout, and React clears <html>'s attributes when it does, so the choice
+// themeScript applied on load is lost: ThemeToggle calls this whenever it
+// mounts, before the browser paints.
+export function applyStoredTheme() {
+  try {
+    const t = localStorage.getItem(THEME_KEY);
+    if (t === "light" || t === "dark") document.documentElement.dataset.theme = t;
+  } catch {
+    // Blocked storage: the device setting applies.
+  }
+}
+
 // The theme on screen now: the visitor's choice, else the device setting.
 export function currentTheme(): Theme {
   const chosen = document.documentElement.dataset.theme;
