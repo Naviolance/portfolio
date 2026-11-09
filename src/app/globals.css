@@ -30,6 +30,7 @@
   --ease-draw: cubic-bezier(0.65, 0, 0.35, 1);
   --dur-enter: 700ms;
   --dur-draw: 1100ms;
+  color-scheme: light;
 }
 
 @theme inline {
@@ -49,9 +50,13 @@
   --font-mono: var(--font-plex-mono);
 }
 
-/* Dark mode is the logo itself: navy ground, cyan accents. */
+/* Dark mode is the logo itself: navy ground, cyan accents.
+   It follows the device setting, unless the visitor chose with the header
+   button (ThemeToggle): that sets data-theme on <html>, which wins either
+   way. The same colours are written twice because CSS can't share one
+   block between a media query and a selector. */
 @media (prefers-color-scheme: dark) {
-  :root {
+  :root:not([data-theme="light"]) {
     --paper: #04162a;
     --ink: #e6eef5;
     --ink-soft: #9db1c3;
@@ -64,6 +69,35 @@
     --shade: rgba(0, 0, 0, 0.4);
     --dim-1: 0.6;
     --dim-2: 0.4;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #04162a;
+  --ink: #e6eef5;
+  --ink-soft: #9db1c3;
+  --line: #1a3350;
+  --accent: #01b6cb;
+  --accent-ink: #5fd3e2;
+  --label: #01b6cb;
+  --panel: #0b2239;
+  --money: #f5b13d;
+  --shade: rgba(0, 0, 0, 0.4);
+  --dim-1: 0.6;
+  --dim-2: 0.4;
+  color-scheme: dark;
+}
+
+/* Tailwind's dark: prefix follows the same rule. */
+@custom-variant dark {
+  @media (prefers-color-scheme: dark) {
+    &:where(:root:not([data-theme="light"]) *) {
+      @slot;
+    }
+  }
+  &:where([data-theme="dark"] *) {
+    @slot;
   }
 }
 

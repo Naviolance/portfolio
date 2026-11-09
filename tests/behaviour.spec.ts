@@ -222,3 +222,23 @@ test.describe("cookie banner", () => {
     await expect(page.locator('script[src*="googletagmanager.com"]')).toHaveCount(0);
   });
 });
+
+// Light/dark: follows the device until the visitor chooses; the choice is
+// applied before the first paint on the next page (no flash) and wins over
+// the device setting.
+test("theme toggle: follows the device, then remembers the choice", async ({ page }) => {
+  await page.emulateMedia({ colorScheme: "dark" });
+  await page.goto("/en");
+  const paper = () => page.evaluate(() => getComputedStyle(document.body).backgroundColor);
+  expect(await paper()).toBe("rgb(4, 22, 42)"); // device says dark
+
+  await page.getByRole("button", { name: "Light or dark mode" }).click();
+  expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe("light");
+  expect(await paper()).toBe("rgb(246, 248, 250)");
+
+  // Next page: already light in the server HTML + head script, before React.
+  await page.goto("/en/faq", { waitUntil: "commit" });
+  await page.waitForSelector("body");
+  expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe("light");
+  expect(await paper()).toBe("rgb(246, 248, 250)");
+});

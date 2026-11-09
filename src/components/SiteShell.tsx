@@ -11,6 +11,7 @@ import { RevealOnScroll } from "@/components/RevealOnScroll";
 import { GoogleTagManager } from "@next/third-parties/google";
 import { CookieBanner } from "@/components/CookieBanner";
 import { consentDefaultScript, GTM_ID } from "@/lib/consent";
+import { themeScript } from "@/lib/theme";
 
 // Message namespaces used by "use client" components. A client component
 // using another namespace would show raw keys: add it here (the e2e tests
@@ -35,7 +36,14 @@ export async function SiteShell({ locale, children }: { locale: Locale; children
   const tagManager = process.env.VERCEL_ENV === "production";
 
   return (
-    <html lang={locale} data-scroll-behavior="smooth" className={`${fontVariables} h-full antialiased`}>
+    // suppressHydrationWarning: themeScript may set data-theme on <html>
+    // before React loads, which the server-rendered HTML doesn't have.
+    <html
+      lang={locale}
+      data-scroll-behavior="smooth"
+      className={`${fontVariables} h-full antialiased`}
+      suppressHydrationWarning
+    >
       {/* Consent Mode defaults: a plain inline script, so the browser runs it
           while reading <head>, before any other script and so before GTM
           (lib/consent.ts). next/script's beforeInteractive would defer it to
@@ -44,6 +52,8 @@ export async function SiteShell({ locale, children }: { locale: Locale; children
       {/* eslint-disable-next-line @next/next/no-head-element */}
       <head>
         <script dangerouslySetInnerHTML={{ __html: consentDefaultScript }} />
+        {/* The visitor's light/dark choice, applied before the first paint. */}
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
       <body className="min-h-full flex flex-col bg-paper text-ink">
         {/* Hands this language's interface text to the client components. */}
