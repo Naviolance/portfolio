@@ -41,7 +41,7 @@
     "github": "GitHub",
     "privateCode": "Code: private",
     "eyebrow": "Selected work · {count} projects",
-    "intro": "Four products I built end to end. Each one can be tried, and each case study shows how it works.",
+    "intro": "From a client's news site to apps I built end to end. Each one can be seen or tried, and each case study shows how it works.",
     "showScreen": "Show {label}",
     "stack": "Tech stack"
   },
@@ -57,7 +57,7 @@
       },
       "cases": {
         "value": "{count}",
-        "label": "full case studies, each with a live demo"
+        "label": "full case studies you can see or try"
       },
       "langs": {
         "value": "EN · FR",
@@ -289,7 +289,7 @@
     "pages": {
       "projects": {
         "label": "Projects",
-        "hint": "Four case studies you can try"
+        "hint": "Case studies you can see or try"
       },
       "pricing": {
         "label": "Pricing",

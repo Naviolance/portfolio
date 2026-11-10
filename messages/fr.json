@@ -41,7 +41,7 @@
     "github": "GitHub",
     "privateCode": "Code : privé",
     "eyebrow": "Projets choisis · {count} projets",
-    "intro": "Quatre produits que j'ai construits de bout en bout. Chacun peut être essayé, et chaque étude de cas montre comment il fonctionne.",
+    "intro": "Du site d'actualité d'un client aux applications que j'ai construites de bout en bout. Chacun peut être vu ou essayé, et chaque étude de cas montre comment il fonctionne.",
     "showScreen": "Afficher : {label}",
     "stack": "Stack technique"
   },
@@ -57,7 +57,7 @@
       },
       "cases": {
         "value": "{count}",
-        "label": "études de cas complètes, chacune avec une démo en ligne"
+        "label": "études de cas complètes, à voir ou à essayer"
       },
       "langs": {
         "value": "FR · EN",
@@ -289,7 +289,7 @@
     "pages": {
       "projects": {
         "label": "Projets",
-        "hint": "Quatre études de cas à essayer"
+        "hint": "Des études de cas à voir ou à essayer"
       },
       "pricing": {
         "label": "Tarifs",
