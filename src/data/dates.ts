@@ -6,7 +6,7 @@
 // screenshots), not for code or styling changes. A date that changes on
 // every deploy tells Google nothing, which is why these aren't automatic.
 export const updated = {
-  home: "2026-11-09",
+  home: "2026-11-10",
   faq: "2026-11-05",
   cv: "2026-11-09",
   services: "2026-11-09",

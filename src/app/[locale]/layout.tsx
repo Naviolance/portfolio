@@ -6,6 +6,7 @@ import { routing, type Locale } from "@/i18n/routing";
 import { site } from "@/data/site";
 import { languageAlternates, shareMetadata } from "@/lib/seo";
 import { SiteShell } from "@/components/SiteShell";
+import { frenchSpacing } from "@/lib/typography";
 import "../globals.css";
 
 // Pre-render every page in both languages at build time.
@@ -17,9 +18,14 @@ export async function generateMetadata(
   props: LayoutProps<"/[locale]">
 ): Promise<Metadata> {
   const { locale } = (await props.params) as { locale: Locale };
-  // Search words and city first, name last; under 60 characters so Google
-  // shows it whole (tests/pages.spec.ts checks every page).
-  const title = `${site.headline[locale]} ${locale === "fr" ? "à" : "in"} Douala | ${site.shortBrand}`;
+  // The full business name first: "JPFW" alone is shared with other
+  // businesses, and the homepage title is where Google looks first to match
+  // a search for "JPFW Web Services". Then the search words and the city.
+  // Under 60 characters so Google shows it whole (tests/pages.spec.ts).
+  const title =
+    locale === "fr"
+      ? frenchSpacing(`${site.brand} : développeur web à Douala, Cameroun`, "fr")
+      : `${site.brand}: Web Developer in Douala, Cameroon`;
 
   return {
     metadataBase: new URL(site.url),
