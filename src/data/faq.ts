@@ -139,9 +139,10 @@ export const faq: FaqEntry[] = withFrenchSpacing([
       fr: "WordPress ou un site sur mesure : lequel me faut-il ?",
     },
     answer: {
-      en: "WordPress if you want to edit your content yourself and your needs are standard: a showcase site, a blog or a simple store. A custom site if your business has its own rules.\n\nThose rules are things like checking that a part fits a truck, stock that can't be oversold, a booking system, or showing which nearby pharmacy has a medicine in stock. Not every project needs custom code, and I'll tell you honestly which one fits.",
-      fr: "WordPress si vous voulez modifier votre contenu vous-même et que vos besoins sont classiques : un site vitrine, un blog ou une boutique simple. Un site sur mesure si votre activité a ses propres règles.\n\nCes règles, ce sont par exemple vérifier qu'une pièce va sur un camion, un stock qui ne doit jamais être survendu, un système de réservation, ou montrer quelle pharmacie proche a un médicament en stock. Tous les projets n'ont pas besoin de code sur mesure, et je vous dis honnêtement lequel vous convient.",
+      en: "WordPress if you want to edit your content yourself and your needs are standard: a showcase site, a blog or a simple store. A custom site if your business has its own rules.\n\nThose rules are things like checking that a part fits a truck, stock that can't be oversold, a booking system, or showing which nearby pharmacy has a medicine in stock. Not every project needs custom code, and I'll tell you honestly which one fits.\n\nThe Astute Ink, a news site, runs on WordPress: its editors publish every day without me, and the redesign I did kept it that way.",
+      fr: "WordPress si vous voulez modifier votre contenu vous-même et que vos besoins sont classiques : un site vitrine, un blog ou une boutique simple. Un site sur mesure si votre activité a ses propres règles.\n\nCes règles, ce sont par exemple vérifier qu'une pièce va sur un camion, un stock qui ne doit jamais être survendu, un système de réservation, ou montrer quelle pharmacie proche a un médicament en stock. Tous les projets n'ont pas besoin de code sur mesure, et je vous dis honnêtement lequel vous convient.\n\nThe Astute Ink, un site d'actualité, tourne sous WordPress : ses rédacteurs publient chaque jour sans moi, et la refonte que j'ai faite l'a gardé ainsi.",
     },
+    link: { href: "/projects/astute-ink", label: { en: "See The Astute Ink project", fr: "Voir le projet The Astute Ink" } },
   },
   {
     id: "app-or-website",

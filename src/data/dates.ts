@@ -7,9 +7,9 @@
 // every deploy tells Google nothing, which is why these aren't automatic.
 export const updated = {
   home: "2026-11-10",
-  faq: "2026-11-05",
+  faq: "2026-11-10",
   cv: "2026-11-09",
-  services: "2026-11-09",
+  services: "2026-11-10",
   process: "2026-11-05",
   projects: {
     "astute-ink": "2026-11-09",

@@ -4,9 +4,10 @@ import type { Locale } from "@/i18n/routing";
 import { SERVICE_SLUGS, type ServiceId } from "./service-slugs";
 import truckpartsHome from "@/assets/screenshots/truckparts/home.png";
 import carRentalHome from "@/assets/screenshots/car-rental/home.png";
-import pharmapBeforeHome from "@/assets/screenshots/pharmap/before/home.webp";
-import pharmapHome from "@/assets/screenshots/pharmap/home.webp";
 import seoToolReport from "@/assets/screenshots/seo-audit-tool/home.webp";
+import astuteHome from "@/assets/screenshots/astute-ink/home.webp";
+import astuteStory from "@/assets/screenshots/astute-ink/story.webp";
+import astuteBeforeHome from "@/assets/screenshots/astute-ink/before-home.webp";
 import { withFrenchSpacing } from "@/lib/typography";
 
 export type { ServiceId };
@@ -38,8 +39,12 @@ export const services: Service[] = withFrenchSpacing([
       en: "Websites for businesses and organizations. They load fast, work well on phones and are easy to find on Google.",
       fr: "Des sites pour les entreprises et les organisations. Ils chargent vite, marchent bien sur téléphone et se trouvent facilement sur Google.",
     },
-    evidence: { en: "WordPress site: theastuteink.com", fr: "Site WordPress : theastuteink.com" },
-    href: "https://theastuteink.com",
+    evidence: {
+      en: "The Astute Ink: a client's news site, built on WordPress and later redesigned",
+      fr: "The Astute Ink : le site d'actualité d'un client, créé sur WordPress puis refait",
+    },
+    href: "/projects/astute-ink",
+    image: { src: astuteHome, label: { en: "theastuteink.com", fr: "theastuteink.com" } },
   },
   {
     id: "ecommerce",
@@ -85,8 +90,12 @@ export const services: Service[] = withFrenchSpacing([
       en: "Business websites, theme changes and ongoing maintenance, when WordPress is the better choice for the project.",
       fr: "Sites d'entreprise, modifications de thème et maintenance, quand WordPress est le meilleur choix pour le projet.",
     },
-    evidence: { en: "theastuteink.com", fr: "theastuteink.com" },
-    href: "https://theastuteink.com",
+    evidence: {
+      en: "The Astute Ink: a child theme on a live news site, 82% lighter pages and all 611 addresses kept",
+      fr: "The Astute Ink : un thème enfant sur un site d'actualité en ligne, pages 82 % plus légères et les 611 adresses conservées",
+    },
+    href: "/projects/astute-ink",
+    image: { src: astuteStory, label: { en: "theastuteink.com", fr: "theastuteink.com" } },
   },
   {
     id: "seo",
@@ -111,12 +120,12 @@ export const services: Service[] = withFrenchSpacing([
       en: "Your site or app works, but it looks dated, is slow on phones or doesn't bring in requests. I redesign it: a modern design you approve first, faster pages, and your content and Google ranking kept.",
       fr: "Votre site ou application fonctionne, mais il paraît daté, rame sur téléphone ou n'apporte pas de demandes. Je le refais : un design moderne que vous validez d'abord, des pages plus rapides, et vos contenus et votre place sur Google conservés.",
     },
-    evidence: { en: "PharMap, a client's app, before and after", fr: "PharMap, l'application d'un client, avant et après" },
-    href: "/projects/pharmap",
+    evidence: { en: "The Astute Ink, a client's news site, before and after", fr: "The Astute Ink, le site d'actualité d'un client, avant et après" },
+    href: "/projects/astute-ink",
     beforeAfter: {
-      before: pharmapBeforeHome,
-      after: pharmapHome,
-      label: { en: "pharmap-web.vercel.app", fr: "pharmap-web.vercel.app" },
+      before: astuteBeforeHome,
+      after: astuteHome,
+      label: { en: "theastuteink.com", fr: "theastuteink.com" },
     },
   },
 ]);
