@@ -21,7 +21,10 @@ test("every sitemap page has its SEO basics", async ({ page, request }) => {
       const title = await page.title();
       expect(title.length, `title: "${title}"`).toBeGreaterThan(10);
       expect(title.length, `title over 60: "${title}"`).toBeLessThanOrEqual(60);
-      expect(title, "short brand at the end of the title").toMatch(/ \| JPFW$/);
+      // The homepage leads with the full name (searches for "JPFW Web
+      // Services"); every other page ends with the short one.
+      if (/^\/(en|fr)$/.test(path)) expect(title, "full name first on the homepage").toMatch(/^JPFW Web Services/);
+      else expect(title, "short brand at the end of the title").toMatch(/ \| JPFW$/);
       const description = (await page.locator('meta[name="description"]').getAttribute("content")) ?? "";
       expect(description.length, "description").toBeGreaterThanOrEqual(50);
       expect(description.length, `description over 160: "${description}"`).toBeLessThanOrEqual(160);
