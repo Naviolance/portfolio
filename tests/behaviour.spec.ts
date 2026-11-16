@@ -255,3 +255,16 @@ test("theme choice survives switching language", async ({ page }) => {
   expect(await page.evaluate(() => document.documentElement.dataset.theme)).toBe("light");
   expect(await page.evaluate(() => getComputedStyle(document.body).backgroundColor)).toBe("rgb(246, 248, 250)");
 });
+
+// QR codes and campaigns use standard UTM tags instead of ?ref=: the roll-up
+// banner's QR opens /?utm_source=rollup_banner&utm_medium=qr&... The source
+// must survive the / → /en redirect and tag WhatsApp messages the same way.
+test("UTM source tags WhatsApp messages like ?ref=", async ({ page }) => {
+  await page.goto("/?utm_source=rollup_banner&utm_medium=qr&utm_campaign=jpfw_banner_2026");
+  await expect(page).toHaveURL(/\/en\?utm_source=rollup_banner/);
+  await page.evaluate(() => document.addEventListener("click", (e) => e.preventDefault()));
+  const link = page.locator('a[href^="https://wa.me/"]').filter({ visible: true }).first();
+  await link.click();
+  const text = decodeURIComponent((await link.getAttribute("href"))!.split("text=")[1]);
+  expect(text).toMatch(/\(ref: rollup_banner\)$/);
+});

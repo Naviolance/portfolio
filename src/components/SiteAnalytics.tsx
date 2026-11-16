@@ -3,27 +3,27 @@
 import { useEffect } from "react";
 import { Analytics, type BeforeSendEvent } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
-import { landingRef } from "@/lib/landing-ref";
+import { landingRef, refFrom } from "@/lib/landing-ref";
 
-// Tracked links: share the site as https://<site>/?ref=acme and the landing
+// Tracked links: share the site as https://<site>/?ref=acme (or with
+// utm_source=acme, like the roll-up banner's QR code) and the landing
 // pageview is recorded as the page "/ref/acme". Query/UTM filtering is a paid
-// Vercel add-on, but the Pages panel is on every plan, so turning the ref into
-// a path makes it visible for free.
+// Vercel add-on, but the Pages panel is on every plan, so turning the source
+// into a path makes it visible for free.
 //
 // Only the landing pageview is tagged. Nothing is stored in the browser to
 // follow the visitor around: Vercel Analytics sets no cookies. (GA4, which
-// does, waits for consent: lib/consent.ts.)
+// does, waits for consent: lib/consent.ts. It reads the UTM tags itself.)
 function tagRef(event: BeforeSendEvent): BeforeSendEvent {
   const url = new URL(event.url);
-  const ref = url.searchParams.get("ref");
+  const ref = refFrom(url.searchParams);
   if (!ref) return event;
 
-  const clean = ref.toLowerCase().replace(/[^a-z0-9-]/g, "").slice(0, 40);
-  if (!clean) return event;
-
-  url.searchParams.delete("ref");
+  for (const key of [...url.searchParams.keys()]) {
+    if (key === "ref" || key.startsWith("utm_")) url.searchParams.delete(key);
+  }
   const page = url.pathname === "/" ? "" : url.pathname;
-  url.pathname = `/ref/${clean}${page}`;
+  url.pathname = `/ref/${ref}${page}`;
   return { ...event, url: url.toString() };
 }
 
